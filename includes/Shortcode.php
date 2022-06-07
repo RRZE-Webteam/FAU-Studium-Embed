@@ -47,19 +47,10 @@ class Shortcode
      */
     public function onLoaded()
     {
-        add_action('wp_enqueue_scripts', [$this, 'enqueueScripts']);
-        add_shortcode('cms_basis_shortcode', [$this, 'shortcodeOutput'], 10, 2);
+	// to be filled
     }
 
-    /**
-     * Enqueue der Skripte.
-     */
-    public function enqueueScripts()
-    {
-        wp_register_style('cms-basis-shortcode', plugins_url('assets/css/shortcode.css', plugin_basename($this->pluginFile)));
-        wp_register_script('cms-basis-shortcode', plugins_url('assets/js/shortcode.js', plugin_basename($this->pluginFile)));
-    }
-
+   
 
     /**
      * Generieren Sie die Shortcode-Ausgabe
@@ -84,13 +75,13 @@ class Shortcode
         $output = '';
 
         if ($display) {
-            $output = '<span class="basis-shortcode basis-shortcode-display" data-display="true">[shortcode display]</span>';
+            $output = '<span class="fau-studium-embed" data-display="true">[shortcode display]</span>';
         } else {
-            $output = '<span class="basis-shortcode" data-display="false">[shortcode hidden]</span>';
+            $output = '<span class="fau-studium-embed" data-display="false">[shortcode hidden]</span>';
         }
 
-        wp_enqueue_style('cms-basis-shortcode');
-        wp_enqueue_script('cms-basis-shortcode');
+        wp_enqueue_style('fau-studium-embed');
+     //   wp_enqueue_script('fau-studium-embed');
 
         return $output;
     }
