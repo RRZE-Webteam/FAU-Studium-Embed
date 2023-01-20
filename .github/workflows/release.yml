@@ -1,4 +1,4 @@
-name: 'Release'
+name: Release
 
 on:
   workflow_dispatch:
@@ -14,20 +14,20 @@ jobs:
       GITHUB_USER_EMAIL: ${{ secrets.DEPLOYBOT_EMAIL }}
       GITHUB_USER_NAME: ${{ secrets.DEPLOYBOT_USER }}
     with:
-      PACKAGE_MANAGER: 'yarn'
+      PACKAGE_MANAGER: yarn
 
   build-release-archive:
     runs-on: ubuntu-latest
     if: ${{ always() }}
     needs: [build-assets]
     env:
-      PACKAGE_NAME: 'fau-studium-embed'
+      PACKAGE_NAME: fau-studium-embed
 
     steps:
-      - name: 'Extract tag name into env'
+      - name: Extract tag name into env
         run: echo "TAG_NAME=$(echo ${GITHUB_REF#refs/*/})" >> $GITHUB_ENV
 
-      - name: 'Checkout'
+      - name: Checkout
         uses: actions/checkout@v3
         with:
           ref: ${{ env.TAG_NAME }}
@@ -35,17 +35,17 @@ jobs:
       - name: Install Composer dependencies
         uses: ramsey/composer-install@v2s
 
-      - name: 'Update plugin version and release header'
+      - name: Update plugin version and release header
         run: |
           sed -Ei "s/Version: .*/Version: ${{env.TAG_NAME}}/g" fau-degree-program-output.php
           sed -Ei "s/Release asset: .*/Release asset: ${{ env.PACKAGE_NAME }}-${{ env.TAG_NAME }}.zip/g" fau-degree-program-output.php
 
-      - name: 'Create release archive'
+      - name: Create release archive
         uses: montudor/action-zip@v1
         with:
           args: zip -qq -r ${{ env.PACKAGE_NAME }}-${{ env.TAG_NAME }}.zip . -x ".git/*"
 
-      - name: 'Upload release archive'
+      - name: Upload release archive
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
