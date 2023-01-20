@@ -32,6 +32,9 @@ jobs:
         with:
           ref: ${{ env.TAG_NAME }}
 
+      - name: Install Composer dependencies
+        uses: ramsey/composer-install@v2s
+
       - name: 'Update plugin version and release header'
         run: |
           sed -Ei "s/Version: .*/Version: ${{env.TAG_NAME}}/g" fau-degree-program-output.php
