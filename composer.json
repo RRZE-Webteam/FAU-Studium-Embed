@@ -24,11 +24,8 @@
     },
     "repositories": [
         {
-            "type": "composer",
-            "url": "https://repo.packagist.com/inpsyde/"
-        },
-        {
-            "packagist.org": false
+            "type": "vcs",
+            "url": "https://github.com/RRZE-Webteam/FAU-Studium-Common"
         }
     ],
     "minimum-stability": "dev",
