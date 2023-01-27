@@ -8,6 +8,9 @@
  * Author:      Inpsyde GmbH
  * Author URI:  https://inpsyde.com/
  * Update URI:  false
+ * GitHub Plugin URI: RRZE-Webteam/FAU-Studium-Embed
+ * Primary Branch: main
+ * Release Assets: true
  * License:     GPL-2.0-or-later
  */
 
