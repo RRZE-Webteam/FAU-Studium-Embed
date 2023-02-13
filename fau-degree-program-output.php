@@ -20,6 +20,7 @@ namespace Fau\DegreeProgram\Output;
 
 // phpcs:disable PSR1.Files.SideEffects
 
+use Fau\DegreeProgram\Output\Infrastructure\ApiClient\ApiClientModule;
 use Fau\DegreeProgram\Output\Infrastructure\Content\ContentModule;
 use Fau\DegreeProgram\Output\Infrastructure\Repository\RepositoryModule;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\RewriteModule;
@@ -105,6 +106,7 @@ function initialize(): void
             new ContentModule(),
             new RewriteModule(),
             new RepositoryModule(),
+            new ApiClientModule(),
         );
     } catch (Throwable $throwable) {
         handleException($throwable);
