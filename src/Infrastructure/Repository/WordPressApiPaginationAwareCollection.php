@@ -14,7 +14,7 @@ use Fau\DegreeProgram\Common\Application\Repository\PaginationAwareCollection;
  * @template-extends ArrayObject<array-key, T>
  * @template-implements PaginationAwareCollection<T>
  */
-class WordpressApiPaginationAwareCollection extends ArrayObject implements PaginationAwareCollection
+class WordPressApiPaginationAwareCollection extends ArrayObject implements PaginationAwareCollection
 {
     /**
      * @param T ...$items
@@ -40,7 +40,7 @@ class WordpressApiPaginationAwareCollection extends ArrayObject implements Pagin
             return null;
         }
 
-        return ++$this->currentPage() ;
+        return ++$this->currentPage;
     }
 
     public function previousPage(): ?int
@@ -49,7 +49,7 @@ class WordpressApiPaginationAwareCollection extends ArrayObject implements Pagin
             return null;
         }
 
-        return min((--$this->currentPage()), $this->maxPages());
+        return min((--$this->currentPage), $this->maxPages());
     }
 
     public function maxPages(): int

@@ -7,6 +7,8 @@
     ignoreInternalFunctionFalseReturn="false"
     ignoreInternalFunctionNullReturn="false"
     hideExternalErrors="true"
+    findUnusedBaselineEntry="true"
+    findUnusedCode="false"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
@@ -18,8 +20,8 @@
         </ignoreFiles>
     </projectFiles>
     <stubs>
+        <file name=".psalm.stubs.php" />
         <file name="vendor/inpsyde/wp-stubs/stubs/latest.php"/>
-        <file name=".psalm.stubs.php"/>
     </stubs>
     <issueHandlers>
         <MixedAssignment errorLevel="suppress" />
@@ -28,4 +30,7 @@
         <UnresolvableInclude errorLevel="suppress" />
         <ParadoxicalCondition errorLevel="suppress" />
     </issueHandlers>
+    <globals>
+        <var name="wpdb" type="\wpdb"/>
+    </globals>
 </psalm>

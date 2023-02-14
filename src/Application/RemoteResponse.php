@@ -40,6 +40,11 @@ final class RemoteResponse
         return $this->parsedJson;
     }
 
+    public function get(string $key): mixed
+    {
+        return $this->parsedJson[$key] ?? null;
+    }
+
     /**
      * @return Requests_Utility_CaseInsensitiveDictionary|array
      */

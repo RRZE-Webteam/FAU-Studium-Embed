@@ -20,7 +20,7 @@
     "require-dev": {
         "inpsyde/php-coding-standards": "@stable",
         "inpsyde/wp-stubs": "dev-main",
-        "vimeo/psalm": "^5.4"
+        "vimeo/psalm": "dev-master"
     },
     "repositories": [
         {

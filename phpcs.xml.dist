@@ -22,5 +22,13 @@
         </properties>
     </rule>
 
+    <rule ref="Inpsyde.CodeQuality.NoAccessors.NoGetter">
+        <exclude-pattern>Cache.php</exclude-pattern>
+    </rule>
+
+    <rule ref="Inpsyde.CodeQuality.NoAccessors.NoSetter">
+        <exclude-pattern>Cache.php</exclude-pattern>
+    </rule>
+
     <exclude-pattern>*/vendor/*</exclude-pattern>
 </ruleset>
