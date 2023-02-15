@@ -20,14 +20,15 @@ namespace Fau\DegreeProgram\Output;
 
 // phpcs:disable PSR1.Files.SideEffects
 
+use Fau\DegreeProgram\Output\Infrastructure\ApiClient\ApiClientModule;
 use Fau\DegreeProgram\Output\Infrastructure\Cache\CacheModule;
 use Fau\DegreeProgram\Output\Infrastructure\CliModule;
 use Fau\DegreeProgram\Output\Infrastructure\Content\ContentModule;
 use Fau\DegreeProgram\Output\Infrastructure\Dashboard\AdminBarModule;
 use Fau\DegreeProgram\Output\Infrastructure\Environment\EnvironmentModule;
 use Fau\DegreeProgram\Output\Infrastructure\EventDispatcherModule;
-use Fau\DegreeProgram\Output\Infrastructure\ApiClient\ApiClientModule;
 use Fau\DegreeProgram\Output\Infrastructure\LoggerModule;
+use Fau\DegreeProgram\Output\Infrastructure\QueueModule;
 use Fau\DegreeProgram\Output\Infrastructure\Repository\RepositoryModule;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\RewriteModule;
 use Inpsyde\Modularity\Package;
@@ -119,6 +120,7 @@ function initialize(): void
             new AdminBarModule(),
             new CliModule(),
             new EventDispatcherModule(),
+            new QueueModule(),
         );
     } catch (Throwable $throwable) {
         handleException($throwable);
