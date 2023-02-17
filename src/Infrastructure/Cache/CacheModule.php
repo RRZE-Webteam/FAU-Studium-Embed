@@ -24,6 +24,10 @@ final class CacheModule implements ServiceModule, ExecutableModule
 {
     use ModuleClassNameIdTrait;
 
+    public function __construct(private string $pluginFile)
+    {
+    }
+
     public function services(): array
     {
         return [
@@ -51,6 +55,9 @@ final class CacheModule implements ServiceModule, ExecutableModule
             WarmCacheMessageHandler::class => static fn(ContainerInterface $container) => new WarmCacheMessageHandler(
                 $container->get(CacheWarmer::class),
             ),
+            DailyCacheInvalidationRunner::class => static fn(ContainerInterface $container) => new DailyCacheInvalidationRunner(
+                $container->get(CacheInvalidator::class),
+            ),
         ];
     }
 
@@ -65,6 +72,31 @@ final class CacheModule implements ServiceModule, ExecutableModule
             [
                 $container->get(WhenCacheInvalidated::class),
                 'scheduleWarming',
+            ]
+        );
+
+        $cacheInvalidationRunner = $container->get(DailyCacheInvalidationRunner::class);
+        add_action(
+            'admin_init',
+            [
+                $cacheInvalidationRunner,
+                'scheduleDailyCacheInvalidation',
+            ]
+        );
+
+        register_deactivation_hook(
+            $this->pluginFile,
+            [
+                $cacheInvalidationRunner,
+                'unscheduleDailyCacheInvalidation',
+            ]
+        );
+
+        add_action(
+            DailyCacheInvalidationRunner::DAILY_CACHE_INVALIDATION_HOOK,
+            [
+                $cacheInvalidationRunner,
+                'runDailyCacheInvalidation',
             ]
         );
 

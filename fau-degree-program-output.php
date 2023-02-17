@@ -117,7 +117,7 @@ function initialize(): void
             new ApiClientModule(),
             new EnvironmentModule(),
             new LoggerModule(),
-            new CacheModule(),
+            new CacheModule(__FILE__),
             new AdminBarModule(),
             new CliModule(),
             new EventDispatcherModule(),
