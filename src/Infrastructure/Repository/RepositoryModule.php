@@ -9,6 +9,7 @@ use Fau\DegreeProgram\Common\Application\Repository\CachedDegreeProgramViewRepos
 use Fau\DegreeProgram\Common\Application\Repository\DegreeProgramCollectionRepository;
 use Fau\DegreeProgram\Common\Application\Repository\DegreeProgramViewRepository;
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\TaxonomiesList;
+use Fau\DegreeProgram\Common\Infrastructure\Repository\IdGenerator;
 use Fau\DegreeProgram\Common\Infrastructure\Repository\WordPressDatabaseDegreeProgramCollectionRepository;
 use Fau\DegreeProgram\Output\Infrastructure\ApiClient\ApiClient;
 use Inpsyde\Modularity\Module\ModuleClassNameIdTrait;
@@ -46,6 +47,7 @@ class RepositoryModule implements ServiceModule
                 $container->get(self::COLLECTION_REPOSITORY_UNCACHED),
                 $container->get(WordPressDatabaseDegreeProgramCollectionRepository::class),
             ),
+            IdGenerator::class => static fn() => new IdGenerator(),
         ];
     }
 }

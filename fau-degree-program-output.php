@@ -31,6 +31,7 @@ use Fau\DegreeProgram\Output\Infrastructure\LoggerModule;
 use Fau\DegreeProgram\Output\Infrastructure\QueueModule;
 use Fau\DegreeProgram\Output\Infrastructure\Repository\RepositoryModule;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\RewriteModule;
+use Fau\DegreeProgram\Output\Infrastructure\Search\SearchModule;
 use Inpsyde\Modularity\Package;
 use Inpsyde\Modularity\Properties\PluginProperties;
 use RuntimeException;
@@ -121,6 +122,7 @@ function initialize(): void
             new CliModule(),
             new EventDispatcherModule(),
             new QueueModule(),
+            new SearchModule(),
         );
     } catch (Throwable $throwable) {
         handleException($throwable);

@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/RRZE-Webteam/FAU-Studium-Common.git",
-                "reference": "c02be5e6b0327b1a639f3a05d9590f29ab4709a9"
+                "reference": "57c21de0e77b71de0a516d75cd89bafc562acd2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RRZE-Webteam/FAU-Studium-Common/zipball/c02be5e6b0327b1a639f3a05d9590f29ab4709a9",
-                "reference": "c02be5e6b0327b1a639f3a05d9590f29ab4709a9",
+                "url": "https://api.github.com/repos/RRZE-Webteam/FAU-Studium-Common/zipball/57c21de0e77b71de0a516d75cd89bafc562acd2e",
+                "reference": "57c21de0e77b71de0a516d75cd89bafc562acd2e",
                 "shasum": ""
             },
             "require": {
@@ -84,20 +84,20 @@
                 "source": "https://github.com/RRZE-Webteam/FAU-Studium-Common/tree/main",
                 "issues": "https://github.com/RRZE-Webteam/FAU-Studium-Common/issues"
             },
-            "time": "2023-02-15T08:20:25+00:00"
+            "time": "2023-02-17T11:58:36+00:00"
         },
         {
             "name": "inpsyde/modularity",
-            "version": "1.6.0",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/inpsyde/modularity.git",
-                "reference": "dd2ac0daccab116c73b71646d1c950ab653f150a"
+                "reference": "eb14a9b0468000fa88646824080bc035a7a03b61"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/inpsyde/modularity/zipball/dd2ac0daccab116c73b71646d1c950ab653f150a",
-                "reference": "dd2ac0daccab116c73b71646d1c950ab653f150a",
+                "url": "https://api.github.com/repos/inpsyde/modularity/zipball/eb14a9b0468000fa88646824080bc035a7a03b61",
+                "reference": "eb14a9b0468000fa88646824080bc035a7a03b61",
                 "shasum": ""
             },
             "require": {
@@ -150,9 +150,9 @@
             "description": "Modular PSR-11 implementation for WordPress plugins, themes or libraries.",
             "support": {
                 "issues": "https://github.com/inpsyde/modularity/issues",
-                "source": "https://github.com/inpsyde/modularity/tree/1.6.0"
+                "source": "https://github.com/inpsyde/modularity/tree/1.6.1"
             },
-            "time": "2023-02-03T12:38:08+00:00"
+            "time": "2023-02-16T09:37:57+00:00"
         },
         {
             "name": "inpsyde/wp-context",
@@ -2656,12 +2656,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/vimeo/psalm.git",
-                "reference": "b71a8b76720c3be629626b18247dd150c210940a"
+                "reference": "d6c47ae473a58121d91bcc989d3abece9dbab706"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vimeo/psalm/zipball/b71a8b76720c3be629626b18247dd150c210940a",
-                "reference": "b71a8b76720c3be629626b18247dd150c210940a",
+                "url": "https://api.github.com/repos/vimeo/psalm/zipball/d6c47ae473a58121d91bcc989d3abece9dbab706",
+                "reference": "d6c47ae473a58121d91bcc989d3abece9dbab706",
                 "shasum": ""
             },
             "require": {
@@ -2747,13 +2747,14 @@
             "keywords": [
                 "code",
                 "inspection",
-                "php"
+                "php",
+                "static analysis"
             ],
             "support": {
                 "issues": "https://github.com/vimeo/psalm/issues",
                 "source": "https://github.com/vimeo/psalm/tree/master"
             },
-            "time": "2023-02-15T08:07:40+00:00"
+            "time": "2023-02-17T07:42:08+00:00"
         },
         {
             "name": "wp-coding-standards/wpcs",

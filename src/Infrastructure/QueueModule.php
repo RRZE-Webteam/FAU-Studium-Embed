@@ -11,6 +11,10 @@ use Fau\DegreeProgram\Common\Infrastructure\Queue\SyncMessageBus;
 use Fau\DegreeProgram\Common\Infrastructure\Queue\WpCronMessageBus;
 use Fau\DegreeProgram\Output\Infrastructure\Cache\WarmCacheMessage;
 use Fau\DegreeProgram\Output\Infrastructure\Cache\WarmCacheMessageHandler;
+use Fau\DegreeProgram\Output\Infrastructure\Search\UpdateFilterableTermsMessage;
+use Fau\DegreeProgram\Output\Infrastructure\Search\UpdateFilterableTermsMessageHandler;
+use Fau\DegreeProgram\Output\Infrastructure\Search\UpdateSearchableContentMessage;
+use Fau\DegreeProgram\Output\Infrastructure\Search\UpdateSearchableContentMessageHandler;
 use Inpsyde\Modularity\Module\ExecutableModule;
 use Inpsyde\Modularity\Module\FactoryModule;
 use Inpsyde\Modularity\Module\ModuleClassNameIdTrait;
@@ -33,6 +37,12 @@ final class QueueModule implements ServiceModule, FactoryModule, ExecutableModul
                 [
                     WarmCacheMessage::class => [
                         $container->get(WarmCacheMessageHandler::class),
+                    ],
+                    UpdateSearchableContentMessage::class => [
+                        $container->get(UpdateSearchableContentMessageHandler::class),
+                    ],
+                    UpdateFilterableTermsMessage::class => [
+                        $container->get(UpdateFilterableTermsMessageHandler::class),
                     ],
                 ],
             ),
