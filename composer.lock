@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6e0ea62526299dc985a52ab37082c45a",
+    "content-hash": "951c11db819382c4ee3c7352d9d9d0a3",
     "packages": [
         {
             "name": "inpsyde/fau-degree-program-common",
@@ -2652,16 +2652,16 @@
         },
         {
             "name": "vimeo/psalm",
-            "version": "dev-master",
+            "version": "5.7.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vimeo/psalm.git",
-                "reference": "d6c47ae473a58121d91bcc989d3abece9dbab706"
+                "reference": "e028ba46ba0d7f9a78bc3201c251e137383e145f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vimeo/psalm/zipball/d6c47ae473a58121d91bcc989d3abece9dbab706",
-                "reference": "d6c47ae473a58121d91bcc989d3abece9dbab706",
+                "url": "https://api.github.com/repos/vimeo/psalm/zipball/e028ba46ba0d7f9a78bc3201c251e137383e145f",
+                "reference": "e028ba46ba0d7f9a78bc3201c251e137383e145f",
                 "shasum": ""
             },
             "require": {
@@ -2685,7 +2685,7 @@
                 "nikic/php-parser": "^4.13",
                 "php": "^7.4 || ~8.0.0 || ~8.1.0 || ~8.2.0",
                 "sebastian/diff": "^4.0 || ^5.0",
-                "spatie/array-to-xml": "^2.17.0",
+                "spatie/array-to-xml": "^2.17.0 || ^3.0",
                 "symfony/console": "^4.1.6 || ^5.0 || ^6.0",
                 "symfony/filesystem": "^5.4 || ^6.0"
             },
@@ -2711,7 +2711,6 @@
                 "ext-curl": "In order to send data to shepherd",
                 "ext-igbinary": "^2.0.5 is required, used to serialize caching data"
             },
-            "default-branch": true,
             "bin": [
                 "psalm",
                 "psalm-language-server",
@@ -2752,9 +2751,9 @@
             ],
             "support": {
                 "issues": "https://github.com/vimeo/psalm/issues",
-                "source": "https://github.com/vimeo/psalm/tree/master"
+                "source": "https://github.com/vimeo/psalm/tree/5.7.7"
             },
-            "time": "2023-02-17T07:42:08+00:00"
+            "time": "2023-02-25T01:05:07+00:00"
         },
         {
             "name": "wp-coding-standards/wpcs",
@@ -2812,8 +2811,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "inpsyde/php-coding-standards": 0,
-        "inpsyde/wp-stubs": 20,
-        "vimeo/psalm": 20
+        "inpsyde/wp-stubs": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
