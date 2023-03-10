@@ -73,9 +73,6 @@ final class SearchableContentUpdater
     }
 
     /**
-     * @TODO: it is not clear what fields should be available for full text search
-     *        https://github.com/RRZE-Webteam/FAU-Studium/issues/1
-     *
      * @psalm-param LanguageCodes $languageCode
      */
     private function buildSearchableContent(
@@ -85,6 +82,15 @@ final class SearchableContentUpdater
 
         $parts = [
             $rawView->title()->asString($languageCode),
+            $rawView->subtitle()->asString($languageCode),
+            $rawView->content()->about()->description()->asString($languageCode),
+            $rawView->content()->structure()->description()->asString($languageCode),
+            $rawView->content()->specializations()->description()->asString($languageCode),
+            $rawView->content()->qualitiesAndSkills()->description()->asString($languageCode),
+            $rawView->content()->whyShouldStudy()->description()->asString($languageCode),
+            $rawView->content()->careerProspects()->description()->asString($languageCode),
+            $rawView->content()->specialFeatures()->description()->asString($languageCode),
+            $rawView->content()->testimonials()->description()->asString($languageCode),
             ...array_values($rawView->keywords()->asArrayOfStrings($languageCode)->getArrayCopy()),
         ];
 

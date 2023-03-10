@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/RRZE-Webteam/FAU-Studium-Common.git",
-                "reference": "57c21de0e77b71de0a516d75cd89bafc562acd2e"
+                "reference": "bdc8317e0ebaaf36fcb95c721097a86ab8621211"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RRZE-Webteam/FAU-Studium-Common/zipball/57c21de0e77b71de0a516d75cd89bafc562acd2e",
-                "reference": "57c21de0e77b71de0a516d75cd89bafc562acd2e",
+                "url": "https://api.github.com/repos/RRZE-Webteam/FAU-Studium-Common/zipball/bdc8317e0ebaaf36fcb95c721097a86ab8621211",
+                "reference": "bdc8317e0ebaaf36fcb95c721097a86ab8621211",
                 "shasum": ""
             },
             "require": {
@@ -84,7 +84,7 @@
                 "source": "https://github.com/RRZE-Webteam/FAU-Studium-Common/tree/main",
                 "issues": "https://github.com/RRZE-Webteam/FAU-Studium-Common/issues"
             },
-            "time": "2023-02-17T11:58:36+00:00"
+            "time": "2023-03-07T08:56:58+00:00"
         },
         {
             "name": "inpsyde/modularity",
@@ -1470,16 +1470,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.15.3",
+            "version": "v4.15.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "570e980a201d8ed0236b0a62ddf2c9cbb2034039"
+                "reference": "6bb5176bc4af8bcb7d926f88718db9b96a2d4290"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/570e980a201d8ed0236b0a62ddf2c9cbb2034039",
-                "reference": "570e980a201d8ed0236b0a62ddf2c9cbb2034039",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/6bb5176bc4af8bcb7d926f88718db9b96a2d4290",
+                "reference": "6bb5176bc4af8bcb7d926f88718db9b96a2d4290",
                 "shasum": ""
             },
             "require": {
@@ -1520,9 +1520,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/v4.15.3"
+                "source": "https://github.com/nikic/PHP-Parser/tree/v4.15.4"
             },
-            "time": "2023-01-16T22:05:37+00:00"
+            "time": "2023-03-05T19:49:14+00:00"
         },
         {
             "name": "phpcompatibility/php-compatibility",
@@ -1877,26 +1877,25 @@
         },
         {
             "name": "spatie/array-to-xml",
-            "version": "2.17.1",
+            "version": "3.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/array-to-xml.git",
-                "reference": "5cbec9c6ab17e320c58a259f0cebe88bde4a7c46"
+                "reference": "13f76acef5362d15c71ae1ac6350cc3df5e25e43"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/array-to-xml/zipball/5cbec9c6ab17e320c58a259f0cebe88bde4a7c46",
-                "reference": "5cbec9c6ab17e320c58a259f0cebe88bde4a7c46",
+                "url": "https://api.github.com/repos/spatie/array-to-xml/zipball/13f76acef5362d15c71ae1ac6350cc3df5e25e43",
+                "reference": "13f76acef5362d15c71ae1ac6350cc3df5e25e43",
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
-                "php": "^7.4|^8.0"
+                "php": "^8.0"
             },
             "require-dev": {
                 "mockery/mockery": "^1.2",
                 "pestphp/pest": "^1.21",
-                "phpunit/phpunit": "^9.0",
                 "spatie/pest-plugin-snapshots": "^1.1"
             },
             "type": "library",
@@ -1925,7 +1924,7 @@
                 "xml"
             ],
             "support": {
-                "source": "https://github.com/spatie/array-to-xml/tree/2.17.1"
+                "source": "https://github.com/spatie/array-to-xml/tree/3.1.5"
             },
             "funding": [
                 {
@@ -1937,7 +1936,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-12-26T08:22:07+00:00"
+            "time": "2022-12-24T13:43:51+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
