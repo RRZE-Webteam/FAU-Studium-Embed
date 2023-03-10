@@ -34,8 +34,15 @@ final class SearchModule implements ServiceModule, ExecutableModule
                 $container->get(IdGenerator::class),
                 $container->get(LoggerInterface::class),
             ),
+            FilterablePostsMetaUpdater::class => static fn(ContainerInterface $container) => new FilterablePostsMetaUpdater(
+                $container->get(DegreeProgramCollectionRepository::class),
+                $container->get(LoggerInterface::class),
+            ),
             UpdateFilterableTermsMessageHandler::class => static fn(ContainerInterface $container) => new UpdateFilterableTermsMessageHandler(
                 $container->get(FilterableTermsUpdater::class),
+            ),
+            UpdateFilterablePostsMetaMessageHandler::class => static fn(ContainerInterface $container) => new UpdateFilterablePostsMetaMessageHandler(
+                $container->get(FilterablePostsMetaUpdater::class),
             ),
             WhenCacheWarmed::class => static fn(ContainerInterface $container) => new WhenCacheWarmed(
                 $container->get(MessageBus::class),
@@ -50,6 +57,14 @@ final class SearchModule implements ServiceModule, ExecutableModule
             [
                 $container->get(WhenCacheWarmed::class),
                 'scheduleSearchableContentUpdating',
+            ]
+        );
+
+        add_action(
+            CacheWarmed::NAME,
+            [
+                $container->get(WhenCacheWarmed::class),
+                'scheduleFilterablePostsMetaUpdating',
             ]
         );
 

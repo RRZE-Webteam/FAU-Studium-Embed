@@ -30,6 +30,12 @@ because there are no time and memory limits compared to WordPress Cron which run
 
 The plugin's logger uses [`error_log()`](https://www.php.net/manual/en/function.error-log.php) internally.
 
+### Sorting functionality
+
+The plugin allows users to order `WP_Query` post loops by selected post meta keys in both the frontend and backend.
+In the frontend, visitors can use this feature to order the filter views by degree, study location, or the start of the degree program.
+On the degree program management site, editors can use this feature to sort the backend post lists by degrees.
+
 ## Usage
 
 The plugin fetches degree program data from https://meinstudium.fau.de. To change the domain

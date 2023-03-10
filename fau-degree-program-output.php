@@ -28,6 +28,7 @@ use Fau\DegreeProgram\Output\Infrastructure\Dashboard\AdminBarModule;
 use Fau\DegreeProgram\Output\Infrastructure\Environment\EnvironmentModule;
 use Fau\DegreeProgram\Output\Infrastructure\EventDispatcherModule;
 use Fau\DegreeProgram\Output\Infrastructure\LoggerModule;
+use Fau\DegreeProgram\Output\Infrastructure\Query\QueryModule;
 use Fau\DegreeProgram\Output\Infrastructure\QueueModule;
 use Fau\DegreeProgram\Output\Infrastructure\Repository\RepositoryModule;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\RewriteModule;
@@ -123,6 +124,7 @@ function initialize(): void
             new EventDispatcherModule(),
             new QueueModule(),
             new SearchModule(),
+            new QueryModule(),
         );
     } catch (Throwable $throwable) {
         handleException($throwable);

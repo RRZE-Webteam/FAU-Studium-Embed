@@ -11,6 +11,7 @@ use Fau\DegreeProgram\Common\Infrastructure\Queue\SyncMessageBus;
 use Fau\DegreeProgram\Common\Infrastructure\Queue\WpCronMessageBus;
 use Fau\DegreeProgram\Output\Infrastructure\Cache\WarmCacheMessage;
 use Fau\DegreeProgram\Output\Infrastructure\Cache\WarmCacheMessageHandler;
+use Fau\DegreeProgram\Output\Infrastructure\Search\UpdateFilterablePostsMetaMessageHandler;
 use Fau\DegreeProgram\Output\Infrastructure\Search\UpdateFilterableTermsMessage;
 use Fau\DegreeProgram\Output\Infrastructure\Search\UpdateFilterableTermsMessageHandler;
 use Fau\DegreeProgram\Output\Infrastructure\Search\UpdateSearchableContentMessage;
@@ -40,6 +41,7 @@ final class QueueModule implements ServiceModule, FactoryModule, ExecutableModul
                     ],
                     UpdateSearchableContentMessage::class => [
                         $container->get(UpdateSearchableContentMessageHandler::class),
+                        $container->get(UpdateFilterablePostsMetaMessageHandler::class),
                     ],
                     UpdateFilterableTermsMessage::class => [
                         $container->get(UpdateFilterableTermsMessageHandler::class),
