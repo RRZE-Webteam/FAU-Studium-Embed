@@ -17,7 +17,6 @@ final class WpQueryModifier
         'degree_de' => 'degree_de',
     ];
 
-
     /**
      * @wp-hook pre_get_posts
      */

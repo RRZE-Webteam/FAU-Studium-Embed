@@ -22,6 +22,7 @@ namespace Fau\DegreeProgram\Output;
 
 use Fau\DegreeProgram\Output\Infrastructure\ApiClient\ApiClientModule;
 use Fau\DegreeProgram\Output\Infrastructure\Cache\CacheModule;
+use Fau\DegreeProgram\Output\Infrastructure\Cache\DailyCacheInvalidationRunner;
 use Fau\DegreeProgram\Output\Infrastructure\CliModule;
 use Fau\DegreeProgram\Output\Infrastructure\Content\ContentModule;
 use Fau\DegreeProgram\Output\Infrastructure\Dashboard\AdminBarModule;
@@ -96,6 +97,19 @@ function plugin(): Package
     return $package;
 }
 
+function setUpAutoloader(): void
+{
+    if (class_exists(ContentModule::class)) {
+        return;
+    }
+
+    if (!is_readable(__DIR__ . '/vendor/autoload.php')) {
+        throw new RuntimeException('Composer autoload file does not exist.');
+    }
+
+    require_once __DIR__ . '/vendor/autoload.php';
+}
+
 /**
  * Initialize plugin.
  *
@@ -104,11 +118,7 @@ function plugin(): Package
 function initialize(): void
 {
     try {
-        if (!is_readable(__DIR__ . '/vendor/autoload.php')) {
-            throw new RuntimeException('Composer autoload file does not exist.');
-        }
-
-        require_once __DIR__ . '/vendor/autoload.php';
+        setUpAutoloader();
 
         // Initialize plugin
         plugin()->boot(
@@ -132,3 +142,16 @@ function initialize(): void
 }
 
 add_action('plugins_loaded', __NAMESPACE__ . '\\initialize');
+
+register_activation_hook(
+    __FILE__,
+    static function (): void {
+        setUpAutoloader();
+
+        // Populate the cache on plugin activation
+        wp_schedule_single_event(
+            time(),
+            DailyCacheInvalidationRunner::DAILY_CACHE_INVALIDATION_HOOK
+        );
+    },
+);

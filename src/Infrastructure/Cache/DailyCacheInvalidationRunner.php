@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Fau\DegreeProgram\Output\Infrastructure\Cache;
 
+use DateTimeImmutable;
 use Fau\DegreeProgram\Common\Application\Cache\CacheInvalidator;
 
 final class DailyCacheInvalidationRunner
@@ -26,7 +27,19 @@ final class DailyCacheInvalidationRunner
             return;
         }
 
-        wp_schedule_event(time(), 'daily', self::DAILY_CACHE_INVALIDATION_HOOK);
+        wp_schedule_event(
+            $this->randomNightTimestamp(),
+            'daily',
+            self::DAILY_CACHE_INVALIDATION_HOOK
+        );
+    }
+
+    private function randomNightTimestamp(): int
+    {
+        $start = new DateTimeImmutable('tomorrow', wp_timezone());
+        $end = new DateTimeImmutable('tomorrow 5:00AM', wp_timezone());
+
+        return random_int($start->getTimestamp(), $end->getTimestamp());
     }
 
     public function unscheduleDailyCacheInvalidation(): void
