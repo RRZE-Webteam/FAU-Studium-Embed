@@ -9,20 +9,22 @@ use Fau\DegreeProgram\Common\Application\DegreeProgramViewRaw;
 use Fau\DegreeProgram\Common\Application\Repository\CollectionCriteria;
 use Fau\DegreeProgram\Common\Application\Repository\DegreeProgramCollectionRepository;
 use Fau\DegreeProgram\Common\Application\Repository\PaginationAwareCollection;
+use Fau\DegreeProgram\Common\Domain\AdmissionRequirement;
 use Fau\DegreeProgram\Common\Domain\Degree;
 use Fau\DegreeProgram\Common\Domain\MultilingualLink;
 use Fau\DegreeProgram\Common\Domain\MultilingualLinks;
 use Fau\DegreeProgram\Common\Domain\MultilingualList;
 use Fau\DegreeProgram\Common\Domain\MultilingualString;
 use Fau\DegreeProgram\Common\Infrastructure\Content\PostType\DegreeProgramPostType;
-use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\AreaOfStudyTaxonomy;
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\AttributeTaxonomy;
+use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\BachelorOrTeachingDegreeAdmissionRequirementTaxonomy;
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\DegreeTaxonomy;
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\FacultyTaxonomy;
-use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\KeywordTaxonomy;
+use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\MasterDegreeAdmissionRequirementTaxonomy;
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\SemesterTaxonomy;
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\StudyLocationTaxonomy;
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\SubjectGroupTaxonomy;
+use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\TeachingDegreeHigherSemesterAdmissionRequirementTaxonomy;
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\TeachingLanguageTaxonomy;
 use Fau\DegreeProgram\Common\Infrastructure\Repository\BilingualRepository;
 use Fau\DegreeProgram\Common\Infrastructure\Repository\IdGenerator;
@@ -94,7 +96,7 @@ final class FilterableTermsUpdater
 
     /**
      * phpcs:ignore Inpsyde.CodeQuality.LineLength.TooLong
-     * @return array<string, MultilingualString|MultilingualList|MultilingualLink|MultilingualLinks|Degree>
+     * @return array<string, MultilingualString|MultilingualList|MultilingualLink|MultilingualLinks|Degree|AdmissionRequirement>
      */
     private function retrieveFilterableProperties(DegreeProgramViewRaw $rawView): array
     {
@@ -113,10 +115,12 @@ final class FilterableTermsUpdater
                 $rawView->location(),
             SubjectGroupTaxonomy::KEY =>
                 $rawView->subjectGroups(),
-            KeywordTaxonomy::KEY =>
-                $rawView->keywords(),
-            AreaOfStudyTaxonomy::KEY =>
-                $rawView->areaOfStudy(),
+            BachelorOrTeachingDegreeAdmissionRequirementTaxonomy::KEY =>
+                $rawView->admissionRequirements()->bachelorOrTeachingDegree(),
+            TeachingDegreeHigherSemesterAdmissionRequirementTaxonomy::KEY =>
+                $rawView->admissionRequirements()->teachingDegreeHigherSemester(),
+            MasterDegreeAdmissionRequirementTaxonomy::KEY =>
+                $rawView->admissionRequirements()->master(),
         ];
     }
 
@@ -126,7 +130,7 @@ final class FilterableTermsUpdater
     private function setObjectTerms(
         int $postId,
         string $taxonomy,
-        MultilingualString|MultilingualList|MultilingualLink|MultilingualLinks|Degree $property
+        MultilingualString|MultilingualList|MultilingualLink|MultilingualLinks|Degree|AdmissionRequirement $property
     ): void {
 
         $termIds = $this->maybeCreateTerms($taxonomy, $property);
@@ -157,13 +161,12 @@ final class FilterableTermsUpdater
 
     /**
      * phpcs:disable Generic.Metrics.CyclomaticComplexity.TooHigh
-     * phpcs:disable Inpsyde.CodeQuality.FunctionLength.TooLong
      *
      * Refactoring could decrease performance.
      */
     private function maybeCreateTerms(
         string $taxonomy,
-        MultilingualString|MultilingualList|MultilingualLink|MultilingualLinks|Degree $property
+        MultilingualString|MultilingualList|MultilingualLink|MultilingualLinks|Degree|AdmissionRequirement $property
     ): array {
 
         /**
@@ -176,12 +179,10 @@ final class FilterableTermsUpdater
             $taxonomiesCache[$taxonomy] = $this->populateTaxonomiesCache($taxonomy);
         }
 
-        /** @var array<int> $parents */
-        static $parents = [];
-
         $result = [];
 
-        /** @var array<MultilingualString|MultilingualLink|Degree> $flatProperties */
+        // phpcs:ignore Inpsyde.CodeQuality.LineLength.TooLong
+        /** @var array<MultilingualString|MultilingualLink|Degree|AdmissionRequirement> $flatProperties */
         $flatProperties = $property instanceof ArrayObject ? $property->getArrayCopy() : [$property];
 
         foreach ($flatProperties as $flatProperty) {
@@ -189,11 +190,9 @@ final class FilterableTermsUpdater
                 continue;
             }
 
-            // Degree taxonomy is the only hierarchy taxonomy now.
-            // The code could be generalized in the future.
-            if ($flatProperty instanceof Degree && $flatProperty->parent()) {
-                $parents[] = $this->idGenerator->termIdsList($flatProperty->parent())[0] ?? 0;
-                $this->maybeCreateTerms($taxonomy, $flatProperty->parent());
+            // For "Degree" and "Admission requirements …" taxonomies, only first-level terms are used as filter options
+            if ($flatProperty instanceof Degree || $flatProperty instanceof AdmissionRequirement) {
+                $flatProperty = $this->retrieveFirstLevelTerm($flatProperty);
             }
 
             $termId = $this->idGenerator->termIdsList($flatProperty)[0] ?? null;
@@ -206,34 +205,19 @@ final class FilterableTermsUpdater
                 );
                 continue;
             }
+            $name = $flatProperty instanceof MultilingualString ? $flatProperty : $flatProperty->name();
 
-            $parentId = 0;
-            if (count($parents) > 0 && $termId !== $parents[count($parents) - 1]) {
-                $parentId = array_pop($parents);
-            }
-
-            $validatedTermId = self::findKeyOrItemFromArray($termId, $taxonomiesCache[$taxonomy]);
-            if ($validatedTermId && count($parents) === 0) {
-                $result[] = $validatedTermId;
-            }
-
-            if ($validatedTermId) {
+            $newTermId = array_search($termId, $taxonomiesCache[$taxonomy], true);
+            if ($newTermId) {
                 // Term was persisted already
+                $result[] = $newTermId;
+                $this->updateTerm($taxonomy, $newTermId, $name);
                 continue;
             }
 
-            $validatedParentId = self::findKeyOrItemFromArray($parentId, $taxonomiesCache[$taxonomy]);
-            if ($parentId > 0 && $validatedParentId === null) {
-                throw new LogicException('Parent term was not created?');
-            }
-
-            $name = $flatProperty instanceof MultilingualString ? $flatProperty : $flatProperty->name();
-            $newTermId = $this->createTerm($taxonomy, $termId, $name, (int) $validatedParentId);
-            if ($newTermId && count($parents) === 0) {
-                $result[] = $newTermId;
-            }
-
+            $newTermId = $this->createTerm($taxonomy, $termId, $name);
             if ($newTermId) {
+                $result[] = $newTermId;
                 $taxonomiesCache[$taxonomy][$newTermId] = $termId;
             }
         }
@@ -241,35 +225,27 @@ final class FilterableTermsUpdater
         return $result;
     }
 
-    /**
-     * @param array<int, int> $array
-     */
-    private static function findKeyOrItemFromArray(int $keyOrItem, array $array): ?int
+    private function retrieveFirstLevelTerm(Degree|AdmissionRequirement $structure): Degree|AdmissionRequirement
     {
-        if (array_key_exists($keyOrItem, $array)) {
-            return $keyOrItem;
+        $parent = $structure->parent();
+        while ($parent) {
+            $structure = $parent;
+            $parent = $structure->parent();
         }
 
-        $key = array_search($keyOrItem, $array, true);
-        if (is_int($key)) {
-            return $key;
-        }
-
-        return null;
+        return $structure;
     }
 
     private function createTerm(
         string $taxonomy,
         int $remoteTermId,
         MultilingualString $name,
-        int $parentId
     ): ?int {
         // phpcs:ignore Inpsyde.CodeQuality.LineLength.TooLong
         /** @var array{term_id: int, term_taxonomy_id: string|numeric-string} | WP_Error $dbResult */
         $dbResult = wp_insert_term(
             $name->inGerman(),
             $taxonomy,
-            ['parent_id' => $parentId]
         );
 
         if ($dbResult instanceof WP_Error) {
@@ -295,6 +271,45 @@ final class FilterableTermsUpdater
         }
 
         return $termId;
+    }
+
+    private function updateTerm(
+        string $taxonomy,
+        int $termId,
+        MultilingualString $name,
+    ): void {
+        /** @var array<int, int> $memo */
+        static $memo = [];
+        if (isset($memo[$termId])) {
+            // It doesn't make sense to update the term several times during the single request
+            return;
+        }
+
+        // phpcs:ignore Inpsyde.CodeQuality.LineLength.TooLong
+        /** @var array{term_id: int, term_taxonomy_id: string|numeric-string} | WP_Error $dbResult */
+        $dbResult = wp_update_term(
+            $termId,
+            $taxonomy,
+            [
+                'name' => $name->inGerman(),
+            ],
+        );
+
+        if ($dbResult instanceof WP_Error) {
+            $this->logger->warning($dbResult->get_error_message());
+        }
+
+        $result = update_term_meta(
+            $termId,
+            BilingualRepository::addEnglishSuffix('name'),
+            $name->inEnglish()
+        );
+
+        if ($result instanceof WP_Error) {
+            $this->logger->warning($result->get_error_message());
+        }
+
+        $memo[$termId] = $termId;
     }
 
     /**
