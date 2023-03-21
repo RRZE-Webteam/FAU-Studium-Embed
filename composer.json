@@ -19,13 +19,20 @@
     },
     "require-dev": {
         "inpsyde/php-coding-standards": "@stable",
-        "inpsyde/wp-stubs": "dev-main",
+        "inpsyde/wp-stubs-versions": "dev-latest",
         "vimeo/psalm": "^5.7"
     },
     "repositories": [
         {
             "type": "vcs",
             "url": "https://github.com/RRZE-Webteam/FAU-Studium-Common"
+        },
+        {
+            "type": "composer",
+            "url": "https://raw.githubusercontent.com/inpsyde/wp-stubs/main",
+            "only": [
+                "inpsyde/wp-stubs-versions"
+            ]
         }
     ],
     "minimum-stability": "dev",
