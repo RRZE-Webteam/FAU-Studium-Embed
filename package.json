@@ -1,0 +1,12 @@
+{
+  "name": "@inpsyde/fau-degree-program-output",
+  "version": "0.0.1",
+  "description": "Fetch degree programs via the REST API and display them.",
+  "author": "Inpsyde GmbH",
+  "browserslist": [
+    "last 3 years"
+  ],
+  "homepage": "https://github.com/RRZE-Webteam/FAU-Studium-Embed",
+  "license": "GPL-2.0-or-later",
+  "private": true
+}
