@@ -10,6 +10,6 @@
   "license": "GPL-2.0-or-later",
   "private": true,
   "scripts": {
-    "build": ""
+    "build": "echo 'Move along. Nothing to see here.'"
   }
 }
