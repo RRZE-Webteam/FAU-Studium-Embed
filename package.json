@@ -8,5 +8,8 @@
   ],
   "homepage": "https://github.com/RRZE-Webteam/FAU-Studium-Embed",
   "license": "GPL-2.0-or-later",
-  "private": true
+  "private": true,
+  "scripts": {
+    "build": ""
+  }
 }
