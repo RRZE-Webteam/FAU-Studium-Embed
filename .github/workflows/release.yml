@@ -1,59 +1,16 @@
-name: Release
+name: Build
 
 on:
   workflow_dispatch:
   push:
+    branches:
+      - main
     tags:
       - '*'
 
 jobs:
-  build-assets:
-    uses: inpsyde/reusable-workflows/.github/workflows/build-and-push-assets.yml@main
+  release:
+    uses: RRZE-Webteam/FAU-Studium-Common/.github/workflows/build.yml@main
     secrets:
-      NPM_REGISTRY_TOKEN: ${{ secrets.DEPLOYBOT_PACKAGES_READ_ACCESS_TOKEN }}
-      GITHUB_USER_EMAIL: ${{ secrets.DEPLOYBOT_EMAIL }}
-      GITHUB_USER_NAME: ${{ secrets.DEPLOYBOT_USER }}
-    with:
-      PACKAGE_MANAGER: yarn
-
-  build-release-archive:
-    runs-on: ubuntu-latest
-    if: ${{ always() }}
-    needs: [build-assets]
-    env:
-      PACKAGE_NAME: fau-studium-embed
-
-    steps:
-      - name: Extract tag name into env
-        run: echo "TAG_NAME=$(echo ${GITHUB_REF#refs/*/})" >> $GITHUB_ENV
-
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          ref: ${{ env.TAG_NAME }}
-
-      - name: Install Composer dependencies
-        uses: ramsey/composer-install@v2
-        with:
-          composer-options: "--no-dev"
-
-      - name: Update plugin version and release header
-        run: |
-          sed -Ei "s/Version: .*/Version: ${{env.TAG_NAME}}/g" fau-degree-program-output.php
-          sed -Ei "s/Release asset: .*/Release asset: ${{ env.PACKAGE_NAME }}-${{ env.TAG_NAME }}.zip/g" fau-degree-program-output.php
-
-      - name: Create release archive
-        uses: montudor/action-zip@v1
-        with:
-          args: zip -qq -r ${{ env.PACKAGE_NAME }}-${{ env.TAG_NAME }}.zip . -x ".git/*"
-
-      - name: Upload release archive
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ${{ env.PACKAGE_NAME }}-${{ env.TAG_NAME }}.zip
-          tag: ${{ github.ref }}
-          overwrite: true
-          body: |
-            # ${{ env.TAG_NAME }}
-            Archive release available in `${{ env.PACKAGE_NAME }}-${{ env.TAG_NAME }}.zip`.
+      DEPLOYBOT_EMAIL: ${{ secrets.DEPLOYBOT_EMAIL }}
+      DEPLOYBOT_USER: ${{ secrets.DEPLOYBOT_USER }}
