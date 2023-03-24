@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/RRZE-Webteam/FAU-Studium-Common.git",
-                "reference": "6bb9ffbf0ad38b995cb14b0a68a3d500de0d6c26"
+                "reference": "ee5fd2937bbc9876a95612b9c192ce85db0dff53"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RRZE-Webteam/FAU-Studium-Common/zipball/6bb9ffbf0ad38b995cb14b0a68a3d500de0d6c26",
-                "reference": "6bb9ffbf0ad38b995cb14b0a68a3d500de0d6c26",
+                "url": "https://api.github.com/repos/RRZE-Webteam/FAU-Studium-Common/zipball/ee5fd2937bbc9876a95612b9c192ce85db0dff53",
+                "reference": "ee5fd2937bbc9876a95612b9c192ce85db0dff53",
                 "shasum": ""
             },
             "require": {
@@ -30,7 +30,7 @@
             "require-dev": {
                 "brain/monkey": "^2.6",
                 "inpsyde/php-coding-standards": "^1",
-                "inpsyde/wp-stubs": "dev-main",
+                "inpsyde/wp-stubs-versions": "dev-latest",
                 "johnpbloch/wordpress-core": "^6.1",
                 "phpunit/phpunit": "^9.5",
                 "vimeo/psalm": "^5.4",
@@ -84,7 +84,7 @@
                 "source": "https://github.com/RRZE-Webteam/FAU-Studium-Common/tree/main",
                 "issues": "https://github.com/RRZE-Webteam/FAU-Studium-Common/issues"
             },
-            "time": "2023-03-17T13:03:55+00:00"
+            "time": "2023-03-22T09:40:02+00:00"
         },
         {
             "name": "inpsyde/modularity",

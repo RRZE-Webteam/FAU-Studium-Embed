@@ -2,6 +2,7 @@
 <ruleset>
     <file>./src/</file>
     <file>./fau-degree-program-output.php</file>
+    <file>./templates/</file>
 
     <arg value="sp"/>
     <arg name="colors"/>
@@ -28,6 +29,14 @@
 
     <rule ref="Inpsyde.CodeQuality.NoAccessors.NoSetter">
         <exclude-pattern>Cache.php</exclude-pattern>
+    </rule>
+
+    <rule ref="VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable">
+        <exclude-pattern>*/templates/*</exclude-pattern>
+    </rule>
+
+    <rule ref="Inpsyde.CodeQuality.NoElse.ElseFound">
+        <exclude-pattern>*/templates/*</exclude-pattern>
     </rule>
 
     <exclude-pattern>*/vendor/*</exclude-pattern>

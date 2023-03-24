@@ -24,6 +24,7 @@ use Fau\DegreeProgram\Output\Infrastructure\ApiClient\ApiClientModule;
 use Fau\DegreeProgram\Output\Infrastructure\Cache\CacheModule;
 use Fau\DegreeProgram\Output\Infrastructure\Cache\DailyCacheInvalidationRunner;
 use Fau\DegreeProgram\Output\Infrastructure\CliModule;
+use Fau\DegreeProgram\Output\Infrastructure\Component\ComponentModule;
 use Fau\DegreeProgram\Output\Infrastructure\Content\ContentModule;
 use Fau\DegreeProgram\Output\Infrastructure\Dashboard\AdminBarModule;
 use Fau\DegreeProgram\Output\Infrastructure\Environment\EnvironmentModule;
@@ -34,6 +35,7 @@ use Fau\DegreeProgram\Output\Infrastructure\QueueModule;
 use Fau\DegreeProgram\Output\Infrastructure\Repository\RepositoryModule;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\RewriteModule;
 use Fau\DegreeProgram\Output\Infrastructure\Search\SearchModule;
+use Fau\DegreeProgram\Output\Infrastructure\Shortcode\ShortcodeModule;
 use Inpsyde\Modularity\Package;
 use Inpsyde\Modularity\Properties\PluginProperties;
 use RuntimeException;
@@ -135,6 +137,8 @@ function initialize(): void
             new QueueModule(),
             new SearchModule(),
             new QueryModule(),
+            new ComponentModule(),
+            new ShortcodeModule(),
         );
     } catch (Throwable $throwable) {
         handleException($throwable);

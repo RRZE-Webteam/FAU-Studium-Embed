@@ -7,4 +7,12 @@ namespace {
         public static function add_command(string $name, callable|object $command, array $args = []): void
         {}
     }
+
+    /**
+     * @psalm-template TArgs
+     * @psalm-param TArgs $args
+     * @psalm-return TArgs
+     */
+    function wp_parse_args(array $args, array $defaultArgs): array
+    {}
 }
