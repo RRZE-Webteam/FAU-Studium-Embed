@@ -14,6 +14,7 @@ use Fau\DegreeProgram\Common\Domain\MultilingualString;
 use Fau\DegreeProgram\Common\Infrastructure\Cache\PostMetaDegreeProgramCache;
 use Fau\DegreeProgram\Common\Infrastructure\Content\PostType\DegreeProgramPostType;
 use Fau\DegreeProgram\Common\Infrastructure\Repository\BilingualRepository;
+use LogicException;
 use Psr\SimpleCache\CacheInterface;
 use Webmozart\Assert\Assert;
 use WP_Error;
@@ -26,10 +27,12 @@ use WP_Post;
 final class PostDegreeProgramCache implements CacheInterface
 {
     public const ORIGINAL_ID_KEY = 'fau_original_id';
+    public const ORIGINAL_LINK_KEY = 'fau_original_link';
 
     public function __construct(
         private PostMetaDegreeProgramCache $postMetaCache,
         private CacheKeyGenerator $cacheKeyGenerator,
+        private CachedDataTransformer $cachedDataTransformer,
     ) {
     }
 
@@ -47,6 +50,7 @@ final class PostDegreeProgramCache implements CacheInterface
     public function set(string $key, mixed $value, DateInterval|int|null $ttl = null): bool
     {
         Assert::isArray($value);
+        /** @var DegreeProgramViewRawArrayType|DegreeProgramViewTranslatedArrayType $value*/
 
         [$type, $postId] = $this->cacheKeyGenerator->parseForDegreeProgram($key);
         if ($this->isValidPostId($postId)) {
@@ -59,11 +63,15 @@ final class PostDegreeProgramCache implements CacheInterface
         }
 
         $newKey = $this->cacheKeyGenerator->generateForDegreeProgram(DegreeProgramId::fromInt($postId), $type);
-        $value['id'] = $postId;
+        $value = $this->cachedDataTransformer->transform($postId, $value, $type);
 
         return $this->postMetaCache->set($newKey, $value);
     }
 
+    /**
+     * @param DegreeProgramViewRawArrayType|DegreeProgramViewTranslatedArrayType $data
+     * @param 'raw'|'translated' $type
+     */
     private function maybePersistPost(int $postId, array $data, string $type): int|WP_Error
     {
         $post = get_post($postId);
@@ -114,6 +122,9 @@ final class PostDegreeProgramCache implements CacheInterface
     }
 
     /**
+     * @template TType of 'raw' | 'translated'
+     * @param DegreeProgramViewRawArrayType|DegreeProgramViewTranslatedArrayType $data
+     * @param TType $type
      * @psalm-return array{
      *     post_title: string,
      *     post_type: string,
@@ -121,35 +132,43 @@ final class PostDegreeProgramCache implements CacheInterface
      *     post_name: string,
      *     meta_input: array<string, string>
      * }
+     *
+     * phpcs:disable Inpsyde.CodeQuality.LineLength.TooLong
      */
     private function generatePostData(array $data, string $type): array
     {
-        $postTitle = '';
-        $postNameGerman = '';
-        $postNameEnglish = '';
         if ($type === CacheKeyGenerator::RAW_TYPE) {
             /** @var DegreeProgramViewRawArrayType $data */
-            $postTitle = $data[DegreeProgram::TITLE][MultilingualString::DE];
-            $postNameGerman = $data[DegreeProgram::SLUG][MultilingualString::DE];
-            $postNameEnglish = $data[DegreeProgram::SLUG][MultilingualString::EN];
+
+            $slug = $data[DegreeProgram::SLUG];
+            return [
+                'post_title' => $data[DegreeProgram::TITLE][MultilingualString::DE],
+                'post_type' => DegreeProgramPostType::KEY,
+                'post_status' => 'publish',
+                'post_name' => $slug[MultilingualString::DE],
+                'meta_input' => [
+                    BilingualRepository::addEnglishSuffix('post_name') => $slug[MultilingualString::EN],
+                ],
+            ];
         }
 
         if ($type === CacheKeyGenerator::TRANSLATED_TYPE) {
             /** @var DegreeProgramViewTranslatedArrayType $data */
-            $postTitle = $data[DegreeProgram::TITLE];
-            $postNameGerman = $data[DegreeProgram::SLUG];
-            $postNameEnglish = $data[DegreeProgramViewTranslated::TRANSLATIONS][MultilingualString::EN][DegreeProgram::SLUG];
+            $englishTranslation = $data[DegreeProgramViewTranslated::TRANSLATIONS][MultilingualString::EN];
+            return [
+                'post_title' => $data[DegreeProgram::TITLE],
+                'post_type' => DegreeProgramPostType::KEY,
+                'post_status' => 'publish',
+                'post_name' => $data[DegreeProgram::SLUG],
+                'meta_input' => [
+                    BilingualRepository::addEnglishSuffix('post_name') => $englishTranslation[DegreeProgram::SLUG],
+                    self::ORIGINAL_LINK_KEY => $data[DegreeProgramViewTranslated::LINK],
+                    BilingualRepository::addEnglishSuffix(self::ORIGINAL_LINK_KEY) => $englishTranslation[DegreeProgramViewTranslated::LINK],
+                ],
+            ];
         }
 
-        return [
-            'post_title' => $postTitle,
-            'post_type' => DegreeProgramPostType::KEY,
-            'post_status' => 'publish',
-            'post_name' => $postNameGerman,
-            'meta_input' => [
-                BilingualRepository::addEnglishSuffix('post_name') => $postNameEnglish,
-            ],
-        ];
+        throw new LogicException('Unsupported cache type.');
     }
 
     public function delete(string $key): bool

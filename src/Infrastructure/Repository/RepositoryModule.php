@@ -11,7 +11,9 @@ use Fau\DegreeProgram\Common\Application\Repository\DegreeProgramViewRepository;
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\TaxonomiesList;
 use Fau\DegreeProgram\Common\Infrastructure\Repository\IdGenerator;
 use Fau\DegreeProgram\Common\Infrastructure\Repository\WordPressDatabaseDegreeProgramCollectionRepository;
+use Fau\DegreeProgram\Output\Application\OriginalDegreeProgramViewRepository;
 use Fau\DegreeProgram\Output\Infrastructure\ApiClient\ApiClient;
+use Fau\DegreeProgram\Output\Infrastructure\Environment\EnvironmentDetector;
 use Inpsyde\Modularity\Module\ModuleClassNameIdTrait;
 use Inpsyde\Modularity\Module\ServiceModule;
 use Psr\Container\ContainerInterface;
@@ -48,6 +50,9 @@ class RepositoryModule implements ServiceModule
                 $container->get(WordPressDatabaseDegreeProgramCollectionRepository::class),
             ),
             IdGenerator::class => static fn() => new IdGenerator(),
+            OriginalDegreeProgramViewRepository::class => static fn(ContainerInterface $container) => new WordPressDatabaseOriginalDegreeProgramViewRepository(
+                $container->get(EnvironmentDetector::class),
+            ),
         ];
     }
 }

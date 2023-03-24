@@ -36,6 +36,7 @@ use Fau\DegreeProgram\Output\Infrastructure\Repository\RepositoryModule;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\RewriteModule;
 use Fau\DegreeProgram\Output\Infrastructure\Search\SearchModule;
 use Fau\DegreeProgram\Output\Infrastructure\Shortcode\ShortcodeModule;
+use Fau\DegreeProgram\Output\Infrastructure\Template\TemplateModule;
 use Inpsyde\Modularity\Package;
 use Inpsyde\Modularity\Properties\PluginProperties;
 use RuntimeException;
@@ -139,6 +140,7 @@ function initialize(): void
             new QueryModule(),
             new ComponentModule(),
             new ShortcodeModule(),
+            new TemplateModule(),
         );
     } catch (Throwable $throwable) {
         handleException($throwable);

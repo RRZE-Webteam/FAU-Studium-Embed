@@ -32,9 +32,11 @@ final class CacheModule implements ServiceModule, ExecutableModule
     {
         return [
             CacheKeyGenerator::class => static fn() => new CacheKeyGenerator(),
+            CachedDataTransformer::class => static fn() => new CachedDataTransformer(),
             CacheInterface::class => static fn(ContainerInterface $container) => new PostDegreeProgramCache(
                 new PostMetaDegreeProgramCache($container->get(CacheKeyGenerator::class)),
                 $container->get(CacheKeyGenerator::class),
+                $container->get(CachedDataTransformer::class),
             ),
             CacheInvalidator::class => static fn(ContainerInterface $container) => new CacheInvalidator(
                 $container->get(CacheKeyGenerator::class),
