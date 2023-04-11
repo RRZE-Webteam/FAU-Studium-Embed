@@ -1,0 +1,5 @@
+{
+  "assets/ts/main.js": "../ts/main.js",
+  "assets/ts/main.php": "../ts/main.asset.php",
+  "assets/css/frontend.css": "../css/frontend.css"
+}

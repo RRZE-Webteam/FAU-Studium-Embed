@@ -1,0 +1,17 @@
+{
+  "entrypoints": {
+    "ts/main": {
+      "js": [
+        "../ts/main.js"
+      ],
+      "php": [
+        "../ts/main.asset.php"
+      ]
+    },
+    "css/frontend": {
+      "css": [
+        "../css/frontend.css"
+      ]
+    }
+  }
+}
