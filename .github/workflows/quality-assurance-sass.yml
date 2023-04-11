@@ -1,0 +1,13 @@
+name: Quality assurance Sass
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '**.scss'
+      - '.stylelintrc.json'
+      - 'package*'
+      - 'yarn.lock'
+jobs:
+  static-code-analysis-sass:
+    uses: inpsyde/reusable-workflows/.github/workflows/static-analysis-sass.yml@main

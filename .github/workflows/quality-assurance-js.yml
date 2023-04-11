@@ -1,0 +1,43 @@
+name: Quality assurance JavaScript
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '**.[jt]sx?'
+      - '.eslintignore'
+      - '.tseslintrc.js'
+      - 'package*'
+      - 'tsconfig.*'
+      - 'yarn.lock'
+      - 'quality-assurance-js.yml'
+jobs:
+  static-code-analysis-js:
+    uses: inpsyde/reusable-workflows/.github/workflows/static-analysis-js.yml@main
+
+  tests-unit-js:
+    uses: inpsyde/reusable-workflows/.github/workflows/tests-unit-js.yml@main
+    with:
+      JEST_ARGS: '--reporters=default --reporters=github-actions --no-coverage --passWithNoTests'
+
+  check-types-ts:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    env:
+      NODE_AUTH_TOKEN: ${{ secrets.NPM_REGISTRY_TOKEN }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Run type check
+        run: yarn check-types

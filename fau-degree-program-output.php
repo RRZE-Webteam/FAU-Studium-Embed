@@ -21,6 +21,7 @@ namespace Fau\DegreeProgram\Output;
 // phpcs:disable PSR1.Files.SideEffects
 
 use Fau\DegreeProgram\Output\Infrastructure\ApiClient\ApiClientModule;
+use Fau\DegreeProgram\Output\Infrastructure\Assets\AssetsModule;
 use Fau\DegreeProgram\Output\Infrastructure\Cache\CacheModule;
 use Fau\DegreeProgram\Output\Infrastructure\Cache\DailyCacheInvalidationRunner;
 use Fau\DegreeProgram\Output\Infrastructure\CliModule;
@@ -141,6 +142,7 @@ function initialize(): void
             new ComponentModule(),
             new ShortcodeModule(),
             new TemplateModule(),
+            new AssetsModule(),
         );
     } catch (Throwable $throwable) {
         handleException($throwable);

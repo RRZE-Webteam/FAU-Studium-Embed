@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "strict": true,
+        "removeComments": true,
+        "lib": ["ESNext", "DOM"],
+        "resolveJsonModule": true,
+        "importHelpers": true,
+        "moduleResolution": "node",
+        "declaration": false,
+        "esModuleInterop": true,
+        "noImplicitAny": false,
+        "jsx": "react",
+        "sourceMap": true,
+        "noLib": false,
+        "suppressImplicitAnyIndexErrors": true,
+        "baseUrl": "resources/ts",
+    },
+    "compileOnSave": false,
+    "exclude": ["node_modules", "vendor"]
+}

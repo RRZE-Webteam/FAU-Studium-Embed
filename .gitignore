@@ -33,3 +33,6 @@ typings/
 
 ## PhpStorm
 .idea/
+
+# Tests
+/coverage/

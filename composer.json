@@ -13,6 +13,7 @@
     ],
     "require": {
         "php": "^8.0",
+        "inpsyde/assets": "^2.8",
         "inpsyde/fau-degree-program-common": "*",
         "inpsyde/modularity": "^1.5",
         "inpsyde/wp-context": "^1.5"

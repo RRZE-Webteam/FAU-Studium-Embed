@@ -4,28 +4,22 @@ declare(strict_types=1);
 
 namespace Fau\DegreeProgram\Output\Application;
 
-use Requests_Utility_CaseInsensitiveDictionary;
+use ArrayAccess;
 use WP_Http;
 
 final class RemoteResponse
 {
-    /**
-     * @param Requests_Utility_CaseInsensitiveDictionary|array $headers
-     */
     private function __construct(
         private array $parsedJson,
         private int $statusCode,
-        private iterable $headers = [],
+        private ArrayAccess|array $headers = [],
     ) {
     }
 
-    /**
-     * @param Requests_Utility_CaseInsensitiveDictionary|array $headers
-     */
     public static function new(
         array $parsedJson,
         int $statusCode,
-        iterable $headers = [],
+        ArrayAccess|array $headers = [],
     ): self {
 
         return new self(
@@ -45,10 +39,7 @@ final class RemoteResponse
         return $this->parsedJson[$key] ?? null;
     }
 
-    /**
-     * @return Requests_Utility_CaseInsensitiveDictionary|array
-     */
-    public function headers(): iterable
+    public function headers(): ArrayAccess|array
     {
         return $this->headers;
     }
