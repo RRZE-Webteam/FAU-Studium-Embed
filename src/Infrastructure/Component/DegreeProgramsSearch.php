@@ -11,10 +11,11 @@ use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
 
 /**
  * @psalm-import-type LanguageCodes from MultilingualString
+ * @psalm-type OutputType = 'tiles' | 'list';
  * @psalm-type DegreeProgramsSearchAttributes = array{
  *     lang: LanguageCodes,
  *     filters: array<string, array<int>>,
- *     output: 'list' | 'table',
+ *     output: OutputType,
  * }
  *
  * `filters` keys are filterable taxonomy REST API bases,
@@ -35,6 +36,10 @@ final class DegreeProgramsSearch implements RenderableComponent
         'filters' => [],
         'output' => 'tiles',
     ];
+
+    public const OUTPUT_TILES = 'tiles';
+    public const OUTPUT_LIST = 'list';
+    public const OUTPUT_MODE_QUERY_PARAM = 'output';
 
     public function __construct(
         private Renderer $renderer,
@@ -57,8 +62,27 @@ final class DegreeProgramsSearch implements RenderableComponent
             [
                 'collection' => $collection,
                 'filters' => $attributes['filters'],
-                'output' => $attributes['output'],
+                'output' => $this->sanitizedOutputMode($attributes['output']),
             ]
         );
+    }
+
+    /**
+     * @param OutputType $mode
+     * @return OutputType
+     */
+    private function sanitizedOutputMode(string $mode): string
+    {
+        $outputMode = (string) filter_input(
+            INPUT_GET,
+            self::OUTPUT_MODE_QUERY_PARAM,
+            FILTER_SANITIZE_SPECIAL_CHARS
+        ) ?: $mode;
+
+        if (!in_array($outputMode, [self::OUTPUT_LIST, self::OUTPUT_TILES], true)) {
+            return self::DEFAULT_ATTRIBUTES['output'];
+        }
+
+        return $outputMode;
     }
 }

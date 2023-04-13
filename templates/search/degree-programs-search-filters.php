@@ -2,20 +2,27 @@
 
 declare(strict_types=1);
 
+use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
 use Fau\DegreeProgram\Output\Infrastructure\Component\Component;
 use Fau\DegreeProgram\Output\Infrastructure\Component\Icon;
+use Fau\DegreeProgram\Output\Infrastructure\Component\DegreeProgramsSearch;
 
 use function Fau\DegreeProgram\Output\renderComponent;
 
 /**
  * @psalm-var array{
  *     filters: array<string, array<int>>,
+ *     output: 'tiles' | 'list',
+ *     outputModeUrls: array<'tiles' | 'list', string>,
  * } $data
  * @var array $data
+ * @var Renderer $renderer
  */
 
 [
     'filters' => $filters,
+    'output' => $output,
+    'outputModeUrls' => $outputModeUrls,
 ] = $data;
 
 ?>
@@ -38,37 +45,28 @@ use function Fau\DegreeProgram\Output\renderComponent;
             ) ?>
         </div>
         <div class="search-filter__options">
-            <button type="button" class="is-active" aria-selected="true">
-                <span class="screen-reader-text">
-                    <?= esc_html_x(
-                        'Switch to grid view',
-                        'frontoffice: degree programs search form',
-                        'fau-degree-program-output'
-                    ) ?>
-                </span>
-                <?= renderComponent(
-                    new Component(
-                        Icon::class,
-                        ['name' => 'grid']
-                    )
-                ) ?>
-            </button>
-
-            <button type="button">
-                <span class="screen-reader-text">
-                    <?= esc_html_x(
-                        'Switch to list view',
-                        'frontoffice: degree programs search form',
-                        'fau-degree-program-output'
-                    ) ?>
-                </span>
-                <?= renderComponent(
-                    new Component(
-                        Icon::class,
-                        ['name' => 'list']
-                    )
-                ) ?>
-            </button>
+            <?php // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+            <?= $renderer->render('search/output-mode-toggle', [
+                'url' => $outputModeUrls[DegreeProgramsSearch::OUTPUT_TILES],
+                'selected' => $output === DegreeProgramsSearch::OUTPUT_TILES,
+                'label' => esc_html_x(
+                    'Switch to grid view',
+                    'frontoffice: degree programs search form',
+                    'fau-degree-program-output'
+                ),
+                'icon' => 'grid',
+            ]) ?>
+            <?= $renderer->render('search/output-mode-toggle', [
+                'url' => $outputModeUrls[DegreeProgramsSearch::OUTPUT_LIST],
+                'selected' => $output === DegreeProgramsSearch::OUTPUT_LIST,
+                'label' => esc_html_x(
+                    'Switch to list view',
+                    'frontoffice: degree programs search form',
+                    'fau-degree-program-output'
+                ),
+                'icon' => 'list',
+            ]) ?>
+            <?php // phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
         </div>
     </li>
 </ul>

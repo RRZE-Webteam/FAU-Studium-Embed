@@ -36,7 +36,7 @@
       padding: 0 15px;
       color: config.color('primary', 'ci-hell2-kontrast');
       border-radius: 5px 0 0 5px;
-      border: 1px solid #e4e4e4;
+      border: 1px solid #{config.color('grey', 'muted')};
       box-shadow: unset;
       @include config.text-size('base');
 

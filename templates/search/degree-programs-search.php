@@ -49,7 +49,7 @@ use function Fau\DegreeProgram\Output\renderComponent;
             SearchFilters::class,
             [
                 'filters' => $filters,
-                'viewMode' => $output,
+                'output' => $output,
             ]
         )
     ) ?>

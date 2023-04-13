@@ -6,7 +6,6 @@ namespace Fau\DegreeProgram\Output\Infrastructure\Component;
 
 use Fau\DegreeProgram\Common\Application\DegreeProgramViewTranslated;
 use Fau\DegreeProgram\Common\Application\Repository\PaginationAwareCollection;
-use Fau\DegreeProgram\Common\Domain\DegreeProgram;
 use Fau\DegreeProgram\Common\Domain\MultilingualString;
 use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
 
@@ -14,7 +13,7 @@ use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
  * @psalm-import-type LanguageCodes from MultilingualString
  * @psalm-type DegreeProgramsSearchAttributes = array{
  *     collection: PaginationAwareCollection<DegreeProgramViewTranslated>,
- *     output: 'list' | 'table',
+ *     output: 'tiles' | 'list',
  * }
  */
 class DegreeProgramsCollection implements RenderableComponent

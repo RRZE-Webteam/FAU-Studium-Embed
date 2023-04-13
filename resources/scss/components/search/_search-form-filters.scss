@@ -19,7 +19,7 @@
     }
 
     &__options {
-      button {
+      a[role=button] {
         background: none;
         display: inline-flex;
         align-items: center;
@@ -32,8 +32,9 @@
           width: 24px;
           height: 24px;
           fill: config.color('grey', 'muted');
+          box-shadow: none;
 
-          @include config.when-parent-matches-selector('.is-active', 'button') {
+          @include config.when-parent-matches-selector('.is-active', 'a[role=button]') {
             fill: config.color('primary', 'basis');
           }
         }
