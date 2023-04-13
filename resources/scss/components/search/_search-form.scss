@@ -1,0 +1,81 @@
+@use '../../abstracts/config';
+
+.c-degree-programs-sarchform {
+  background-color: config.color('grey', 'light');
+  width: 100%;
+  padding: 10px 15px;
+
+  &__inner {
+    position: relative;
+    display: flex;
+  }
+
+  &__search-icon {
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+    fill: config.color('primary', 'basis');
+
+    @include config.media('>tablet') {
+      display: block;
+    }
+  }
+
+  &__input {
+    @at-root input#{&} {
+      flex: 1;
+      min-width: 0;
+      height: 55px;
+      box-sizing: border-box;
+      margin-bottom: 0;
+      font-weight: 300;
+      padding: 0 15px;
+      color: config.color('primary', 'ci-hell2-kontrast');
+      border-radius: 5px 0 0 5px;
+      border: 1px solid #e4e4e4;
+      box-shadow: unset;
+      @include config.text-size('base');
+
+      @include config.media('>tablet') {
+        padding-left: 68px;
+      }
+    }
+  }
+
+  &__submit {
+    .label {
+      display: none;
+
+      @include config.media('>tablet') {
+        display: inline-block;
+      }
+    }
+
+    .fau-icon {
+      width: 28px;
+      height: 28px;
+      fill: #fff;
+
+      @include config.media('>tablet') {
+        display: none;
+      }
+    }
+
+    @at-root button[type='submit']#{&} {
+      background-color: config.color('button', 'bg');
+      color: config.color('button', 'text');
+      border-radius: 0 5px 5px 0;
+      width: 55px;
+      height: 55px;
+
+      @include config.media('>tablet') {
+        min-width: 211px;
+        width: auto;
+      }
+    }
+  }
+}

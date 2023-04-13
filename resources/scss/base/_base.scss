@@ -1,1 +1,42 @@
 @use '../abstracts/config';
+
+%container {
+  max-width: config.$max-width;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  @include config.media('>tablet') {
+    width: 750px;
+  }
+
+  @include config.media('>tablet-lg') {
+    width: 970px;
+  }
+
+  @include config.media('>laptop') {
+    width: 1200px;
+  }
+
+  @include config.media('>desktop') {
+    width: 1400px;
+  }
+}
+
+%container-mobile-full-width {
+  @extend %container;
+
+  @include config.media('<=tablet') {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.fau-icon {
+  width: 1em;
+  height: 1em;
+  display: inline-flex;
+  vertical-align: middle;
+}

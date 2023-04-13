@@ -1,0 +1,210 @@
+@use '../../abstracts/config';
+@use '../../abstracts/media';
+
+.c-degree-programs-list {
+  margin: 0;
+  padding: 0;
+
+  li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__header {
+    background-color: config.color('grey', 'light');
+    padding: 16px !important;
+    margin-bottom: 15px !important;
+    display: flex;
+
+    .c-sort-selector {
+      margin-left: auto;
+    }
+
+    @include config.media('>tablet-lg') {
+      display: none;
+    }
+  }
+}
+
+.c-degree-programs-list-item {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  font-weight: 300;
+  padding: 0 10px !important;
+  @include config.text-size('base');
+
+  &:not(:last-child) {
+    border-bottom: 1px solid #dfe6ec;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+  }
+
+  &__link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 20;
+    text-decoration: none !important;
+    box-shadow: none !important;
+  }
+
+  &__teaser-image {
+    margin-bottom: 15px;
+    width: 55px;
+
+    img {
+      height: 55px;
+      object-fit: cover;
+    }
+
+    @include config.media('>tablet') {
+      grid-column: 1;
+      grid-row: 1 / span 999;
+      width: 178px;
+      margin-bottom: 0;
+
+      img {
+        height: 178px;
+      }
+    }
+
+    @include config.media('>tablet-lg') {
+      width: 80px;
+      border-bottom: 1px solid #dfe6ec;
+
+      img {
+        height: 80px;
+      }
+    }
+  }
+
+  &__title {
+    flex: 1;
+    min-width: 0;
+    margin-left: 10px;
+    color: config.color('primary', 'basis');
+    font-weight: 500;
+    @include config.text-size('lg');
+
+    @include config.media('>tablet') {
+      grid-column: 2;
+      margin: 0 0 20px 0;
+      @include config.text-size('xl');
+    }
+
+    @include config.media('>tablet-lg') {
+      width: auto;
+      border-bottom: 1px solid #dfe6ec;
+      padding-left: 15px;
+      font-weight: 300;
+      @include config.text-size('base');
+    }
+  }
+
+  &__degree,
+  &__start,
+  &__location,
+  &__semester-fee {
+    width: 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+
+    &:not(:last-child) {
+      margin-bottom: 5px;
+    }
+
+    &[aria-label]::before {
+      content: attr(aria-label) ': ';
+      font-weight: 700;
+    }
+
+    @include config.media('>tablet') {
+      grid-column: 2;
+      margin-bottom: 0;
+    }
+
+    @include config.media('>tablet-lg') {
+      width: auto;
+      border-bottom: 1px solid #dfe6ec;
+    }
+  }
+
+  @include config.media('>tablet') {
+    display: grid;
+    grid-template-columns: 178px 1fr;
+    gap: 0 20px;
+    padding: 0 !important;
+
+    &:not(:last-child) {
+      padding-bottom: 0px;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.c-degree-programs-list-table {
+  width: 100%;
+  display: table;
+  border-spacing: 0 10px;
+
+  &__row {
+    &--header {
+      display: none;
+
+      .c-degree-programs-list-table__column {
+        padding: 10px 0;
+
+        &.-thumbnail {
+          white-space: nowrap;
+          padding-left: 14px;
+          max-width: 80px;
+        }
+      }
+    }
+
+    @include config.media('>tablet-lg') {
+      display: table-row;
+
+      &:not(.c-degree-programs-list-table__row--header):hover {
+        background-color: config.color('primary', 'basis');
+        color: #fff;
+
+        .c-degree-programs-list-item__title {
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  &__column {
+    @include config.media('>tablet-lg') {
+      display: table-cell;
+
+      &[aria-label]::before {
+        content: none !important;
+      }
+    }
+  }
+
+  &__sort-link {
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    box-shadow: none !important;
+    text-decoration: none !important;
+
+    .fau-icon {
+      width: 20px;
+      height: 20px;
+      box-shadow: none !important;
+      padding: none !important;
+    }
+  }
+}

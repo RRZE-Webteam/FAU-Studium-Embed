@@ -23,6 +23,14 @@
         </properties>
     </rule>
 
+    <rule ref="WordPress.Security.EscapeOutput">
+        <properties>
+            <property name="customAutoEscapedFunctions" type="array">
+                <element value="renderComponent"/>
+            </property>
+        </properties>
+    </rule>
+
     <rule ref="Inpsyde.CodeQuality.NoAccessors.NoGetter">
         <exclude-pattern>Cache.php</exclude-pattern>
     </rule>

@@ -41,7 +41,8 @@
     "autoload": {
         "psr-4": {
             "Fau\\DegreeProgram\\Output\\": "src/"
-        }
+        },
+        "files": ["inc/api.php"]
     },
     "config": {
         "allow-plugins": {

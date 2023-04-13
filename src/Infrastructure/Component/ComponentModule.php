@@ -27,7 +27,7 @@ final class ComponentModule implements ServiceModule
                     $container->get(Package::PROPERTIES)->basePath() . '/templates',
                 )
             ),
-            DegreeProgramsSearchForm::class => static fn(ContainerInterface $container) => new DegreeProgramsSearchForm(
+            DegreeProgramsSearch::class => static fn(ContainerInterface $container) => new DegreeProgramsSearch(
                 $container->get(Renderer::class),
                 $container->get(DegreeProgramCollectionRepository::class),
             ),
@@ -38,9 +38,22 @@ final class ComponentModule implements ServiceModule
             ),
             DegreeProgramCombinations::class => static fn(ContainerInterface $container) => new DegreeProgramCombinations(),
             ComponentFactory::class => static fn(ContainerInterface $container) => new ComponentFactory(
-                $container->get(DegreeProgramsSearchForm::class),
+                $container->get(DegreeProgramsSearch::class),
                 $container->get(SingleDegreeProgram::class),
                 $container->get(DegreeProgramCombinations::class),
+            ),
+            Icon::class => static fn(ContainerInterface $container) => new Icon(
+                $container->get(Renderer::class),
+                (string) $container->get(Package::PROPERTIES)->baseUrl() . 'assets/sprite.svg',
+            ),
+            SearchForm::class => static fn(ContainerInterface $container) => new SearchForm(
+                $container->get(Renderer::class),
+            ),
+            SearchFilters::class => static fn(ContainerInterface $container) => new SearchFilters(
+                $container->get(Renderer::class),
+            ),
+            DegreeProgramsCollection::class => static fn(ContainerInterface $container) => new DegreeProgramsCollection(
+                $container->get(Renderer::class),
             ),
         ];
     }

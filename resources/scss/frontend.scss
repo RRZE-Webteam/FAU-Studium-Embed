@@ -17,7 +17,12 @@
 // 4. Layout-related sections
 
 // 5. Components
+@use 'components/search/search-form';
+@use 'components/search/search-form-filters';
+@use 'components/search/degree-programs-grid';
+@use 'components/search/degree-programs-list';
 
 // 6. Page-specific styles
+@use 'pages/search';
 
 // 7. Themes

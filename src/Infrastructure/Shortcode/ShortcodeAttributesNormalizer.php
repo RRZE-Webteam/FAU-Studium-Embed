@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace Fau\DegreeProgram\Output\Infrastructure\Shortcode;
 
 use Fau\DegreeProgram\Common\Domain\MultilingualString;
+use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\AreaOfStudyTaxonomy;
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\SemesterTaxonomy;
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\TeachingLanguageTaxonomy;
 use Fau\DegreeProgram\Output\Infrastructure\Component\DegreeProgramCombinations;
-use Fau\DegreeProgram\Output\Infrastructure\Component\DegreeProgramsSearchForm;
+use Fau\DegreeProgram\Output\Infrastructure\Component\DegreeProgramsSearch;
 use Fau\DegreeProgram\Output\Infrastructure\Component\RenderableComponent;
 use Fau\DegreeProgram\Output\Infrastructure\Component\SingleDegreeProgram;
 
@@ -22,7 +23,7 @@ final class ShortcodeAttributesNormalizer
     public function __construct()
     {
         $this->map = [
-            DegreeProgramsSearchForm::class => [$this, 'searchForm'],
+            DegreeProgramsSearch::class => [$this, 'search'],
             SingleDegreeProgram::class => [$this, 'single'],
             DegreeProgramCombinations::class => [$this, 'combinations'],
         ];
@@ -64,7 +65,7 @@ final class ShortcodeAttributesNormalizer
      * @param array<string, mixed> $attributes
      * @return array<string, mixed>
      */
-    private function searchForm(array $attributes): array
+    private function search(array $attributes): array
     {
         // TODO: create a value object
         $listOfSupportedFilters = [

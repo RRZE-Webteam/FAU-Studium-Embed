@@ -6,7 +6,7 @@ namespace Fau\DegreeProgram\Output\Infrastructure\Shortcode;
 
 use Fau\DegreeProgram\Output\Infrastructure\Component\ComponentFactory;
 use Fau\DegreeProgram\Output\Infrastructure\Component\DegreeProgramCombinations;
-use Fau\DegreeProgram\Output\Infrastructure\Component\DegreeProgramsSearchForm;
+use Fau\DegreeProgram\Output\Infrastructure\Component\DegreeProgramsSearch;
 use Fau\DegreeProgram\Output\Infrastructure\Component\RenderableComponent;
 use Fau\DegreeProgram\Output\Infrastructure\Component\SingleDegreeProgram;
 use Psr\Log\LoggerInterface;
@@ -17,7 +17,7 @@ final class DegreeProgramShortcode
     private const DISPLAY_ATTRIBUTE = 'display';
 
     private const COMPONENTS_MAP = [
-        'searchform' => DegreeProgramsSearchForm::class,
+        'search' => DegreeProgramsSearch::class,
         'degree-program' => SingleDegreeProgram::class,
         'combinations' => DegreeProgramCombinations::class,
     ];

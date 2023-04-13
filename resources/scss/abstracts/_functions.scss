@@ -1,20 +1,37 @@
+@use 'sass:string';
 @use 'variables';
 
+/// Replace `$search` with `$replace` in `$string`
+/// @author Kitty Giraudel
+/// @link https://css-tricks.com/snippets/sass/str-replace-function/
+/// @param {String} $string - Initial string
+/// @param {String} $search - Substring to replace
+/// @param {String} $replace ('') - New value
+/// @return {String} - Updated string
+@function replace($string, $search, $replace: '') {
+  $index: string.index($string, $search);
+
+  @if $index {
+    @return string.slice($string, 1, $index - 1) + $replace +
+      replace(string.slice($string, $index + string.length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
 @function getColorValue($color, $variation: '') {
-    @if type-of(map-get(variables.$colorsMap, $color)) == 'color' {
-        @return map-get(variables.$colorsMap, $color);
-    } @else if type-of(map-get(variables.$colorsMap, $color)) == "map" {
-        @return map-get(map-get(variables.$colorsMap, $color), $variation);
-    }
+  @if type-of(map-get(variables.$colorsMap, $color)) == 'color' {
+    @return map-get(variables.$colorsMap, $color);
+  } @else if type-of(map-get(variables.$colorsMap, $color)) == 'map' {
+    @return map-get(map-get(variables.$colorsMap, $color), $variation);
+  }
+
+  @error 'No such color exists';
 }
 
 @function color($color, $variation: '') {
-    $variationPostfix: if($variation != '', -#{$variation}, '');
-    $colorValue: getColorValue($color, $variation);
+  $variationPostfix: if($variation != '', -#{$variation}, '');
+  $colorValue: getColorValue($color, $variation);
 
-    @return var(--color-#{$color}-#{$variationPostfix}, $colorValue);
-}
-
-@function fontSize($size) {
-    @return map-get(variables.$fontSizesMap, $size);
+  @return var(--color-#{$color}#{$variationPostfix}, $colorValue);
 }

@@ -1,0 +1,14 @@
+@use '../abstracts/config';
+
+.c-degree-programs-search {
+    @include config.media('<tablet') {
+        margin-left: -15px;
+        margin-right: -15px;
+
+        &__title,
+        &__filters {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+    }
+}
