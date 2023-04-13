@@ -8,6 +8,38 @@
         "../ts/main.asset.php"
       ]
     },
+    "svg/area-of-study": {
+      "js": [
+        "../svg/area-of-study.js"
+      ],
+      "php": [
+        "../svg/area-of-study.asset.php"
+      ]
+    },
+    "svg/attributes": {
+      "js": [
+        "../svg/attributes.js"
+      ],
+      "php": [
+        "../svg/attributes.asset.php"
+      ]
+    },
+    "svg/degree": {
+      "js": [
+        "../svg/degree.js"
+      ],
+      "php": [
+        "../svg/degree.asset.php"
+      ]
+    },
+    "svg/faculty": {
+      "js": [
+        "../svg/faculty.js"
+      ],
+      "php": [
+        "../svg/faculty.asset.php"
+      ]
+    },
     "svg/grid": {
       "js": [
         "../svg/grid.js"
@@ -24,12 +56,36 @@
         "../svg/icon-filter.asset.php"
       ]
     },
+    "svg/keywords": {
+      "js": [
+        "../svg/keywords.js"
+      ],
+      "php": [
+        "../svg/keywords.asset.php"
+      ]
+    },
     "svg/list": {
       "js": [
         "../svg/list.js"
       ],
       "php": [
         "../svg/list.asset.php"
+      ]
+    },
+    "svg/location": {
+      "js": [
+        "../svg/location.js"
+      ],
+      "php": [
+        "../svg/location.asset.php"
+      ]
+    },
+    "svg/number-of-students": {
+      "js": [
+        "../svg/number-of-students.js"
+      ],
+      "php": [
+        "../svg/number-of-students.asset.php"
       ]
     },
     "svg/search": {
@@ -46,6 +102,38 @@
       ],
       "php": [
         "../svg/sort.asset.php"
+      ]
+    },
+    "svg/standard-duration": {
+      "js": [
+        "../svg/standard-duration.js"
+      ],
+      "php": [
+        "../svg/standard-duration.asset.php"
+      ]
+    },
+    "svg/start": {
+      "js": [
+        "../svg/start.js"
+      ],
+      "php": [
+        "../svg/start.asset.php"
+      ]
+    },
+    "svg/subject-groups": {
+      "js": [
+        "../svg/subject-groups.js"
+      ],
+      "php": [
+        "../svg/subject-groups.asset.php"
+      ]
+    },
+    "svg/teaching-language": {
+      "js": [
+        "../svg/teaching-language.js"
+      ],
+      "php": [
+        "../svg/teaching-language.asset.php"
       ]
     },
     "css/frontend": {
