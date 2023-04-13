@@ -21,8 +21,11 @@
 @use 'components/search/search-form-filters';
 @use 'components/search/degree-programs-grid';
 @use 'components/search/degree-programs-list';
+@use 'components/single-degree-program' as degree-program-component;
+@use 'components/link';
 
 // 6. Page-specific styles
 @use 'pages/search';
+@use 'pages/single-degree-program' as degree-program-page;
 
 // 7. Themes

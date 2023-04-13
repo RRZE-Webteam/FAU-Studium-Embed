@@ -1,0 +1,23 @@
+@use '../../abstracts/config';
+
+.l-heading {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: config.color('primary', 'basis');
+  color: config.color('primary', 'basis-kontrast');
+}
+
+&__title {
+  color: config.color('primary', 'basis-kontrast');
+  font-weight: normal;
+  font-size: 24px;
+  margin: 0;
+}
+
+&__subtitle {
+  color: config.color('primary', 'basis-kontrast');
+}
+
+&__title + &__subtitle {
+  margin-top: 12px;
+}

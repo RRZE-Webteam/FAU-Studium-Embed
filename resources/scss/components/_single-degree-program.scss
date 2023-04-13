@@ -1,0 +1,13 @@
+@use '../abstracts/config';
+@use '../base/base';
+
+.c-single-degree-program {
+  @import 'single-degree-program/teaser-image';
+  @import 'single-degree-program/heading';
+  @import 'single-degree-program/entry-text';
+  @import 'single-degree-program/details';
+
+  .l-container {
+    @extend %container;
+  }
+}

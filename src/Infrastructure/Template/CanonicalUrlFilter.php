@@ -5,20 +5,17 @@ declare(strict_types=1);
 namespace Fau\DegreeProgram\Output\Infrastructure\Template;
 
 use Fau\DegreeProgram\Common\Domain\DegreeProgramId;
-use Fau\DegreeProgram\Common\Domain\MultilingualString;
 use Fau\DegreeProgram\Common\Infrastructure\Content\PostType\DegreeProgramPostType;
 use Fau\DegreeProgram\Output\Application\OriginalDegreeProgramView;
 use Fau\DegreeProgram\Output\Application\OriginalDegreeProgramViewRepository;
-use Fau\DegreeProgram\Output\Infrastructure\Rewrite\InjectLanguageQueryVariable;
+use Fau\DegreeProgram\Output\Infrastructure\Rewrite\CurrentRequest;
 use WP_Post;
 
-/**
- * @psalm-import-type LanguageCodes from MultilingualString
- */
 final class CanonicalUrlFilter
 {
     public function __construct(
         private OriginalDegreeProgramViewRepository $originalDegreeProgramViewRepository,
+        private CurrentRequest $currentRequest,
     ) {
     }
 
@@ -39,12 +36,8 @@ final class CanonicalUrlFilter
             return $url;
         }
 
-        /** @var LanguageCodes $lang */
-        $lang = get_query_var(
-            InjectLanguageQueryVariable::LANGUAGE_QUERY_VAR,
-            MultilingualString::DE
+        return $originalView->originalLink()->asString(
+            $this->currentRequest->languageCode()
         );
-
-        return $originalView->originalLink()->asString($lang);
     }
 }

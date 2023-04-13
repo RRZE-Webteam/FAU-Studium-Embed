@@ -62,7 +62,7 @@
     &-expanded {
       @include config.text-size('xs');
 
-      &:before {
+      &::before {
         content: '';
         height: 1px;
         background-color: #fff;

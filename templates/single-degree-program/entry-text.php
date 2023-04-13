@@ -10,12 +10,14 @@ use Fau\DegreeProgram\Common\Application\DegreeProgramViewTranslated;
 
 [
     'view' => $view,
-] = $data
+] = $data;
+
+if (!$view->entryText()) {
+    return;
+}
 
 ?>
 
-<div class="c-degree-program-short">
-    <a href="<?= esc_url($view->url()) ?>">
-        <?= esc_html($view->title()) ?>
-    </a>
+<div class="c-single-degree-program__entry-text l-container">
+    <?= wp_kses_post($view->entryText()) ?>
 </div>

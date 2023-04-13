@@ -21,6 +21,7 @@ class RewriteModule implements ServiceModule, ExecutableModule
                 $container->get(PostsRepository::class)
             ),
             InjectLanguageQueryVariable::class => static fn() => new InjectLanguageQueryVariable(),
+            CurrentRequest::class => static fn() => new CurrentRequest(),
         ];
     }
 

@@ -7,7 +7,7 @@ $colorsMap: (
       'ci-hell': #04316a,
       'ci-hell-kontrast': #fff,
       'ci-hell2': #ced9e7,
-      'ci-hell2-kontrast': #000000,
+      'ci-hell2-kontrast': #000,
       'dunkler': #004a9f,
       'dunkler-kontrast': #fff,
       'dunkelste': #041e42,
@@ -44,6 +44,7 @@ $colorsMap: (
     )
 );
 
+// Font sizes
 $fontSizesMap: (
   'xs': (
     'font-size': .75rem, // 12px
@@ -67,4 +68,5 @@ $fontSizesMap: (
   ),
 );
 
+// Layout
 $max-width: 1400px;

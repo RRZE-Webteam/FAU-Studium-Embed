@@ -1,0 +1,116 @@
+@use '../../abstracts/config';
+@use '../../base/base';
+
+.l-application-links {
+  padding-top: 30px;
+  padding-bottom: 30px;
+
+  .c-link {
+    margin: 0 auto;
+
+    & + .c-link {
+      margin-top: 10px;
+    }
+  }
+}
+
+.c-details {
+  margin: 0;
+  padding: 20px 15px;
+  background-color: config.color('primary', 'ci-hell2');
+  border-radius: 5px;
+
+  @include config.media('>laptop') {
+    padding: 30px;
+  }
+
+  dt,
+  dd {
+    margin: 0;
+    display: inline;
+  }
+
+  dt {
+    font-weight: bold;
+
+    &::after {
+      display: inline;
+      content: ':';
+    }
+  }
+}
+
+.c-detail {
+  margin-bottom: 5px;
+  padding-left: 24px;
+  position: relative;
+
+  .fau-icon {
+    fill: config.color('branding', 'primary');
+    position: absolute;
+    left: 0;
+    top: 5px;
+  }
+}
+
+.l-details-wrapper.l-details-wrapper--has-details:not(.l-details-wrapper--has-application-links) {
+  .l-details {
+    @extend %container-mobile-full-width;
+  }
+
+  .c-details {
+    @include config.media('>tablet') {
+        columns: 30px 2;
+    }
+
+    @include config.media('>laptop') {
+      column-count: 3;
+    }
+  }
+}
+
+.l-details-wrapper.l-details-wrapper--has-application-links:not(.l-details-wrapper--has-details) {
+  .l-application-links {
+    @extend %container;
+  }
+}
+
+.l-details-wrapper.l-details-wrapper--has-details.l-details-wrapper--has-application-links {
+  display: grid;
+  grid-template-areas:
+    'details'
+    'application-links';
+  gap: 0 25px;
+  @extend %container-mobile-full-width;
+
+  @include config.media('>tablet') {
+    grid-template-areas:
+     'details application-links';
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include config.media('>laptop') {
+    grid-column-gap: 40px;
+    grid-template-columns: 2fr 1fr;
+  }
+
+  .l-details {
+    grid-area: details;
+  }
+
+  .c-details {
+    @include config.media('>laptop') {
+      columns: 40px 2;
+    }
+  }
+
+  .l-application-links {
+    grid-area: application-links;
+
+    @extend %container-paddings;
+
+    @include config.media('>tablet') {
+      padding: 0;
+    }
+  }
+}

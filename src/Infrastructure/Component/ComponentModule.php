@@ -46,6 +46,9 @@ final class ComponentModule implements ServiceModule
                 $container->get(Renderer::class),
                 (string) $container->get(Package::PROPERTIES)->baseUrl() . 'assets/sprite.svg',
             ),
+            Link::class => static fn(ContainerInterface $container) => new Link(
+                $container->get(Renderer::class),
+            ),
             SearchForm::class => static fn(ContainerInterface $container) => new SearchForm(
                 $container->get(Renderer::class),
             ),
@@ -53,6 +56,9 @@ final class ComponentModule implements ServiceModule
                 $container->get(Renderer::class),
             ),
             DegreeProgramsCollection::class => static fn(ContainerInterface $container) => new DegreeProgramsCollection(
+                $container->get(Renderer::class),
+            ),
+            DegreeProgramDetail::class => static fn(ContainerInterface $container) => new DegreeProgramDetail(
                 $container->get(Renderer::class),
             ),
         ];

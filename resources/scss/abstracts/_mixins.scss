@@ -2,6 +2,7 @@
 @use 'sass:list';
 @use 'sass:string';
 @use 'sass:math';
+@use 'sass:map';
 @use 'functions';
 @use 'variables';
 
@@ -71,14 +72,14 @@
 }
 
 @mixin text-size($size) {
-  $map: map-get(variables.$fontSizesMap, $size);
+  $map: map.get(variables.$fontSizesMap, $size);
 
-  @if (type-of($map) != 'map') {
+  @if type-of($map) != 'map' {
     @error 'Font size not defined';
   }
 
-  $font-size: map-get($map, 'font-size');
-  $line-height: map-get($map, 'line-height');
+  $font-size: map.get($map, 'font-size');
+  $line-height: map.get($map, 'line-height');
 
   font-size: $font-size;
   line-height: $line-height;

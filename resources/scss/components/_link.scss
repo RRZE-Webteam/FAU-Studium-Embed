@@ -1,0 +1,28 @@
+@use '../abstracts/config';
+
+.c-link {
+  padding: 15px 30px;
+  border-radius: 5px;
+  border: solid 1px config.color('branding', 'tf');
+  text-decoration: none !important;
+  box-shadow: none !important;
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  max-width: 500px;
+
+  @include config.text-size('xl');
+
+
+  &--dark {
+    color: config.color('button', 'text') !important;
+    background-color: config.color('button', 'bg');
+    border-color: config.color('button', 'bg');
+  }
+
+  &:hover {
+    color: config.color('button', 'hover-text') !important;
+    background-color: config.color('button', 'hover-bg');
+    border-color: config.color('button', 'hover-bg');
+  }
+}

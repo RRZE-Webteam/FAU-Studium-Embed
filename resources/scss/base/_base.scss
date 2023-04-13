@@ -1,12 +1,16 @@
 @use '../abstracts/config';
 
+%container-paddings {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
 %container {
   max-width: config.$max-width;
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  padding-left: 15px;
-  padding-right: 15px;
+  @extend %container-paddings;
 
   @include config.media('>tablet') {
     width: 750px;
