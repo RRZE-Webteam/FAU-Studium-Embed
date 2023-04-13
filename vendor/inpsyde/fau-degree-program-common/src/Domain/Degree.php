@@ -25,6 +25,36 @@ final class Degree implements JsonSerializable
     public const ABBREVIATION = 'abbreviation';
     public const PARENT = 'parent';
 
+    public const SCHEMA = [
+        'type' => 'object',
+        'additionalProperties' => false,
+        'required' => [
+            Degree::ID,
+            Degree::NAME,
+            Degree::ABBREVIATION,
+            Degree::PARENT,
+        ],
+        'properties' => [
+            Degree::ID => [
+                'type' => 'string',
+                'minLength' => 1,
+            ],
+            Degree::NAME => MultilingualString::SCHEMA,
+            Degree::ABBREVIATION => MultilingualString::SCHEMA,
+            Degree::PARENT => [
+                'type' => 'object',
+                'additionalProperties' => true,
+                'required' => [Degree::ID],
+                'properties' => [
+                    Degree::ID => [
+                        'type' => 'string',
+                        'minLength' => 1,
+                    ],
+                ],
+            ],
+        ],
+    ];
+
     private function __construct(
         private string $id,
         private MultilingualString $name,
@@ -64,7 +94,7 @@ final class Degree implements JsonSerializable
     public static function fromArray(array $data): self
     {
         /** @var DegreeType|null  $parentData */
-        $parentData = $data[self::PARENT];
+        $parentData = $data[self::PARENT] ?? null;
         return new self(
             $data[self::ID],
             MultilingualString::fromArray($data[self::NAME]),
@@ -111,5 +141,18 @@ final class Degree implements JsonSerializable
     public function parent(): ?Degree
     {
         return $this->parent;
+    }
+
+    public function hasGermanAbbreviation(string $abbreviation): bool
+    {
+        if ($this->abbreviation->inGerman() === $abbreviation) {
+            return true;
+        }
+
+        if (!$this->parent) {
+            return false;
+        }
+
+        return $this->parent->abbreviation->inGerman() === $abbreviation;
     }
 }

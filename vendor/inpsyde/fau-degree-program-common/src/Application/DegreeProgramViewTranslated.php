@@ -6,26 +6,28 @@ namespace Fau\DegreeProgram\Common\Application;
 
 use Fau\DegreeProgram\Common\Domain\DegreeProgram;
 use Fau\DegreeProgram\Common\Domain\DegreeProgramId;
-use Fau\DegreeProgram\Common\Domain\Image;
 use Fau\DegreeProgram\Common\Domain\MultilingualString;
 use Fau\DegreeProgram\Common\LanguageExtension\ArrayOfStrings;
 use JsonSerializable;
 
 /**
  * @psalm-import-type DegreeTranslatedType from DegreeTranslated
+ * @psalm-import-type AdmissionRequirementsTranslatedType from AdmissionRequirementsTranslated
+ * @psalm-import-type AdmissionRequirementTranslatedType from AdmissionRequirementTranslated
  * @psalm-import-type LinkType from Link
  * @psalm-import-type ContentTranslatedType from ContentTranslated
  * @psalm-import-type RelatedDegreeProgramType from RelatedDegreeProgram
  * @psalm-import-type LanguageCodes from MultilingualString
+ * @psalm-import-type ImageViewType from ImageView
  * @psalm-type DegreeProgramTranslation = array{
  *     link: string,
  *     slug: string,
  *     lang: LanguageCodes,
- *     featured_image: array{id: int, url: string},
- *     teaser_image: array{id: int, url: string},
+ *     featured_image: ImageViewType,
+ *     teaser_image: ImageViewType,
  *     title: string,
  *     subtitle: string,
- *     standard_duration: int,
+ *     standard_duration: string,
  *     fee_required: bool,
  *     start: array<string>,
  *     number_of_students: string,
@@ -38,7 +40,8 @@ use JsonSerializable;
  *     videos: array<array-key, string>,
  *     meta_description: string,
  *     content: ContentTranslatedType,
- *     application: LinkType,
+ *     admission_requirements: AdmissionRequirementsTranslatedType,
+ *     admission_requirement_link: AdmissionRequirementTranslatedType|null,
  *     content_related_master_requirements: string,
  *     application_deadline_winter_semester: string,
  *     application_deadline_summer_semester: string,
@@ -65,6 +68,8 @@ use JsonSerializable;
  *     combinations: array<RelatedDegreeProgramType>,
  *     limited_combinations: array<RelatedDegreeProgramType>,
  *     notes_for_international_applicants: LinkType,
+ *     apply_now_link: LinkType,
+ *     entry_text: string,
  * }
  * @psalm-type DegreeProgramViewTranslatedArrayType = DegreeProgramTranslation & array{
  *      id: int,
@@ -75,7 +80,7 @@ final class DegreeProgramViewTranslated implements JsonSerializable
 {
     public const LINK = 'link';
     public const LANG = 'lang';
-    public const APPLICATION = 'application';
+    public const ADMISSION_REQUIREMENT_LINK = 'admission_requirement_link';
     public const TRANSLATIONS = 'translations';
 
     /** @var array<LanguageCodes, DegreeProgramViewTranslated> */
@@ -89,11 +94,11 @@ final class DegreeProgramViewTranslated implements JsonSerializable
          * @var LanguageCodes $lang
          */
         private string $lang,
-        private Image $featuredImage,
-        private Image $teaserImage,
+        private ImageView $featuredImage,
+        private ImageView $teaserImage,
         private string $title,
         private string $subtitle,
-        private int $standardDuration,
+        private string $standardDuration,
         private bool $feeRequired,
         private ArrayOfStrings $start,
         private string $numberOfStudents,
@@ -106,10 +111,7 @@ final class DegreeProgramViewTranslated implements JsonSerializable
         private ArrayOfStrings $videos,
         private string $metaDescription,
         private ContentTranslated $content,
-        /**
-         * Bewerbung
-         */
-        private Link $application,
+        private AdmissionRequirementsTranslated $admissionRequirements,
         private string $contentRelatedMasterRequirements,
         private string $applicationDeadlineWinterSemester,
         private string $applicationDeadlineSummerSemester,
@@ -136,6 +138,8 @@ final class DegreeProgramViewTranslated implements JsonSerializable
         private RelatedDegreePrograms $combinations,
         private RelatedDegreePrograms $limitedCombinations,
         private Link $notesForInternationalApplicants,
+        private Link $applyNowLink,
+        private string $entryText,
     ) {
     }
 
@@ -154,8 +158,8 @@ final class DegreeProgramViewTranslated implements JsonSerializable
             link: $data[self::LINK],
             slug: $data[DegreeProgram::SLUG],
             lang: $data[self::LANG],
-            featuredImage: Image::fromArray($data[DegreeProgram::FEATURED_IMAGE]),
-            teaserImage: Image::fromArray($data[DegreeProgram::TEASER_IMAGE]),
+            featuredImage: ImageView::fromArray($data[DegreeProgram::FEATURED_IMAGE]),
+            teaserImage: ImageView::fromArray($data[DegreeProgram::TEASER_IMAGE]),
             title: $data[DegreeProgram::TITLE],
             subtitle: $data[DegreeProgram::SUBTITLE],
             standardDuration: $data[DegreeProgram::STANDARD_DURATION],
@@ -171,7 +175,7 @@ final class DegreeProgramViewTranslated implements JsonSerializable
             videos: ArrayOfStrings::new(...$data[DegreeProgram::VIDEOS]),
             metaDescription: $data[DegreeProgram::META_DESCRIPTION],
             content: ContentTranslated::fromArray($data[DegreeProgram::CONTENT]),
-            application: Link::fromArray($data[self::APPLICATION]),
+            admissionRequirements: AdmissionRequirementsTranslated::fromArray($data[DegreeProgram::ADMISSION_REQUIREMENTS]),
             contentRelatedMasterRequirements: $data[DegreeProgram::CONTENT_RELATED_MASTER_REQUIREMENTS],
             applicationDeadlineWinterSemester: $data[DegreeProgram::APPLICATION_DEADLINE_WINTER_SEMESTER],
             applicationDeadlineSummerSemester: $data[DegreeProgram::APPLICATION_DEADLINE_SUMMER_SEMESTER],
@@ -198,6 +202,8 @@ final class DegreeProgramViewTranslated implements JsonSerializable
             combinations:  RelatedDegreePrograms::fromArray($data[DegreeProgram::COMBINATIONS]),
             limitedCombinations: RelatedDegreePrograms::fromArray($data[DegreeProgram::LIMITED_COMBINATIONS]),
             notesForInternationalApplicants: Link::fromArray($data[DegreeProgram::NOTES_FOR_INTERNATIONAL_APPLICANTS]),
+            applyNowLink: Link::fromArray($data[DegreeProgram::APPLY_NOW_LINK]),
+            entryText: $data[DegreeProgram::ENTRY_TEXT],
         );
 
         if (empty($data[self::TRANSLATIONS])) {
@@ -239,7 +245,8 @@ final class DegreeProgramViewTranslated implements JsonSerializable
             DegreeProgram::VIDEOS => $this->videos->getArrayCopy(),
             DegreeProgram::META_DESCRIPTION => $this->metaDescription,
             DegreeProgram::CONTENT => $this->content->asArray(),
-            self::APPLICATION => $this->application->asArray(),
+            DegreeProgram::ADMISSION_REQUIREMENTS => $this->admissionRequirements->asArray(),
+            self::ADMISSION_REQUIREMENT_LINK => $this->admissionRequirementLink()?->asArray(),
             DegreeProgram::CONTENT_RELATED_MASTER_REQUIREMENTS => $this->contentRelatedMasterRequirements,
             DegreeProgram::APPLICATION_DEADLINE_WINTER_SEMESTER => $this->applicationDeadlineWinterSemester,
             DegreeProgram::APPLICATION_DEADLINE_SUMMER_SEMESTER => $this->applicationDeadlineSummerSemester,
@@ -267,6 +274,8 @@ final class DegreeProgramViewTranslated implements JsonSerializable
             DegreeProgram::COMBINATIONS => $this->combinations->asArray(),
             DegreeProgram::LIMITED_COMBINATIONS => $this->limitedCombinations->asArray(),
             DegreeProgram::NOTES_FOR_INTERNATIONAL_APPLICANTS => $this->notesForInternationalApplicants->asArray(),
+            DegreeProgram::APPLY_NOW_LINK => $this->applyNowLink->asArray(),
+            DegreeProgram::ENTRY_TEXT => $this->entryText,
             self::TRANSLATIONS => $this->translationsAsArray(),
         ];
     }
@@ -344,12 +353,12 @@ final class DegreeProgramViewTranslated implements JsonSerializable
         return $this->lang;
     }
 
-    public function featuredImage(): Image
+    public function featuredImage(): ImageView
     {
         return $this->featuredImage;
     }
 
-    public function teaserImage(): Image
+    public function teaserImage(): ImageView
     {
         return $this->teaserImage;
     }
@@ -364,7 +373,7 @@ final class DegreeProgramViewTranslated implements JsonSerializable
         return $this->subtitle;
     }
 
-    public function standardDuration(): int
+    public function standardDuration(): string
     {
         return $this->standardDuration;
     }
@@ -429,9 +438,14 @@ final class DegreeProgramViewTranslated implements JsonSerializable
         return $this->content;
     }
 
-    public function application(): Link
+    public function admissionRequirements(): AdmissionRequirementsTranslated
     {
-        return $this->application;
+        return $this->admissionRequirements;
+    }
+
+    public function admissionRequirementLink(): ?AdmissionRequirementTranslated
+    {
+        return $this->admissionRequirements->mainLink();
     }
 
     public function contentRelatedMasterRequirements(): string
@@ -562,5 +576,15 @@ final class DegreeProgramViewTranslated implements JsonSerializable
     public function notesForInternationalApplicants(): Link
     {
         return $this->notesForInternationalApplicants;
+    }
+
+    public function applyNowLink(): Link
+    {
+        return $this->applyNowLink;
+    }
+
+    public function entryText(): string
+    {
+        return $this->entryText;
     }
 }

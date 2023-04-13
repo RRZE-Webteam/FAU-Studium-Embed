@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Fau\DegreeProgram\Common\Tests\Repository;
 
+use Fau\DegreeProgram\Common\Application\AdmissionRequirementsTranslated;
 use Fau\DegreeProgram\Common\Application\ContentTranslated;
 use Fau\DegreeProgram\Common\Application\DegreeProgramViewRaw;
 use Fau\DegreeProgram\Common\Application\DegreeProgramViewTranslated;
@@ -80,6 +81,9 @@ final class StubDegreeProgramRepository implements DegreeProgramRepository, Degr
 
         return new DegreeProgramViewTranslated(
             id: $raw->id(),
+            link: '',
+            slug: '',
+            lang: $languageCode,
             featuredImage: $raw->featuredImage(),
             teaserImage: $raw->teaserImage(),
             title: $raw->title()->asString($languageCode),
@@ -97,7 +101,10 @@ final class StubDegreeProgramRepository implements DegreeProgramRepository, Degr
             videos: $raw->videos(),
             metaDescription: $raw->metaDescription()->asString($languageCode),
             content: ContentTranslated::fromContent($raw->content(), $languageCode),
-            application: Link::fromMultilingualLink($raw->admissionRequirements()->requirementsForDegree($raw->degree()), $languageCode),
+            admissionRequirements: AdmissionRequirementsTranslated::fromAdmissionRequirements(
+                $raw->admissionRequirements(),
+                $languageCode
+            ),
             contentRelatedMasterRequirements: $raw->contentRelatedMasterRequirements()->asString($languageCode),
             applicationDeadlineWinterSemester: $raw->applicationDeadlineWinterSemester(),
             applicationDeadlineSummerSemester: $raw->applicationDeadlineSummerSemester(),
@@ -111,7 +118,7 @@ final class StubDegreeProgramRepository implements DegreeProgramRepository, Degr
             startOfSemester: Link::fromMultilingualLink($raw->startOfSemester(), $languageCode),
             semesterDates: Link::fromMultilingualLink($raw->semesterDates(), $languageCode),
             examinationsOffice: Link::fromMultilingualLink($raw->examinationsOffice(), $languageCode),
-            examinationRegulations: $raw->examinationRegulations()->asString($languageCode),
+            examinationRegulations: $raw->examinationRegulations(),
             moduleHandbook: $raw->moduleHandbook(),
             url: $raw->url()->asString($languageCode),
             department: $raw->department()->asString($languageCode),
@@ -122,9 +129,13 @@ final class StubDegreeProgramRepository implements DegreeProgramRepository, Degr
             semesterFee: Link::fromMultilingualLink($raw->semesterFee(), $languageCode),
             degreeProgramFees: $raw->degreeProgramFees()->asString($languageCode),
             abroadOpportunities: Link::fromMultilingualLink($raw->abroadOpportunities(), $languageCode),
+            keywords: $raw->keywords()->asArrayOfStrings($languageCode),
+            areaOfStudy: Links::fromMultilingualLinks($raw->areaOfStudy(), $languageCode),
             combinations: RelatedDegreePrograms::new(),
             limitedCombinations: RelatedDegreePrograms::new(),
             notesForInternationalApplicants: Link::fromMultilingualLink($raw->notesForInternationalApplicants(), $languageCode),
+            applyNowLink: Link::fromMultilingualLink($raw->applyNowLink(), $languageCode),
+            entryText: $raw->entryText()->asString($languageCode),
         );
     }
 

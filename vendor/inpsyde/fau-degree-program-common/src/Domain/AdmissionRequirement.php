@@ -27,6 +27,65 @@ final class AdmissionRequirement
 
     public const PARENT = 'parent';
 
+    public const SCHEMA = [
+        'type' => 'object',
+        'additionalProperties' => false,
+        'required' => [
+            AdmissionRequirement::ID,
+            AdmissionRequirement::NAME,
+            AdmissionRequirement::LINK_TEXT,
+            AdmissionRequirement::LINK_URL,
+            AdmissionRequirement::PARENT,
+        ],
+        'properties' => [
+            AdmissionRequirement::ID => [
+                'type' => 'string',
+                'minLength' => 1,
+            ],
+            AdmissionRequirement::NAME => MultilingualString::SCHEMA,
+            AdmissionRequirement::LINK_TEXT => MultilingualString::SCHEMA,
+            AdmissionRequirement::LINK_URL => MultilingualString::SCHEMA,
+            AdmissionRequirement::PARENT => [
+                'type' => 'object',
+                'additionalProperties' => true,
+                'required' => [
+                    AdmissionRequirement::ID,
+                    AdmissionRequirement::NAME,
+                ],
+                'properties' => [
+                    AdmissionRequirement::ID => [
+                        'type' => 'string',
+                        'minLength' => 1,
+                    ],
+                    AdmissionRequirement::NAME => MultilingualString::SCHEMA,
+                ],
+            ],
+        ],
+    ];
+
+    public const SCHEMA_EMPTY = [
+        'type' => 'object',
+        'additionalProperties' => false,
+        'required' => [
+            AdmissionRequirement::ID,
+            AdmissionRequirement::NAME,
+            AdmissionRequirement::LINK_TEXT,
+            AdmissionRequirement::LINK_URL,
+        ],
+        'properties' => [
+            AdmissionRequirement::ID => [
+                'type' => 'string',
+                'maxLength' => 0,
+            ],
+            AdmissionRequirement::NAME => MultilingualString::SCHEMA,
+            AdmissionRequirement::LINK_TEXT => MultilingualString::SCHEMA,
+            AdmissionRequirement::LINK_URL => MultilingualString::SCHEMA,
+            AdmissionRequirement::PARENT => [
+                'type' => 'null',
+            ],
+        ],
+    ];
+
     private function __construct(
         private MultilingualLink $current,
         private ?AdmissionRequirement $parent,
@@ -62,7 +121,7 @@ final class AdmissionRequirement
         ];
 
         /** @var AdmissionRequirementType|null  $parentData */
-        $parentData = $data[self::PARENT];
+        $parentData = $data[self::PARENT] ?? null;
 
         return new self(
             MultilingualLink::fromArray($currentData),
@@ -106,5 +165,28 @@ final class AdmissionRequirement
     public function parent(): ?AdmissionRequirement
     {
         return $this->parent;
+    }
+
+    public function isEmpty(): bool
+    {
+        return !$this->current->id();
+    }
+
+    public function current(): MultilingualLink
+    {
+        return $this->current;
+    }
+
+    public function hasGermanName(string $name): bool
+    {
+        if ($this->name()->inGerman() === $name) {
+            return true;
+        }
+
+        if (!$this->parent) {
+            return false;
+        }
+
+        return $this->parent->name()->inGerman() === $name;
     }
 }

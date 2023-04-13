@@ -8,6 +8,46 @@
         "../ts/main.asset.php"
       ]
     },
+    "svg/grid": {
+      "js": [
+        "../svg/grid.js"
+      ],
+      "php": [
+        "../svg/grid.asset.php"
+      ]
+    },
+    "svg/icon-filter": {
+      "js": [
+        "../svg/icon-filter.js"
+      ],
+      "php": [
+        "../svg/icon-filter.asset.php"
+      ]
+    },
+    "svg/list": {
+      "js": [
+        "../svg/list.js"
+      ],
+      "php": [
+        "../svg/list.asset.php"
+      ]
+    },
+    "svg/search": {
+      "js": [
+        "../svg/search.js"
+      ],
+      "php": [
+        "../svg/search.asset.php"
+      ]
+    },
+    "svg/sort": {
+      "js": [
+        "../svg/sort.js"
+      ],
+      "php": [
+        "../svg/sort.asset.php"
+      ]
+    },
     "css/frontend": {
       "css": [
         "../css/frontend.css"

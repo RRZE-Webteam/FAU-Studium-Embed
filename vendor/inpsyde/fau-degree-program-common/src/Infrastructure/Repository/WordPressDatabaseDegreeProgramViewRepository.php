@@ -4,20 +4,24 @@ declare(strict_types=1);
 
 namespace Fau\DegreeProgram\Common\Infrastructure\Repository;
 
+use Fau\DegreeProgram\Common\Application\AdmissionRequirementsTranslated;
+use Fau\DegreeProgram\Common\Application\ConditionalFieldsFilter;
 use Fau\DegreeProgram\Common\Application\ContentTranslated;
 use Fau\DegreeProgram\Common\Application\DegreeProgramViewRaw;
 use Fau\DegreeProgram\Common\Application\DegreeProgramViewTranslated;
 use Fau\DegreeProgram\Common\Application\DegreeTranslated;
+use Fau\DegreeProgram\Common\Application\ImageView;
 use Fau\DegreeProgram\Common\Application\Link;
 use Fau\DegreeProgram\Common\Application\Links;
 use Fau\DegreeProgram\Common\Application\RelatedDegreeProgram;
 use Fau\DegreeProgram\Common\Application\RelatedDegreePrograms;
 use Fau\DegreeProgram\Common\Application\Repository\DegreeProgramViewRepository;
+use Fau\DegreeProgram\Common\Domain\DegreeProgram;
 use Fau\DegreeProgram\Common\Domain\DegreeProgramId;
 use Fau\DegreeProgram\Common\Domain\DegreeProgramRepository;
+use Fau\DegreeProgram\Common\Domain\Image;
 use Fau\DegreeProgram\Common\Domain\MultilingualString;
 use Fau\DegreeProgram\Common\Infrastructure\Sanitizer\HtmlDegreeProgramSanitizer;
-use Fau\DegreeProgram\Common\LanguageExtension\ArrayOfStrings;
 use RuntimeException;
 use WP_Post;
 
@@ -29,6 +33,8 @@ final class WordPressDatabaseDegreeProgramViewRepository implements DegreeProgra
     public function __construct(
         private DegreeProgramRepository $degreeProgramRepository,
         private HtmlDegreeProgramSanitizer $htmlContentSanitizer,
+        private ConditionalFieldsFilter $conditionalFieldsFilter,
+        private FacultyRepository $facultyRepository,
     ) {
     }
 
@@ -55,6 +61,11 @@ final class WordPressDatabaseDegreeProgramViewRepository implements DegreeProgra
             return null;
         }
 
+        $raw = $this->conditionalFieldsFilter->filter(
+            $raw,
+            $this->facultyRepository->findFacultySlugs($raw),
+        );
+
         $main = $this->translateDegreeProgram($raw, $languageCode);
         foreach (MultilingualString::LANGUAGES as $code => $name) {
             if ($code === $languageCode) {
@@ -78,6 +89,8 @@ final class WordPressDatabaseDegreeProgramViewRepository implements DegreeProgra
         string $languageCode
     ): DegreeProgramViewTranslated {
 
+        $title = $raw->title()->asString($languageCode);
+
         return new DegreeProgramViewTranslated(
             id: $raw->id(),
             link: $this->link(
@@ -87,8 +100,16 @@ final class WordPressDatabaseDegreeProgramViewRepository implements DegreeProgra
             ),
             slug: $raw->slug()->asString($languageCode),
             lang: $languageCode,
-            featuredImage: $raw->featuredImage(),
-            teaserImage: $raw->teaserImage(),
+            featuredImage: $this->imageView(
+                $raw->featuredImage(),
+                DegreeProgram::FEATURED_IMAGE,
+                $title
+            ),
+            teaserImage: $this->imageView(
+                $raw->teaserImage(),
+                DegreeProgram::TEASER_IMAGE,
+                $title
+            ),
             title: $raw->title()->asString($languageCode),
             subtitle: $raw->subtitle()->asString($languageCode),
             standardDuration: $raw->standardDuration(),
@@ -101,11 +122,14 @@ final class WordPressDatabaseDegreeProgramViewRepository implements DegreeProgra
             faculty: Links::fromMultilingualLinks($raw->faculty(), $languageCode),
             location: $raw->location()->asArrayOfStrings($languageCode),
             subjectGroups: $raw->subjectGroups()->asArrayOfStrings($languageCode),
-            videos: $this->formattedVideos($raw->videos()),
+            videos: $raw->videos(),
             metaDescription: $raw->metaDescription()->asString($languageCode),
             content: ContentTranslated::fromContent($raw->content(), $languageCode)
                 ->mapDescriptions([$this, 'formatContentField']),
-            application: Link::fromMultilingualLink($raw->admissionRequirements()->requirementsForDegree($raw->degree()), $languageCode),
+            admissionRequirements: AdmissionRequirementsTranslated::fromAdmissionRequirements(
+                $raw->admissionRequirements(),
+                $languageCode
+            ),
             contentRelatedMasterRequirements: $this->formatContentField(
                 $raw->contentRelatedMasterRequirements()->asString($languageCode)
             ),
@@ -131,9 +155,7 @@ final class WordPressDatabaseDegreeProgramViewRepository implements DegreeProgra
             startOfSemester: Link::fromMultilingualLink($raw->startOfSemester(), $languageCode),
             semesterDates: Link::fromMultilingualLink($raw->semesterDates(), $languageCode),
             examinationsOffice: Link::fromMultilingualLink($raw->examinationsOffice(), $languageCode),
-            examinationRegulations: $this->formattedExaminationRegulations(
-                $raw->examinationRegulations()->asString($languageCode)
-            ),
+            examinationRegulations: $raw->examinationRegulations(),
             moduleHandbook: $raw->moduleHandbook(),
             url: $raw->url()->asString($languageCode),
             department: $raw->department()->asString($languageCode),
@@ -149,6 +171,35 @@ final class WordPressDatabaseDegreeProgramViewRepository implements DegreeProgra
             combinations: $this->relatedDegreePrograms($raw->combinations()->asArray(), $languageCode),
             limitedCombinations: $this->relatedDegreePrograms($raw->limitedCombinations()->asArray(), $languageCode),
             notesForInternationalApplicants: Link::fromMultilingualLink($raw->notesForInternationalApplicants(), $languageCode),
+            applyNowLink: Link::fromMultilingualLink($raw->applyNowLink(), $languageCode),
+            entryText: $this->formatContentField($raw->entryText()->asString($languageCode)),
+        );
+    }
+
+    /**
+     * @psalm-param 'featured_image' | 'teaser_image' $type
+     */
+    private function imageView(Image $image, string $type, string $alt): ImageView
+    {
+        if (!$image->id()) {
+            return ImageView::empty();
+        }
+
+        return ImageView::new(
+            $image->id(),
+            $image->url(),
+            wp_get_attachment_image(
+                $image->id(),
+                (string) apply_filters(
+                    'fau.image_size',
+                    'full',
+                    $type,
+                ),
+                false,
+                [
+                    'alt' => $alt,
+                ]
+            )
         );
     }
 
@@ -164,23 +215,6 @@ final class WordPressDatabaseDegreeProgramViewRepository implements DegreeProgra
         }
 
         return str_replace($slug->inGerman(), $slug->inEnglish(), $permalink);
-    }
-
-    private function formattedVideos(ArrayOfStrings $videos): ArrayOfStrings
-    {
-        $result = [];
-        foreach ($videos as $video) {
-            // $video could be shortcode or link
-            $result[] = (string) apply_filters('the_content', $video);
-        }
-
-        return ArrayOfStrings::new(...$result);
-    }
-
-    private function formattedExaminationRegulations(string $examinationRegulations): string
-    {
-        $htmlsStripped = wp_strip_all_tags($examinationRegulations);
-        return apply_shortcodes($htmlsStripped);
     }
 
     public function formatContentField(string $content): string

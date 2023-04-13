@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Fau\DegreeProgram\Common\Tests\Domain;
 
-use Fau\DegreeProgram\Common\LanguageExtension\ArrayOfStrings;
+use Fau\DegreeProgram\Common\Domain\Violation;
+use Fau\DegreeProgram\Common\Domain\Violations;
 use Fau\DegreeProgram\Common\Tests\FixtureDegreeProgramDataProviderTrait;
 use Fau\DegreeProgram\Common\Tests\Sanitizer\StubSanitizer;
 use Fau\DegreeProgram\Common\Tests\UnitTestCase;
@@ -27,18 +28,18 @@ class DegreeProgramTest extends UnitTestCase
 
         $sut->update(
             $data,
-            new StubDataValidator(ArrayOfStrings::new()),
+            new StubDataValidator(Violations::new()),
             new StubSanitizer(),
         );
     }
 
     public function testUpdateValidationFailed(): void
     {
-        $violations = ArrayOfStrings::new('Empty title');
+        $violations = Violations::new(Violation::new('title', 'Empty title', 'empty_title'));
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(sprintf(
             'Invalid degree program data. Violations: %s.',
-            implode('|', $violations->getArrayCopy())
+            implode('|', array_keys($violations->getArrayCopy()))
         ));
         $sut = $this->createEmptyDegreeProgram(25);
         $data = $this->fixtureData();
@@ -56,7 +57,7 @@ class DegreeProgramTest extends UnitTestCase
         $data = $this->fixtureData();
         $sut->update(
             $data,
-            new StubDataValidator(ArrayOfStrings::new()),
+            new StubDataValidator(Violations::new()),
             new StubSanitizer('[Was sanitized]'),
         );
         $result = $sut->asArray();
@@ -142,11 +143,11 @@ class DegreeProgramTest extends UnitTestCase
             $result['content_related_master_requirements']->inGerman()
         );
         $this->assertSame(
-            '[Was sanitized]1/12',
+            '01.12.',
             $result['application_deadline_winter_semester']
         );
         $this->assertSame(
-            '[Was sanitized]1/07',
+            '01.07.',
             $result['application_deadline_summer_semester']
         );
         $this->assertSame(
@@ -178,8 +179,8 @@ class DegreeProgramTest extends UnitTestCase
             $result['examinations_office']->linkText()->inEnglish()
         );
         $this->assertSame(
-            'https://fau.localhost/examinations-regulations-en',
-            $result['examination_regulations']->inEnglish()
+            'https://fau.localhost/examinations-regulations',
+            $result['examination_regulations']
         );
         $this->assertSame(
             'Module handbook value',

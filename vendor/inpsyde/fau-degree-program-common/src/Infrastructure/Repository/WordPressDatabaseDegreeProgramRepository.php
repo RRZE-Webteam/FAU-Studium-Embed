@@ -18,6 +18,7 @@ use Fau\DegreeProgram\Common\Domain\Image;
 use Fau\DegreeProgram\Common\Domain\MultilingualString;
 use Fau\DegreeProgram\Common\Domain\NumberOfStudents;
 use Fau\DegreeProgram\Common\Infrastructure\Content\PostType\DegreeProgramPostType;
+use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\ApplyNowLinkTaxonomy;
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\AreaOfStudyTaxonomy;
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\AttributeTaxonomy;
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\BachelorOrTeachingDegreeAdmissionRequirementTaxonomy;
@@ -34,6 +35,7 @@ use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\SubjectGroupTaxonom
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\SubjectSpecificAdviceTaxonomy;
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\TeachingDegreeHigherSemesterAdmissionRequirementTaxonomy;
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\TeachingLanguageTaxonomy;
+use Fau\DegreeProgram\Common\Infrastructure\Sanitizer\HtmlDegreeProgramSanitizer;
 use Fau\DegreeProgram\Common\LanguageExtension\ArrayOfStrings;
 use Fau\DegreeProgram\Common\LanguageExtension\IntegersListChangeset;
 use Psr\EventDispatcher\EventDispatcherInterface;
@@ -49,6 +51,7 @@ final class WordPressDatabaseDegreeProgramRepository extends BilingualRepository
     public function __construct(
         IdGenerator $idGenerator,
         private EventDispatcherInterface $eventDispatcher,
+        private HtmlDegreeProgramSanitizer $fieldsSanitizer,
     ) {
 
         parent::__construct($idGenerator);
@@ -105,8 +108,7 @@ final class WordPressDatabaseDegreeProgramRepository extends BilingualRepository
             ),
             subtitle: $this->bilingualPostMeta($post, DegreeProgram::SUBTITLE),
             standardDuration:
-                (int) get_post_meta($postId, DegreeProgram::STANDARD_DURATION, true),
-            feeRequired: (bool) get_post_meta($postId, DegreeProgram::FEE_REQUIRED, true),
+                (string) get_post_meta($postId, DegreeProgram::STANDARD_DURATION, true),
             start: $this->bilingualTermsList($post, SemesterTaxonomy::KEY),
             numberOfStudents: $this->numberOfStudents($post),
             teachingLanguage: $this->bilingualTermName(
@@ -124,6 +126,9 @@ final class WordPressDatabaseDegreeProgramRepository extends BilingualRepository
                 )
             ),
             metaDescription: $this->bilingualPostMeta($post, DegreeProgram::META_DESCRIPTION),
+            keywords: $this->bilingualTermsList($post, KeywordTaxonomy::KEY),
+            areaOfStudy: $this->bilingualTermLinks($post, AreaOfStudyTaxonomy::KEY),
+            entryText: $this->bilingualPostMeta($post, DegreeProgram::ENTRY_TEXT),
             content: Content::new(
                 about: $this->contentItem($post, Content::ABOUT),
                 structure: $this->contentItem($post, Content::STRUCTURE),
@@ -158,14 +163,23 @@ final class WordPressDatabaseDegreeProgramRepository extends BilingualRepository
                 $post,
                 DegreeProgram::CONTENT_RELATED_MASTER_REQUIREMENTS
             ),
-            applicationDeadlineWinterSemester:
-                (string) get_post_meta($postId, DegreeProgram::APPLICATION_DEADLINE_WINTER_SEMESTER, true),
-            applicationDeadlineSummerSemester:
-                (string) get_post_meta($postId, DegreeProgram::APPLICATION_DEADLINE_SUMMER_SEMESTER, true),
+            applicationDeadlineWinterSemester: (string) get_post_meta(
+                $postId,
+                DegreeProgram::APPLICATION_DEADLINE_WINTER_SEMESTER,
+                true
+            ),
+            applicationDeadlineSummerSemester: (string) get_post_meta(
+                $postId,
+                DegreeProgram::APPLICATION_DEADLINE_SUMMER_SEMESTER,
+                true
+            ),
             detailsAndNotes: $this->bilingualPostMeta($post, DegreeProgram::DETAILS_AND_NOTES),
             languageSkills: $this->bilingualPostMeta($post, DegreeProgram::LANGUAGE_SKILLS),
-            languageSkillsHumanitiesFaculty:
-                (string) get_post_meta($postId, DegreeProgram::LANGUAGE_SKILLS_HUMANITIES_FACULTY, true),
+            languageSkillsHumanitiesFaculty: (string) get_post_meta(
+                $postId,
+                DegreeProgram::LANGUAGE_SKILLS_HUMANITIES_FACULTY,
+                true
+            ),
             germanLanguageSkillsForInternationalStudents: $this->bilingualLinkFromTerm(
                 $this->firstTerm(
                     $post,
@@ -177,8 +191,16 @@ final class WordPressDatabaseDegreeProgramRepository extends BilingualRepository
             examinationsOffice: $this->bilingualLinkFromTerm(
                 $this->firstTerm($post, ExaminationsOfficeTaxonomy::KEY)
             ),
-            examinationRegulations: $this->bilingualPostMeta($post, DegreeProgram::EXAMINATION_REGULATIONS),
-            moduleHandbook: (string) get_post_meta($postId, DegreeProgram::MODULE_HANDBOOK, true),
+            examinationRegulations: (string) get_post_meta(
+                $postId,
+                DegreeProgram::EXAMINATION_REGULATIONS,
+                true
+            ),
+            moduleHandbook: (string) get_post_meta(
+                $postId,
+                DegreeProgram::MODULE_HANDBOOK,
+                true
+            ),
             url: $this->bilingualPostMeta($post, DegreeProgram::URL),
             department: $this->bilingualPostMeta($post, DegreeProgram::DEPARTMENT),
             studentAdvice: $this->bilingualLinkFromOption(DegreeProgram::STUDENT_ADVICE),
@@ -186,16 +208,35 @@ final class WordPressDatabaseDegreeProgramRepository extends BilingualRepository
                 $this->firstTerm($post, SubjectSpecificAdviceTaxonomy::KEY)
             ),
             serviceCenters: $this->bilingualLinkFromOption(DegreeProgram::SERVICE_CENTERS),
-            studentRepresentatives:
-                (string) get_post_meta($postId, DegreeProgram::STUDENT_REPRESENTATIVES, true),
+            studentRepresentatives: (string) get_post_meta(
+                $postId,
+                DegreeProgram::STUDENT_REPRESENTATIVES,
+                true
+            ),
             semesterFee: $this->bilingualLinkFromOption(DegreeProgram::SEMESTER_FEE),
-            degreeProgramFees: $this->bilingualPostMeta($post, DegreeProgram::DEGREE_PROGRAM_FEES),
-            abroadOpportunities: $this->bilingualLinkFromOption(DegreeProgram::ABROAD_OPPORTUNITIES),
-            keywords: $this->bilingualTermsList($post, KeywordTaxonomy::KEY),
-            areaOfStudy: $this->bilingualTermLinks($post, AreaOfStudyTaxonomy::KEY),
+            feeRequired: (bool) get_post_meta(
+                $postId,
+                DegreeProgram::FEE_REQUIRED,
+                true
+            ),
+            degreeProgramFees: $this->bilingualPostMeta(
+                $post,
+                DegreeProgram::DEGREE_PROGRAM_FEES
+            ),
+            abroadOpportunities: $this->bilingualLinkFromOption(
+                DegreeProgram::ABROAD_OPPORTUNITIES
+            ),
+            notesForInternationalApplicants: $this->bilingualLinkFromOption(
+                DegreeProgram::NOTES_FOR_INTERNATIONAL_APPLICANTS
+            ),
+            applyNowLink: $this->bilingualLinkFromTerm(
+                $this->firstTerm($post, ApplyNowLinkTaxonomy::KEY),
+            ),
             combinations: $this->idsFromPostMeta($postId, DegreeProgram::COMBINATIONS),
-            limitedCombinations: $this->idsFromPostMeta($postId, DegreeProgram::LIMITED_COMBINATIONS),
-            notesForInternationalApplicants: $this->bilingualLinkFromOption(DegreeProgram::NOTES_FOR_INTERNATIONAL_APPLICANTS),
+            limitedCombinations: $this->idsFromPostMeta(
+                $postId,
+                DegreeProgram::LIMITED_COMBINATIONS
+            ),
         );
     }
 
@@ -228,7 +269,6 @@ final class WordPressDatabaseDegreeProgramRepository extends BilingualRepository
 
     private function degree(WP_Post $post): Degree
     {
-        // TODO: should we verify if is this not a parent term?
         $term = $this->firstTerm($post, DegreeTaxonomy::KEY);
 
         if (!$term instanceof WP_Term) {
@@ -331,7 +371,13 @@ final class WordPressDatabaseDegreeProgramRepository extends BilingualRepository
             DegreeProgram::FEE_REQUIRED =>
                 $degreeProgramViewRaw->isFeeRequired(),
             DegreeProgram::VIDEOS =>
-                implode(',', $degreeProgramViewRaw->videos()->getArrayCopy()),
+                implode(
+                    ',',
+                    array_map(
+                        [$this->fieldsSanitizer, 'sanitizeUrlField'],
+                        $degreeProgramViewRaw->videos()->getArrayCopy(),
+                    ),
+                ),
             DegreeProgram::APPLICATION_DEADLINE_WINTER_SEMESTER =>
                 $degreeProgramViewRaw->applicationDeadlineWinterSemester(),
             DegreeProgram::APPLICATION_DEADLINE_SUMMER_SEMESTER =>
@@ -339,9 +385,17 @@ final class WordPressDatabaseDegreeProgramRepository extends BilingualRepository
             DegreeProgram::LANGUAGE_SKILLS_HUMANITIES_FACULTY =>
                 $degreeProgramViewRaw->languageSkillsHumanitiesFaculty(),
             DegreeProgram::MODULE_HANDBOOK =>
-                $degreeProgramViewRaw->moduleHandbook(),
+                $this->fieldsSanitizer->sanitizeUrlField(
+                    $degreeProgramViewRaw->moduleHandbook()
+                ),
             DegreeProgram::STUDENT_REPRESENTATIVES =>
-                $degreeProgramViewRaw->studentRepresentatives(),
+                $this->fieldsSanitizer->sanitizeUrlField(
+                    $degreeProgramViewRaw->studentRepresentatives()
+                ),
+            DegreeProgram::EXAMINATION_REGULATIONS =>
+                $this->fieldsSanitizer->sanitizeUrlField(
+                    $degreeProgramViewRaw->examinationRegulations()
+                ),
         ];
 
         foreach ($metas as $key => $value) {
@@ -351,8 +405,9 @@ final class WordPressDatabaseDegreeProgramRepository extends BilingualRepository
         $content = $degreeProgramViewRaw->content();
         $bilingualMetas = [
             $degreeProgramViewRaw->subtitle(),
-            $degreeProgramViewRaw->metaDescription(),
-            $degreeProgramViewRaw->examinationRegulations(),
+            $this->fieldsSanitizer->sanitizeMultiLingualTextField(
+                $degreeProgramViewRaw->metaDescription()
+            ),
             $content->about()->description(),
             $content->structure()->description(),
             $content->specializations()->description(),
@@ -364,9 +419,16 @@ final class WordPressDatabaseDegreeProgramRepository extends BilingualRepository
             $degreeProgramViewRaw->contentRelatedMasterRequirements(),
             $degreeProgramViewRaw->detailsAndNotes(),
             $degreeProgramViewRaw->languageSkills(),
-            $degreeProgramViewRaw->url(),
-            $degreeProgramViewRaw->degreeProgramFees(),
-            $degreeProgramViewRaw->department(),
+            $this->fieldsSanitizer->sanitizeMultilingualUrlField(
+                $degreeProgramViewRaw->url()
+            ),
+            $this->fieldsSanitizer->sanitizeMultiLingualTextField(
+                $degreeProgramViewRaw->degreeProgramFees()
+            ),
+            $this->fieldsSanitizer->sanitizeMultilingualUrlField(
+                $degreeProgramViewRaw->department()
+            ),
+            $degreeProgramViewRaw->entryText(),
         ];
 
         foreach ($bilingualMetas as $bilingualMeta) {
@@ -407,6 +469,8 @@ final class WordPressDatabaseDegreeProgramRepository extends BilingualRepository
                 $degreeProgramViewRaw->keywords(),
             AreaOfStudyTaxonomy::KEY =>
                 $degreeProgramViewRaw->areaOfStudy(),
+            ApplyNowLinkTaxonomy::KEY =>
+                $degreeProgramViewRaw->applyNowLink(),
         ];
 
         foreach ($terms as $taxonomy => $multilingualStructure) {
@@ -476,7 +540,11 @@ final class WordPressDatabaseDegreeProgramRepository extends BilingualRepository
             sprintf(
                 "%s-%s",
                 $degreeProgramViewRaw->title()->asString($languageCode),
-                $degreeProgramViewRaw->degree()->abbreviation()->asString($languageCode)
+                str_replace(
+                    ['.', '-', ','],
+                    '',
+                    $degreeProgramViewRaw->degree()->abbreviation()->asString($languageCode)
+                )
             )
         );
     }

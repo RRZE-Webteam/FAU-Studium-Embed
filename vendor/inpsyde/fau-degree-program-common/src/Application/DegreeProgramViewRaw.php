@@ -25,14 +25,14 @@ use JsonSerializable;
  * @psalm-import-type ContentType from Content
  * @psalm-import-type AdmissionRequirementsType from AdmissionRequirements
  * @psalm-import-type DegreeType from Degree
- * @psalm-type DegreeProgramViewRawArrayType = array {
+ * @psalm-type DegreeProgramViewRawArrayType = array{
  *     id: int,
  *     slug: MultilingualStringType,
  *     featured_image: array{id: int, url: string},
  *     teaser_image: array{id: int, url: string},
  *     title: MultilingualStringType,
  *     subtitle: MultilingualStringType,
- *     standard_duration: int,
+ *     standard_duration: string,
  *     fee_required: bool,
  *     start: array<MultilingualStringType>,
  *     number_of_students: array{id: string, description: string},
@@ -56,7 +56,7 @@ use JsonSerializable;
  *     start_of_semester: MultilingualLinkType,
  *     semester_dates: MultilingualLinkType,
  *     examinations_office: MultilingualLinkType,
- *     examination_regulations: MultilingualStringType,
+ *     examination_regulations: string,
  *     module_handbook: string,
  *     url: MultilingualStringType,
  *     department: MultilingualStringType,
@@ -72,6 +72,8 @@ use JsonSerializable;
  *     combinations: array<int>,
  *     limited_combinations: array<int>,
  *     notes_for_international_applicants: MultilingualLinkType,
+ *     apply_now_link: MultilingualLinkType,
+ *     entry_text: MultilingualStringType,
  * }
  */
 final class DegreeProgramViewRaw implements JsonSerializable
@@ -83,7 +85,7 @@ final class DegreeProgramViewRaw implements JsonSerializable
         private Image $teaserImage,
         private MultilingualString $title,
         private MultilingualString $subtitle,
-        private int $standardDuration,
+        private string $standardDuration,
         private bool $feeRequired,
         private MultilingualList $start,
         private NumberOfStudents $numberOfStudents,
@@ -107,7 +109,7 @@ final class DegreeProgramViewRaw implements JsonSerializable
         private MultilingualLink $startOfSemester,
         private MultilingualLink $semesterDates,
         private MultilingualLink $examinationsOffice,
-        private MultilingualString $examinationRegulations,
+        private string $examinationRegulations,
         private string $moduleHandbook,
         private MultilingualString $url,
         private MultilingualString $department,
@@ -123,9 +125,14 @@ final class DegreeProgramViewRaw implements JsonSerializable
         private DegreeProgramIds $combinations,
         private DegreeProgramIds $limitedCombinations,
         private MultilingualLink $notesForInternationalApplicants,
+        private MultilingualLink $applyNowLink,
+        private MultilingualString $entryText,
     ) {
     }
 
+    /**
+     * phpcs:disable Inpsyde.CodeQuality.FunctionLength.TooLong
+     */
     public static function fromDegreeProgram(DegreeProgram $degreeProgram): self
     {
         $data = $degreeProgram->asArray();
@@ -176,6 +183,8 @@ final class DegreeProgramViewRaw implements JsonSerializable
             $data[DegreeProgram::COMBINATIONS],
             $data[DegreeProgram::LIMITED_COMBINATIONS],
             $data[DegreeProgram::NOTES_FOR_INTERNATIONAL_APPLICANTS],
+            $data[DegreeProgram::APPLY_NOW_LINK],
+            $data[DegreeProgram::ENTRY_TEXT],
         );
     }
 
@@ -217,7 +226,7 @@ final class DegreeProgramViewRaw implements JsonSerializable
             startOfSemester: MultilingualLink::fromArray($data[DegreeProgram::START_OF_SEMESTER]),
             semesterDates: MultilingualLink::fromArray($data[DegreeProgram::SEMESTER_DATES]),
             examinationsOffice: MultilingualLink::fromArray($data[DegreeProgram::EXAMINATIONS_OFFICE]),
-            examinationRegulations: MultilingualString::fromArray($data[DegreeProgram::EXAMINATION_REGULATIONS]),
+            examinationRegulations: $data[DegreeProgram::EXAMINATION_REGULATIONS],
             moduleHandbook: $data[DegreeProgram::MODULE_HANDBOOK],
             url: MultilingualString::fromArray($data[DegreeProgram::URL]),
             department: MultilingualString::fromArray($data[DegreeProgram::DEPARTMENT]),
@@ -235,6 +244,8 @@ final class DegreeProgramViewRaw implements JsonSerializable
             notesForInternationalApplicants: MultilingualLink::fromArray(
                 $data[DegreeProgram::NOTES_FOR_INTERNATIONAL_APPLICANTS]
             ),
+            applyNowLink: MultilingualLink::fromArray($data[DegreeProgram::APPLY_NOW_LINK]),
+            entryText: MultilingualString::fromArray($data[DegreeProgram::ENTRY_TEXT]),
         );
     }
 
@@ -279,7 +290,7 @@ final class DegreeProgramViewRaw implements JsonSerializable
             DegreeProgram::START_OF_SEMESTER => $this->startOfSemester->asArray(),
             DegreeProgram::SEMESTER_DATES => $this->semesterDates->asArray(),
             DegreeProgram::EXAMINATIONS_OFFICE => $this->examinationsOffice->asArray(),
-            DegreeProgram::EXAMINATION_REGULATIONS => $this->examinationRegulations->asArray(),
+            DegreeProgram::EXAMINATION_REGULATIONS => $this->examinationRegulations,
             DegreeProgram::MODULE_HANDBOOK => $this->moduleHandbook,
             DegreeProgram::URL => $this->url->asArray(),
             DegreeProgram::DEPARTMENT => $this->department->asArray(),
@@ -295,6 +306,8 @@ final class DegreeProgramViewRaw implements JsonSerializable
             DegreeProgram::COMBINATIONS => $this->combinations->asArray(),
             DegreeProgram::LIMITED_COMBINATIONS => $this->limitedCombinations->asArray(),
             DegreeProgram::NOTES_FOR_INTERNATIONAL_APPLICANTS => $this->notesForInternationalApplicants->asArray(),
+            DegreeProgram::APPLY_NOW_LINK => $this->applyNowLink->asArray(),
+            DegreeProgram::ENTRY_TEXT => $this->entryText->asArray(),
         ];
     }
 
@@ -333,7 +346,7 @@ final class DegreeProgramViewRaw implements JsonSerializable
         return $this->subtitle;
     }
 
-    public function standardDuration(): int
+    public function standardDuration(): string
     {
         return $this->standardDuration;
     }
@@ -453,7 +466,7 @@ final class DegreeProgramViewRaw implements JsonSerializable
         return $this->examinationsOffice;
     }
 
-    public function examinationRegulations(): MultilingualString
+    public function examinationRegulations(): string
     {
         return $this->examinationRegulations;
     }
@@ -531,5 +544,15 @@ final class DegreeProgramViewRaw implements JsonSerializable
     public function notesForInternationalApplicants(): MultilingualLink
     {
         return $this->notesForInternationalApplicants;
+    }
+
+    public function applyNowLink(): MultilingualLink
+    {
+        return $this->applyNowLink;
+    }
+
+    public function entryText(): MultilingualString
+    {
+        return $this->entryText;
     }
 }

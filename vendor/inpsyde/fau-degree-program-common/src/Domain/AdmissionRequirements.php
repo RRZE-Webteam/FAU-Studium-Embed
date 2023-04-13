@@ -19,11 +19,11 @@ final class AdmissionRequirements
     public const MASTER = 'master';
 
     private function __construct(
-        /** Admission requirements for Bachelor’s/teaching degrees
+        /** Admission requirements for Bachelor's/teaching degrees
          * (“Zugangsvoraussetzungen Bachelor/Lehramt”)
          */
         private AdmissionRequirement $bachelorOrTeachingDegree,
-        /** Admission requirements for entering a teaching degree at a higher semester
+        /** Admission requirements for entering a Bachelor's/teaching degree at a higher semester
          * (“Zugangsvoraussetzungen Lehramt höheres Semester”)
          */
         private AdmissionRequirement $teachingDegreeHigherSemester,
@@ -69,24 +69,6 @@ final class AdmissionRequirements
             self::TEACHING_DEGREE_HIGHER_SEMESTER => $this->teachingDegreeHigherSemester->asArray(),
             self::MASTER => $this->master->asArray(),
         ];
-    }
-
-    public function requirementsForDegree(Degree $degree): AdmissionRequirement
-    {
-        $degreeName = $degree->name()->inEnglish(); //@TODO: maybe safer to use slugs here...
-        if ($degreeName === 'Bachelor' || $degreeName === 'Teaching degree') {
-            return $this->bachelorOrTeachingDegree;
-        }
-
-        if ($degreeName === 'Master') {
-            return $this->master;
-        }
-
-        if ($degreeName !== 'frei') { //?
-            return $this->teachingDegreeHigherSemester;
-        }
-
-        return AdmissionRequirement::empty();
     }
 
     public function bachelorOrTeachingDegree(): AdmissionRequirement

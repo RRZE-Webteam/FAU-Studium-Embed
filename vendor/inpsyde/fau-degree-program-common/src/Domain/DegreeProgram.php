@@ -55,11 +55,13 @@ final class DegreeProgram
     public const ABROAD_OPPORTUNITIES = 'abroad_opportunities';
     public const KEYWORDS = 'keywords';
     public const AREA_OF_STUDY = 'area_of_study';
+    public const ENTRY_TEXT = 'entry_text';
     public const COMBINATIONS = 'combinations';
     public const LIMITED_COMBINATIONS = 'limited_combinations';
     public const COMBINATIONS_CHANGESET = 'combinations_changeset';
     public const LIMITED_COMBINATIONS_CHANGESET = 'limited_combinations_changeset';
     public const NOTES_FOR_INTERNATIONAL_APPLICANTS = 'notes_for_international_applicants';
+    public const APPLY_NOW_LINK = 'apply_now_link';
 
     private IntegersListChangeset $combinationsChangeset;
     private IntegersListChangeset $limitedCombinationsChangeset;
@@ -75,14 +77,10 @@ final class DegreeProgram
         private MultilingualString $title,
         private MultilingualString $subtitle,
         /**
-         * Number of semesters
+         * Duration of studies in semester
          * Regelstudienzeit
          */
-        private int $standardDuration,
-        /**
-         * Kostenpflichtig
-         */
-        private bool $feeRequired,
+        private string $standardDuration,
         /**
          * @var MultilingualList $start One or several semesters
          * Example: Summer Term, Winter Term
@@ -120,11 +118,23 @@ final class DegreeProgram
         private MultilingualList $subjectGroups,
         private ArrayOfStrings $videos,
         private MultilingualString $metaDescription,
+        /**
+         * Schlagworte
+         */
+        private MultilingualList $keywords,
+        /**
+         * Studienbereich
+         */
+        private MultilingualLinks $areaOfStudy,
+        /**
+         * Einstiegtext (werbend)
+         */
+        private MultilingualString $entryText,
         //--- Content (“Inhalte”) ---//
         private Content $content,
         //--- Admission requirements, application and enrollment (“Zugangsvoraussetzungen, Bewerbung und Einschreibung”) ---//
         /**
-         * Bachelor’s/teaching degrees, teaching degree at a higher semester, Master’s degree
+         * Bachelor's/teaching degrees, teaching degree at a higher semester, Master’s degree
          */
         private AdmissionRequirements $admissionRequirements,
         /**
@@ -158,10 +168,12 @@ final class DegreeProgram
         //--- Organization (organizational notes/links) (“Organisation (Organisatorische Hinweise/Links)”) --- //
         /**
          * Semesterstart
+         * Shared property
          */
         private MultilingualLink $startOfSemester,
         /**
          * Semestertermine
+         * Shared property
          */
         private MultilingualLink $semesterDates,
         /**
@@ -171,7 +183,7 @@ final class DegreeProgram
         /**
          * Studien- und Prüfungsordnung
          */
-        private MultilingualString $examinationRegulations,
+        private string $examinationRegulations,
         /**
          * Modulhandbuch
          */
@@ -183,6 +195,7 @@ final class DegreeProgram
         private MultilingualString $department,
         /**
          * Allgemeine Studienberatung
+         * Shared property
          */
         private MultilingualLink $studentAdvice,
         /**
@@ -191,6 +204,7 @@ final class DegreeProgram
         private MultilingualLink $subjectSpecificAdvice,
         /**
          * Beratungs- und Servicestellen der FAU
+         * Shared property
          */
         private MultilingualLink $serviceCenters,
         /**
@@ -199,25 +213,31 @@ final class DegreeProgram
         private string $studentRepresentatives,
         /**
          * Semesterbeitrag
+         * Shared property
          */
         private MultilingualLink $semesterFee,
+        /**
+         * Kostenpflichtig
+         */
+        private bool $feeRequired,
         /**
          * Studiengangsgebühren
          */
         private MultilingualString $degreeProgramFees,
         /**
          * Wege ins Ausland
+         * Shared property
          */
         private MultilingualLink $abroadOpportunities,
-        //--- Properties for filtering --- //
         /**
-         * Schlagworte
+         * Hinweise für internationale Bewerber
+         * Shared property
          */
-        private MultilingualList $keywords,
+        private MultilingualLink $notesForInternationalApplicants,
         /**
-         * Studienbereich
+         * Bewerben
          */
-        private MultilingualLinks $areaOfStudy,
+        private MultilingualLink $applyNowLink,
         //--- Degree program combinations --- //
         /**
          * Kombinationsmöglichkeiten
@@ -227,10 +247,6 @@ final class DegreeProgram
          * Eingeschränkt Kombinationsmöglichkeiten
          */
         private DegreeProgramIds $limitedCombinations,
-        /**
-         * Hinweise für internationale Bewerber
-         */
-        private MultilingualLink $notesForInternationalApplicants,
     ) {
 
         $this->combinationsChangeset = IntegersListChangeset::new(
@@ -243,6 +259,7 @@ final class DegreeProgram
     }
 
     /**
+     * @param array<string, mixed> $data
      * phpcs:disable Inpsyde.CodeQuality.FunctionLength.TooLong
      * @psalm-suppress MixedArgument
      */
@@ -253,11 +270,11 @@ final class DegreeProgram
     ): void {
 
         $violations = $dataValidator->validate($data);
-        if (count($violations) > 0) {
+        if ($violations->count() > 0) {
             throw new InvalidArgumentException(
                 sprintf(
                     'Invalid degree program data. Violations: %s.',
-                    implode('|', $violations->getArrayCopy())
+                    implode('|', array_keys($violations->getArrayCopy()))
                 )
             );
         }
@@ -288,8 +305,8 @@ final class DegreeProgram
         $this->admissionRequirements = AdmissionRequirements::fromArray($data[self::ADMISSION_REQUIREMENTS]);
         $this->contentRelatedMasterRequirements = MultilingualString::fromArray($data[self::CONTENT_RELATED_MASTER_REQUIREMENTS])
             ->mapTranslations([$contentSanitizer, 'sanitizeContentField']);
-        $this->applicationDeadlineWinterSemester = $contentSanitizer->sanitizeContentField($data[self::APPLICATION_DEADLINE_WINTER_SEMESTER]);
-        $this->applicationDeadlineSummerSemester = $contentSanitizer->sanitizeContentField($data[self::APPLICATION_DEADLINE_SUMMER_SEMESTER]);
+        $this->applicationDeadlineWinterSemester = $data[self::APPLICATION_DEADLINE_WINTER_SEMESTER];
+        $this->applicationDeadlineSummerSemester = $data[self::APPLICATION_DEADLINE_SUMMER_SEMESTER];
         $this->detailsAndNotes = MultilingualString::fromArray($data[self::DETAILS_AND_NOTES])
             ->mapTranslations([$contentSanitizer, 'sanitizeContentField']);
         $this->languageSkills = MultilingualString::fromArray($data[self::LANGUAGE_SKILLS])
@@ -299,7 +316,7 @@ final class DegreeProgram
         $this->startOfSemester = MultilingualLink::fromArray($data[self::START_OF_SEMESTER]);
         $this->semesterDates = MultilingualLink::fromArray($data[self::SEMESTER_DATES]);
         $this->examinationsOffice = MultilingualLink::fromArray($data[self::EXAMINATIONS_OFFICE]);
-        $this->examinationRegulations = MultilingualString::fromArray($data[self::EXAMINATION_REGULATIONS]);
+        $this->examinationRegulations = $data[self::EXAMINATION_REGULATIONS];
         $this->moduleHandbook = $data[self::MODULE_HANDBOOK];
         $this->url = MultilingualString::fromArray($data[self::URL]);
         $this->department = MultilingualString::fromArray($data[self::DEPARTMENT]);
@@ -315,6 +332,9 @@ final class DegreeProgram
         $this->combinations = DegreeProgramIds::fromArray($data[self::COMBINATIONS]);
         $this->limitedCombinations = DegreeProgramIds::fromArray($data[self::LIMITED_COMBINATIONS]);
         $this->notesForInternationalApplicants = MultilingualLink::fromArray($data[self::NOTES_FOR_INTERNATIONAL_APPLICANTS]);
+        $this->applyNowLink = MultilingualLink::fromArray($data[self::APPLY_NOW_LINK]);
+        $this->entryText = MultilingualString::fromArray($data[self::ENTRY_TEXT])
+            ->mapTranslations([$contentSanitizer, 'sanitizeContentField']);
 
         $this->combinationsChangeset = $this
             ->combinationsChangeset
@@ -334,7 +354,7 @@ final class DegreeProgram
      *     teaser_image: Image,
      *     title: MultilingualString,
      *     subtitle: MultilingualString,
-     *     standard_duration: int,
+     *     standard_duration: string,
      *     fee_required: bool,
      *     start: MultilingualList,
      *     number_of_students: NumberOfStudents,
@@ -358,7 +378,7 @@ final class DegreeProgram
      *     start_of_semester: MultilingualLink,
      *     semester_dates: MultilingualLink,
      *     examinations_office: MultilingualLink,
-     *     examination_regulations: MultilingualString,
+     *     examination_regulations: string,
      *     module_handbook: string,
      *     url: MultilingualString,
      *     department: MultilingualString,
@@ -376,6 +396,8 @@ final class DegreeProgram
      *     combinations_changeset: IntegersListChangeset,
      *     limited_combinations_changeset: IntegersListChangeset,
      *     notes_for_international_applicants: MultilingualLink,
+     *     apply_now_link: MultilingualLink,
+     *     entry_text: MultilingualString,
      * }
      * @internal Only for repositories usage
      */
@@ -431,6 +453,8 @@ final class DegreeProgram
             self::COMBINATIONS_CHANGESET => $this->combinationsChangeset,
             self::LIMITED_COMBINATIONS_CHANGESET => $this->limitedCombinationsChangeset,
             self::NOTES_FOR_INTERNATIONAL_APPLICANTS => $this->notesForInternationalApplicants,
+            self::APPLY_NOW_LINK => $this->applyNowLink,
+            self::ENTRY_TEXT => $this->entryText,
         ];
     }
 

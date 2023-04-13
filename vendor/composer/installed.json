@@ -77,12 +77,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/RRZE-Webteam/FAU-Studium-Common.git",
-                "reference": "ee5fd2937bbc9876a95612b9c192ce85db0dff53"
+                "reference": "075cf59fb876bcd2ace37e3372e1f4d9a0f8fce0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RRZE-Webteam/FAU-Studium-Common/zipball/ee5fd2937bbc9876a95612b9c192ce85db0dff53",
-                "reference": "ee5fd2937bbc9876a95612b9c192ce85db0dff53",
+                "url": "https://api.github.com/repos/RRZE-Webteam/FAU-Studium-Common/zipball/075cf59fb876bcd2ace37e3372e1f4d9a0f8fce0",
+                "reference": "075cf59fb876bcd2ace37e3372e1f4d9a0f8fce0",
                 "shasum": ""
             },
             "require": {
@@ -104,7 +104,7 @@
             "suggest": {
                 "inpsyde/modularity": "Modular PSR-11 implementation for WordPress Plugins, Themes or Libraries"
             },
-            "time": "2023-03-22T09:40:02+00:00",
+            "time": "2023-04-13T07:31:42+00:00",
             "default-branch": true,
             "type": "library",
             "installation-source": "dist",
