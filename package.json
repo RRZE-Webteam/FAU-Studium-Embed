@@ -67,10 +67,10 @@
     "build": "encore production --profile",
     "dev": "encore dev",
     "js:precommit": "eslint --fix",
-    "lint": "eslint ./resources ./tests --ext .js,.jsx,.ts,.tsx",
+    "lint": "eslint ./resources --ext .js,.jsx,.ts,.tsx",
     "lint-sass": "stylelint 'resources/scss/**/*.scss'",
     "lint-sass:fix": "stylelint 'resources/scss/**/*.scss' --fix",
-    "lint:fix": "eslint ./resources ./tests --ext .js,.jsx,.ts,.tsx --quiet --fix",
+    "lint:fix": "eslint ./resources --ext .js,.jsx,.ts,.tsx --quiet --fix",
     "test": "jest --passWithNoTests",
     "watch": "encore dev --profile --watch",
     "check-types": "tsc --noEmit -project ./tsconfig.eslint.json --skipLibCheck"

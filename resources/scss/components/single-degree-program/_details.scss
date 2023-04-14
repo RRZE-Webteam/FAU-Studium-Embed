@@ -2,8 +2,7 @@
 @use '../../base/base';
 
 .l-application-links {
-  padding-top: 30px;
-  padding-bottom: 30px;
+  margin-top: 30px;
 
   .c-link {
     margin: 0 auto;
@@ -51,6 +50,11 @@
     left: 0;
     top: 5px;
   }
+}
+
+.l-details-wrapper {
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .l-details-wrapper.l-details-wrapper--has-details:not(.l-details-wrapper--has-application-links) {
@@ -111,6 +115,7 @@
 
     @include config.media('>tablet') {
       padding: 0;
+      margin: 0;
     }
   }
 }

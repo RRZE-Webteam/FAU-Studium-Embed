@@ -22,5 +22,8 @@ use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
     <?= $renderer->render('single-degree-program/heading', ['view' => $view]) ?>
     <?= $renderer->render('single-degree-program/entry-text', ['view' => $view]) ?>
     <?= $renderer->render('single-degree-program/details', ['view' => $view]) ?>
+    <?= $renderer->render('single-degree-program/about', ['view' => $view]) ?>
+    <?= $renderer->render('single-degree-program/video', ['view' => $view]) ?>
+    <?= $renderer->render('single-degree-program/accordion', ['view' => $view]) ?>
     <?php // phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 </div>

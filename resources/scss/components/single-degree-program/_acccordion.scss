@@ -1,0 +1,72 @@
+@use '../../abstracts/config';
+
+&__accordion {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.c-accordion {
+  @extend %container-mobile-full-width;
+
+  list-style-type: none;
+}
+
+.c-accordion-item {
+  @extend %container-paddings;
+
+  border-top: solid 1px config.color('content', 'borders');
+  padding-top: 0;
+  padding-bottom: 0;
+  list-style-type: none;
+
+  &:last-child {
+    border-bottom: solid 1px config.color('content', 'borders');
+  }
+
+  &__header {
+    margin: 0;
+  }
+
+  &__icon {
+    width: 24px;
+    height: 14px;
+    fill: config.color('primary', 'dunkler');
+    transition: transform 0.5s;
+  }
+
+  &__button {
+    min-height: 80px;
+    padding: 15px 0;
+    background: none;
+    border: none;
+    outline: none;
+    color: config.color('content', 'headlines');
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+
+    &[aria-expanded="true"] .c-accordion-item__icon {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__title {
+    @include config.text-size('xl');
+
+    text-align: left;
+    flex: 1;
+  }
+
+  &__content {
+    transition: height 0.5s, padding-bottom 0.5s;
+    overflow: hidden;
+    height: calc(var(--content-height) + 30px);
+
+    &[hidden] {
+      display: block;
+      height: 0;
+    }
+  }
+}

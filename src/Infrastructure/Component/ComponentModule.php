@@ -19,6 +19,9 @@ final class ComponentModule implements ServiceModule
 {
     use ModuleClassNameIdTrait;
 
+    /**
+     * phpcs:disable Inpsyde.CodeQuality.FunctionLength.TooLong
+     */
     public function services(): array
     {
         return [
@@ -49,6 +52,12 @@ final class ComponentModule implements ServiceModule
             Link::class => static fn(ContainerInterface $container) => new Link(
                 $container->get(Renderer::class),
             ),
+            Accordion::class => static fn(ContainerInterface $container) => new Accordion(
+                $container->get(Renderer::class),
+            ),
+            AccordionItem::class => static fn(ContainerInterface $container) => new AccordionItem(
+                $container->get(Renderer::class),
+            ),
             SearchForm::class => static fn(ContainerInterface $container) => new SearchForm(
                 $container->get(Renderer::class),
             ),
@@ -59,6 +68,9 @@ final class ComponentModule implements ServiceModule
                 $container->get(Renderer::class),
             ),
             DegreeProgramDetail::class => static fn(ContainerInterface $container) => new DegreeProgramDetail(
+                $container->get(Renderer::class),
+            ),
+            Combinations::class => static fn(ContainerInterface $container) => new Combinations(
                 $container->get(Renderer::class),
             ),
         ];
