@@ -1,11 +1,27 @@
 {
   "entrypoints": {
+    "ts/frontend": {
+      "js": [
+        "../ts/frontend.js"
+      ],
+      "php": [
+        "../ts/frontend.asset.php"
+      ]
+    },
     "ts/main": {
       "js": [
         "../ts/main.js"
       ],
       "php": [
         "../ts/main.asset.php"
+      ]
+    },
+    "svg/accordion-arrow": {
+      "js": [
+        "../svg/accordion-arrow.js"
+      ],
+      "php": [
+        "../svg/accordion-arrow.asset.php"
       ]
     },
     "svg/area-of-study": {

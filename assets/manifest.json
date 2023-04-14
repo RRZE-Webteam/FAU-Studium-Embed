@@ -1,4 +1,6 @@
 {
+  "assets/ts/frontend.js": "../ts/frontend.js",
+  "assets/ts/frontend.php": "../ts/frontend.asset.php",
   "assets/ts/main.js": "../ts/main.js",
   "assets/ts/main.php": "../ts/main.asset.php",
   "assets/css/frontend.css": "../css/frontend.css",
