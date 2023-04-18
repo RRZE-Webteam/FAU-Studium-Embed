@@ -9,6 +9,7 @@ use Fau\DegreeProgram\Common\Application\Repository\DegreeProgramViewRepository;
 use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\DirectoryLocator;
 use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
 use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\TemplateRenderer;
+use Fau\DegreeProgram\Output\Infrastructure\Rewrite\CurrentRequest;
 use Inpsyde\Modularity\Module\ModuleClassNameIdTrait;
 use Inpsyde\Modularity\Module\ServiceModule;
 use Inpsyde\Modularity\Package;
@@ -33,6 +34,7 @@ final class ComponentModule implements ServiceModule
             DegreeProgramsSearch::class => static fn(ContainerInterface $container) => new DegreeProgramsSearch(
                 $container->get(Renderer::class),
                 $container->get(DegreeProgramCollectionRepository::class),
+                $container->get(CurrentRequest::class),
             ),
             SingleDegreeProgram::class => static fn(ContainerInterface $container) => new SingleDegreeProgram(
                 $container->get(Renderer::class),
@@ -60,6 +62,7 @@ final class ComponentModule implements ServiceModule
             ),
             SearchForm::class => static fn(ContainerInterface $container) => new SearchForm(
                 $container->get(Renderer::class),
+                $container->get(CurrentRequest::class),
             ),
             SearchFilters::class => static fn(ContainerInterface $container) => new SearchFilters(
                 $container->get(Renderer::class),

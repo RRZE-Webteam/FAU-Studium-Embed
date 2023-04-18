@@ -70,7 +70,6 @@ use function Fau\DegreeProgram\Output\renderComponent;
                             'orderby' => 'name',
                             'order' => $currentOrder === 'asc' ? 'desc' : 'asc',
                         ],
-                        get_permalink(),
                     )
                 ) ?>"
                 class="c-degree-programs-list-table__sort-link"
@@ -98,7 +97,6 @@ use function Fau\DegreeProgram\Output\renderComponent;
                             'orderby' => 'degree',
                             'order' => $currentOrder === 'asc' ? 'desc' : 'asc',
                         ],
-                        get_permalink(),
                     )
                 ) ?>"
                 class="c-degree-programs-list-table__sort-link"
@@ -124,7 +122,6 @@ use function Fau\DegreeProgram\Output\renderComponent;
                             'orderby' => 'start',
                             'order' => $currentOrder === 'asc' ? 'desc' : 'asc',
                         ],
-                        get_permalink(),
                     )
                 ) ?>"
                 class="c-degree-programs-list-table__sort-link"
@@ -150,7 +147,6 @@ use function Fau\DegreeProgram\Output\renderComponent;
                             'orderby' => 'location',
                             'order' => $currentOrder === 'asc' ? 'desc' : 'asc',
                         ],
-                        get_permalink(),
                     )
                 ) ?>"
                 class="c-degree-programs-list-table__sort-link"
@@ -176,7 +172,6 @@ use function Fau\DegreeProgram\Output\renderComponent;
                             'orderby' => 'nc',
                             'order' => $currentOrder === 'asc' ? 'desc' : 'asc',
                         ],
-                        get_permalink(),
                     )
                 ) ?>"
                 class="c-degree-programs-list-table__sort-link"

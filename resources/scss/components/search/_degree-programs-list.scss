@@ -151,6 +151,22 @@
   display: table;
   border-spacing: 0 10px;
 
+  &__column {
+    @include config.media('>tablet-lg') {
+      display: table-cell;
+      vertical-align: middle;
+
+      &[aria-label]::before {
+        content: none !important;
+      }
+    }
+
+    &.c-degree-programs-list-item__title {
+      max-width: 400px;
+      padding-right: 15px;
+    }
+  }
+
   &__row {
     &--header {
       display: none;
@@ -177,22 +193,6 @@
           color: #fff;
         }
       }
-    }
-  }
-
-  &__column {
-    @include config.media('>tablet-lg') {
-      display: table-cell;
-      vertical-align: middle;
-
-      &[aria-label]::before {
-        content: none !important;
-      }
-    }
-
-    &.c-degree-programs-list-item__title {
-      max-width: 400px;
-      padding-right: 15px;
     }
   }
 

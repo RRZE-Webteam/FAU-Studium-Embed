@@ -4,18 +4,21 @@ declare(strict_types=1);
 
 use Fau\DegreeProgram\Output\Infrastructure\Component\Component;
 use Fau\DegreeProgram\Output\Infrastructure\Component\Icon;
+use Fau\DegreeProgram\Output\Infrastructure\Rewrite\CurrentRequest;
 
 use function Fau\DegreeProgram\Output\renderComponent;
 
 /**
  * @psalm-var array{
  *     searchQuery: string,
+ *     queryStrings: array<string, string>,
  * } $data
  * @var array $data
  */
 
 [
     'searchQuery' => $searchQuery,
+    'queryStrings' => $queryStrings,
 ] = $data;
 
 ?>
@@ -35,7 +38,7 @@ use function Fau\DegreeProgram\Output\renderComponent;
 
         <input
             type="search"
-            name="s"
+            name="<?= esc_attr(CurrentRequest::SEARCH_QUERY_PARAM) ?>"
             value="<?= esc_attr($searchQuery) ?>"
             class="c-degree-programs-sarchform__input"
             placeholder="<?= esc_attr_x(
@@ -60,4 +63,10 @@ use function Fau\DegreeProgram\Output\renderComponent;
             ) ?>
         </button>
     </div>
+
+    <?php foreach ($queryStrings as $key => $value) : ?>
+        <?php if ($key !== 'keyword') : ?>
+            <input type="hidden" name="<?= esc_attr($key) ?>" value="<?= esc_attr($value) ?>" />
+        <?php endif; ?>
+    <?php endforeach; ?>
 </form>

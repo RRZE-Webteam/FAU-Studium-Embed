@@ -46,11 +46,9 @@ class SearchFilters implements RenderableComponent
         return [
             DegreeProgramsSearch::OUTPUT_LIST => add_query_arg(
                 [DegreeProgramsSearch::OUTPUT_MODE_QUERY_PARAM => DegreeProgramsSearch::OUTPUT_LIST],
-                get_permalink((int) get_the_id()),
             ),
             DegreeProgramsSearch::OUTPUT_TILES => add_query_arg(
                 [DegreeProgramsSearch::OUTPUT_MODE_QUERY_PARAM => DegreeProgramsSearch::OUTPUT_TILES],
-                get_permalink((int) get_the_id()),
             ),
         ];
     }

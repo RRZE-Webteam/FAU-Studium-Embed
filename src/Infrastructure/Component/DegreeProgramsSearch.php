@@ -8,6 +8,7 @@ use Fau\DegreeProgram\Common\Application\Repository\CollectionCriteria;
 use Fau\DegreeProgram\Common\Application\Repository\DegreeProgramCollectionRepository;
 use Fau\DegreeProgram\Common\Domain\MultilingualString;
 use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
+use Fau\DegreeProgram\Output\Infrastructure\Rewrite\CurrentRequest;
 
 /**
  * @psalm-import-type LanguageCodes from MultilingualString
@@ -44,6 +45,7 @@ final class DegreeProgramsSearch implements RenderableComponent
     public function __construct(
         private Renderer $renderer,
         private DegreeProgramCollectionRepository $degreeProgramViewRepository,
+        private CurrentRequest $currentRequest,
     ) {
     }
 
@@ -53,7 +55,8 @@ final class DegreeProgramsSearch implements RenderableComponent
         $attributes = wp_parse_args($attributes, self::DEFAULT_ATTRIBUTES);
 
         $collection = $this->degreeProgramViewRepository->findTranslatedCollection(
-            CollectionCriteria::new(), // Criteria should be updated with the current request
+            CollectionCriteria::new()
+                ->withSearchKeyword($this->currentRequest->searchKeyword()), // Criteria should be updated with the current request
             $attributes['lang'],
         );
 

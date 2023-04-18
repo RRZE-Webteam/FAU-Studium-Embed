@@ -5,22 +5,23 @@ declare(strict_types=1);
 namespace Fau\DegreeProgram\Output\Infrastructure\Component;
 
 use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
+use Fau\DegreeProgram\Output\Infrastructure\Rewrite\CurrentRequest;
 
 class SearchForm implements RenderableComponent
 {
     public function __construct(
         private Renderer $renderer,
+        private CurrentRequest $currentRequest,
     ) {
     }
 
     public function render(array $attributes = []): string
     {
-        $searchQuery = get_search_query();
-
         return $this->renderer->render(
             'search/degree-programs-searchform',
             [
-                'searchQuery' => $searchQuery,
+                'searchQuery' => $this->currentRequest->searchKeyword(),
+                'queryStrings' => $this->currentRequest->flattenedQueryStrings(),
             ]
         );
     }

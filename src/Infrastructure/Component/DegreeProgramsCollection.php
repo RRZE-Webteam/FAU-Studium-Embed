@@ -25,6 +25,13 @@ class DegreeProgramsCollection implements RenderableComponent
 
     public function render(array $attributes = []): string
     {
+        /**
+         * @var DegreeProgramsSearchAttributes $attributes
+         */
+        if ($attributes['collection']->totalItems() === 0) {
+            return $this->renderer->render('search/no-results');
+        }
+
         $templateName = $attributes['output'] === 'list'
             ? 'search/degree-programs-list'
             : 'search/degree-programs-grid';
