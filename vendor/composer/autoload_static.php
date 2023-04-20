@@ -256,6 +256,7 @@ class ComposerStaticInit8d286870ef9262dc7134d60e1d1777bd
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Shortcode\\ShortcodeAttributesNormalizer' => __DIR__ . '/../..' . '/src/Infrastructure/Shortcode/ShortcodeAttributesNormalizer.php',
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Shortcode\\ShortcodeModule' => __DIR__ . '/../..' . '/src/Infrastructure/Shortcode/ShortcodeModule.php',
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Template\\CanonicalUrlFilter' => __DIR__ . '/../..' . '/src/Infrastructure/Template/CanonicalUrlFilter.php',
+        'Fau\\DegreeProgram\\Output\\Infrastructure\\Template\\SeoFrameworkIntegration' => __DIR__ . '/../..' . '/src/Infrastructure/Template/SeoFrameworkIntegration.php',
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Template\\SingleDegreeProgramContentFilter' => __DIR__ . '/../..' . '/src/Infrastructure/Template/SingleDegreeProgramContentFilter.php',
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Template\\TemplateModule' => __DIR__ . '/../..' . '/src/Infrastructure/Template/TemplateModule.php',
         'Inpsyde\\Assets\\Asset' => __DIR__ . '/..' . '/inpsyde/assets/src/Asset.php',
