@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Fau\DegreeProgram\Output\Infrastructure\Template;
 
+use Fau\DegreeProgram\Common\Application\Repository\DegreeProgramViewRepository;
 use Fau\DegreeProgram\Output\Application\OriginalDegreeProgramViewRepository;
 use Fau\DegreeProgram\Output\Infrastructure\Component\SingleDegreeProgram;
 use Fau\DegreeProgram\Output\Infrastructure\Environment\EnvironmentDetector;
@@ -28,6 +29,10 @@ final class TemplateModule implements ServiceModule, ExecutableModule
                 $container->get(SingleDegreeProgram::class),
                 $container->get(CurrentRequest::class),
             ),
+            SeoFrameworkIntegration::class => static fn(ContainerInterface $container) => new SeoFrameworkIntegration(
+                $container->get(DegreeProgramViewRepository::class),
+                $container->get(CurrentRequest::class),
+            ),
         ];
     }
 
@@ -39,6 +44,22 @@ final class TemplateModule implements ServiceModule, ExecutableModule
             [
                 $container->get(SingleDegreeProgramContentFilter::class),
                 'filterContent',
+            ]
+        );
+
+        $seoFrameworkIntegration = $container->get(SeoFrameworkIntegration::class);
+        add_filter(
+            'the_seo_framework_title_from_generation',
+            [
+                $seoFrameworkIntegration,
+                'filterGeneratedTitle',
+            ]
+        );
+        add_filter(
+            'the_seo_framework_generated_description',
+            [
+                $seoFrameworkIntegration,
+                'filterGeneratedDescription',
             ]
         );
 
