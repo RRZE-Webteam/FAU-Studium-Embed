@@ -157,11 +157,7 @@ $applicationLinks = renderComponent(
         Link::class,
         [
             'url' => $view->applyNowLink()->linkUrl(),
-            'text' => _x(
-                'Apply now',
-                'frontoffice: single view',
-                'fau-degree-program-output'
-            ),
+            'text' => $view->applyNowLink()->linkText(),
             'type' => Link::DARK,
         ]
     ),
@@ -169,22 +165,14 @@ $applicationLinks = renderComponent(
         Link::class,
         [
             'url' => $view->admissionRequirementLink()?->linkUrl() ?? '',
-            'text' => _x(
-                'Application tips',
-                'frontoffice: single view',
-                'fau-degree-program-output'
-            ),
+            'text' => $view->admissionRequirementLink()?->linkText() ?? '',
         ]
     ),
     new Component(
         Link::class,
         [
             'url' => $view->notesForInternationalApplicants()->linkUrl(),
-            'text' => _x(
-                'Tips for Internationals',
-                'frontoffice: single view',
-                'fau-degree-program-output'
-            ),
+            'text' =>  $view->notesForInternationalApplicants()->linkText(),
         ]
     )
 );

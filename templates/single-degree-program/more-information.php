@@ -34,11 +34,7 @@ use function Fau\DegreeProgram\Output\renderComponent;
                 Link::class,
                 [
                     'url' => $view->subjectSpecificAdvice()->linkUrl(),
-                    'text' => _x(
-                        'Subject-specific advice',
-                        'frontoffice: single view',
-                        'fau-degree-program-output'
-                    ),
+                    'text' => $view->subjectSpecificAdvice()->linkText(),
                 ]
             ),
             new Component(
@@ -56,11 +52,7 @@ use function Fau\DegreeProgram\Output\renderComponent;
                 Link::class,
                 [
                     'url' => $view->applyNowLink()->linkUrl(),
-                    'text' => _x(
-                        'Apply now',
-                        'frontoffice: single view',
-                        'fau-degree-program-output'
-                    ),
+                    'text' => $view->applyNowLink()->linkText(),
                     'type' => Link::DARK,
                 ]
             ),

@@ -76,6 +76,9 @@ final class ComponentModule implements ServiceModule
             Combinations::class => static fn(ContainerInterface $container) => new Combinations(
                 $container->get(Renderer::class),
             ),
+            Links::class => static fn(ContainerInterface $container) => new Links(
+                $container->get(Renderer::class),
+            ),
         ];
     }
 }
