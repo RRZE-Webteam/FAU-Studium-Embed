@@ -139,6 +139,7 @@ return array(
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\DegreeProgramsSearchForm' => $baseDir . '/src/Infrastructure/Component/DegreeProgramsSearchForm.php',
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\Icon' => $baseDir . '/src/Infrastructure/Component/Icon.php',
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\Link' => $baseDir . '/src/Infrastructure/Component/Link.php',
+    'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\Links' => $baseDir . '/src/Infrastructure/Component/Links.php',
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\RenderableComponent' => $baseDir . '/src/Infrastructure/Component/RenderableComponent.php',
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\SearchFilters' => $baseDir . '/src/Infrastructure/Component/SearchFilters.php',
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\SearchForm' => $baseDir . '/src/Infrastructure/Component/SearchForm.php',

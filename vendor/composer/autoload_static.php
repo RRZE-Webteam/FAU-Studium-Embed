@@ -219,6 +219,7 @@ class ComposerStaticInit8d286870ef9262dc7134d60e1d1777bd
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\DegreeProgramsSearchForm' => __DIR__ . '/../..' . '/src/Infrastructure/Component/DegreeProgramsSearchForm.php',
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\Icon' => __DIR__ . '/../..' . '/src/Infrastructure/Component/Icon.php',
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\Link' => __DIR__ . '/../..' . '/src/Infrastructure/Component/Link.php',
+        'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\Links' => __DIR__ . '/../..' . '/src/Infrastructure/Component/Links.php',
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\RenderableComponent' => __DIR__ . '/../..' . '/src/Infrastructure/Component/RenderableComponent.php',
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\SearchFilters' => __DIR__ . '/../..' . '/src/Infrastructure/Component/SearchFilters.php',
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\SearchForm' => __DIR__ . '/../..' . '/src/Infrastructure/Component/SearchForm.php',
