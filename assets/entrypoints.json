@@ -40,6 +40,14 @@
         "../svg/attributes.asset.php"
       ]
     },
+    "svg/back": {
+      "js": [
+        "../svg/back.js"
+      ],
+      "php": [
+        "../svg/back.asset.php"
+      ]
+    },
     "svg/degree": {
       "js": [
         "../svg/degree.js"
