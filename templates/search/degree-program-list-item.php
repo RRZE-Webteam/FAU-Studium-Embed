@@ -3,17 +3,21 @@
 declare(strict_types=1);
 
 use Fau\DegreeProgram\Common\Application\DegreeProgramViewTranslated;
+use Fau\DegreeProgram\Output\Infrastructure\Rewrite\ReferrerUrlHelper;
 
 /**
- * @psalm-var array{
+ * @var array{
  *     degreeProgram: DegreeProgramViewTranslated,
+ *     referrerUrlHelper: ReferrerUrlHelper,
  * } $data
- * @var array $data
  */
 
 [
     'degreeProgram' => $degreeProgram,
+    'referrerUrlHelper' => $referrerUrlHelper,
 ] = $data;
+
+$link = $referrerUrlHelper->addReferrerArgs($degreeProgram->link());
 
 ?>
 
@@ -21,7 +25,7 @@ use Fau\DegreeProgram\Common\Application\DegreeProgramViewTranslated;
     <div class="c-degree-programs-list-table__column c-degree-programs-list-item__teaser-image">
         <a
             class="c-degree-programs-list-item__link"
-            href="<?= esc_url((string) get_permalink($degreeProgram->id())) ?>"
+            href="<?= esc_url($link) ?>"
             rel="bookmark"
         >
             <span class="screen-reader-text">

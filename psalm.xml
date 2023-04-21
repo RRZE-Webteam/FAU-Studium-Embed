@@ -33,5 +33,6 @@
     </issueHandlers>
     <globals>
         <var name="wpdb" type="\wpdb"/>
+        <var name="wp" type="\WP"/>
     </globals>
 </psalm>

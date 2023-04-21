@@ -10,6 +10,7 @@ use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\DirectoryLocator;
 use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
 use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\TemplateRenderer;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\CurrentRequest;
+use Fau\DegreeProgram\Output\Infrastructure\Rewrite\ReferrerUrlHelper;
 use Inpsyde\Modularity\Module\ModuleClassNameIdTrait;
 use Inpsyde\Modularity\Module\ServiceModule;
 use Inpsyde\Modularity\Package;
@@ -40,6 +41,7 @@ final class ComponentModule implements ServiceModule
                 $container->get(Renderer::class),
                 $container->get(DegreeProgramViewRepository::class),
                 $container->get(LoggerInterface::class),
+                $container->get(ReferrerUrlHelper::class),
             ),
             DegreeProgramCombinations::class => static fn(ContainerInterface $container) => new DegreeProgramCombinations(),
             ComponentFactory::class => static fn(ContainerInterface $container) => new ComponentFactory(
@@ -69,6 +71,7 @@ final class ComponentModule implements ServiceModule
             ),
             DegreeProgramsCollection::class => static fn(ContainerInterface $container) => new DegreeProgramsCollection(
                 $container->get(Renderer::class),
+                $container->get(ReferrerUrlHelper::class),
             ),
             DegreeProgramDetail::class => static fn(ContainerInterface $container) => new DegreeProgramDetail(
                 $container->get(Renderer::class),

@@ -8,6 +8,7 @@ use Fau\DegreeProgram\Common\Application\DegreeProgramViewTranslated;
 use Fau\DegreeProgram\Common\Application\Repository\PaginationAwareCollection;
 use Fau\DegreeProgram\Common\Domain\MultilingualString;
 use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
+use Fau\DegreeProgram\Output\Infrastructure\Rewrite\ReferrerUrlHelper;
 
 /**
  * @psalm-import-type LanguageCodes from MultilingualString
@@ -20,6 +21,7 @@ class DegreeProgramsCollection implements RenderableComponent
 {
     public function __construct(
         private Renderer $renderer,
+        private ReferrerUrlHelper $referrerUrlHelper,
     ) {
     }
 
@@ -43,6 +45,7 @@ class DegreeProgramsCollection implements RenderableComponent
             [
                 'collection' => $attributes['collection'],
                 'currentOrder' => $currentOrder,
+                'referrerUrlHelper' => $this->referrerUrlHelper,
             ]
         );
     }

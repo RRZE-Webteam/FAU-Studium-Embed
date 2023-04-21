@@ -1,0 +1,22 @@
+@use '../../abstracts/config';
+
+&__back {
+  margin-top: 30px;
+
+  @include config.media('>mobile') {
+    display: flex;
+  }
+
+  .c-link {
+    @include config.text-size('base');
+
+    text-align: left;
+    font-weight: 500;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .fau-icon {
+    fill: config.color('button', 'bg');
+  }
+}

@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 use Fau\DegreeProgram\Common\Application\DegreeProgramViewTranslated;
 use Fau\DegreeProgram\Common\Application\Repository\PaginationAwareCollection;
-use Fau\DegreeProgram\Output\Infrastructure\Component\Component;
-use Fau\DegreeProgram\Output\Infrastructure\Component\DegreeProgramCard;
-use Fau\DegreeProgram\Output\Infrastructure\Component\DegreeProgramListItem;
-use Fau\DegreeProgram\Output\Infrastructure\Component\Icon;
 use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
+use Fau\DegreeProgram\Output\Infrastructure\Component\Component;
+use Fau\DegreeProgram\Output\Infrastructure\Component\Icon;
+use Fau\DegreeProgram\Output\Infrastructure\Rewrite\ReferrerUrlHelper;
 
 use function Fau\DegreeProgram\Output\renderComponent;
 
 /**
- * @psalm-var array{
+ * @var array{
  *     collection: PaginationAwareCollection<DegreeProgramViewTranslated>,
  *     currentOrder: 'desc' | 'asc',
+ *     referrerUrlHelper: ReferrerUrlHelper,
  * } $data
  * @var array $data
  * @var Renderer $renderer
@@ -24,6 +24,7 @@ use function Fau\DegreeProgram\Output\renderComponent;
 [
     'collection' => $collection,
     'currentOrder' => $currentOrder,
+    'referrerUrlHelper' => $referrerUrlHelper
 ] = $data;
 
 ?>
@@ -188,7 +189,10 @@ use function Fau\DegreeProgram\Output\renderComponent;
 
     <?php foreach ($collection as $view) : ?>
         <?php // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-        <?= $renderer->render('search/degree-program-list-item', ['degreeProgram' => $view]) ?>
+        <?= $renderer->render('search/degree-program-list-item', [
+            'degreeProgram' => $view,
+            'referrerUrlHelper' => $referrerUrlHelper,
+        ]) ?>
         <?php // phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
     <?php endforeach; ?>
 </ul>

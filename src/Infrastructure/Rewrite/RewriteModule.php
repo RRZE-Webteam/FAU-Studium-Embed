@@ -22,6 +22,9 @@ class RewriteModule implements ServiceModule, ExecutableModule
             ),
             InjectLanguageQueryVariable::class => static fn() => new InjectLanguageQueryVariable(),
             CurrentRequest::class => static fn() => new CurrentRequest(),
+            ReferrerUrlHelper::class => static fn(ContainerInterface $container) => new ReferrerUrlHelper(
+                $container->get(CurrentRequest::class),
+            ),
         ];
     }
 
