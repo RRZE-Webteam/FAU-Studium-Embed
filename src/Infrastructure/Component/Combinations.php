@@ -11,7 +11,8 @@ use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
  * @psalm-type CombinationsAttributes = array{
  *     title: string,
  *     type: string,
- *     list: array<RelatedDegreeProgram>
+ *     list: array<RelatedDegreeProgram>,
+ *     description: string,
  * }
  */
 class Combinations implements RenderableComponent
@@ -20,6 +21,7 @@ class Combinations implements RenderableComponent
         'title' => '',
         'type' => '',
         'list' => '',
+        'description' => '',
     ];
 
     public function __construct(

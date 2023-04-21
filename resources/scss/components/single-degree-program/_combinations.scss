@@ -1,0 +1,23 @@
+@use '../../abstracts/config';
+
+&__combinations {
+  margin-bottom: 1em;
+
+  h3 {
+    padding: 0;
+  }
+
+  ul {
+    @include config.media('>tablet') {
+      column-count: 2;
+    }
+
+    @include config.media('>laptop') {
+      column-count: 3;
+    }
+  }
+
+  p {
+    margin-top: 0.5em;
+  }
+}

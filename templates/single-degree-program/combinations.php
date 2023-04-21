@@ -5,13 +5,19 @@ declare(strict_types=1);
 use Fau\DegreeProgram\Common\Application\RelatedDegreeProgram;
 
 /**
- * @var array{title: string, type: string, list: array<RelatedDegreeProgram>} $data
+ * @var array{
+ *     title: string,
+ *     type: string,
+ *     list: array<RelatedDegreeProgram>,
+ *     description: string
+ * } $data
  */
 
 [
     'title' => $title,
     'type' => $type,
     'list' => $list,
+    'description' => $description,
 ] = $data;
 
 $classNames = ['c-single-degree-program__combinations'];
@@ -34,4 +40,7 @@ if ($type) {
             </li>
         <?php endforeach ?>
     </ul>
+    <?php if ($description) : ?>
+        <p><?= esc_html($description) ?></p>
+    <?php endif ?>
 </div>

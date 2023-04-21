@@ -81,6 +81,10 @@ $accordion = renderComponent(
                                 'fau-degree-program-output'
                             ),
                             'list' => $view->combinations(),
+                            'description' => <<<'DESCRIPTION'
+Das Lehrangebot dieser Kombination ist so aufeinander abgestimmt,
+dass die Fächer in der Regel überschneidungsfrei miteinander kombiniert werden können.
+DESCRIPTION,
                         ]
                     ),
                     new Component(
@@ -92,6 +96,13 @@ $accordion = renderComponent(
                                 'fau-degree-program-output'
                             ),
                             'list' => $view->limitedCombinations(),
+                            'description' => <<<'DESCRIPTION'
+Diese Kombination kann nur nach einer diesbezüglichen Studienberatung studiert werden.
+Die Überschneidungsfreiheit kann jedoch nicht garantiert werden.
+Die Studierenden tragen selbst die Verantwortung für die Studierbarkeit der Kombination
+und die Einhaltung der Fristen des § 10.
+Der Nachweis einer Studienberatung ist bei der Immatrikulation vorzulegen.
+DESCRIPTION,
                         ]
                     ),
                 ]
