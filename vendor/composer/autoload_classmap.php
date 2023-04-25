@@ -109,6 +109,8 @@ return array(
     'Fau\\DegreeProgram\\Common\\LanguageExtension\\ArrayChangeset' => $vendorDir . '/inpsyde/fau-degree-program-common/lib/lang-extension/src/ArrayChangeset.php',
     'Fau\\DegreeProgram\\Common\\LanguageExtension\\ArrayOfStrings' => $vendorDir . '/inpsyde/fau-degree-program-common/lib/lang-extension/src/ArrayOfStrings.php',
     'Fau\\DegreeProgram\\Common\\LanguageExtension\\IntegersListChangeset' => $vendorDir . '/inpsyde/fau-degree-program-common/lib/lang-extension/src/IntegersListChangeset.php',
+    'Fau\\DegreeProgram\\Output\\Application\\ArrayPropertiesAccessor' => $baseDir . '/src/Application/ArrayPropertiesAccessor.php',
+    'Fau\\DegreeProgram\\Output\\Application\\DegreeProgramViewPropertiesFilter' => $baseDir . '/src/Application/DegreeProgramViewPropertiesFilter.php',
     'Fau\\DegreeProgram\\Output\\Application\\OriginalDegreeProgramView' => $baseDir . '/src/Application/OriginalDegreeProgramView.php',
     'Fau\\DegreeProgram\\Output\\Application\\OriginalDegreeProgramViewRepository' => $baseDir . '/src/Application/OriginalDegreeProgramViewRepository.php',
     'Fau\\DegreeProgram\\Output\\Application\\RemoteResponse' => $baseDir . '/src/Application/RemoteResponse.php',

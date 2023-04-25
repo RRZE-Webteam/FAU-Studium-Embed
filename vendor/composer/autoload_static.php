@@ -189,6 +189,8 @@ class ComposerStaticInit8d286870ef9262dc7134d60e1d1777bd
         'Fau\\DegreeProgram\\Common\\LanguageExtension\\ArrayChangeset' => __DIR__ . '/..' . '/inpsyde/fau-degree-program-common/lib/lang-extension/src/ArrayChangeset.php',
         'Fau\\DegreeProgram\\Common\\LanguageExtension\\ArrayOfStrings' => __DIR__ . '/..' . '/inpsyde/fau-degree-program-common/lib/lang-extension/src/ArrayOfStrings.php',
         'Fau\\DegreeProgram\\Common\\LanguageExtension\\IntegersListChangeset' => __DIR__ . '/..' . '/inpsyde/fau-degree-program-common/lib/lang-extension/src/IntegersListChangeset.php',
+        'Fau\\DegreeProgram\\Output\\Application\\ArrayPropertiesAccessor' => __DIR__ . '/../..' . '/src/Application/ArrayPropertiesAccessor.php',
+        'Fau\\DegreeProgram\\Output\\Application\\DegreeProgramViewPropertiesFilter' => __DIR__ . '/../..' . '/src/Application/DegreeProgramViewPropertiesFilter.php',
         'Fau\\DegreeProgram\\Output\\Application\\OriginalDegreeProgramView' => __DIR__ . '/../..' . '/src/Application/OriginalDegreeProgramView.php',
         'Fau\\DegreeProgram\\Output\\Application\\OriginalDegreeProgramViewRepository' => __DIR__ . '/../..' . '/src/Application/OriginalDegreeProgramViewRepository.php',
         'Fau\\DegreeProgram\\Output\\Application\\RemoteResponse' => __DIR__ . '/../..' . '/src/Application/RemoteResponse.php',

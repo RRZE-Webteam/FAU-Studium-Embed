@@ -94,7 +94,7 @@ final class JsonSchemaDegreeProgramDataValidator implements DegreeProgramDataVal
             DegreeProgram::FEATURED_IMAGE => Image::SCHEMA_REQUIRED,
             DegreeProgram::TEASER_IMAGE => Image::SCHEMA_REQUIRED,
             DegreeProgram::TITLE => MultilingualString::SCHEMA_REQUIRED,
-            DegreeProgram::SUBTITLE => MultilingualString::SCHEMA_REQUIRED,
+            DegreeProgram::SUBTITLE => MultilingualString::SCHEMA,
             DegreeProgram::STANDARD_DURATION => [
                 'type' => 'string',
                 'minLength' => 1,
@@ -125,8 +125,10 @@ final class JsonSchemaDegreeProgramDataValidator implements DegreeProgramDataVal
             DegreeProgram::SUBJECT_GROUPS => MultilingualList::SCHEMA_REQUIRED,
             DegreeProgram::VIDEOS => [
                 'type' => 'array',
+                'maxItems' => 3,
                 'items' => [
                     'type' => 'string',
+                    'format' => 'uri',
                 ],
             ],
             DegreeProgram::META_DESCRIPTION => MultilingualString::SCHEMA_REQUIRED,
@@ -192,8 +194,8 @@ final class JsonSchemaDegreeProgramDataValidator implements DegreeProgramDataVal
                 'type' => 'string',
                 'pattern' => self::DEADLINE_PATTERN,
             ],
-            DegreeProgram::DETAILS_AND_NOTES => MultilingualString::SCHEMA_REQUIRED,
-            DegreeProgram::LANGUAGE_SKILLS => MultilingualString::SCHEMA_REQUIRED,
+            DegreeProgram::DETAILS_AND_NOTES => MultilingualString::SCHEMA,
+            DegreeProgram::LANGUAGE_SKILLS => MultilingualString::SCHEMA,
             DegreeProgram::LANGUAGE_SKILLS_HUMANITIES_FACULTY => [
                 'type' => 'string',
             ],
