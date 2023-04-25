@@ -3,6 +3,7 @@
     <file>./src/</file>
     <file>./fau-degree-program-output.php</file>
     <file>./templates/</file>
+    <file>./tests/</file>
 
     <arg value="sp"/>
     <arg name="colors"/>
@@ -18,7 +19,7 @@
             <property
                     name="psr4"
                     type="array"
-                    value="Fau\DegreeProgram\Output=>src"
+                    value="Fau\DegreeProgram\Output=>src,Fau\DegreeProgram\Output\Tests=>tests/php/unit"
             />
         </properties>
     </rule>

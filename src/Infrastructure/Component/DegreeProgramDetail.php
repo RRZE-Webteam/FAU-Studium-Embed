@@ -31,7 +31,7 @@ final class DegreeProgramDetail implements RenderableComponent
         /** @var DetailAttributes $attributes */
         $attributes = wp_parse_args($attributes, self::DEFAULT_ATTRIBUTES);
 
-        if (empty($attributes['term'])) {
+        if (empty($attributes['term']) || empty($attributes['description'])) {
             return '';
         }
 

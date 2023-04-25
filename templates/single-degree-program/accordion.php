@@ -35,6 +35,17 @@ $accordion = renderComponent(
             new Component(
                 AccordionItem::class,
                 [
+                    'title' => _x(
+                        'Content-related admission requirements for Master\'s degree',
+                        'frontoffice: single view',
+                        'fau-degree-program-output'
+                    ),
+                    'content' => wp_kses_post($view->contentRelatedMasterRequirements()),
+                ]
+            ),
+            new Component(
+                AccordionItem::class,
+                [
                     'title' => $view->content()->specializations()->title(),
                     'content' => wp_kses_post($view->content()->specializations()->description()),
                 ]

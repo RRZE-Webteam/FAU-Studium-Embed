@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Fau\DegreeProgram\Output\Infrastructure\Shortcode;
 
 use Fau\DegreeProgram\Common\Domain\MultilingualString;
-use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\AreaOfStudyTaxonomy;
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\SemesterTaxonomy;
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\TeachingLanguageTaxonomy;
 use Fau\DegreeProgram\Output\Infrastructure\Component\DegreeProgramCombinations;
@@ -115,8 +114,6 @@ final class ShortcodeAttributesNormalizer
         $attributes['id'] = (int) ($attributes['id'] ?? 0);
         $attributes['include'] = wp_parse_list((string) ($attributes['include'] ?? ''));
         $attributes['exclude'] = wp_parse_list((string) ($attributes['exclude'] ?? ''));
-
-        // @TODO: do we need validate include/exclude or we could to do it later in the component?
 
         return $attributes;
     }

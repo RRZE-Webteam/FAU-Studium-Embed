@@ -9,6 +9,8 @@ use Fau\DegreeProgram\Common\Application\Repository\DegreeProgramViewRepository;
 use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\DirectoryLocator;
 use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
 use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\TemplateRenderer;
+use Fau\DegreeProgram\Output\Application\ArrayPropertiesAccessor;
+use Fau\DegreeProgram\Output\Application\DegreeProgramViewPropertiesFilter;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\CurrentRequest;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\ReferrerUrlHelper;
 use Inpsyde\Modularity\Module\ModuleClassNameIdTrait;
@@ -32,6 +34,10 @@ final class ComponentModule implements ServiceModule
                     $container->get(Package::PROPERTIES)->basePath() . '/templates',
                 )
             ),
+            ArrayPropertiesAccessor::class => static fn() => new ArrayPropertiesAccessor(),
+            DegreeProgramViewPropertiesFilter::class => static fn(ContainerInterface $container) => new DegreeProgramViewPropertiesFilter(
+                $container->get(ArrayPropertiesAccessor::class),
+            ),
             DegreeProgramsSearch::class => static fn(ContainerInterface $container) => new DegreeProgramsSearch(
                 $container->get(Renderer::class),
                 $container->get(DegreeProgramCollectionRepository::class),
@@ -42,6 +48,7 @@ final class ComponentModule implements ServiceModule
                 $container->get(DegreeProgramViewRepository::class),
                 $container->get(LoggerInterface::class),
                 $container->get(ReferrerUrlHelper::class),
+                $container->get(DegreeProgramViewPropertiesFilter::class),
             ),
             DegreeProgramCombinations::class => static fn(ContainerInterface $container) => new DegreeProgramCombinations(),
             ComponentFactory::class => static fn(ContainerInterface $container) => new ComponentFactory(

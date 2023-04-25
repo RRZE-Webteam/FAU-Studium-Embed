@@ -21,6 +21,7 @@
     "require-dev": {
         "inpsyde/php-coding-standards": "@stable",
         "inpsyde/wp-stubs-versions": "dev-latest",
+        "phpunit/phpunit": "^9.6",
         "vimeo/psalm": "^5.7"
     },
     "repositories": [
@@ -42,7 +43,16 @@
         "psr-4": {
             "Fau\\DegreeProgram\\Output\\": "src/"
         },
-        "files": ["inc/api.php"]
+        "files": [
+            "inc/api.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Fau\\DegreeProgram\\Output\\Tests\\": [
+                "tests/php/unit/"
+            ]
+        }
     },
     "config": {
         "allow-plugins": {
@@ -55,6 +65,8 @@
     "scripts": {
         "check-coding-standards": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs",
         "check-psalm": "@php ./vendor/vimeo/psalm/psalm --output-format=compact --no-cache",
-        "fix-coding-standards": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcbf"
+        "fix-coding-standards": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcbf",
+        "tests": "@php ./vendor/phpunit/phpunit/phpunit --coverage-text",
+        "tests:no-cov": "@php ./vendor/phpunit/phpunit/phpunit --no-coverage"
     }
 }

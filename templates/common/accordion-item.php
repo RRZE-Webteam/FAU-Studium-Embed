@@ -16,6 +16,10 @@ $innerContent = renderComponent(...$data['innerComponents']);
 $buttonId = 'id' . wp_generate_uuid4();
 $contentId = 'id' . wp_generate_uuid4();
 
+if (empty($data['content']) && empty($innerContent)) {
+    return;
+}
+
 ?>
 
 <li class="c-accordion-item">

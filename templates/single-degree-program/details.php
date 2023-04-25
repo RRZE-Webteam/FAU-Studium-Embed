@@ -57,6 +57,42 @@ $details = renderComponent(
     new Component(
         DegreeProgramDetail::class,
         [
+            'icon' => 'start',
+            'term' => _x(
+                'Application deadline winter semester',
+                'frontoffice: single view',
+                'fau-degree-program-output'
+            ),
+            'description' => $view->applicationDeadlineWinterSemester(),
+        ]
+    ),
+    new Component(
+        DegreeProgramDetail::class,
+        [
+            'icon' => 'start',
+            'term' => _x(
+                'Application deadline summer semester',
+                'frontoffice: single view',
+                'fau-degree-program-output'
+            ),
+            'description' => $view->applicationDeadlineSummerSemester(),
+        ]
+    ),
+    new Component(
+        DegreeProgramDetail::class,
+        [
+            'icon' => 'start',
+            'term' => _x(
+                'Degree program Fee',
+                'frontoffice: single view',
+                'fau-degree-program-output'
+            ),
+            'description' => $view->degreeProgramFees(),
+        ]
+    ),
+    new Component(
+        DegreeProgramDetail::class,
+        [
             'icon' => 'number-of-students',
             'term' => _x(
                 'Number of students',
@@ -76,6 +112,42 @@ $details = renderComponent(
                 'fau-degree-program-output'
             ),
             'description' => $view->teachingLanguage(),
+        ]
+    ),
+    new Component(
+        DegreeProgramDetail::class,
+        [
+            'icon' => 'teaching-language',
+            'term' => _x(
+                'Language skills',
+                'frontoffice: single view',
+                'fau-degree-program-output'
+            ),
+            'description' => $view->languageSkills(),
+        ]
+    ),
+    new Component(
+        DegreeProgramDetail::class,
+        [
+            'icon' => 'teaching-language',
+            'term' => _x(
+                'Language skills for Faculty of Humanities, Social Sciences, and Theology only',
+                'frontoffice: single view',
+                'fau-degree-program-output'
+            ),
+            'description' => $view->languageSkillsHumanitiesFaculty(),
+        ]
+    ),
+    new Component(
+        DegreeProgramDetail::class,
+        [
+            'icon' => 'teaching-language',
+            'term' => _x(
+                'German language skills for international students',
+                'frontoffice: single view',
+                'fau-degree-program-output'
+            ),
+            'description' => $view->germanLanguageSkillsForInternationalStudents()->asHtml(),
         ]
     ),
     new Component(

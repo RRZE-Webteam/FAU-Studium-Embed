@@ -9,6 +9,7 @@ use Fau\DegreeProgram\Common\Application\Repository\DegreeProgramViewRepository;
 use Fau\DegreeProgram\Common\Domain\DegreeProgramId;
 use Fau\DegreeProgram\Common\Domain\MultilingualString;
 use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
+use Fau\DegreeProgram\Output\Application\DegreeProgramViewPropertiesFilter;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\ReferrerUrlHelper;
 use Psr\Log\LoggerInterface;
 
@@ -21,17 +22,6 @@ use Psr\Log\LoggerInterface;
  *     exclude: array<string>,
  *     format: 'full' | 'short',
  * }
- *
- * @TODO: include and exclude functionality could be handled in different ways.
- *      Most probably array item should be value of domain model constants
- *      (i.e. title, subtitle, standard_duration etc.).
- *      The first option is to make our view model aware about included and excluded fields
- *      so the model getters can return empty value if field should be outputted.
- *      The second option is to provide standalone value object having ability to detect
- *      is the field visible.
- *      Or we could expose array from view model, filter values, and recreate view model
- *      from filtered array.
- *      Maybe the first option is better...
  */
 final class SingleDegreeProgram implements RenderableComponent
 {
@@ -48,6 +38,7 @@ final class SingleDegreeProgram implements RenderableComponent
         private DegreeProgramViewRepository $degreeProgramViewRepository,
         private LoggerInterface $logger,
         private ReferrerUrlHelper $referrerUrlHelper,
+        private DegreeProgramViewPropertiesFilter $degreeProgramViewPropertiesFilter,
     ) {
     }
 
@@ -75,6 +66,12 @@ final class SingleDegreeProgram implements RenderableComponent
             return '';
         }
 
+        $view = $this->filterViewProperties(
+            $view,
+            $attributes['include'],
+            $attributes['exclude'],
+        );
+
         return $this->renderer->render(
             'single-degree-program-' . $attributes['format'],
             [
@@ -82,5 +79,26 @@ final class SingleDegreeProgram implements RenderableComponent
                 'referrerUrlHelper' => $this->referrerUrlHelper,
             ]
         );
+    }
+
+    /**
+     * @param array<string> $include
+     * @param array<string> $exclude
+     */
+    private function filterViewProperties(
+        DegreeProgramViewTranslated $view,
+        array $include,
+        array $exclude
+    ): DegreeProgramViewTranslated {
+
+        if ($include) {
+            return $this->degreeProgramViewPropertiesFilter->include($view, $include);
+        }
+
+        if ($exclude) {
+            return $this->degreeProgramViewPropertiesFilter->exclude($view, $exclude);
+        }
+
+        return $view;
     }
 }

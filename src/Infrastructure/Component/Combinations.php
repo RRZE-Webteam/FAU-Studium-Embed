@@ -34,7 +34,7 @@ class Combinations implements RenderableComponent
         /** @var CombinationsAttributes $attributes */
         $attributes = wp_parse_args($attributes, self::DEFAULT_ATTRIBUTES);
 
-        if (empty($attributes['list'])) {
+        if (!count($attributes['list'])) {
             return '';
         }
 
