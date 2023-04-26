@@ -263,6 +263,7 @@ class ComposerStaticInit8d286870ef9262dc7134d60e1d1777bd
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Template\\SeoFrameworkIntegration' => __DIR__ . '/../..' . '/src/Infrastructure/Template/SeoFrameworkIntegration.php',
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Template\\SingleDegreeProgramContentFilter' => __DIR__ . '/../..' . '/src/Infrastructure/Template/SingleDegreeProgramContentFilter.php',
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Template\\TemplateModule' => __DIR__ . '/../..' . '/src/Infrastructure/Template/TemplateModule.php',
+        'Fau\\DegreeProgram\\Output\\Infrastructure\\TranslationModule' => __DIR__ . '/../..' . '/src/Infrastructure/TranslationModule.php',
         'Inpsyde\\Assets\\Asset' => __DIR__ . '/..' . '/inpsyde/assets/src/Asset.php',
         'Inpsyde\\Assets\\AssetFactory' => __DIR__ . '/..' . '/inpsyde/assets/src/AssetFactory.php',
         'Inpsyde\\Assets\\AssetManager' => __DIR__ . '/..' . '/inpsyde/assets/src/AssetManager.php',

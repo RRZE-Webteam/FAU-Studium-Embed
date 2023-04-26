@@ -183,6 +183,7 @@ return array(
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Template\\SeoFrameworkIntegration' => $baseDir . '/src/Infrastructure/Template/SeoFrameworkIntegration.php',
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Template\\SingleDegreeProgramContentFilter' => $baseDir . '/src/Infrastructure/Template/SingleDegreeProgramContentFilter.php',
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Template\\TemplateModule' => $baseDir . '/src/Infrastructure/Template/TemplateModule.php',
+    'Fau\\DegreeProgram\\Output\\Infrastructure\\TranslationModule' => $baseDir . '/src/Infrastructure/TranslationModule.php',
     'Inpsyde\\Assets\\Asset' => $vendorDir . '/inpsyde/assets/src/Asset.php',
     'Inpsyde\\Assets\\AssetFactory' => $vendorDir . '/inpsyde/assets/src/AssetFactory.php',
     'Inpsyde\\Assets\\AssetManager' => $vendorDir . '/inpsyde/assets/src/AssetManager.php',
