@@ -48,6 +48,22 @@
         "../svg/back.asset.php"
       ]
     },
+    "svg/check": {
+      "js": [
+        "../svg/check.js"
+      ],
+      "php": [
+        "../svg/check.asset.php"
+      ]
+    },
+    "svg/close": {
+      "js": [
+        "../svg/close.js"
+      ],
+      "php": [
+        "../svg/close.asset.php"
+      ]
+    },
     "svg/degree": {
       "js": [
         "../svg/degree.js"
