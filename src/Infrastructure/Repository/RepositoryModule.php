@@ -57,6 +57,7 @@ class RepositoryModule implements ServiceModule
             OriginalDegreeProgramViewRepository::class => static fn(ContainerInterface $container) => new WordPressDatabaseOriginalDegreeProgramViewRepository(
                 $container->get(EnvironmentDetector::class),
             ),
+            WordPressTermRepository::class => static fn () => new WordPressTermRepository(),
         ];
     }
 }

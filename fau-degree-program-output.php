@@ -30,6 +30,7 @@ use Fau\DegreeProgram\Output\Infrastructure\Content\ContentModule;
 use Fau\DegreeProgram\Output\Infrastructure\Dashboard\AdminBarModule;
 use Fau\DegreeProgram\Output\Infrastructure\Environment\EnvironmentModule;
 use Fau\DegreeProgram\Output\Infrastructure\EventDispatcherModule;
+use Fau\DegreeProgram\Output\Infrastructure\Filter\FilterModule;
 use Fau\DegreeProgram\Output\Infrastructure\LoggerModule;
 use Fau\DegreeProgram\Output\Infrastructure\Query\QueryModule;
 use Fau\DegreeProgram\Output\Infrastructure\QueueModule;
@@ -145,6 +146,7 @@ function initialize(): void
             new ShortcodeModule(),
             new TemplateModule(),
             new AssetsModule(),
+            new FilterModule(),
         );
     } catch (Throwable $throwable) {
         handleException($throwable);

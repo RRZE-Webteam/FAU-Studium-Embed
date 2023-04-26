@@ -4,7 +4,15 @@ declare(strict_types=1);
 
 namespace Fau\DegreeProgram\Output\Infrastructure\Rewrite;
 
-use Fau\DegreeProgram\Common\Domain\DegreeProgram;
+use Fau\DegreeProgram\Common\Application\Filter\AreaOfStudyFilter;
+use Fau\DegreeProgram\Common\Application\Filter\AttributeFilter;
+use Fau\DegreeProgram\Common\Application\Filter\DegreeFilter;
+use Fau\DegreeProgram\Common\Application\Filter\FacultyFilter;
+use Fau\DegreeProgram\Common\Application\Filter\SearchKeywordFilter;
+use Fau\DegreeProgram\Common\Application\Filter\SemesterFilter;
+use Fau\DegreeProgram\Common\Application\Filter\StudyLocationFilter;
+use Fau\DegreeProgram\Common\Application\Filter\SubjectGroupFilter;
+use Fau\DegreeProgram\Common\Application\Filter\TeachingLanguageFilter;
 use Fau\DegreeProgram\Common\Domain\MultilingualString;
 
 /**
@@ -12,22 +20,33 @@ use Fau\DegreeProgram\Common\Domain\MultilingualString;
  */
 final class CurrentRequest
 {
-    public const SEARCH_QUERY_PARAM = 'keyword';
+    public const SEARCH_QUERY_PARAM = SearchKeywordFilter::KEY;
     public const QUERY_PARAMS_SANITIZATION_FILTERS = [
         self::SEARCH_QUERY_PARAM => FILTER_SANITIZE_SPECIAL_CHARS,
-        DegreeProgram::DEGREE => [
-            'filter' => FILTER_SANITIZE_NUMBER_INT,
-            'flags' => FILTER_REQUIRE_ARRAY,
-        ],
-        DegreeProgram::LOCATION => [
+        AreaOfStudyFilter::KEY => [
             'filter' => FILTER_SANITIZE_SPECIAL_CHARS,
-            'flags' => FILTER_REQUIRE_ARRAY,
         ],
-        DegreeProgram::ADMISSION_REQUIREMENTS => [
-            'filter' => FILTER_SANITIZE_NUMBER_INT,
-            'flags' => FILTER_REQUIRE_ARRAY,
+        AttributeFilter::KEY => [
+            'filter' => FILTER_SANITIZE_SPECIAL_CHARS,
         ],
-        // TODO: Filters list is incomplete
+        DegreeFilter::KEY => [
+            'filter' => FILTER_SANITIZE_SPECIAL_CHARS,
+        ],
+        FacultyFilter::KEY => [
+            'filter' => FILTER_SANITIZE_SPECIAL_CHARS,
+        ],
+        SemesterFilter::KEY => [
+            'filter' => FILTER_SANITIZE_SPECIAL_CHARS,
+        ],
+        StudyLocationFilter::KEY => [
+            'filter' => FILTER_SANITIZE_SPECIAL_CHARS,
+        ],
+        SubjectGroupFilter::KEY => [
+            'filter' => FILTER_SANITIZE_SPECIAL_CHARS,
+        ],
+        TeachingLanguageFilter::KEY => [
+            'filter' => FILTER_SANITIZE_SPECIAL_CHARS,
+        ],
         'orderby' => FILTER_SANITIZE_SPECIAL_CHARS,
         'order' => FILTER_SANITIZE_SPECIAL_CHARS,
         'output' => FILTER_SANITIZE_SPECIAL_CHARS,
@@ -66,6 +85,11 @@ final class CurrentRequest
         );
 
         return $queryStrings;
+    }
+
+    public function get(string $key, mixed $default): mixed
+    {
+        return $this->queryStrings()[$key] ?? $default;
     }
 
     /**

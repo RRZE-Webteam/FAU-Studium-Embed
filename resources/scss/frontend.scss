@@ -22,6 +22,9 @@
 @use 'components/search/degree-programs-grid';
 @use 'components/search/degree-programs-list';
 @use 'components/search/no-results';
+@use 'components/search/active-filters';
+@use 'components/search/filter-choices';
+@use 'components/search/filter-dropdown';
 @use 'components/single-degree-program' as degree-program-component;
 @use 'components/link';
 

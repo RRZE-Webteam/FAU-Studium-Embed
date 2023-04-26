@@ -43,7 +43,7 @@ const onClickButton = (button: HTMLButtonElement) => {
         return;
     }
 
-    if (button.ariaExpanded === 'true') {
+    if (button.getAttribute('aria-expanded') === 'true') {
         close(button);
         return;
     }

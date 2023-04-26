@@ -51,6 +51,10 @@ $colorsMap: (
 
 // Font sizes
 $fontSizesMap: (
+  'xxs': (
+    'font-size': .625rem, // 10px
+    'line-height': .75rem, // 12px
+  ),
   'xs': (
     'font-size': .75rem, // 12px
     'line-height': .875rem, // 14px

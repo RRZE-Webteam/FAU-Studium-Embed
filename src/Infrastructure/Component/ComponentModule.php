@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace Fau\DegreeProgram\Output\Infrastructure\Component;
 
+use Fau\DegreeProgram\Common\Application\Filter\FilterFactory;
 use Fau\DegreeProgram\Common\Application\Repository\DegreeProgramCollectionRepository;
 use Fau\DegreeProgram\Common\Application\Repository\DegreeProgramViewRepository;
+use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\TaxonomiesList;
 use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\DirectoryLocator;
 use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
 use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\TemplateRenderer;
+use Fau\DegreeProgram\Output\Infrastructure\Filter\FilterViewFactory;
+use Fau\DegreeProgram\Output\Infrastructure\Repository\WordPressTermRepository;
 use Fau\DegreeProgram\Output\Application\ArrayPropertiesAccessor;
 use Fau\DegreeProgram\Output\Application\DegreeProgramViewPropertiesFilter;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\CurrentRequest;
@@ -42,6 +46,8 @@ final class ComponentModule implements ServiceModule
                 $container->get(Renderer::class),
                 $container->get(DegreeProgramCollectionRepository::class),
                 $container->get(CurrentRequest::class),
+                $container->get(FilterViewFactory::class),
+                $container->get(FilterFactory::class),
             ),
             SingleDegreeProgram::class => static fn(ContainerInterface $container) => new SingleDegreeProgram(
                 $container->get(Renderer::class),
@@ -88,6 +94,15 @@ final class ComponentModule implements ServiceModule
             ),
             Links::class => static fn(ContainerInterface $container) => new Links(
                 $container->get(Renderer::class),
+            ),
+            MultichoiceFilter::class => static fn(ContainerInterface $container) => new MultichoiceFilter(
+                $container->get(Renderer::class),
+            ),
+            ActiveFilters::class => static fn(ContainerInterface $container) => new ActiveFilters(
+                $container->get(Renderer::class),
+                $container->get(WordPressTermRepository::class),
+                $container->get(TaxonomiesList::class),
+                $container->get(CurrentRequest::class),
             ),
         ];
     }

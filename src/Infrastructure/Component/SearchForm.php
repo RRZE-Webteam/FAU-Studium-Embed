@@ -18,10 +18,11 @@ class SearchForm implements RenderableComponent
     public function render(array $attributes = []): string
     {
         return $this->renderer->render(
-            'search/degree-programs-searchform',
+            'search/search-form',
             [
                 'searchQuery' => $this->currentRequest->searchKeyword(),
                 'queryStrings' => $this->currentRequest->flattenedQueryStrings(),
+                'name' => CurrentRequest::SEARCH_QUERY_PARAM,
             ]
         );
     }

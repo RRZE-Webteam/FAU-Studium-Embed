@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace Fau\DegreeProgram\Output\Infrastructure\Shortcode;
 
+use Fau\DegreeProgram\Common\Application\Filter\Filter;
+use Fau\DegreeProgram\Common\Application\Filter\FilterFactory;
 use Fau\DegreeProgram\Common\Domain\MultilingualString;
-use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\SemesterTaxonomy;
-use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\TeachingLanguageTaxonomy;
+use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\TaxonomiesList;
 use Fau\DegreeProgram\Output\Infrastructure\Component\DegreeProgramCombinations;
 use Fau\DegreeProgram\Output\Infrastructure\Component\DegreeProgramsSearch;
 use Fau\DegreeProgram\Output\Infrastructure\Component\RenderableComponent;
 use Fau\DegreeProgram\Output\Infrastructure\Component\SingleDegreeProgram;
+use Fau\DegreeProgram\Output\Infrastructure\Repository\WordPressTermRepository;
 
 final class ShortcodeAttributesNormalizer
 {
@@ -19,8 +21,11 @@ final class ShortcodeAttributesNormalizer
      */
     private array $map;
 
-    public function __construct()
-    {
+    public function __construct(
+        private WordPressTermRepository $termsRepository,
+        private TaxonomiesList $taxonomiesList,
+    ) {
+
         $this->map = [
             DegreeProgramsSearch::class => [$this, 'search'],
             SingleDegreeProgram::class => [$this, 'single'],
@@ -66,43 +71,67 @@ final class ShortcodeAttributesNormalizer
      */
     private function search(array $attributes): array
     {
-        // TODO: create a value object
-        $listOfSupportedFilters = [
-            SemesterTaxonomy::REST_BASE,
-            TeachingLanguageTaxonomy::REST_BASE,
-            // TODO: ... list is incomplete
-        ];
+        /** @var array<string, mixed>|null */
+        static $newAttributes = null;
 
-        /** @var array<string> $visibleFilters */
-        $visibleFilters = wp_parse_list((string) ($attributes['filters'] ?? ''));
-        $attributes['filters'] = [];
-
-        $filters = [];
-        foreach ($listOfSupportedFilters as $filter) {
-            if (isset($attributes[$filter]) && is_string($attributes[$filter])) {
-                // @TODO check, is it possible to use hyphen for shortcode attribute name?
-                // Editor uses [fau-studium faculty="NAT faculty name, Phil faculty name" teaching-language="German"]
-
-                // @TODO most probably we will use term names as preselected filter values
-                //       in the shortcode context. So we need the repository to convert
-                //       term names list to term IDs list.
-                $filters[$filter] = wp_parse_list($attributes[$filter]);
-                // Preselected filter value gets priority over visible filters attribute.
-                // Anyway preselected filters will be hidden.
-                continue;
-            }
-
-            if (!in_array($filter, $visibleFilters, true)) {
-                continue;
-            }
-
-            // Editor uses [fau-studium filters="faculty,teaching-language"]
-            $filters[$filter] = [];
+        if (is_array($newAttributes)) {
+            return $newAttributes;
         }
 
-        $attributes['filters'] = $filters;
+        /** @var string[] */
+        $listOfSupportedFilters = array_keys(FilterFactory::SUPPORTED_FILTERS);
 
-        return $attributes;
+        /** @var array<string> $availableFilters */
+        $availableFilters = wp_parse_list((string) ($attributes['filters'] ?? ''));
+        unset($attributes['filters']);
+        /** @var array<Filter> $preAppliedFilters */
+        $preAppliedFilters = [];
+
+        $visibleFilters = [];
+        foreach ($listOfSupportedFilters as $filter) {
+            if (!in_array($filter, $availableFilters, true)) {
+                continue;
+            }
+
+            $preAppliedFilter = $this->preAppliedFilter(
+                $filter,
+                $attributes[$filter] ?? null,
+            );
+
+            if ($preAppliedFilter) {
+                $preAppliedFilters[$filter] = $preAppliedFilter;
+                continue;
+            }
+
+            $visibleFilters[] = $filter;
+        }
+
+        $attributes['visible_filters'] = $visibleFilters;
+        $attributes['pre_applied_filters'] = $preAppliedFilters;
+
+        $newAttributes = $attributes;
+
+        return $newAttributes;
+    }
+
+    /** @return array<int> */
+    private function preAppliedFilter(string $filterName, mixed $filterValue): array
+    {
+        if (!is_string($filterValue)) {
+            return [];
+        }
+
+        return array_filter(
+            array_map(
+                fn ($identifier) => $this->termsRepository->findTermId(
+                    trim($identifier),
+                    (string) $this->taxonomiesList->convertRestBaseToSlug(
+                        $filterName
+                    )
+                ),
+                explode(',', $filterValue)
+            )
+        );
     }
 
     /**

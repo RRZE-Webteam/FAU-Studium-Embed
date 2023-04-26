@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Fau\DegreeProgram\Output\Infrastructure\Shortcode;
 
+use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\TaxonomiesList;
 use Fau\DegreeProgram\Output\Infrastructure\Component\ComponentFactory;
+use Fau\DegreeProgram\Output\Infrastructure\Repository\WordPressTermRepository;
 use Inpsyde\Modularity\Module\ExecutableModule;
 use Inpsyde\Modularity\Module\ModuleClassNameIdTrait;
 use Inpsyde\Modularity\Module\ServiceModule;
@@ -18,7 +20,10 @@ final class ShortcodeModule implements ServiceModule, ExecutableModule
     public function services(): array
     {
         return [
-            ShortcodeAttributesNormalizer::class => static fn() => new ShortcodeAttributesNormalizer(),
+            ShortcodeAttributesNormalizer::class => static fn(ContainerInterface $container) => new ShortcodeAttributesNormalizer(
+                $container->get(WordPressTermRepository::class),
+                $container->get(TaxonomiesList::class),
+            ),
             DegreeProgramShortcode::class => static fn(ContainerInterface $container) => new DegreeProgramShortcode(
                 $container->get(ComponentFactory::class),
                 $container->get(ShortcodeAttributesNormalizer::class),

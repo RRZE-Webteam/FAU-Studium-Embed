@@ -1,0 +1,156 @@
+@use '../../abstracts/config';
+
+// TODO: Separate unrelated styles
+
+.c-filter-dropdown {
+  height: 40px;
+  min-width: 230px;
+  border-radius: 3px;
+  border: solid 1px #{config.color('content', 'borders')};
+  position: relative;
+
+  &[aria-expanded='true'] {
+    border-bottom-width: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    position: relative;
+    z-index: 21;
+    padding-left: 14px;
+    padding-right: 16px;
+    cursor: pointer;
+  }
+
+  &__label {
+    color: config.color('primary', 'ci-hell2-kontrast');
+    margin-right: auto;
+    @include config.text-size('base');
+  }
+
+  &__count {
+    background-color: config.color('button', 'bg');
+    color: #fff;
+    width: 1.125rem;
+    height: 1.125rem;
+    border-radius: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    @include config.text-size('xxs');
+  }
+
+  &__arrow {
+    margin-left: 15px;
+
+    .fau-icon {
+      width: 16px;
+      height: 16px;
+      fill: config.color('button', 'bg');
+
+      @include config.when-inside('.c-filter-dropdown[aria-expanded=true]') {
+        transform: scaleY(-1);
+      }
+    }
+  }
+
+  .c-filter-control__options {
+    background: #fff;
+    margin: 0;
+    padding: 0;
+    border: 1px solid;
+    border: solid 1px #{config.color('content', 'borders')};
+    border-top: 0;
+    border-radius: 3px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    transition: 250ms opacity, transform ease-in-out;
+    position: absolute;
+    z-index: 20;
+    left: -1px;
+    right: -1px;
+    top: 100%;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      background-color: transparent;
+      box-shadow: 0 4px 7px rgb(0 0 0 / 45%);
+      border-radius: 3px;
+      z-index: -1;
+    }
+
+    @include config.when-parent-matches-selector(
+      ':not([aria-expanded=true])',
+      '.c-filter-dropdown'
+    ) {
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(-15px);
+    }
+  }
+
+  .c-filter-control__option-item {
+    & > .c-filter-checkbox {
+      margin: 0 !important;
+      padding: 0 !important;
+
+      .c-filter-checkbox__inner {
+        display: flex;
+        padding: 12px 10px !important;
+        border-top: solid 1px #{config.color('content', 'borders')};
+      }
+
+      input[type='checkbox']:checked,
+      input[type='radio']:checked {
+        & ~ .c-filter-checkbox__inner {
+          background-color: config.color('grey', 'light');
+        }
+      }
+    }
+  }
+
+  &__list-children {
+    margin: 0;
+    padding: 0 10px 16px 33px;
+  }
+
+  &__list-child-item {
+    &:not(:last-child) {
+      margin-bottom: 8px;
+    }
+  }
+
+  &__list-item-arrow {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-self: flex-start;
+    z-index: 30;
+    background: none;
+    padding: 0;
+    width: 42px;
+    height: 42px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &[aria-expanded='true'] {
+      transform: scaleY(-1);
+    }
+
+    &:hover,
+    &:focus {
+      background: none;
+    }
+  }
+}

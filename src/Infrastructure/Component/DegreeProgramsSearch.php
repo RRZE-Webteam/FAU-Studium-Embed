@@ -4,19 +4,23 @@ declare(strict_types=1);
 
 namespace Fau\DegreeProgram\Output\Infrastructure\Component;
 
+use Fau\DegreeProgram\Common\Application\Filter\Filter;
+use Fau\DegreeProgram\Common\Application\Filter\FilterFactory;
 use Fau\DegreeProgram\Common\Application\Filter\SearchKeywordFilter;
 use Fau\DegreeProgram\Common\Application\Repository\CollectionCriteria;
 use Fau\DegreeProgram\Common\Application\Repository\DegreeProgramCollectionRepository;
 use Fau\DegreeProgram\Common\Domain\MultilingualString;
 use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\CurrentRequest;
+use Fau\DegreeProgram\Output\Infrastructure\Filter\FilterViewFactory;
 
 /**
  * @psalm-import-type LanguageCodes from MultilingualString
  * @psalm-type OutputType = 'tiles' | 'list';
  * @psalm-type DegreeProgramsSearchAttributes = array{
  *     lang: LanguageCodes,
- *     filters: array<string, array<int>>,
+ *     pre_applied_filters: array<string, array<int>>,
+ *     visible_filters: array<string>,
  *     output: OutputType,
  * }
  *
@@ -33,6 +37,7 @@ use Fau\DegreeProgram\Output\Infrastructure\Rewrite\CurrentRequest;
  */
 final class DegreeProgramsSearch implements RenderableComponent
 {
+    private const MAX_VISIBLE_FILTERS = 3;
     private const DEFAULT_ATTRIBUTES = [
         'lang' => MultilingualString::DE,
         'filters' => [],
@@ -47,6 +52,8 @@ final class DegreeProgramsSearch implements RenderableComponent
         private Renderer $renderer,
         private DegreeProgramCollectionRepository $degreeProgramViewRepository,
         private CurrentRequest $currentRequest,
+        private FilterViewFactory $filterViewFactory,
+        private FilterFactory $filterFactory,
     ) {
     }
 
@@ -55,24 +62,68 @@ final class DegreeProgramsSearch implements RenderableComponent
         /** @var DegreeProgramsSearchAttributes $attributes */
         $attributes = wp_parse_args($attributes, self::DEFAULT_ATTRIBUTES);
 
+        $preAppliedFilters = $this->filterFactory->bulk($attributes['pre_applied_filters']);
+        $visibleFilters = $this->filterFactory->bulk(
+            $this->populateVisibleFiltersFromRequest($attributes['visible_filters'])
+        );
+        $searchFilter = new SearchKeywordFilter($this->currentRequest->searchKeyword());
+        $userAppliedFilters = array_filter(
+            array_merge($visibleFilters, [$searchFilter]),
+            static fn (Filter $filter) => !empty($filter->value()),
+        );
+
         $collection = $this->degreeProgramViewRepository->findTranslatedCollection(
             CollectionCriteria::new()
                 ->addFilter(
-                    new SearchKeywordFilter(
-                        $this->currentRequest->searchKeyword()
-                    )
-                ), // Criteria should be updated with the current request
+                    ...$preAppliedFilters,
+                    ...$userAppliedFilters,
+                ),
             $attributes['lang'],
         );
 
+        $filterViews = $this->filterViewFactory->create(...$visibleFilters);
+
         return $this->renderer->render(
-            'search/degree-programs-search',
+            'search/search',
             [
                 'collection' => $collection,
-                'filters' => $attributes['filters'],
+                'filters' => array_slice($filterViews, 0, self::MAX_VISIBLE_FILTERS),
+                'advancedFilters' => array_slice(
+                    $filterViews,
+                    self::MAX_VISIBLE_FILTERS,
+                ),
                 'output' => $this->sanitizedOutputMode($attributes['output']),
-            ]
+                'activeFilters' => $this->filterViewFactory->create(
+                    ...$userAppliedFilters
+                ),
+            ],
         );
+    }
+
+    /**
+     * @return array<Filter>
+     */
+    private function appliedFilters(Filter ...$filters): array
+    {
+        return array_filter(
+            $filters,
+            static fn ($filter) => !!$filter->value(),
+        );
+    }
+
+    /**
+     * @param array<string> $visibleFilterNames
+     * @return array<string, mixed>
+     */
+    private function populateVisibleFiltersFromRequest(array $visibleFilterNames): array
+    {
+        $result = [];
+
+        foreach ($visibleFilterNames as $filterId) {
+            $result[$filterId] = $this->currentRequest->get($filterId, []);
+        }
+
+        return $result;
     }
 
     /**

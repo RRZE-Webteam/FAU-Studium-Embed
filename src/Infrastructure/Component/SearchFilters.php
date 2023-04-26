@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace Fau\DegreeProgram\Output\Infrastructure\Component;
 
 use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
+use Fau\DegreeProgram\Output\Application\Filter\FilterView;
+use Fau\DegreeProgram\Output\Infrastructure\Component\DegreeProgramsSearch;
 
 /**
  * @psalm-import-type OutputType from DegreeProgramsSearch
  * @psalm-type SearchFiltersAttributes = array{
- *     filters: array<string, array<int>>,
+ *     filters: array<FilterView>,
  *     output: OutputType,
+ *     activeFilters: array<FilterView>,
  * }
  */
 class SearchFilters implements RenderableComponent
@@ -31,9 +34,10 @@ class SearchFilters implements RenderableComponent
         $attributes = wp_parse_args($attributes, self::DEFAULT_ATTRIBUTES);
 
         return $this->renderer->render(
-            'search/degree-programs-search-filters',
+            'search/search-filters',
             [
                 'filters' => $attributes['filters'],
+                'activeFilters' => $attributes['activeFilters'],
                 'output' => $attributes['output'],
                 'outputModeUrls' => $this->outputModeUrls(),
             ]

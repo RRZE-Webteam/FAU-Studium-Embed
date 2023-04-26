@@ -2,8 +2,9 @@
 
 .c-degree-programs-search__filters {
   display: flex;
+  column-gap: 20px;
   padding: 0;
-  margin: 0;
+  margin: 0 0 41px;
 
   li {
     list-style: none;
@@ -19,7 +20,7 @@
     }
 
     &__options {
-      a[role=button] {
+      a[role='button'] {
         background: none;
         display: inline-flex;
         align-items: center;
