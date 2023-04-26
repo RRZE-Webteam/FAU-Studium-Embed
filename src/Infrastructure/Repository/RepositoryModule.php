@@ -11,6 +11,7 @@ use Fau\DegreeProgram\Common\Application\Repository\DegreeProgramViewRepository;
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\TaxonomiesList;
 use Fau\DegreeProgram\Common\Infrastructure\Repository\IdGenerator;
 use Fau\DegreeProgram\Common\Infrastructure\Repository\WordPressDatabaseDegreeProgramCollectionRepository;
+use Fau\DegreeProgram\Common\Infrastructure\Repository\WpQueryArgsBuilder;
 use Fau\DegreeProgram\Output\Application\OriginalDegreeProgramViewRepository;
 use Fau\DegreeProgram\Output\Infrastructure\ApiClient\ApiClient;
 use Fau\DegreeProgram\Output\Infrastructure\Environment\EnvironmentDetector;
@@ -38,9 +39,12 @@ class RepositoryModule implements ServiceModule
                 $container->get(CacheKeyGenerator::class),
                 $container->get(CacheInterface::class),
             ),
+            WpQueryArgsBuilder::class => static fn(ContainerInterface $container) => new WpQueryArgsBuilder(
+                $container->get(TaxonomiesList::class),
+            ),
             WordPressDatabaseDegreeProgramCollectionRepository::class => static fn(ContainerInterface $container) => new WordPressDatabaseDegreeProgramCollectionRepository(
                 $container->get(DegreeProgramViewRepository::class),
-                $container->get(TaxonomiesList::class),
+                $container->get(WpQueryArgsBuilder::class),
             ),
             self::COLLECTION_REPOSITORY_UNCACHED => static fn(ContainerInterface $container) => new WordPressApiDegreeProgramViewRepository(
                 $container->get(ApiClient::class)

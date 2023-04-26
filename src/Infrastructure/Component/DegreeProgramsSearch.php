@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Fau\DegreeProgram\Output\Infrastructure\Component;
 
+use Fau\DegreeProgram\Common\Application\Filter\SearchKeywordFilter;
 use Fau\DegreeProgram\Common\Application\Repository\CollectionCriteria;
 use Fau\DegreeProgram\Common\Application\Repository\DegreeProgramCollectionRepository;
 use Fau\DegreeProgram\Common\Domain\MultilingualString;
@@ -56,7 +57,11 @@ final class DegreeProgramsSearch implements RenderableComponent
 
         $collection = $this->degreeProgramViewRepository->findTranslatedCollection(
             CollectionCriteria::new()
-                ->withSearchKeyword($this->currentRequest->searchKeyword()), // Criteria should be updated with the current request
+                ->addFilter(
+                    new SearchKeywordFilter(
+                        $this->currentRequest->searchKeyword()
+                    )
+                ), // Criteria should be updated with the current request
             $attributes['lang'],
         );
 
