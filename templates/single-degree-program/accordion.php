@@ -77,7 +77,7 @@ $accordion = renderComponent(
                 AccordionItem::class,
                 [
                     'title' => _x(
-                        'Course combinations & limited course combinations',
+                        'Degree program combinations & limited degree program combinations',
                         'frontoffice: single view',
                         'fau-degree-program-output'
                     ),
@@ -87,7 +87,7 @@ $accordion = renderComponent(
                         Combinations::class,
                         [
                             'title' => _x(
-                                'Course combinations',
+                                'Degree program combinations',
                                 'frontoffice: single view',
                                 'fau-degree-program-output'
                             ),
@@ -102,7 +102,7 @@ DESCRIPTION,
                         Combinations::class,
                         [
                             'title' => _x(
-                                'Limited course combinations',
+                                'Limited degree program combinations',
                                 'frontoffice: single view',
                                 'fau-degree-program-output'
                             ),

@@ -1,0 +1,283 @@
+# Copyright (C) 2023 Inpsyde GmbH
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: FAU Degree Program Output 0.1.0\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2023-04-26T06:21:10+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.7.1\n"
+"X-Domain: fau-degree-program-output\n"
+
+#. Plugin Name of the plugin
+msgid "FAU Degree Program Output"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://github.com/RRZE-Webteam/FAU-Studium-Embed"
+msgstr ""
+
+#. Description of the plugin
+msgid "Fetch degree programs via the REST API and display them."
+msgstr ""
+
+#. Author of the plugin
+msgid "Inpsyde GmbH"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://inpsyde.com/"
+msgstr ""
+
+#: src/Infrastructure/Dashboard/AdminBarModule.php:33
+msgctxt "backoffice: admin notice"
+msgid "Degree program cache invalidated."
+msgstr ""
+
+#: src/Infrastructure/Dashboard/AdminBarModule.php:40
+msgctxt "backoffice: admin notice"
+msgid "Could not invalidate degree program cache."
+msgstr ""
+
+#: src/Infrastructure/Dashboard/AdminBarModule.php:53
+msgctxt "backoffice: admin bar menu item"
+msgid "Invalidate degree program caches"
+msgstr ""
+
+#: templates/search/degree-program-list-item.php:45
+msgctxt "frontoffice: degree programs search result list"
+msgid "Type"
+msgstr ""
+
+#: templates/search/degree-program-list-item.php:57
+#: templates/search/degree-programs-list.php:114
+msgctxt "frontoffice: degree programs search result list"
+msgid "Start"
+msgstr ""
+
+#: templates/search/degree-program-list-item.php:68
+#: templates/search/degree-programs-list.php:139
+msgctxt "frontoffice: degree programs search result list"
+msgid "Location"
+msgstr ""
+
+#: templates/search/degree-program-list-item.php:79
+#: templates/search/degree-programs-list.php:164
+msgctxt "frontoffice: degree programs search result list"
+msgid "NC"
+msgstr ""
+
+#. translators: %s is the orderby value
+#: templates/search/degree-programs-list.php:38
+msgctxt "frontoffice: degree programs search result list"
+msgid "Sort by %s"
+msgstr ""
+
+#: templates/search/degree-programs-list.php:62
+msgctxt "frontoffice: degree programs search result list"
+msgid "Degree program"
+msgstr ""
+
+#: templates/search/degree-programs-list.php:89
+msgctxt "frontoffice: degree programs search result list"
+msgid "Degree type"
+msgstr ""
+
+#: templates/search/degree-programs-search-filters.php:41
+msgctxt "frontoffice: degree programs search form"
+msgid "Layout"
+msgstr ""
+
+#: templates/search/degree-programs-search-filters.php:52
+msgctxt "frontoffice: degree programs search form"
+msgid "Switch to grid view"
+msgstr ""
+
+#: templates/search/degree-programs-search-filters.php:62
+msgctxt "frontoffice: degree programs search form"
+msgid "Switch to list view"
+msgstr ""
+
+#: templates/search/degree-programs-search.php:33
+msgctxt "frontoffice: degree programs search form"
+msgid "Degree programs"
+msgstr ""
+
+#: templates/search/degree-programs-searchform.php:44
+msgctxt "frontoffice: degree programs search form"
+msgid "Please enter search term..."
+msgstr ""
+
+#: templates/search/degree-programs-searchform.php:52
+msgctxt "frontoffice: degree programs search form"
+msgid "Search"
+msgstr ""
+
+#: templates/search/no-results.php:2
+msgctxt "backoffice: Search results"
+msgid "No degree programs found"
+msgstr ""
+
+#: templates/single-degree-program/accordion.php:38
+msgctxt "frontoffice: single view"
+msgid "Content-related admission requirements for Master's degree"
+msgstr ""
+
+#: templates/single-degree-program/accordion.php:79
+msgctxt "frontoffice: single view"
+msgid "Degree program combinations & limited degree program combinations"
+msgstr ""
+
+#: templates/single-degree-program/accordion.php:89
+msgctxt "frontoffice: single view"
+msgid "Degree program combinations"
+msgstr ""
+
+#: templates/single-degree-program/accordion.php:104
+msgctxt "frontoffice: single view"
+msgid "Limited degree program combinations"
+msgstr ""
+
+#: templates/single-degree-program/back.php:34
+msgctxt "frontoffice: single view"
+msgid "Back to degree programs"
+msgstr ""
+
+#: templates/single-degree-program/details.php:25
+msgctxt "frontoffice: single view"
+msgid "Area of study"
+msgstr ""
+
+#: templates/single-degree-program/details.php:37
+msgctxt "frontoffice: single view"
+msgid "Duration of studies in semester"
+msgstr ""
+
+#: templates/single-degree-program/details.php:49
+msgctxt "frontoffice: single view"
+msgid "Start of degree program"
+msgstr ""
+
+#: templates/single-degree-program/details.php:61
+msgctxt "frontoffice: single view"
+msgid "Application deadline winter semester"
+msgstr ""
+
+#: templates/single-degree-program/details.php:73
+msgctxt "frontoffice: single view"
+msgid "Application deadline summer semester"
+msgstr ""
+
+#: templates/single-degree-program/details.php:85
+msgctxt "frontoffice: single view"
+msgid "Degree program Fee"
+msgstr ""
+
+#: templates/single-degree-program/details.php:97
+msgctxt "frontoffice: single view"
+msgid "Number of students"
+msgstr ""
+
+#: templates/single-degree-program/details.php:109
+msgctxt "frontoffice: single view"
+msgid "Teaching language"
+msgstr ""
+
+#: templates/single-degree-program/details.php:121
+msgctxt "frontoffice: single view"
+msgid "Language skills"
+msgstr ""
+
+#: templates/single-degree-program/details.php:133
+msgctxt "frontoffice: single view"
+msgid "Language skills for Faculty of Humanities, Social Sciences, and Theology only"
+msgstr ""
+
+#: templates/single-degree-program/details.php:145
+msgctxt "frontoffice: single view"
+msgid "German language skills for international students"
+msgstr ""
+
+#: templates/single-degree-program/details.php:157
+msgctxt "frontoffice: single view"
+msgid "Attributes"
+msgstr ""
+
+#: templates/single-degree-program/details.php:169
+msgctxt "frontoffice: single view"
+msgid "Degree"
+msgstr ""
+
+#: templates/single-degree-program/details.php:181
+msgctxt "frontoffice: single view"
+msgid "Faculty"
+msgstr ""
+
+#: templates/single-degree-program/details.php:193
+msgctxt "frontoffice: single view"
+msgid "Study location"
+msgstr ""
+
+#: templates/single-degree-program/details.php:205
+msgctxt "frontoffice: single view"
+msgid "Subject groups"
+msgstr ""
+
+#: templates/single-degree-program/details.php:217
+msgctxt "frontoffice: single view"
+msgid "Keywords"
+msgstr ""
+
+#: templates/single-degree-program/links.php:23
+msgctxt "frontoffice: single view"
+msgid "Organizational"
+msgstr ""
+
+#: templates/single-degree-program/links.php:44
+msgctxt "frontoffice: single view"
+msgid "Additional Information"
+msgstr ""
+
+#: templates/single-degree-program/links.php:51
+msgctxt "frontoffice: single view"
+msgid "Degree program"
+msgstr ""
+
+#: templates/single-degree-program/links.php:59
+msgctxt "frontoffice: single view"
+msgid "Department/Institute"
+msgstr ""
+
+#: templates/single-degree-program/links.php:77
+msgctxt "frontoffice: single view"
+msgid "Downloads"
+msgstr ""
+
+#: templates/single-degree-program/links.php:84
+msgctxt "frontoffice: single view"
+msgid "Info brochure degree program"
+msgstr ""
+
+#: templates/single-degree-program/links.php:92
+msgctxt "frontoffice: single view"
+msgid "Module handbook"
+msgstr ""
+
+#: templates/single-degree-program/links.php:100
+msgctxt "frontoffice: single view"
+msgid "Degree program and examination regulations"
+msgstr ""
+
+#: templates/single-degree-program/more-information.php:22
+msgctxt "frontoffice: single view"
+msgid "Do you need help or more information?"
+msgstr ""
+
+#: templates/single-degree-program/more-information.php:44
+msgctxt "frontoffice: single view"
+msgid "Contact us"
+msgstr ""

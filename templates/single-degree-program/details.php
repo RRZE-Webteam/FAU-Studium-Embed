@@ -35,7 +35,7 @@ $details = renderComponent(
         [
             'icon' => 'standard-duration',
             'term' => _x(
-                'Durations of studies in semester',
+                'Duration of studies in semester',
                 'frontoffice: single view',
                 'fau-degree-program-output'
             ),

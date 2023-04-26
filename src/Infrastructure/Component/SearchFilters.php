@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Fau\DegreeProgram\Output\Infrastructure\Component;
 
 use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
-use Fau\DegreeProgram\Output\Infrastructure\Component\DegreeProgramsSearch;
 
 /**
  * @psalm-import-type OutputType from DegreeProgramsSearch

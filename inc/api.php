@@ -6,8 +6,6 @@ namespace Fau\DegreeProgram\Output;
 
 use Fau\DegreeProgram\Output\Infrastructure\Component\Component;
 
-use function Fau\DegreeProgram\Output\plugin;
-
 function renderComponent(?Component ...$components): string
 {
     $result = '';

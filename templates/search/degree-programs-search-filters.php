@@ -3,11 +3,7 @@
 declare(strict_types=1);
 
 use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
-use Fau\DegreeProgram\Output\Infrastructure\Component\Component;
-use Fau\DegreeProgram\Output\Infrastructure\Component\Icon;
 use Fau\DegreeProgram\Output\Infrastructure\Component\DegreeProgramsSearch;
-
-use function Fau\DegreeProgram\Output\renderComponent;
 
 /**
  * @psalm-var array{

@@ -98,7 +98,7 @@ $downloads = renderComponent(
                 ],
                 [
                     'link_text' => _x(
-                        'Study and examination regulations',
+                        'Degree program and examination regulations',
                         'frontoffice: single view',
                         'fau-degree-program-output'
                     ),

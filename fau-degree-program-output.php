@@ -9,9 +9,9 @@
  * Author URI:  https://inpsyde.com/
  * Update URI:  false
  * GitHub Plugin URI: RRZE-Webteam/FAU-Studium-Embed
- * Primary Branch: main
- * Release Assets: true
  * License:     GPL-2.0-or-later
+ * Text Domain: fau-degree-program-output
+ * Domain Path: /languages
  */
 
 declare(strict_types=1);
@@ -38,6 +38,7 @@ use Fau\DegreeProgram\Output\Infrastructure\Rewrite\RewriteModule;
 use Fau\DegreeProgram\Output\Infrastructure\Search\SearchModule;
 use Fau\DegreeProgram\Output\Infrastructure\Shortcode\ShortcodeModule;
 use Fau\DegreeProgram\Output\Infrastructure\Template\TemplateModule;
+use Fau\DegreeProgram\Output\Infrastructure\TranslationModule;
 use Inpsyde\Modularity\Package;
 use Inpsyde\Modularity\Properties\PluginProperties;
 use RuntimeException;
@@ -74,7 +75,7 @@ function errorNotice(string $message): void
  */
 function handleException(Throwable $throwable): void
 {
-    do_action('inpsyde.fau-degree-program-output.critical', $throwable);
+    do_action('fau.degree-program-output.critical', $throwable);
 
     errorNotice(
         sprintf(
@@ -126,6 +127,7 @@ function initialize(): void
 
         // Initialize plugin
         plugin()->boot(
+            new TranslationModule(),
             new ContentModule(),
             new RewriteModule(),
             new RepositoryModule(),
