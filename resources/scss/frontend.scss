@@ -18,13 +18,14 @@
 
 // 5. Components
 @use 'components/search/search-form';
-@use 'components/search/search-form-filters';
 @use 'components/search/degree-programs-grid';
 @use 'components/search/degree-programs-list';
 @use 'components/search/no-results';
-@use 'components/search/active-filters';
-@use 'components/search/filter-choices';
-@use 'components/search/filter-dropdown';
+@use 'components/search/filters/active-filters';
+@use 'components/search/filters/search-form-filters';
+@use 'components/search/filters/filter-checkbox';
+@use 'components/search/filters/filter-dropdown';
+@use 'components/search/filters/advanced-filters';
 @use 'components/single-degree-program' as degree-program-component;
 @use 'components/link';
 

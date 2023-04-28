@@ -101,17 +101,6 @@ final class DegreeProgramsSearch implements RenderableComponent
     }
 
     /**
-     * @return array<Filter>
-     */
-    private function appliedFilters(Filter ...$filters): array
-    {
-        return array_filter(
-            $filters,
-            static fn ($filter) => !!$filter->value(),
-        );
-    }
-
-    /**
      * @param array<string> $visibleFilterNames
      * @return array<string, mixed>
      */

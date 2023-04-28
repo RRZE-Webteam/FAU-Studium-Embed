@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
-use Fau\DegreeProgram\Output\Application\Filter\FilterView;
 use Fau\DegreeProgram\Output\Infrastructure\Component\Component;
 use Fau\DegreeProgram\Output\Infrastructure\Component\Icon;
 
@@ -25,12 +24,11 @@ use function Fau\DegreeProgram\Output\renderComponent;
 
 ?>
 
-<div id="fau_applied_filters" class="c-degree-programs-search-filters-active-filters">
-    <ul class="c-degree-programs-search-filters-active-filters__list">
+<div id="fau_applied_filters" class="c-active-search-filters">
+    <nav class="c-active-search-filters__list">
         <?php foreach ($activeFilters as $filter) : ?>
-        <li>
             <a
-                class="c-degree-programs-search-filters-active-filters__item"
+                class="c-active-search-filters__item"
                 href="<?= esc_url($filter['url']) ?>"
             >
                 <?= renderComponent(
@@ -41,13 +39,12 @@ use function Fau\DegreeProgram\Output\renderComponent;
                 ) ?>
                 <?= esc_html($filter['label']) ?>
             </a>
-        </li>
         <?php endforeach; ?>
-    </ul>
+    </nav>
 
     <a
         href="<?= esc_url($removeAllUrl) ?>"
-        class="c-degree-programs-search-filters-active-filters__clear-all-button"
+        class="c-active-search-filters__clear-all-button"
     >
         <?= renderComponent(
             new Component(

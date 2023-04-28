@@ -27,21 +27,25 @@ if ($selectedValues) {
     $selectedCount = is_array($selectedValues) ? count($selectedValues) : 1;
 }
 
+$labelId = 'label_' . wp_generate_uuid4();
+$buttonId = 'button_' . wp_generate_uuid4();
+$contentId = 'content_' . wp_generate_uuid4();
+
 ?>
 
 <div
-    class="c-filter-dropdown"
+    class="c-filter-dropdown fau-dropdown"
     role="group"
-    aria-labelledby="<?= esc_attr($filter->id()) ?>_label"
+    aria-labelledby="<?= esc_attr($labelId) ?>"
     aria-expanded="false"
 >
     <div
-        class="c-filter-dropdown__header"
+        class="c-filter-dropdown__header fau-dropdown__toggle"
         role="button"
-        id="<?= esc_attr($filter->id()) ?>_button"
-        aria-controls="<?= esc_attr($filter->id()) ?>_content"
+        id="<?= esc_attr($buttonId) ?>"
+        aria-controls="<?= esc_attr($contentId) ?>"
     >
-        <div class="c-filter-dropdown__label" id="<?= esc_attr($filter->id()) ?>_label">
+        <div class="c-filter-dropdown__label" id="<?= esc_attr($labelId) ?>">
             <?= esc_html($filter->label()) ?>
         </div>
 
@@ -61,7 +65,7 @@ if ($selectedValues) {
         </span>
     </div>
 
-    <div class="c-filter-dropdown__items" id="<?= esc_attr($filter->id()) ?>_content">
+    <div class="c-filter-dropdown__content fau-dropdown__content" id="<?= esc_attr($contentId) ?>">
         <?= renderComponent(
             new Component(
                 MultichoiceFilter::class,

@@ -104,6 +104,9 @@ final class ComponentModule implements ServiceModule
                 $container->get(TaxonomiesList::class),
                 $container->get(CurrentRequest::class),
             ),
+            AdvancedFilters::class => static fn(ContainerInterface $container) => new AdvancedFilters(
+                $container->get(Renderer::class),
+            ),
         ];
     }
 }

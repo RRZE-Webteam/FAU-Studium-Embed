@@ -1,0 +1,55 @@
+@use '../../../abstracts/config';
+
+.c-advanced-filters {
+  padding: 0 15px;
+
+  @include config.media('>tablet') {
+    padding: 21px 18px;
+    columns: 200px;
+  }
+
+  .c-advanced-filter-item {
+    &__heading {
+      padding: 0;
+
+      .c-accordion-item {
+        &__button {
+          background: none;
+          border: none;
+          outline: none;
+          color: config.color('button', 'bg');
+          display: block;
+          width: 100%;
+          text-align: left;
+          padding: 5px 0;
+        }
+
+        &__icon {
+          fill: config.color('button', 'bg');
+          width: 1rem;
+          height: 1rem;
+          margin-left: 11px;
+        }
+      }
+    }
+
+    @include config.media('>tablet') {
+      &__heading {
+        pointer-events: none;
+
+        .c-accordion-item__icon {
+          display: none;
+        }
+      }
+
+      .c-accordion-item__content {
+        display: block !important;
+      }
+    }
+
+    @include config.media('>tablet') {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+  }
+}

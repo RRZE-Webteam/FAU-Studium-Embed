@@ -71,13 +71,6 @@ final class ShortcodeAttributesNormalizer
      */
     private function search(array $attributes): array
     {
-        /** @var array<string, mixed>|null */
-        static $newAttributes = null;
-
-        if (is_array($newAttributes)) {
-            return $newAttributes;
-        }
-
         /** @var string[] */
         $listOfSupportedFilters = array_keys(FilterFactory::SUPPORTED_FILTERS);
 
@@ -109,9 +102,7 @@ final class ShortcodeAttributesNormalizer
         $attributes['visible_filters'] = $visibleFilters;
         $attributes['pre_applied_filters'] = $preAppliedFilters;
 
-        $newAttributes = $attributes;
-
-        return $newAttributes;
+        return $attributes;
     }
 
     /** @return array<int> */

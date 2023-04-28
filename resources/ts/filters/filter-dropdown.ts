@@ -1,6 +1,7 @@
-const DROPDOWN_SELECTOR = '.c-filter-dropdown';
-const DROPDOWN_TOGGLE_SELECTOR = '.c-filter-dropdown__header';
-const DROPDOWN_CONTENT_SELECTOR = '.c-filter-dropdown__items';
+const DROPDOWN_SELECTOR = '.fau-dropdown';
+const DROPDOWN_TOGGLE_SELECTOR = '.fau-dropdown__toggle';
+const DROPDOWN_CONTENT_SELECTOR = '.fau-dropdown__content';
+const CLICKAWAY_WINDOW_WIDTH_THRESHOLD = 768; // close on click away only works on screen sizes above this value
 
 const closeDropDown = (dropdown: HTMLElement) => {
     dropdown.setAttribute('aria-expanded', 'false');
@@ -30,7 +31,8 @@ const registerClickListeners = () => {
 
             if (
                 dropdown.getAttribute('aria-expanded') === 'true' &&
-                !dropdown.contains(event.target as Node)
+                !dropdown.contains(event.target as Node) &&
+                window.innerWidth > CLICKAWAY_WINDOW_WIDTH_THRESHOLD
             ) {
                 closeDropDown(dropdown);
             }
