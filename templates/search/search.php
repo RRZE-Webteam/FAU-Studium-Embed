@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Fau\DegreeProgram\Common\Application\DegreeProgramViewTranslated;
 use Fau\DegreeProgram\Common\Application\Repository\PaginationAwareCollection;
 use Fau\DegreeProgram\Output\Application\Filter\FilterView;
+use Fau\DegreeProgram\Output\Infrastructure\Component\ActiveFilters;
 use Fau\DegreeProgram\Output\Infrastructure\Component\Component;
 use Fau\DegreeProgram\Output\Infrastructure\Component\DegreeProgramsCollection;
 use Fau\DegreeProgram\Output\Infrastructure\Component\SearchFilters;
@@ -18,6 +19,7 @@ use function Fau\DegreeProgram\Output\renderComponent;
  *     filters: array<FilterView>,
  *     output: 'list' | 'tiles',
  *     activeFilters: array<FilterView>,
+ *     advancedFilters: array<FilterView>,
  * } $data
  * @var array $data
  */
@@ -27,6 +29,7 @@ use function Fau\DegreeProgram\Output\renderComponent;
     'filters' => $filters,
     'output' => $output,
     'activeFilters' => $activeFilters,
+    'advancedFilters' => $advancedFilters,
 ] = $data;
 
 ?>
@@ -49,11 +52,21 @@ use function Fau\DegreeProgram\Output\renderComponent;
 
     <?= renderComponent(
         new Component(
+            ActiveFilters::class,
+            [
+                'activeFilters' => $activeFilters,
+            ],
+        ),
+    ) ?>
+
+    <?= renderComponent(
+        new Component(
             SearchFilters::class,
             [
                 'filters' => $filters,
                 'output' => $output,
                 'activeFilters' => $activeFilters,
+                'advancedFilters' => $advancedFilters,
             ]
         )
     ) ?>

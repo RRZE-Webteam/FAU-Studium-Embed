@@ -1,4 +1,4 @@
-const FILTER_SELECTOR = '.c-filter-control';
+const FILTER_SELECTOR = '.c-filter-checkbox';
 
 const addQueryParam = (key: string, value: string) => {
     const params = new URLSearchParams(window.location.search);

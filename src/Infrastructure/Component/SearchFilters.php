@@ -14,12 +14,15 @@ use Fau\DegreeProgram\Output\Infrastructure\Component\DegreeProgramsSearch;
  *     filters: array<FilterView>,
  *     output: OutputType,
  *     activeFilters: array<FilterView>,
+ *     advancedFilters: array<FilterView>,
  * }
  */
 class SearchFilters implements RenderableComponent
 {
     private const DEFAULT_ATTRIBUTES = [
         'filters' => [],
+        'activeFilters' => [],
+        'advancedFilters' => [],
         'output' => 'tiles',
     ];
 
@@ -30,14 +33,15 @@ class SearchFilters implements RenderableComponent
 
     public function render(array $attributes = self::DEFAULT_ATTRIBUTES): string
     {
-        /** @var SearchFiltersAttributes $attributes */
+        /** @psalm-var SearchFiltersAttributes $attributes */
         $attributes = wp_parse_args($attributes, self::DEFAULT_ATTRIBUTES);
 
         return $this->renderer->render(
-            'search/search-filters',
+            'search/filter/search-filters',
             [
                 'filters' => $attributes['filters'],
                 'activeFilters' => $attributes['activeFilters'],
+                'advancedFilters' => $attributes['advancedFilters'],
                 'output' => $attributes['output'],
                 'outputModeUrls' => $this->outputModeUrls(),
             ]
