@@ -226,6 +226,7 @@ class ComposerStaticInit8d286870ef9262dc7134d60e1d1777bd
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\Accordion' => __DIR__ . '/../..' . '/src/Infrastructure/Component/Accordion.php',
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\AccordionItem' => __DIR__ . '/../..' . '/src/Infrastructure/Component/AccordionItem.php',
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\ActiveFilters' => __DIR__ . '/../..' . '/src/Infrastructure/Component/ActiveFilters.php',
+        'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\AdvancedFilters' => __DIR__ . '/../..' . '/src/Infrastructure/Component/AdvancedFilters.php',
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\Combinations' => __DIR__ . '/../..' . '/src/Infrastructure/Component/Combinations.php',
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\Component' => __DIR__ . '/../..' . '/src/Infrastructure/Component/Component.php',
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\ComponentFactory' => __DIR__ . '/../..' . '/src/Infrastructure/Component/ComponentFactory.php',
