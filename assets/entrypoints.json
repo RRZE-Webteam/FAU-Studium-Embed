@@ -136,6 +136,14 @@
         "../svg/search.asset.php"
       ]
     },
+    "svg/settings": {
+      "js": [
+        "../svg/settings.js"
+      ],
+      "php": [
+        "../svg/settings.asset.php"
+      ]
+    },
     "svg/sort": {
       "js": [
         "../svg/sort.js"

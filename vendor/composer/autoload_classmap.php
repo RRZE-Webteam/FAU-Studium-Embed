@@ -146,6 +146,7 @@ return array(
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\Accordion' => $baseDir . '/src/Infrastructure/Component/Accordion.php',
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\AccordionItem' => $baseDir . '/src/Infrastructure/Component/AccordionItem.php',
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\ActiveFilters' => $baseDir . '/src/Infrastructure/Component/ActiveFilters.php',
+    'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\AdvancedFilters' => $baseDir . '/src/Infrastructure/Component/AdvancedFilters.php',
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\Combinations' => $baseDir . '/src/Infrastructure/Component/Combinations.php',
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\Component' => $baseDir . '/src/Infrastructure/Component/Component.php',
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\ComponentFactory' => $baseDir . '/src/Infrastructure/Component/ComponentFactory.php',
