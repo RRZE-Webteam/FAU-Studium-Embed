@@ -1,0 +1,43 @@
+@use 'abstracts/config';
+@use 'base/base';
+
+.wp-embed-heading,
+.wp-embed-footer {
+  display: none;
+}
+
+@import 'components/link';
+
+.c-single-degree-program {
+  @import 'components/single-degree-program/teaser-image';
+  @import 'components/single-degree-program/heading';
+  @import 'components/single-degree-program/entry-text';
+  @import 'components/single-degree-program/details';
+  @import 'components/single-degree-program/about';
+  @import 'components/single-degree-program/acccordion';
+  @import 'components/single-degree-program/combinations';
+  @import 'components/single-degree-program/more-information';
+  @import 'components/single-degree-program/links';
+
+  .l-container {
+    @extend %container-paddings;
+  }
+}
+
+.l-details-wrapper.l-details-wrapper--has-application-links:not(.l-details-wrapper--has-details) .l-application-links.c-single-degree-program,
+.l-details-wrapper.l-details-wrapper--has-details.l-details-wrapper--has-application-links,
+.c-accordion {
+    max-width: unset!important;
+}
+
+
+// Hide unsupported elements
+.c-single-degree-program__video,
+.c-single-degree-program__featured-video,
+.fau-icon {
+  display: none !important;
+}
+
+.c-single-degree-program .c-detail {
+  padding-left: 0;
+}
