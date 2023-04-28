@@ -14,11 +14,7 @@ final class EnvironmentDetector
             return $result;
         }
 
-        if (!function_exists('is_plugin_active')) {
-            include_once ABSPATH . 'wp-admin/includes/plugin.php';
-        }
-
-        $result = is_plugin_active('fau-degree-program/fau-degree-program.php');
+        $result = function_exists('\Fau\DegreeProgram\plugin');
 
         return $result;
     }
