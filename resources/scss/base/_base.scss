@@ -13,19 +13,19 @@
   @extend %container-paddings;
 
   @include config.media('>tablet') {
-    width: 750px;
+    max-width: 750px;
   }
 
   @include config.media('>tablet-lg') {
-    width: 970px;
+    max-width: 970px;
   }
 
   @include config.media('>laptop') {
-    width: 1200px;
+    max-width: 1200px;
   }
 
   @include config.media('>desktop') {
-    width: 1400px;
+    max-width: 1400px;
   }
 }
 

@@ -103,7 +103,7 @@ final class ApiClient
         );
     }
 
-    private static function apiHost(): string
+    public static function apiHost(): string
     {
         if (defined('FAU_DEGREE_PROGRAM_API_HOST')) {
             return (string) FAU_DEGREE_PROGRAM_API_HOST;

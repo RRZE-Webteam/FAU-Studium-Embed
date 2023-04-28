@@ -7,11 +7,13 @@ namespace Fau\DegreeProgram\Output\Infrastructure\Template;
 use Fau\DegreeProgram\Common\Application\Repository\DegreeProgramViewRepository;
 use Fau\DegreeProgram\Output\Application\OriginalDegreeProgramViewRepository;
 use Fau\DegreeProgram\Output\Infrastructure\Component\SingleDegreeProgram;
+use Fau\DegreeProgram\Output\Infrastructure\Embed\PostDataFilter;
 use Fau\DegreeProgram\Output\Infrastructure\Environment\EnvironmentDetector;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\CurrentRequest;
 use Inpsyde\Modularity\Module\ExecutableModule;
 use Inpsyde\Modularity\Module\ModuleClassNameIdTrait;
 use Inpsyde\Modularity\Module\ServiceModule;
+use Inpsyde\WpContext;
 use Psr\Container\ContainerInterface;
 
 final class TemplateModule implements ServiceModule, ExecutableModule
@@ -33,11 +35,18 @@ final class TemplateModule implements ServiceModule, ExecutableModule
                 $container->get(DegreeProgramViewRepository::class),
                 $container->get(CurrentRequest::class),
             ),
+            PostDataFilter::class => static fn(ContainerInterface $container) => new PostDataFilter(
+                $container->get(DegreeProgramViewRepository::class),
+                $container->get(CurrentRequest::class),
+            ),
         ];
     }
 
     public function run(ContainerInterface $container): bool
     {
+        if (!WpContext::determine()->isFrontoffice()) {
+            return false;
+        }
 
         add_filter(
             'the_content',

@@ -28,6 +28,7 @@ use Fau\DegreeProgram\Output\Infrastructure\CliModule;
 use Fau\DegreeProgram\Output\Infrastructure\Component\ComponentModule;
 use Fau\DegreeProgram\Output\Infrastructure\Content\ContentModule;
 use Fau\DegreeProgram\Output\Infrastructure\Dashboard\AdminBarModule;
+use Fau\DegreeProgram\Output\Infrastructure\Embed\EmbedModule;
 use Fau\DegreeProgram\Output\Infrastructure\Environment\EnvironmentModule;
 use Fau\DegreeProgram\Output\Infrastructure\EventDispatcherModule;
 use Fau\DegreeProgram\Output\Infrastructure\Filter\FilterModule;
@@ -147,6 +148,7 @@ function initialize(): void
             new TemplateModule(),
             new AssetsModule(),
             new FilterModule(),
+            new EmbedModule(),
         );
     } catch (Throwable $throwable) {
         handleException($throwable);
