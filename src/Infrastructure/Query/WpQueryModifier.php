@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Fau\DegreeProgram\Output\Infrastructure\Query;
 
+use Fau\DegreeProgram\Common\Domain\DegreeProgram;
+use Fau\DegreeProgram\Common\Domain\MultilingualString;
 use Fau\DegreeProgram\Common\Infrastructure\Content\PostType\DegreeProgramPostType;
 use WP_Query;
 
@@ -13,8 +15,15 @@ final class WpQueryModifier
      * Mapped `orderby` keywords to meta keys
      */
     private const SUPPORTED_ORDERBY = [
-        'degree_en' => 'degree_en',
-        'degree_de' => 'degree_de',
+        DegreeProgram::TITLE . '_' . MultilingualString::EN,
+        DegreeProgram::DEGREE . '_' . MultilingualString::EN,
+        DegreeProgram::DEGREE . '_' . MultilingualString::DE,
+        DegreeProgram::START . '_' . MultilingualString::EN,
+        DegreeProgram::START . '_' . MultilingualString::DE,
+        DegreeProgram::LOCATION . '_' . MultilingualString::EN,
+        DegreeProgram::LOCATION . '_' . MultilingualString::DE,
+        DegreeProgram::ADMISSION_REQUIREMENTS . '_' . MultilingualString::EN,
+        DegreeProgram::ADMISSION_REQUIREMENTS . '_' . MultilingualString::DE,
     ];
 
     /**

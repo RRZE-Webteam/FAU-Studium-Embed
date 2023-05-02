@@ -85,6 +85,7 @@ final class ComponentModule implements ServiceModule
             DegreeProgramsCollection::class => static fn(ContainerInterface $container) => new DegreeProgramsCollection(
                 $container->get(Renderer::class),
                 $container->get(ReferrerUrlHelper::class),
+                $container->get(CurrentRequest::class),
             ),
             DegreeProgramDetail::class => static fn(ContainerInterface $container) => new DegreeProgramDetail(
                 $container->get(Renderer::class),

@@ -6,8 +6,10 @@ namespace Fau\DegreeProgram\Output\Infrastructure\Component;
 
 use Fau\DegreeProgram\Common\Application\DegreeProgramViewTranslated;
 use Fau\DegreeProgram\Common\Application\Repository\PaginationAwareCollection;
+use Fau\DegreeProgram\Common\Domain\DegreeProgram;
 use Fau\DegreeProgram\Common\Domain\MultilingualString;
 use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
+use Fau\DegreeProgram\Output\Infrastructure\Rewrite\CurrentRequest;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\ReferrerUrlHelper;
 
 /**
@@ -22,6 +24,7 @@ class DegreeProgramsCollection implements RenderableComponent
     public function __construct(
         private Renderer $renderer,
         private ReferrerUrlHelper $referrerUrlHelper,
+        private CurrentRequest $currentRequest,
     ) {
     }
 
@@ -34,19 +37,84 @@ class DegreeProgramsCollection implements RenderableComponent
             return $this->renderer->render('search/no-results');
         }
 
-        $templateName = $attributes['output'] === 'list'
-            ? 'search/degree-programs-list'
-            : 'search/degree-programs-grid';
-
-        $currentOrder = filter_input(INPUT_GET, 'order', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
         return $this->renderer->render(
-            $templateName,
+            'search/collection',
             [
                 'collection' => $attributes['collection'],
-                'currentOrder' => $currentOrder,
+                'currentOrder' => $this->currentRequest->orderby(),
                 'referrerUrlHelper' => $this->referrerUrlHelper,
+                'output' => $attributes['output'],
+                'orderbyOptions' => $this->orderByOptions(),
             ]
         );
+    }
+
+    /**
+     * phpcs:disable Inpsyde.CodeQuality.FunctionLength.TooLong
+     */
+    private function orderByOptions(): array
+    {
+        return [
+            DegreeProgram::TITLE => [
+                'label_asc' => _x(
+                    'Sort by title',
+                    'backoffice: Sort by options',
+                    'fau-degree-program-output',
+                ),
+                'label_desc' => _x(
+                    'Sort by title Z-A',
+                    'backoffice: Sort by options',
+                    'fau-degree-program-output',
+                ),
+            ],
+            DegreeProgram::DEGREE => [
+                'label_asc' => _x(
+                    'Sort by degree',
+                    'backoffice: Sort by options',
+                    'fau-degree-program-output',
+                ),
+                'label_desc' => _x(
+                    'Sort by degree Z-A',
+                    'backoffice: Sort by options',
+                    'fau-degree-program-output',
+                ),
+            ],
+            DegreeProgram::START => [
+                'label_asc' => _x(
+                    'Sort by semester',
+                    'backoffice: Sort by options',
+                    'fau-degree-program-output',
+                ),
+                'label_desc' => _x(
+                    'Sort by semester Z-A',
+                    'backoffice: Sort by options',
+                    'fau-degree-program-output',
+                ),
+            ],
+            DegreeProgram::LOCATION => [
+                'label_asc' => _x(
+                    'Sort by study location',
+                    'backoffice: Sort by options',
+                    'fau-degree-program-output',
+                ),
+                'label_desc' => _x(
+                    'Sort by study location Z-A',
+                    'backoffice: Sort by options',
+                    'fau-degree-program-output',
+                ),
+            ],
+            DegreeProgram::ADMISSION_REQUIREMENTS => [
+                'label_asc' => _x(
+                    'Sort by admission requirement',
+                    'backoffice: Sort by options',
+                    'fau-degree-program-output',
+                ),
+                'label_desc' => _x(
+                    'Sort by admission requirement Z-A',
+                    'backoffice: Sort by options',
+                    'fau-degree-program-output',
+                ),
+            ],
+        ];
     }
 }

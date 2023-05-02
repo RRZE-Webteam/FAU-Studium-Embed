@@ -13,6 +13,7 @@ use Fau\DegreeProgram\Common\Application\Filter\SemesterFilter;
 use Fau\DegreeProgram\Common\Application\Filter\StudyLocationFilter;
 use Fau\DegreeProgram\Common\Application\Filter\SubjectGroupFilter;
 use Fau\DegreeProgram\Common\Application\Filter\TeachingLanguageFilter;
+use Fau\DegreeProgram\Common\Application\Repository\CollectionCriteria;
 use Fau\DegreeProgram\Common\Domain\MultilingualString;
 
 /**
@@ -21,6 +22,8 @@ use Fau\DegreeProgram\Common\Domain\MultilingualString;
 final class CurrentRequest
 {
     public const SEARCH_QUERY_PARAM = SearchKeywordFilter::KEY;
+    public const ORDERBY_QUERY_PARAM = 'orderby';
+    public const ORDER_QUERY_PARAM = 'order';
     public const QUERY_PARAMS_SANITIZATION_FILTERS = [
         self::SEARCH_QUERY_PARAM => FILTER_SANITIZE_SPECIAL_CHARS,
         AreaOfStudyFilter::KEY => [
@@ -118,5 +121,28 @@ final class CurrentRequest
         }
 
         return $result;
+    }
+
+    /**
+     * @return array{string, 'asc' | 'desc'}
+     */
+    public function orderby(): array
+    {
+        $orderby = (string) filter_input(
+            INPUT_GET,
+            self::ORDERBY_QUERY_PARAM,
+            FILTER_SANITIZE_SPECIAL_CHARS
+        );
+        $order = filter_input(
+            INPUT_GET,
+            self::ORDER_QUERY_PARAM,
+            FILTER_SANITIZE_SPECIAL_CHARS
+        );
+
+        if (!in_array($orderby, CollectionCriteria::SORTABLE_PROPERTIES, true)) {
+            return CollectionCriteria::DEFAULT_ORDERBY;
+        }
+
+        return [$orderby, $order === 'asc' ? 'asc' : 'desc'];
     }
 }

@@ -18,8 +18,8 @@
 
 // 5. Components
 @use 'components/search/search-form';
-@use 'components/search/degree-programs-grid';
-@use 'components/search/degree-programs-list';
+@use 'components/search/collection';
+@use 'components/search/preview-item';
 @use 'components/search/no-results';
 @use 'components/search/filters/active-filters';
 @use 'components/search/filters/search-form-filters';

@@ -13,6 +13,7 @@ use function Fau\DegreeProgram\Output\renderComponent;
  *     selected: boolean,
  *     label: string,
  *     icon: string,
+ *     mode: 'tiles' | 'list',
  * }
  * @var array $data
  */
@@ -22,6 +23,7 @@ use function Fau\DegreeProgram\Output\renderComponent;
     'selected' => $selected,
     'label' => $label,
     'icon' => $icon,
+    'mode' => $mode,
 ] = $data;
 
 ?>
@@ -29,7 +31,8 @@ use function Fau\DegreeProgram\Output\renderComponent;
 <a
     role="button"
     href="<?= esc_url($url) ?>"
-    class="<?= esc_attr($selected ? 'is-active' : '') ?>"
+    class="<?= esc_attr($selected ? '-active' : '') ?>"
+    data-mode="<?= esc_attr($mode) ?>"
     aria-selected="<?= esc_attr($selected ? 'true' : 'false') ?>"
 >
     <span class="screen-reader-text">
