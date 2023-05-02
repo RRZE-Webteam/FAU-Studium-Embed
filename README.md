@@ -46,8 +46,9 @@ The plugin fetches degree program data from https://meinstudium.fau.de. To chang
 On the providing website, the "FAU Degree Program" plugin is installed for managing the degree programs.
 
 The plugin provides the shortcode `[fau-studium]` with two main variations:
-1. `[fau-studium display="search"]` to display the degree programs overview
-2. `[fau-studium display="degree-program" id="123"]` to display 
+1. `[fau-studium display="search"]` to display
+the degree programs overview ([documentation](./docs/degree_programs_search_shortcode.md))
+2. `[fau-studium display="degree-program" id="123"]` to display
 a single degree program ([documentation](./docs/single_degree_program_shortcode.md))
 
 
