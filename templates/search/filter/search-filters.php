@@ -89,11 +89,12 @@ $contentId = 'content_' . wp_generate_uuid4();
                     'fau-degree-program-output'
                 ) ?>
             </div>
-            <div class="search-filter__options">
+            <div class="search-filter__output_modes">
                 <?php // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
                 <?= $renderer->render('search/output-mode-toggle', [
                     'url' => $outputModeUrls[DegreeProgramsSearch::OUTPUT_TILES],
                     'selected' => $output === DegreeProgramsSearch::OUTPUT_TILES,
+                    'mode' => DegreeProgramsSearch::OUTPUT_TILES,
                     'label' => esc_html_x(
                         'Switch to grid view',
                         'frontoffice: degree programs search form',
@@ -104,6 +105,7 @@ $contentId = 'content_' . wp_generate_uuid4();
                 <?= $renderer->render('search/output-mode-toggle', [
                     'url' => $outputModeUrls[DegreeProgramsSearch::OUTPUT_LIST],
                     'selected' => $output === DegreeProgramsSearch::OUTPUT_LIST,
+                    'mode' => DegreeProgramsSearch::OUTPUT_LIST,
                     'label' => esc_html_x(
                         'Switch to list view',
                         'frontoffice: degree programs search form',

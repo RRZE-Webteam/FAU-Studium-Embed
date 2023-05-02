@@ -77,7 +77,8 @@ final class DegreeProgramsSearch implements RenderableComponent
                 ->addFilter(
                     ...$preAppliedFilters,
                     ...$userAppliedFilters,
-                ),
+                )
+                ->withOrderby(...$this->currentRequest->orderby()),
             $attributes['lang'],
         );
 
@@ -132,5 +133,15 @@ final class DegreeProgramsSearch implements RenderableComponent
         }
 
         return $outputMode;
+    }
+
+    private function criteriaWithOrderby(CollectionCriteria $criteria): CollectionCriteria
+    {
+        $currentOrderBy = $this->currentRequest->orderby();
+
+        return $criteria->withOrderby(
+            $currentOrderBy[0],
+            $currentOrderBy[1]
+        );
     }
 }

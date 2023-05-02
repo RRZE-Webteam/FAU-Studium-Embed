@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Fau\DegreeProgram\Output\Infrastructure\Search;
 
+use Fau\DegreeProgram\Common\Application\AdmissionRequirementsTranslated;
+use Fau\DegreeProgram\Common\Application\AdmissionRequirementTranslated;
 use Fau\DegreeProgram\Common\Application\DegreeProgramViewRaw;
 use Fau\DegreeProgram\Common\Application\Repository\CollectionCriteria;
 use Fau\DegreeProgram\Common\Application\Repository\DegreeProgramCollectionRepository;
@@ -62,12 +64,53 @@ final class FilterablePostsMetaUpdater
         /** @var DegreeProgramViewRaw $rawView */
         foreach ($rawCollection as $rawView) {
             foreach (array_keys(MultilingualString::LANGUAGES) as $code) {
-                update_post_meta(
-                    $rawView->id()->asInt(),
-                    DegreeProgram::DEGREE . '_' . $code,
-                    $rawView->degree()->name()->asString($code)
-                );
+                $this->updateForLanguage($code, $rawView);
             }
         }
+    }
+
+    /**
+     * @psalm-param LanguageCodes $languageCode
+     */
+    private function updateForLanguage(string $languageCode, DegreeProgramViewRaw $rawView): void
+    {
+        update_post_meta(
+            $rawView->id()->asInt(),
+            DegreeProgram::DEGREE . '_' . $languageCode,
+            $rawView->degree()->name()->asString($languageCode)
+        );
+
+        /** @var ?MultilingualString $start */
+        $start = $rawView->start()->offsetGet(0);
+
+        if ($start) {
+            update_post_meta(
+                $rawView->id()->asInt(),
+                DegreeProgram::START . '_' . $languageCode,
+                $start->asString($languageCode),
+            );
+        }
+
+        update_post_meta(
+            $rawView->id()->asInt(),
+            DegreeProgram::LOCATION . '_' . $languageCode,
+            $rawView->location()->offsetGet(0)->asString($languageCode)
+        );
+
+        $admissionRequirement = AdmissionRequirementsTranslated::fromAdmissionRequirements(
+            $rawView->admissionRequirements(),
+            $languageCode,
+        )
+            ->mainLink();
+
+        if (!$admissionRequirement instanceof AdmissionRequirementTranslated) {
+            return;
+        }
+
+        update_post_meta(
+            $rawView->id()->asInt(),
+            DegreeProgram::ADMISSION_REQUIREMENTS . '_' . $languageCode,
+            $admissionRequirement->name()
+        );
     }
 }

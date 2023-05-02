@@ -7,6 +7,7 @@ namespace Fau\DegreeProgram\Output\Infrastructure\Template;
 use Fau\DegreeProgram\Common\Infrastructure\Content\PostType\DegreeProgramPostType;
 use Fau\DegreeProgram\Output\Infrastructure\Component\SingleDegreeProgram;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\CurrentRequest;
+use Inpsyde\WpContext;
 use WP_Post;
 
 final class SingleDegreeProgramContentFilter

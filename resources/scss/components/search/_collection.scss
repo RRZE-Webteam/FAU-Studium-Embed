@@ -1,0 +1,112 @@
+@use '../../abstracts/config';
+
+.c-degree-programs-collection {
+  margin: 0;
+
+  &.-list {
+    @include config.media('>tablet-lg') {
+      display: table;
+      width: 100%;
+      border-spacing: 0 10px;
+    }
+  }
+
+  &.-tiles {
+    @include config.media('>tablet') {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px 9px;
+    }
+
+    @include config.media('>tablet-lg') {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    @include config.media('>laptop') {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+
+  &__header {
+    display: none;
+    list-style: none;
+    background-color: config.color('grey', 'light');
+    padding: 12px 15px;
+
+    &.-mobile {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 10px;
+
+      @include config.when-inside('.c-degree-programs-collection.-tiles') {
+        @include config.media('>tablet') {
+          display: none;
+        }
+      }
+    }
+
+    @include config.when-inside('.c-degree-programs-collection.-list') {
+      @include config.media('>tablet-lg') {
+        display: table-row;
+
+        &.-mobile {
+          display: none;
+        }
+      }
+    }
+
+    .c-sort-selector {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      box-shadow: none;
+
+      select {
+        appearance: none;
+        background: none;
+        border: none;
+        outline: none !important;
+        text-align: right;
+      }
+
+      svg.fau-icon {
+        width: 1rem;
+        height: 1rem;
+        fill: config.color('button', 'bg');
+      }
+    }
+  }
+
+  &__header-item {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 12px 15px;
+
+    &.-thumbnail {
+      white-space: nowrap;
+      max-width: 80px;
+    }
+
+    &.-title {
+      max-width: 400px;
+    }
+  }
+
+  &__sort-link {
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    box-shadow: none !important;
+    text-decoration: none !important;
+
+    .fau-icon {
+      width: 20px;
+      height: 20px;
+      box-shadow: none !important;
+      padding: 0 !important;
+    }
+  }
+}
