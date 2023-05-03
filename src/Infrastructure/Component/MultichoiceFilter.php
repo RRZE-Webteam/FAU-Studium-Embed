@@ -9,7 +9,7 @@ use Fau\DegreeProgram\Output\Application\Filter\FilterView;
 
 /**
  * @psalm-type FilterAttributes = array{
- *     filter: Filterview,
+ *     filter: FilterView,
  * }
  */
 class MultichoiceFilter implements RenderableComponent
