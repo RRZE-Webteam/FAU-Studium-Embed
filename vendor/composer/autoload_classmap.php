@@ -21,6 +21,7 @@ return array(
     'Fau\\DegreeProgram\\Common\\Application\\DegreeTranslated' => $vendorDir . '/inpsyde/fau-degree-program-common/src/Application/DegreeTranslated.php',
     'Fau\\DegreeProgram\\Common\\Application\\Event\\CacheInvalidated' => $vendorDir . '/inpsyde/fau-degree-program-common/src/Application/Event/CacheInvalidated.php',
     'Fau\\DegreeProgram\\Common\\Application\\Event\\CacheWarmed' => $vendorDir . '/inpsyde/fau-degree-program-common/src/Application/Event/CacheWarmed.php',
+    'Fau\\DegreeProgram\\Common\\Application\\Filter\\AdmissionRequirementTypeFilter' => $vendorDir . '/inpsyde/fau-degree-program-common/src/Application/Filter/AdmissionRequirementTypeFilter.php',
     'Fau\\DegreeProgram\\Common\\Application\\Filter\\AreaOfStudyFilter' => $vendorDir . '/inpsyde/fau-degree-program-common/src/Application/Filter/AreaOfStudyFilter.php',
     'Fau\\DegreeProgram\\Common\\Application\\Filter\\ArrayOfIdsFilterTrait' => $vendorDir . '/inpsyde/fau-degree-program-common/src/Application/Filter/ArrayOfIdsFilterTrait.php',
     'Fau\\DegreeProgram\\Common\\Application\\Filter\\AttributeFilter' => $vendorDir . '/inpsyde/fau-degree-program-common/src/Application/Filter/AttributeFilter.php',
