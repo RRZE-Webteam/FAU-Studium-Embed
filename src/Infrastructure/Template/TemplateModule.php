@@ -39,11 +39,17 @@ final class TemplateModule implements ServiceModule, ExecutableModule
                 $container->get(DegreeProgramViewRepository::class),
                 $container->get(CurrentRequest::class),
             ),
+            ImageSizeRegistrar::class => static fn() => new ImageSizeRegistrar(),
         ];
     }
 
     public function run(ContainerInterface $container): bool
     {
+        self::registerImageSizes(
+            $container->get(EnvironmentDetector::class),
+            $container->get(ImageSizeRegistrar::class),
+        );
+
         if (!WpContext::determine()->isFrontoffice()) {
             return false;
         }
@@ -87,5 +93,33 @@ final class TemplateModule implements ServiceModule, ExecutableModule
         );
 
         return true;
+    }
+
+    private static function registerImageSizes(
+        EnvironmentDetector $detector,
+        ImageSizeRegistrar $imageSizeRegistrar
+    ): void {
+
+        if (!$detector->isProvidingWebsite()) {
+            return;
+        }
+
+        add_action(
+            'after_setup_theme',
+            [
+                $imageSizeRegistrar,
+                'registerImageSizes',
+            ]
+        );
+
+        add_filter(
+            'fau.degree-program.image-size',
+            [
+                $imageSizeRegistrar,
+                'filterImageSize',
+            ],
+            10,
+            2
+        );
     }
 }
