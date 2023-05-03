@@ -134,6 +134,7 @@ final class ShortcodeAttributesNormalizer
         $attributes['id'] = (int) ($attributes['id'] ?? 0);
         $attributes['include'] = wp_parse_list((string) ($attributes['include'] ?? ''));
         $attributes['exclude'] = wp_parse_list((string) ($attributes['exclude'] ?? ''));
+        $attributes['className'] = 'is-shortcode';
 
         return $attributes;
     }

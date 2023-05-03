@@ -1,15 +1,10 @@
-@use './variables';
+@use './breakpoints';
+
 
 /// Creates a list of global breakpoints
 ///
 /// @example scss - Creates a single breakpoint with the label `phone`
 ///  $breakpoints: ('phone': 320px);
 @forward '~include-media/dist/include-media' with (
-  $breakpoints: (
-    'mobile': 560px,
-    'tablet': 768px,
-    'tablet-lg': 992px,
-    'laptop': 1200px,
-    'desktop': 1400px,
-  )
+  $breakpoints: breakpoints.$breakpoints
 );

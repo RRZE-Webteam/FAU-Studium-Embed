@@ -15,7 +15,23 @@
   @import 'single-degree-program/links';
   @import 'single-degree-program/back';
 
-  .l-container {
-    @extend %container;
+  container: single-degree-program / inline-size;
+
+  &:not(.is-shortcode) {
+    .l-container {
+      @extend %container;
+    }
+  }
+
+  &.is-shortcode {
+    .l-container {
+      @extend %container-paddings;
+    }
+
+    .l-details-wrapper.l-details-wrapper--has-application-links:not(.l-details-wrapper--has-details) .l-application-links,
+    .l-details-wrapper.l-details-wrapper--has-details.l-details-wrapper--has-application-links,
+    .c-accordion {
+      max-width: unset!important;
+    }
   }
 }

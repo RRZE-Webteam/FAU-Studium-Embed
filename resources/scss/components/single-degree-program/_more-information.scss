@@ -36,7 +36,7 @@
     }
   }
 
-  @include config.media('>tablet') {
+  @include config.container-gt('tablet', 'single-degree-program') {
     display: flex;
     gap: 20px;
 
@@ -50,7 +50,7 @@
     }
   }
 
-  @include config.media('>laptop') {
+  @include config.container-gt('laptop', 'single-degree-program') {
     .c-link {
       flex: 0 1 auto;
 

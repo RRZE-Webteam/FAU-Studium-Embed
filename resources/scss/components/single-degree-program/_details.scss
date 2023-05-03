@@ -14,42 +14,10 @@
 }
 
 .c-details {
-  margin: 0;
   padding: 20px 15px;
-  background-color: config.color('primary', 'ci-hell2');
-  border-radius: 5px;
 
-  @include config.media('>laptop') {
+  @include config.container-gt('laptop', 'single-degree-program') {
     padding: 30px;
-  }
-
-  dt,
-  dd {
-    margin: 0;
-    display: inline;
-  }
-
-  dt {
-    font-weight: bold;
-
-    &::after {
-      display: inline;
-      content: ':';
-    }
-  }
-}
-
-.c-detail {
-  margin-bottom: 5px;
-  padding-left: 24px;
-  position: relative;
-  break-inside: avoid;
-
-  .fau-icon {
-    fill: config.color('branding', 'primary');
-    position: absolute;
-    left: 0;
-    top: 5px;
   }
 }
 
@@ -64,11 +32,11 @@
   }
 
   .c-details {
-    @include config.media('>tablet') {
-        columns: 30px 2;
+    @include config.container-gt('tablet', 'single-degree-program') {
+      columns: 30px 2;
     }
 
-    @include config.media('>laptop') {
+    @include config.container-gt('laptop', 'single-degree-program') {
       column-count: 3;
     }
   }
@@ -88,13 +56,13 @@
   gap: 0 25px;
   @extend %container-mobile-full-width;
 
-  @include config.media('>tablet') {
+  @include config.container-gt('tablet', 'single-degree-program') {
     grid-template-areas:
      'details application-links';
     grid-template-columns: 1fr 1fr;
   }
 
-  @include config.media('>laptop') {
+  @include config.container-gt('laptop', 'single-degree-program') {
     grid-column-gap: 40px;
     grid-template-columns: 2fr 1fr;
   }
@@ -104,8 +72,8 @@
   }
 
   .c-details {
-    @include config.media('>laptop') {
-      columns: 40px 2;
+    @include config.container-gt('laptop', 'single-degree-program') {
+        columns: 40px 2;
     }
   }
 
@@ -114,7 +82,7 @@
 
     @extend %container-paddings;
 
-    @include config.media('>tablet') {
+    @include config.container-gt('tablet', 'single-degree-program') {
       padding: 0;
       margin: 0;
     }

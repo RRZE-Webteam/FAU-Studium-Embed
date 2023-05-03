@@ -1,0 +1,37 @@
+@use '../abstracts/config';
+
+.c-details {
+  margin: 0;
+  background-color: config.color('primary', 'ci-hell2');
+  border-radius: 5px;
+  padding: 10px;
+
+  dt,
+  dd {
+    margin: 0;
+    display: inline;
+  }
+
+  dt {
+    font-weight: bold;
+
+    &::after {
+      display: inline;
+      content: ':';
+    }
+  }
+}
+
+.c-detail {
+  margin-bottom: 5px;
+  padding-left: 24px;
+  position: relative;
+  break-inside: avoid;
+
+  .fau-icon {
+    fill: config.color('branding', 'primary');
+    position: absolute;
+    left: 0;
+    top: 5px;
+  }
+}

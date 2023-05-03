@@ -9,7 +9,8 @@ use Fau\DegreeProgram\Output\Infrastructure\Rewrite\ReferrerUrlHelper;
 /**
  * @var array{
  *     view: DegreeProgramViewTranslated,
- *     referrerUrlHelper: ReferrerUrlHelper
+ *     referrerUrlHelper: ReferrerUrlHelper,
+ *     className: string,
  * } $data
  * @var Renderer $renderer
  */
@@ -17,11 +18,12 @@ use Fau\DegreeProgram\Output\Infrastructure\Rewrite\ReferrerUrlHelper;
 [
     'view' => $view,
     'referrerUrlHelper' => $referrerUrlHelper,
+    'className' => $className,
 ] = $data
 
 ?>
 
-<div class="c-single-degree-program">
+<div class="c-single-degree-program <?= esc_attr($className) ?>">
     <?php // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
     <?= $renderer->render('single-degree-program/featured-image', ['view' => $view]) ?>
     <?= $renderer->render('single-degree-program/heading', ['view' => $view]) ?>

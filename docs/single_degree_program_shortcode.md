@@ -5,14 +5,14 @@ The only required attribute is `id`, the degree program's post ID.
 
 ## Attributes
 
-| Attribute | Description                                                                     | Required | Default | Valid options     |
-|-----------|---------------------------------------------------------------------------------|----------|---------|-------------------|
-| `display` | Entry point for the single degree view program rendering                        | yes      |         | `degree-program`  |
-| `id`      | ID of the degree program to be rendered                                         | yes      |         | Post ID           |
-| `lang`    | Language                                                                        | no       | `de`    | `de` or `en`      |
-| `include` | Comma-separated list of fields to be included                                   | no       |         | See list below    |
-| `exclude` | Comma-separated list of fields to be excluded (ignored if `include` is defined) | no       |         | See list below    |
-| `format`  | Full (all fields) of short (title and link) format                              | no       | `full`  | `full` or `short` |
+| Attribute | Description                                                                                            | Required | Default | Valid options     |
+|-----------|--------------------------------------------------------------------------------------------------------|----------|---------|-------------------|
+| `display` | Entry point for the single degree view program rendering                                               | yes      |         | `degree-program`  |
+| `id`      | ID of the degree program to be rendered                                                                | yes      |         | Post ID           |
+| `lang`    | Language                                                                                               | no       | `de`    | `de` or `en`      |
+| `include` | Comma-separated list of fields to be included (ignored if `format` is `short`)                         | no       |         | See list below    |
+| `exclude` | Comma-separated list of fields to be excluded (ignored if `include` is defined or `format` is `short`) | no       |         | See list below    |
+| `format`  | Full (all fields) of short (title and link) format                                                     | no       | `full`  | `full` or `short` |
 
 ## List of supported fields for including/excluding
 
