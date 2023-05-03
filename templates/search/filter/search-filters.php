@@ -70,7 +70,7 @@ $contentId = 'content_' . wp_generate_uuid4();
                 ) ?>
                 <?php // phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
             </div>
-        <?php endforeach; ?>
+        <?php endforeach ?>
 
         <?= renderComponent(
             new Component(

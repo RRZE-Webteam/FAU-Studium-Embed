@@ -74,6 +74,7 @@ final class DegreeProgramsSearch implements RenderableComponent
 
         $collection = $this->degreeProgramViewRepository->findTranslatedCollection(
             CollectionCriteria::new()
+                ->withPerPage(-1)
                 ->addFilter(
                     ...$preAppliedFilters,
                     ...$userAppliedFilters,
