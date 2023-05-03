@@ -209,6 +209,7 @@ return array(
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Shortcode\\ShortcodeAttributesNormalizer' => $baseDir . '/src/Infrastructure/Shortcode/ShortcodeAttributesNormalizer.php',
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Shortcode\\ShortcodeModule' => $baseDir . '/src/Infrastructure/Shortcode/ShortcodeModule.php',
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Template\\CanonicalUrlFilter' => $baseDir . '/src/Infrastructure/Template/CanonicalUrlFilter.php',
+    'Fau\\DegreeProgram\\Output\\Infrastructure\\Template\\ImageSizeRegistrar' => $baseDir . '/src/Infrastructure/Template/ImageSizeRegistrar.php',
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Template\\SeoFrameworkIntegration' => $baseDir . '/src/Infrastructure/Template/SeoFrameworkIntegration.php',
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Template\\SingleDegreeProgramContentFilter' => $baseDir . '/src/Infrastructure/Template/SingleDegreeProgramContentFilter.php',
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Template\\TemplateModule' => $baseDir . '/src/Infrastructure/Template/TemplateModule.php',
