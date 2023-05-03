@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Fau\DegreeProgram\Output\Infrastructure\Filter;
 
+use Fau\DegreeProgram\Common\Application\Filter\AdmissionRequirementTypeFilter;
 use Fau\DegreeProgram\Common\Application\Filter\AreaOfStudyFilter;
 use Fau\DegreeProgram\Common\Application\Filter\AttributeFilter;
 use Fau\DegreeProgram\Common\Application\Filter\DegreeFilter;
@@ -72,6 +73,18 @@ final class FilterViewFactory
                 ),
                 FilterView::TEXT
             ),
+            AdmissionRequirementTypeFilter::KEY => new FilterView(
+                $filter,
+                _x(
+                    'Admission Requirement',
+                    'backoffice: Filter label',
+                    'fau-degree-program-output',
+                ),
+                FilterView::MULTISELECT,
+                [
+                    'options' => $this->admissionRequirementTypeOptions(),
+                ],
+            ),
             default => null,
         };
     }
@@ -116,5 +129,32 @@ final class FilterViewFactory
         $label = $taxonomyObject->labels->singular_name;
 
         return $label;
+    }
+
+    /**
+     * @return array<Option>
+     */
+    private function admissionRequirementTypeOptions(): array
+    {
+        return [
+            new Option(
+                AdmissionRequirementTypeFilter::KEY,
+                _x(
+                    'Free',
+                    'backoffice: Filter label',
+                    'fau-degree-program-output',
+                ),
+                AdmissionRequirementTypeFilter::FREE,
+            ),
+            new Option(
+                AdmissionRequirementTypeFilter::KEY,
+                _x(
+                    'Restricted',
+                    'backoffice: Filter label',
+                    'fau-degree-program-output',
+                ),
+                AdmissionRequirementTypeFilter::RESTRICTED,
+            ),
+        ];
     }
 }

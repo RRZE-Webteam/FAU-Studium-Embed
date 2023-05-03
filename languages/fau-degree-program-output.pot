@@ -9,9 +9,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-05-03T12:43:02+00:00\n"
+"POT-Creation-Date: 2023-05-03T12:57:40+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.6.0\n"
+"X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: fau-degree-program-output\n"
 
 #. Plugin Name of the plugin
@@ -99,9 +99,24 @@ msgctxt "backoffice: admin bar menu item"
 msgid "Invalidate degree program caches"
 msgstr ""
 
-#: src/Infrastructure/Filter/FilterViewFactory.php:68
+#: src/Infrastructure/Filter/FilterViewFactory.php:69
 msgctxt "backoffice: Filter label"
 msgid "Keyword"
+msgstr ""
+
+#: src/Infrastructure/Filter/FilterViewFactory.php:78
+msgctxt "backoffice: Filter label"
+msgid "Admission Requirement"
+msgstr ""
+
+#: src/Infrastructure/Filter/FilterViewFactory.php:142
+msgctxt "backoffice: Filter label"
+msgid "Free"
+msgstr ""
+
+#: src/Infrastructure/Filter/FilterViewFactory.php:151
+msgctxt "backoffice: Filter label"
+msgid "Restricted"
 msgstr ""
 
 #: templates/search/collection-table-header.php:58

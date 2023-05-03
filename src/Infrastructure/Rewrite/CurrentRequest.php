@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Fau\DegreeProgram\Output\Infrastructure\Rewrite;
 
+use Fau\DegreeProgram\Common\Application\Filter\AdmissionRequirementTypeFilter;
 use Fau\DegreeProgram\Common\Application\Filter\AreaOfStudyFilter;
 use Fau\DegreeProgram\Common\Application\Filter\AttributeFilter;
 use Fau\DegreeProgram\Common\Application\Filter\DegreeFilter;
@@ -48,6 +49,9 @@ final class CurrentRequest
             'filter' => FILTER_SANITIZE_SPECIAL_CHARS,
         ],
         TeachingLanguageFilter::KEY => [
+            'filter' => FILTER_SANITIZE_SPECIAL_CHARS,
+        ],
+        AdmissionRequirementTypeFilter::KEY => [
             'filter' => FILTER_SANITIZE_SPECIAL_CHARS,
         ],
         'orderby' => FILTER_SANITIZE_SPECIAL_CHARS,
