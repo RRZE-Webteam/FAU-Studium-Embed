@@ -43,5 +43,5 @@ use Fau\DegreeProgram\Output\Infrastructure\Filter\Option;
             ) ?>
             <?php // phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
         </li>
-    <?php endforeach; ?>
+    <?php endforeach ?>
 </ul>

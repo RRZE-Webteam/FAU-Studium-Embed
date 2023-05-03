@@ -78,7 +78,7 @@ $contentId = 'content_' . wp_generate_uuid4();
                         ]
                     ) ?>
                 <?php // phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-            <?php endforeach; ?>
+            <?php endforeach ?>
         </div>
     </div>
 </div>

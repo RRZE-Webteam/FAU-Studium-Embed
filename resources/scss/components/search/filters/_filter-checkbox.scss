@@ -31,6 +31,8 @@
 
   &__label {
     user-select: none;
+    flex: 1;
+    min-width: 0;
     @include config.text-size('sm');
   }
 

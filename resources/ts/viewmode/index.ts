@@ -13,9 +13,9 @@ const updateUrl = (outputMode: OutputMode) => {
 };
 
 const switchOutputMode = (outputMode: OutputMode) => {
-    const collectionElement = document.querySelector(COLLECTION_SELECTOR);
+    const collectionElements = document.querySelectorAll(COLLECTION_SELECTOR);
 
-    if (!collectionElement) {
+    if (!collectionElements.length) {
         return;
     }
 
@@ -28,10 +28,13 @@ const switchOutputMode = (outputMode: OutputMode) => {
         }
     });
 
-    collectionElement.classList.remove(LIST_VIEW_CLASSNAME, TILES_VIEW_CLASSNAME);
-    collectionElement.classList.add(
-        outputMode === 'list' ? LIST_VIEW_CLASSNAME : TILES_VIEW_CLASSNAME,
-    );
+    // Update view mode in all collection elements in case multiple overview outputs exist.
+    collectionElements.forEach((collectionElement) => {
+        collectionElement.classList.remove(LIST_VIEW_CLASSNAME, TILES_VIEW_CLASSNAME);
+        collectionElement.classList.add(
+            outputMode === 'list' ? LIST_VIEW_CLASSNAME : TILES_VIEW_CLASSNAME,
+        );
+    });
 };
 
 document.querySelectorAll<HTMLAnchorElement>(TOGGLES_SELECTOR).forEach((element) => {
