@@ -9,7 +9,7 @@
 
   @extend %container-mobile-full-width;
 
-  @include config.media('>tablet') {
+  @include config.container-gt('tablet', 'single-degree-program') {
     margin-bottom: 60px;
     grid-template-columns: 1fr 1fr;
     gap: 20px 15px;
@@ -19,7 +19,7 @@
     }
   }
 
-  @include config.media('>laptop') {
+  @include config.container-gt('laptop', 'single-degree-program') {
     margin-top: 60px;
     grid-template-columns: repeat(3, 1fr);
 

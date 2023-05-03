@@ -8,11 +8,11 @@
   }
 
   ul {
-    @include config.media('>tablet') {
+    @include config.container-gt('tablet', 'single-degree-program') {
       column-count: 2;
     }
 
-    @include config.media('>laptop') {
+    @include config.container-gt('laptop', 'single-degree-program') {
       column-count: 3;
     }
   }

@@ -28,6 +28,8 @@
 @use 'components/search/filters/advanced-filters';
 @use 'components/single-degree-program' as degree-program-component;
 @use 'components/link';
+@use 'components/details';
+@use 'components/degree-program-short';
 
 // 6. Page-specific styles
 @use 'pages/search';

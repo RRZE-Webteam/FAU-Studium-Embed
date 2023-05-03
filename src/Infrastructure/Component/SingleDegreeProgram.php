@@ -21,6 +21,7 @@ use Psr\Log\LoggerInterface;
  *     include: array<string>,
  *     exclude: array<string>,
  *     format: 'full' | 'short',
+ *     className: string,
  * }
  */
 final class SingleDegreeProgram implements RenderableComponent
@@ -31,6 +32,7 @@ final class SingleDegreeProgram implements RenderableComponent
         'include' => [],
         'exclude' => [],
         'format' => 'full',
+        'className' => '',
     ];
 
     public function __construct(
@@ -77,6 +79,7 @@ final class SingleDegreeProgram implements RenderableComponent
             [
                 'view' => $view,
                 'referrerUrlHelper' => $this->referrerUrlHelper,
+                'className' => $attributes['className'],
             ]
         );
     }

@@ -5,6 +5,7 @@
 @use 'sass:map';
 @use 'functions';
 @use 'variables';
+@use './breakpoints';
 
 /// Make a context based selector a little more friendly
 /// @author Kitty Giraudel
@@ -83,4 +84,11 @@
 
   font-size: $font-size;
   line-height: $line-height;
+}
+
+/// Container query with the "width great than" condition
+@mixin container-gt($breakpoint, $container: '') {
+  @container #{$container} (width > #{map.get(breakpoints.$breakpoints, $breakpoint)}) {
+    @content;
+  }
 }

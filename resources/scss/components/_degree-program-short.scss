@@ -1,0 +1,45 @@
+@use '../abstracts/config';
+
+.c-degree-program-short {
+  container: degree-program-short / inline-size;
+
+  &__grid {
+    display: grid;
+    grid-template-areas:
+    'title'
+    'description'
+    'details'
+    'link';
+    gap: 20px;
+
+    @include config.container-gt('tablet', 'degree-program-short') {
+      grid-template-areas:
+      'title title'
+      'description description'
+      'details link';
+    }
+  }
+
+  &__title {
+    grid-area: title;
+
+    @include config.text-size('xl');
+  }
+
+  &__description {
+    grid-area: description;
+  }
+
+  &__details {
+    grid-area: details;
+  }
+
+  &__link {
+    grid-area: link;
+    align-self: center;
+
+    a {
+      margin: 0 auto;
+    }
+  }
+}

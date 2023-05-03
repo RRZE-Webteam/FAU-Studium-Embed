@@ -7,6 +7,7 @@
 }
 
 @import 'components/link';
+@import 'components/details';
 
 .c-single-degree-program {
   @import 'components/single-degree-program/featured-image';
@@ -19,12 +20,14 @@
   @import 'components/single-degree-program/more-information';
   @import 'components/single-degree-program/links';
 
+  container: single-degree-program / inline-size;
+
   .l-container {
     @extend %container-paddings;
   }
 }
 
-.l-details-wrapper.l-details-wrapper--has-application-links:not(.l-details-wrapper--has-details) .l-application-links.c-single-degree-program,
+.l-details-wrapper.l-details-wrapper--has-application-links:not(.l-details-wrapper--has-details) .l-application-links,
 .l-details-wrapper.l-details-wrapper--has-details.l-details-wrapper--has-application-links,
 .c-accordion {
     max-width: unset!important;
