@@ -5,11 +5,14 @@ declare(strict_types=1);
 namespace Fau\DegreeProgram\Common\Infrastructure\Repository;
 
 use Fau\DegreeProgram\Common\Application\Filter\AreaOfStudyFilter;
+use Fau\DegreeProgram\Common\Application\Filter\AttributeFilter;
 use Fau\DegreeProgram\Common\Application\Filter\DegreeFilter;
+use Fau\DegreeProgram\Common\Application\Filter\FacultyFilter;
 use Fau\DegreeProgram\Common\Application\Filter\Filter;
 use Fau\DegreeProgram\Common\Application\Filter\SearchKeywordFilter;
 use Fau\DegreeProgram\Common\Application\Filter\SemesterFilter;
 use Fau\DegreeProgram\Common\Application\Filter\StudyLocationFilter;
+use Fau\DegreeProgram\Common\Application\Filter\SubjectGroupFilter;
 use Fau\DegreeProgram\Common\Application\Filter\TeachingLanguageFilter;
 use Fau\DegreeProgram\Common\Application\Repository\CollectionCriteria;
 use Fau\DegreeProgram\Common\Domain\DegreeProgram;
@@ -20,10 +23,13 @@ use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\TaxonomiesList;
 final class WpQueryArgsBuilder
 {
     private const TAXONOMY_BASED_FILTERS = [
-        DegreeFilter::class,
         AreaOfStudyFilter::class,
+        AttributeFilter::class,
+        DegreeFilter::class,
+        FacultyFilter::class,
         SemesterFilter::class,
         StudyLocationFilter::class,
+        SubjectGroupFilter::class,
         TeachingLanguageFilter::class,
     ];
 
@@ -70,24 +76,23 @@ final class WpQueryArgsBuilder
         return $queryArgs;
     }
 
-    private function applyOrderBy(string $orderBy, WpQueryArgs $queryArgs, ?string $languageCode = null): WpQueryArgs
-    {
+    private function applyOrderBy(
+        string $orderBy,
+        WpQueryArgs $queryArgs,
+        ?string $languageCode = null
+    ): WpQueryArgs {
+
         $languageCode = $languageCode ?? MultilingualString::DE;
 
         return match ($orderBy) {
             DegreeProgram::TITLE => $languageCode === MultilingualString::DE
                 ? $queryArgs->orderbyTitle()
-                : $queryArgs->withMetaKey('title_' . $languageCode)
-                    ->orderbyMeta(),
-
+                : $queryArgs->withOrderby('title_' . $languageCode),
             DegreeProgram::DEGREE,
             DegreeProgram::START,
             DegreeProgram::LOCATION,
             DegreeProgram::ADMISSION_REQUIREMENTS =>
-                $queryArgs->withMetaKey(
-                    $orderBy . '_' . $languageCode
-                )
-                    ->orderbyMeta(),
+                $queryArgs->withOrderby($orderBy . '_' . $languageCode),
             default => $queryArgs,
         };
     }
