@@ -39,6 +39,7 @@ use Fau\DegreeProgram\Output\Infrastructure\Repository\RepositoryModule;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\RewriteModule;
 use Fau\DegreeProgram\Output\Infrastructure\Search\SearchModule;
 use Fau\DegreeProgram\Output\Infrastructure\Shortcode\ShortcodeModule;
+use Fau\DegreeProgram\Output\Infrastructure\StructuredData\StructuredDataModule;
 use Fau\DegreeProgram\Output\Infrastructure\Template\TemplateModule;
 use Fau\DegreeProgram\Output\Infrastructure\TranslationModule;
 use Inpsyde\Modularity\Package;
@@ -149,6 +150,7 @@ function initialize(): void
             new AssetsModule(),
             new FilterModule(),
             new EmbedModule(),
+            new StructuredDataModule(),
         );
     } catch (Throwable $throwable) {
         handleException($throwable);
