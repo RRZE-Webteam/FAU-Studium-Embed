@@ -6,7 +6,7 @@ namespace Fau\DegreeProgram\Output\Infrastructure\Component;
 
 use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
 use Fau\DegreeProgram\Output\Application\Filter\FilterView;
-use Fau\DegreeProgram\Output\Infrastructure\Component\DegreeProgramsSearch;
+use Fau\DegreeProgram\Output\Infrastructure\Rewrite\CurrentRequest;
 
 /**
  * @psalm-import-type OutputType from DegreeProgramsSearch
@@ -52,10 +52,10 @@ class SearchFilters implements RenderableComponent
     {
         return [
             DegreeProgramsSearch::OUTPUT_LIST => add_query_arg(
-                [DegreeProgramsSearch::OUTPUT_MODE_QUERY_PARAM => DegreeProgramsSearch::OUTPUT_LIST],
+                [CurrentRequest::OUTPUT_MODE_QUERY_PARAM => DegreeProgramsSearch::OUTPUT_LIST],
             ),
             DegreeProgramsSearch::OUTPUT_TILES => add_query_arg(
-                [DegreeProgramsSearch::OUTPUT_MODE_QUERY_PARAM => DegreeProgramsSearch::OUTPUT_TILES],
+                [CurrentRequest::OUTPUT_MODE_QUERY_PARAM => DegreeProgramsSearch::OUTPUT_TILES],
             ),
         ];
     }

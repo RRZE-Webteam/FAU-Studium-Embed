@@ -19,12 +19,15 @@ use Fau\DegreeProgram\Common\Domain\MultilingualString;
 
 /**
  * @psalm-import-type LanguageCodes from MultilingualString
+ * phpcs:disable Inpsyde.CodeQuality.NoAccessors.NoGetter
  */
 final class CurrentRequest
 {
     public const SEARCH_QUERY_PARAM = SearchKeywordFilter::KEY;
     public const ORDERBY_QUERY_PARAM = 'orderby';
     public const ORDER_QUERY_PARAM = 'order';
+    public const OUTPUT_MODE_QUERY_PARAM = 'output';
+
     public const QUERY_PARAMS_SANITIZATION_FILTERS = [
         self::SEARCH_QUERY_PARAM => FILTER_SANITIZE_SPECIAL_CHARS,
         AreaOfStudyFilter::KEY => [
@@ -94,9 +97,21 @@ final class CurrentRequest
         return $queryStrings;
     }
 
-    public function get(string $key, mixed $default): mixed
+    /**
+     * @psalm-template TParam of string
+     * @psalm-param array<TParam> $params
+     * @param mixed|null $default
+     * @return array<TParam, mixed>
+     */
+    public function getParams(array $params, mixed $default = null): array
     {
-        return $this->queryStrings()[$key] ?? $default;
+        $result = [];
+
+        foreach ($params as $param) {
+            $result[$param] =  $this->queryStrings()[$param] ?? $default;
+        }
+
+        return $result;
     }
 
     /**
@@ -148,5 +163,14 @@ final class CurrentRequest
         }
 
         return [$orderby, $order === 'asc' ? 'asc' : 'desc'];
+    }
+
+    public function outputMode(): string
+    {
+        return (string) filter_input(
+            INPUT_GET,
+            self::OUTPUT_MODE_QUERY_PARAM,
+            FILTER_SANITIZE_SPECIAL_CHARS
+        );
     }
 }

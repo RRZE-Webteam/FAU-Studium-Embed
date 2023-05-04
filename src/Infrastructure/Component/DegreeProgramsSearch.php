@@ -4,19 +4,21 @@ declare(strict_types=1);
 
 namespace Fau\DegreeProgram\Output\Infrastructure\Component;
 
-use Fau\DegreeProgram\Common\Application\Filter\Filter;
+use Fau\DegreeProgram\Common\Application\DegreeProgramViewTranslated;
 use Fau\DegreeProgram\Common\Application\Filter\FilterFactory;
 use Fau\DegreeProgram\Common\Application\Filter\SearchKeywordFilter;
 use Fau\DegreeProgram\Common\Application\Repository\CollectionCriteria;
 use Fau\DegreeProgram\Common\Application\Repository\DegreeProgramCollectionRepository;
+use Fau\DegreeProgram\Common\Application\Repository\PaginationAwareCollection;
 use Fau\DegreeProgram\Common\Domain\MultilingualString;
 use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
-use Fau\DegreeProgram\Output\Infrastructure\Rewrite\CurrentRequest;
+use Fau\DegreeProgram\Output\Application\Filter\FilterView;
 use Fau\DegreeProgram\Output\Infrastructure\Filter\FilterViewFactory;
+use Fau\DegreeProgram\Output\Infrastructure\Rewrite\CurrentRequest;
 
 /**
  * @psalm-import-type LanguageCodes from MultilingualString
- * @psalm-type OutputType = 'tiles' | 'list';
+ * @psalm-type OutputType = 'tiles'|'list'
  * @psalm-type DegreeProgramsSearchAttributes = array{
  *     lang: LanguageCodes,
  *     pre_applied_filters: array<string, array<int>>,
@@ -38,15 +40,15 @@ use Fau\DegreeProgram\Output\Infrastructure\Filter\FilterViewFactory;
 final class DegreeProgramsSearch implements RenderableComponent
 {
     private const MAX_VISIBLE_FILTERS = 3;
-    private const DEFAULT_ATTRIBUTES = [
+    public const DEFAULT_ATTRIBUTES = [
         'lang' => MultilingualString::DE,
-        'filters' => [],
         'output' => 'tiles',
+        'visible_filters' => [],
+        'pre_applied_filters' => [],
     ];
 
     public const OUTPUT_TILES = 'tiles';
     public const OUTPUT_LIST = 'list';
-    public const OUTPUT_MODE_QUERY_PARAM = 'output';
 
     public function __construct(
         private Renderer $renderer,
@@ -62,87 +64,94 @@ final class DegreeProgramsSearch implements RenderableComponent
         /** @var DegreeProgramsSearchAttributes $attributes */
         $attributes = wp_parse_args($attributes, self::DEFAULT_ATTRIBUTES);
 
-        $preAppliedFilters = $this->filterFactory->bulk($attributes['pre_applied_filters']);
-        $visibleFilters = $this->filterFactory->bulk(
-            $this->populateVisibleFiltersFromRequest($attributes['visible_filters'])
-        );
-        $searchFilter = new SearchKeywordFilter($this->currentRequest->searchKeyword());
-        $userAppliedFilters = array_filter(
-            array_merge($visibleFilters, [$searchFilter]),
-            static fn (Filter $filter) => !empty($filter->value()),
-        );
-
-        $collection = $this->degreeProgramViewRepository->findTranslatedCollection(
-            CollectionCriteria::new()
-                ->withPerPage(-1)
-                ->addFilter(
-                    ...$preAppliedFilters,
-                    ...$userAppliedFilters,
-                )
-                ->withOrderby(...$this->currentRequest->orderby()),
-            $attributes['lang'],
-        );
-
-        $filterViews = $this->filterViewFactory->create(...$visibleFilters);
+        $collection = $this->findCollection($attributes);
+        $filterViews = $this->buildFilterViews($attributes);
+        [$filters, $advancedFilters] = $this->splitFilterViews(...$filterViews);
 
         return $this->renderer->render(
             'search/search',
             [
                 'collection' => $collection,
-                'filters' => array_slice($filterViews, 0, self::MAX_VISIBLE_FILTERS),
-                'advancedFilters' => array_slice(
-                    $filterViews,
-                    self::MAX_VISIBLE_FILTERS,
+                'filters' => $filters,
+                'advancedFilters' => $advancedFilters,
+                'output' => self::sanitizeOutputMode(
+                    $this->currentRequest->outputMode() ?: $attributes['output']
                 ),
-                'output' => $this->sanitizedOutputMode($attributes['output']),
-                'activeFilters' => $this->filterViewFactory->create(
-                    ...$userAppliedFilters
+                'activeFilters' => array_filter(
+                    $filterViews,
+                    static fn(FilterView $filterView) => !empty($filterView->value()),
                 ),
             ],
         );
     }
 
     /**
-     * @param array<string> $visibleFilterNames
-     * @return array<string, mixed>
+     * @param DegreeProgramsSearchAttributes $attributes
+     * @return array<FilterView>
      */
-    private function populateVisibleFiltersFromRequest(array $visibleFilterNames): array
+    private function buildFilterViews(array $attributes): array
     {
-        $result = [];
-
-        foreach ($visibleFilterNames as $filterId) {
-            $result[$filterId] = $this->currentRequest->get($filterId, []);
-        }
-
-        return $result;
+        return $this->filterViewFactory->create(
+            ...$this->filterFactory->bulk(
+                $this->currentRequest->getParams(
+                    $attributes['visible_filters'] ?? []
+                )
+            )
+        );
     }
 
     /**
-     * @param OutputType $mode
-     * @return OutputType
+     * @param FilterView ...$filterViews
+     * @return array{0: array<FilterView>, 1: array<FilterView>}
      */
-    private function sanitizedOutputMode(string $mode): string
+    private function splitFilterViews(FilterView ...$filterViews): array
     {
-        $outputMode = (string) filter_input(
-            INPUT_GET,
-            self::OUTPUT_MODE_QUERY_PARAM,
-            FILTER_SANITIZE_SPECIAL_CHARS
-        ) ?: $mode;
+        $withoutSearchFilter = array_filter(
+            $filterViews,
+            static fn(FilterView $filterView) => $filterView->id() !== SearchKeywordFilter::KEY,
+        );
 
-        if (!in_array($outputMode, [self::OUTPUT_LIST, self::OUTPUT_TILES], true)) {
-            return self::DEFAULT_ATTRIBUTES['output'];
-        }
-
-        return $outputMode;
+        return [
+            array_slice($withoutSearchFilter, 0, self::MAX_VISIBLE_FILTERS),
+            array_slice(
+                $withoutSearchFilter,
+                self::MAX_VISIBLE_FILTERS,
+            ),
+        ];
     }
 
-    private function criteriaWithOrderby(CollectionCriteria $criteria): CollectionCriteria
+    /**
+     * @psalm-param DegreeProgramsSearchAttributes $attributes
+     * @psalm-return PaginationAwareCollection<DegreeProgramViewTranslated>
+     */
+    public function findCollection(array $attributes): ?PaginationAwareCollection
     {
-        $currentOrderBy = $this->currentRequest->orderby();
-
-        return $criteria->withOrderby(
-            $currentOrderBy[0],
-            $currentOrderBy[1]
+        $filters = $this->filterFactory->bulk(
+            array_merge(
+                $attributes['pre_applied_filters'],
+                $this->currentRequest->getParams(
+                    $attributes['visible_filters']
+                )
+            )
         );
+
+        return $this->degreeProgramViewRepository->findTranslatedCollection(
+            CollectionCriteria::new()
+                ->withPerPage(-1)
+                ->addFilter(...$filters)
+                ->withOrderby(...$this->currentRequest->orderby()),
+            $attributes['lang'],
+        );
+    }
+
+    /**
+     * @param string $mode
+     * @return OutputType
+     */
+    private static function sanitizeOutputMode(string $mode): string
+    {
+        return in_array($mode, [self::OUTPUT_LIST, self::OUTPUT_TILES], true)
+            ? $mode
+            : self::DEFAULT_ATTRIBUTES['output'];
     }
 }

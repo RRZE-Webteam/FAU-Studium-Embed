@@ -14,7 +14,7 @@ use Psr\Log\LoggerInterface;
 final class DegreeProgramShortcode
 {
     public const KEY = 'fau-studium';
-    private const DISPLAY_ATTRIBUTE = 'display';
+    public const DISPLAY_ATTRIBUTE = 'display';
 
     private const COMPONENTS_MAP = [
         'search' => DegreeProgramsSearch::class,

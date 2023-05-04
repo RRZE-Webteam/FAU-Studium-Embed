@@ -34,5 +34,6 @@
     <globals>
         <var name="wpdb" type="\wpdb"/>
         <var name="wp" type="\WP"/>
+        <var name="shortcode_tags" type="array"/>
     </globals>
 </psalm>
