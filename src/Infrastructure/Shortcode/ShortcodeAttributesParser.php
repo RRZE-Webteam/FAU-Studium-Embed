@@ -12,12 +12,12 @@ final class ShortcodeAttributesParser
     private array $attributes = [];
 
     /**
-     * Method allows extracting shortcode attributes from content.
-     * To avoid performing complex regular expressions directly the following workaround is used.
-     * Original callback for shortcode tag is temporarily replaced with spy function.
-     * The function store parsed attributes in the class property.
-     * After performing `do_shortcode` on the content we receive attributes
-     * and restore the original callback.
+     * This method extracts shortcode attributes from the post content.
+     * To avoid performing complex regular expressions, the following workaround is used:
+     * The original callback for the shortcode tag is temporarily replaced with a "spy" function
+     * which stores parsed attributes in the class property.
+     * After performing `do_shortcode()` on the content and storing the attributes,
+     * we restore the original callback.
      *
      * phpcs:disable Inpsyde.CodeQuality.VariablesName.SnakeCaseVar
      * @return array<string, mixed>
