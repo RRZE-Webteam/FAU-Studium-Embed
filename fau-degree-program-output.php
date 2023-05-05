@@ -20,6 +20,7 @@ namespace Fau\DegreeProgram\Output;
 
 // phpcs:disable PSR1.Files.SideEffects
 
+use Fau\DegreeProgram\Output\Infrastructure\Editor\EditorModule;
 use Fau\DegreeProgram\Output\Infrastructure\ApiClient\ApiClientModule;
 use Fau\DegreeProgram\Output\Infrastructure\Assets\AssetsModule;
 use Fau\DegreeProgram\Output\Infrastructure\Cache\CacheModule;
@@ -151,6 +152,7 @@ function initialize(): void
             new FilterModule(),
             new EmbedModule(),
             new StructuredDataModule(),
+            new EditorModule(),
         );
     } catch (Throwable $throwable) {
         handleException($throwable);

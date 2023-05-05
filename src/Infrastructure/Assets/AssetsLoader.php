@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Fau\DegreeProgram\Output\Infrastructure\Assets;
 
+use Inpsyde\Assets\Asset;
 use Inpsyde\Assets\AssetManager;
 use Inpsyde\Assets\Script;
 use Inpsyde\Assets\Style;
@@ -20,12 +21,17 @@ class AssetsLoader
     {
         $frontend = [
             new Style(
-                'fau_frontend',
+                'fau-frontend',
                 (string) $this->pluginProperties->baseUrl() . 'assets/css/frontend.css'
             ),
             new Script(
-                'fau_frontend',
+                'fau-frontend',
                 (string) $this->pluginProperties->baseUrl() . 'assets/ts/frontend.js'
+            ),
+            new Style(
+                'fau-editor',
+                (string) $this->pluginProperties->baseUrl() . 'assets/css/editor.css',
+                Asset::BACKEND,
             ),
         ];
 
