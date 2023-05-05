@@ -1,5 +1,13 @@
 {
   "entrypoints": {
+    "ts/admin": {
+      "js": [
+        "../ts/admin.js"
+      ],
+      "php": [
+        "../ts/admin.asset.php"
+      ]
+    },
     "ts/embed": {
       "js": [
         "../ts/embed.js"
@@ -190,6 +198,11 @@
       ],
       "php": [
         "../svg/teaching-language.asset.php"
+      ]
+    },
+    "css/editor": {
+      "css": [
+        "../css/editor.css"
       ]
     },
     "css/embed": {
