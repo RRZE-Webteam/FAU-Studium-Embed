@@ -23,6 +23,7 @@ use function Fau\DegreeProgram\Output\renderComponent;
     <div class="c-degree-program-short__grid">
         <div class="c-degree-program-short__title">
             <?= esc_html($view->title()) ?>
+            (<?= esc_html($view->degree()->abbreviation()) ?>)
         </div>
         <div class="c-degree-program-short__description">
             <?= wp_kses_post($view->entryText()) ?>

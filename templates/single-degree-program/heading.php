@@ -23,6 +23,7 @@ if (!$view->title() && !$view->subtitle()) {
         <?php if ($view->title()) : ?>
             <h1 class="c-single-degree-program__title">
                 <?= esc_html($view->title()) ?>
+                (<?= esc_html($view->degree()->abbreviation()) ?>)
             </h1>
         <?php endif; ?>
         <?php if ($view->subtitle()) : ?>
