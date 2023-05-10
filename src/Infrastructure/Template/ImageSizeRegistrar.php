@@ -15,7 +15,7 @@ final class ImageSizeRegistrar
     public function registerImageSizes(): void
     {
         add_image_size(self::FEATURED_IMAGE_SIZE, 1400, 350);
-        add_image_size(self::TEASER_IMAGE_SIZE, 300, 300, true);
+        add_image_size(self::TEASER_IMAGE_SIZE, 500, 500, true);
     }
 
     /**
