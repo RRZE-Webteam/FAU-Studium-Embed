@@ -24,6 +24,17 @@
         "../ts/frontend.asset.php"
       ]
     },
+    "ts/gutenberg": {
+      "css": [
+        "../ts/gutenberg.css"
+      ],
+      "js": [
+        "../ts/gutenberg.js"
+      ],
+      "php": [
+        "../ts/gutenberg.asset.php"
+      ]
+    },
     "ts/main": {
       "js": [
         "../ts/main.js"
