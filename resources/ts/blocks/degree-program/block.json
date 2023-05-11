@@ -1,0 +1,37 @@
+{
+  "apiVersion": 2,
+  "name": "fau/degree-program",
+  "title": "Degree program",
+  "category": "fau",
+  "icon": "welcome-learn-more",
+  "keywords": [
+    "degree program",
+    "course of studies",
+    "study"
+  ],
+  "attributes": {
+    "id": {
+      "type": "number"
+    },
+    "lang": {
+      "type": "string",
+      "enum": [ "de", "en" ],
+      "default": "de"
+    },
+    "include": {
+      "type": "array"
+    },
+    "exclude": {
+      "type": "array"
+    },
+    "format": {
+      "type": "string",
+      "enum": [ "full", "short" ],
+      "default": "full"
+    }
+  },
+  "textdomain": "fau-degree-program-output",
+  "supports": {
+    "html": false
+  }
+}

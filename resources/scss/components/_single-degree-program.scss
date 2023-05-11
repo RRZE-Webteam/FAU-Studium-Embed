@@ -17,13 +17,15 @@
 
   container: single-degree-program / inline-size;
 
-  &:not(.is-shortcode) {
+  &:not(.is-shortcode),
+  &:not(.is-block) {
     .l-container {
       @extend %container;
     }
   }
 
-  &.is-shortcode {
+  &.is-shortcode,
+  &.is-block {
     .l-container {
       @extend %container-paddings;
     }

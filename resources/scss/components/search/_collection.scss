@@ -2,6 +2,7 @@
 
 .c-degree-programs-collection {
   margin: 0;
+  padding: 0;
 
   &.-list {
     @include config.media('>tablet-lg') {
@@ -107,6 +108,17 @@
       height: 20px;
       box-shadow: none !important;
       padding: 0 !important;
+    }
+
+    &:hover {
+      color: config.color('button', 'bg') !important;
+    }
+
+    &:not(:hover) {
+      &:active,
+      &:focus {
+        color: currentcolor !important;
+      }
     }
   }
 }

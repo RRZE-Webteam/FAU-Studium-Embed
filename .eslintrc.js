@@ -65,8 +65,8 @@ module.exports = {
             'error',
             {
                 props: true,
-                // Allow param re-assignment for immer
-                ignorePropertyModificationsForRegex: ["^draft"]
+                // Allow param re-assignment for immer and accumulator inside Object.reduce
+                ignorePropertyModificationsForRegex: ["^draft", "accumulator"]
             },
         ],
         'react-hooks/exhaustive-deps': 'off',

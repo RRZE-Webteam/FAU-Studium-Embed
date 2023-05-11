@@ -31,4 +31,11 @@
     background-color: config.color('button', 'hover-bg');
     border-color: config.color('button', 'hover-bg');
   }
+
+  &:not(:hover) {
+    &:focus,
+    &:active {
+      color: currentcolor !important;
+    }
+  }
 }
