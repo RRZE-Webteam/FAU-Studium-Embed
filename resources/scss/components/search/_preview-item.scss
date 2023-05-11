@@ -76,6 +76,7 @@
     img {
       height: 55px;
       object-fit: cover;
+      max-width: 100%;
     }
 
     @include config.when-inside('.c-degree-programs-collection.-list') {

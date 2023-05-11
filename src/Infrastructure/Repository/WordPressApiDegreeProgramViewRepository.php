@@ -54,7 +54,10 @@ class WordPressApiDegreeProgramViewRepository implements
             sprintf(
                 '/fau/v1/degree-program/%d',
                 $degreeProgramId->asInt()
-            )
+            ),
+            [
+                'lang' => $languageCode,
+            ]
         );
 
         if (!$response) {

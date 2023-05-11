@@ -23,6 +23,7 @@ namespace Fau\DegreeProgram\Output;
 use Fau\DegreeProgram\Output\Infrastructure\Editor\EditorModule;
 use Fau\DegreeProgram\Output\Infrastructure\ApiClient\ApiClientModule;
 use Fau\DegreeProgram\Output\Infrastructure\Assets\AssetsModule;
+use Fau\DegreeProgram\Output\Infrastructure\Block\BlockModule;
 use Fau\DegreeProgram\Output\Infrastructure\Cache\CacheModule;
 use Fau\DegreeProgram\Output\Infrastructure\Cache\DailyCacheInvalidationRunner;
 use Fau\DegreeProgram\Output\Infrastructure\CliModule;
@@ -153,6 +154,7 @@ function initialize(): void
             new EmbedModule(),
             new StructuredDataModule(),
             new EditorModule(),
+            new BlockModule(__DIR__ . '/resources/ts/blocks')
         );
     } catch (Throwable $throwable) {
         handleException($throwable);
