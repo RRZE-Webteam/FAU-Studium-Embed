@@ -29,18 +29,24 @@ final class WpQueryModifier
     /**
      * @wp-hook pre_get_posts
      */
-    public function sortyBySupportedMetaKeys(WP_Query $query): void
+    public function sortBySupportedMetaKeys(WP_Query $query): void
     {
         if (!$this->isDegreeProgramQuery($query)) {
             return;
         }
 
-        $orderBy = $query->get('orderby');
+        $orderBy = (string) $query->get('orderby');
         $metaQuery = array_filter((array) $query->get('meta_query'));
+        $isTermMetaOrdering = $this->isTermMetaOrdering($orderBy);
 
-        if (!in_array($orderBy, self::SUPPORTED_ORDERBY, true)) {
+        if (
+            !$isTermMetaOrdering
+            && !in_array($orderBy, self::SUPPORTED_ORDERBY, true)
+        ) {
             return;
         }
+
+        $type = $isTermMetaOrdering ? 'UNSIGNED' : 'CHAR';
 
         $query->set(
             'meta_query',
@@ -50,6 +56,7 @@ final class WpQueryModifier
                     'relation' => 'OR',
                     'orderby_' . $orderBy => [
                         'key' => $orderBy,
+                        'type' => $type,
                     ],
                     [
                         'key' => $orderBy,
@@ -69,5 +76,10 @@ final class WpQueryModifier
     private function isDegreeProgramQuery(WP_Query $query): bool
     {
         return in_array(DegreeProgramPostType::KEY, (array) $query->get('post_type'), true);
+    }
+
+    private function isTermMetaOrdering(string $orderBy): bool
+    {
+        return str_starts_with($orderBy, '_order_');
     }
 }

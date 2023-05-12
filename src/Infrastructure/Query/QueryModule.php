@@ -24,7 +24,7 @@ final class QueryModule implements ServiceModule, ExecutableModule
     {
         add_action(
             'pre_get_posts',
-            [$container->get(WpQueryModifier::class), 'sortyBySupportedMetaKeys'],
+            [$container->get(WpQueryModifier::class), 'sortBySupportedMetaKeys'],
         );
 
         return true;
