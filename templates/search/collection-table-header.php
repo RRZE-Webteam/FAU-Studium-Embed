@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Fau\DegreeProgram\Common\Domain\DegreeProgram;
 use Fau\DegreeProgram\Output\Infrastructure\Component\Component;
 use Fau\DegreeProgram\Output\Infrastructure\Component\Icon;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\CurrentRequest;
@@ -64,7 +65,7 @@ $order = $currentOrder[1];
             href="<?= esc_url(
                 add_query_arg(
                     [
-                        'orderby' => 'name',
+                        'orderby' => DegreeProgram::TITLE,
                         'order' => $order === 'asc' ? 'desc' : 'asc',
                     ],
                 )
@@ -91,7 +92,7 @@ $order = $currentOrder[1];
             href="<?= esc_url(
                 add_query_arg(
                     [
-                        'orderby' => 'degree',
+                        'orderby' => DegreeProgram::DEGREE,
                         'order' => $order === 'asc' ? 'desc' : 'asc',
                     ],
                 )
@@ -116,7 +117,7 @@ $order = $currentOrder[1];
             href="<?= esc_url(
                 add_query_arg(
                     [
-                        'orderby' => 'start',
+                        'orderby' => DegreeProgram::START,
                         'order' => $order === 'asc' ? 'desc' : 'asc',
                     ],
                 )
@@ -141,7 +142,7 @@ $order = $currentOrder[1];
             href="<?= esc_url(
                 add_query_arg(
                     [
-                        'orderby' => 'location',
+                        'orderby' => DegreeProgram::LOCATION,
                         'order' => $order === 'asc' ? 'desc' : 'asc',
                     ],
                 )
@@ -166,7 +167,7 @@ $order = $currentOrder[1];
             href="<?= esc_url(
                 add_query_arg(
                     [
-                        'orderby' => 'nc',
+                        'orderby' => DegreeProgram::ADMISSION_REQUIREMENTS,
                         'order' => $order === 'asc' ? 'desc' : 'asc',
                     ],
                 )
