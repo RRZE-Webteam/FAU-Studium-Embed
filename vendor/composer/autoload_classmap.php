@@ -106,6 +106,7 @@ return array(
     'Fau\\DegreeProgram\\Common\\Infrastructure\\Repository\\BilingualRepository' => $vendorDir . '/inpsyde/fau-degree-program-common/src/Infrastructure/Repository/BilingualRepository.php',
     'Fau\\DegreeProgram\\Common\\Infrastructure\\Repository\\FacultyRepository' => $vendorDir . '/inpsyde/fau-degree-program-common/src/Infrastructure/Repository/FacultyRepository.php',
     'Fau\\DegreeProgram\\Common\\Infrastructure\\Repository\\IdGenerator' => $vendorDir . '/inpsyde/fau-degree-program-common/src/Infrastructure/Repository/IdGenerator.php',
+    'Fau\\DegreeProgram\\Common\\Infrastructure\\Repository\\OrderRepository' => $vendorDir . '/inpsyde/fau-degree-program-common/src/Infrastructure/Repository/OrderRepository.php',
     'Fau\\DegreeProgram\\Common\\Infrastructure\\Repository\\WordPressDatabaseDegreeProgramCollectionRepository' => $vendorDir . '/inpsyde/fau-degree-program-common/src/Infrastructure/Repository/WordPressDatabaseDegreeProgramCollectionRepository.php',
     'Fau\\DegreeProgram\\Common\\Infrastructure\\Repository\\WordPressDatabaseDegreeProgramRepository' => $vendorDir . '/inpsyde/fau-degree-program-common/src/Infrastructure/Repository/WordPressDatabaseDegreeProgramRepository.php',
     'Fau\\DegreeProgram\\Common\\Infrastructure\\Repository\\WordPressDatabaseDegreeProgramViewRepository' => $vendorDir . '/inpsyde/fau-degree-program-common/src/Infrastructure/Repository/WordPressDatabaseDegreeProgramViewRepository.php',
