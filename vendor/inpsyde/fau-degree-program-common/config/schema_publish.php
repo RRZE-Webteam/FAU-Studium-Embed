@@ -53,7 +53,7 @@ return [
             ],
         ],
         DegreeProgram::TEACHING_LANGUAGE => MultilingualString::SCHEMA_ID_REQUIRED,
-        DegreeProgram::ATTRIBUTES => MultilingualList::SCHEMA_REQUIRED,
+        DegreeProgram::ATTRIBUTES => MultilingualList::SCHEMA,
         DegreeProgram::DEGREE => Degree::SCHEMA_REQUIRED,
         DegreeProgram::FACULTY => MultilingualLinks::SCHEMA_REQUIRED,
         DegreeProgram::LOCATION => MultilingualList::SCHEMA_REQUIRED,
@@ -155,7 +155,6 @@ return [
         DegreeProgram::SERVICE_CENTERS => MultilingualLink::SCHEMA,
         DegreeProgram::INFO_BROCHURE => [
             'type' => 'string',
-            'minLength' => 1,
             'format' => 'uri',
         ],
         DegreeProgram::SEMESTER_FEE => MultilingualLink::SCHEMA,
