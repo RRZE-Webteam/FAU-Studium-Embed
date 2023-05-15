@@ -4,7 +4,13 @@
   background-color: config.color('grey', 'light');
   width: 100%;
   padding: 10px 15px;
-  margin-bottom: 30px;
+  margin-top: 0;
+  margin-bottom: 20px;
+
+  @include config.media('>tablet') {
+    padding: 24px 25px;
+    margin-bottom: 30px;
+  }
 
   &__inner {
     position: relative;
@@ -39,7 +45,17 @@
       border-radius: 5px 0 0 5px;
       border: 1px solid #{config.color('grey', 'muted')};
       box-shadow: unset;
+      outline: none;
       @include config.text-size('base');
+
+      &::placeholder {
+        color: currentcolor;
+        opacity: 1;
+      }
+
+      &:focus {
+        border-color: config.color('button', 'bg');
+      }
 
       @include config.media('>tablet') {
         padding-left: 68px;
@@ -72,7 +88,12 @@
       border-radius: 0 5px 5px 0;
       width: 55px;
       height: 55px;
+      transition: background-color .2s linear;
       border: 0;
+
+      &:hover {
+        background-color: config.color('button', 'hover-bg');
+      }
 
       @include config.media('>tablet') {
         min-width: 211px;

@@ -6,7 +6,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
   margin-bottom: 20px;
-  align-items: flex-start;
+  align-items: center;
   @extend %container-paddings;
 
   @include config.media('>tablet') {
@@ -56,14 +56,14 @@
   }
 
   &__clear-all-button {
-    color: config.color('button', 'bg');
+    color: config.color('button', 'bg') !important;
     box-shadow: none !important;
     text-decoration: none !important;
     display: inline-flex;
     align-items: center;
 
     &:hover {
-      color: config.color('button', 'bg') !important;
+      color: config.color('button', 'hover-bg') !important;
     }
 
     .fau-icon {

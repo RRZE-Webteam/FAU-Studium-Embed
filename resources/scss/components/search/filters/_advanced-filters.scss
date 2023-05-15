@@ -1,7 +1,7 @@
 @use '../../../abstracts/config';
 
 .c-advanced-filters {
-  padding: 0 15px;
+  padding: 0 15px 20px;
 
   @include config.media('>tablet') {
     padding: 21px 18px;
@@ -17,18 +17,28 @@
           background: none;
           border: none;
           outline: none;
-          color: config.color('button', 'bg');
+          color: config.color('primary', 'dunkler');
           display: block;
           width: 100%;
           text-align: left;
           padding: 5px 0;
-        }
 
-        &__icon {
-          fill: config.color('button', 'bg');
-          width: 1rem;
-          height: 1rem;
-          margin-left: 11px;
+          &__icon {
+            fill: config.color('button', 'bg');
+            width: 1rem;
+            height: 1rem;
+            margin-left: 11px;
+          }
+
+          &[aria-expanded='true'] .c-accordion-item__icon {
+            transform: scaleY(-1);
+          }
+
+          @include config.media('>tablet') {
+            color: config.color('primary', 'ci-hell2-kontrast');
+            padding: 0;
+            margin-bottom: 20px;
+          }
         }
       }
     }
@@ -50,6 +60,14 @@
     @include config.media('>tablet') {
       page-break-inside: avoid;
       break-inside: avoid;
+    }
+
+    .c-filter-choices__item {
+      margin-bottom: 15px;
+
+      .c-filter-checkbox {
+        @include config.text-size('sm');
+      }
     }
   }
 }

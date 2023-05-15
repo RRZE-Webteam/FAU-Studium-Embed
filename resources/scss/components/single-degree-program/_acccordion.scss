@@ -28,9 +28,9 @@
   }
 
   &__icon {
-    width: 24px;
-    height: 14px;
-    fill: config.color('primary', 'dunkler');
+    width: 24px !important;
+    height: 14px !important;
+    fill: config.color('primary', 'dunkler') !important;
     transition: transform 0.5s;
   }
 
