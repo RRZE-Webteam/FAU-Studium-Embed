@@ -7,6 +7,7 @@ namespace Fau\DegreeProgram\Common\Application;
 use Fau\DegreeProgram\Common\Domain\DegreeProgram;
 use Fau\DegreeProgram\Common\Domain\DegreeProgramId;
 use Fau\DegreeProgram\Common\Domain\MultilingualString;
+use Fau\DegreeProgram\Common\Domain\NumberOfStudents;
 use Fau\DegreeProgram\Common\LanguageExtension\ArrayOfStrings;
 use JsonSerializable;
 
@@ -19,6 +20,7 @@ use JsonSerializable;
  * @psalm-import-type RelatedDegreeProgramType from RelatedDegreeProgram
  * @psalm-import-type LanguageCodes from MultilingualString
  * @psalm-import-type ImageViewType from ImageView
+ * @psalm-import-type NumberOfStudentsType from NumberOfStudents
  * @psalm-type DegreeProgramTranslation = array{
  *     link: string,
  *     slug: string,
@@ -30,7 +32,7 @@ use JsonSerializable;
  *     standard_duration: string,
  *     fee_required: bool,
  *     start: array<string>,
- *     number_of_students: string,
+ *     number_of_students: NumberOfStudentsType,
  *     teaching_language: string,
  *     attributes: array<string>,
  *     degree: DegreeTranslatedType,
@@ -102,7 +104,7 @@ final class DegreeProgramViewTranslated implements JsonSerializable
         private string $standardDuration,
         private bool $feeRequired,
         private ArrayOfStrings $start,
-        private string $numberOfStudents,
+        private NumberOfStudents $numberOfStudents,
         private string $teachingLanguage,
         private ArrayOfStrings $attributes,
         private DegreeTranslated $degree,
@@ -113,6 +115,7 @@ final class DegreeProgramViewTranslated implements JsonSerializable
         private string $metaDescription,
         private ContentTranslated $content,
         private AdmissionRequirementsTranslated $admissionRequirements,
+        private ?AdmissionRequirementTranslated $admissionRequirementLink,
         private string $contentRelatedMasterRequirements,
         private string $applicationDeadlineWinterSemester,
         private string $applicationDeadlineSummerSemester,
@@ -163,7 +166,7 @@ final class DegreeProgramViewTranslated implements JsonSerializable
             standardDuration: '',
             feeRequired: false,
             start: ArrayOfStrings::new(),
-            numberOfStudents: '',
+            numberOfStudents: NumberOfStudents::empty(),
             teachingLanguage: '',
             attributes: ArrayOfStrings::new(),
             degree: DegreeTranslated::new('', '', null),
@@ -176,6 +179,7 @@ final class DegreeProgramViewTranslated implements JsonSerializable
                 ...array_fill(0, 8, ContentItemTranslated::new('', ''))
             ),
             admissionRequirements: AdmissionRequirementsTranslated::new([]),
+            admissionRequirementLink: AdmissionRequirementTranslated::new(Link::empty(), null),
             contentRelatedMasterRequirements: '',
             applicationDeadlineWinterSemester: '',
             applicationDeadlineSummerSemester: '',
@@ -230,7 +234,7 @@ final class DegreeProgramViewTranslated implements JsonSerializable
             standardDuration: $data[DegreeProgram::STANDARD_DURATION],
             feeRequired: $data[DegreeProgram::FEE_REQUIRED],
             start: ArrayOfStrings::new(...$data[DegreeProgram::START]),
-            numberOfStudents: $data[DegreeProgram::NUMBER_OF_STUDENTS],
+            numberOfStudents: NumberOfStudents::fromArray($data[DegreeProgram::NUMBER_OF_STUDENTS]),
             teachingLanguage: $data[DegreeProgram::TEACHING_LANGUAGE],
             attributes: ArrayOfStrings::new(...$data[DegreeProgram::ATTRIBUTES]),
             degree: DegreeTranslated::fromArray($data[DegreeProgram::DEGREE]),
@@ -241,6 +245,9 @@ final class DegreeProgramViewTranslated implements JsonSerializable
             metaDescription: $data[DegreeProgram::META_DESCRIPTION],
             content: ContentTranslated::fromArray($data[DegreeProgram::CONTENT]),
             admissionRequirements: AdmissionRequirementsTranslated::fromArray($data[DegreeProgram::ADMISSION_REQUIREMENTS]),
+            admissionRequirementLink: !empty($data[self::ADMISSION_REQUIREMENT_LINK])
+                ? AdmissionRequirementTranslated::fromArray($data[self::ADMISSION_REQUIREMENT_LINK])
+                : null,
             contentRelatedMasterRequirements: $data[DegreeProgram::CONTENT_RELATED_MASTER_REQUIREMENTS],
             applicationDeadlineWinterSemester: $data[DegreeProgram::APPLICATION_DEADLINE_WINTER_SEMESTER],
             applicationDeadlineSummerSemester: $data[DegreeProgram::APPLICATION_DEADLINE_SUMMER_SEMESTER],
@@ -301,7 +308,7 @@ final class DegreeProgramViewTranslated implements JsonSerializable
             DegreeProgram::STANDARD_DURATION => $this->standardDuration,
             DegreeProgram::FEE_REQUIRED => $this->feeRequired,
             DegreeProgram::START => $this->start->getArrayCopy(),
-            DegreeProgram::NUMBER_OF_STUDENTS => $this->numberOfStudents,
+            DegreeProgram::NUMBER_OF_STUDENTS => $this->numberOfStudents->asArray(),
             DegreeProgram::TEACHING_LANGUAGE => $this->teachingLanguage,
             DegreeProgram::ATTRIBUTES => $this->attributes->getArrayCopy(),
             DegreeProgram::DEGREE => $this->degree->asArray(),
@@ -458,7 +465,7 @@ final class DegreeProgramViewTranslated implements JsonSerializable
         return $this->start;
     }
 
-    public function numberOfStudents(): string
+    public function numberOfStudents(): NumberOfStudents
     {
         return $this->numberOfStudents;
     }
@@ -515,7 +522,7 @@ final class DegreeProgramViewTranslated implements JsonSerializable
 
     public function admissionRequirementLink(): ?AdmissionRequirementTranslated
     {
-        return $this->admissionRequirements->mainLink();
+        return $this->admissionRequirementLink;
     }
 
     public function contentRelatedMasterRequirements(): string
