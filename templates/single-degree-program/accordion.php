@@ -118,6 +118,20 @@ DESCRIPTION,
                     ),
                 ]
             ),
+            new Component(
+                AccordionItem::class,
+                [
+                    'title' => _x(
+                        'Admission requirements, application, and enrollment',
+                        'frontoffice: single view',
+                        'fau-degree-program-output'
+                    ),
+                    'content' => $renderer->render(
+                        'single-degree-program/admission-requirements',
+                        ['view' => $view]
+                    ),
+                ]
+            ),
         ]
     )
 );

@@ -23,18 +23,18 @@
       content: ':';
     }
   }
-}
 
-.c-detail {
-  margin-bottom: 5px;
-  padding-left: 24px;
-  position: relative;
-  break-inside: avoid;
+  .c-detail {
+    margin-bottom: 5px;
+    padding-left: 24px;
+    position: relative;
+    break-inside: avoid;
 
-  .fau-icon {
-    fill: config.color('branding', 'primary');
-    position: absolute;
-    left: 0;
-    top: 5px;
+    .fau-icon {
+      fill: config.color('branding', 'primary');
+      position: absolute;
+      left: 0;
+      top: 5px;
+    }
   }
 }

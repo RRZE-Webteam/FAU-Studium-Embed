@@ -1,0 +1,33 @@
+@use '../../abstracts/config';
+
+&__admission-requirements {
+  display: grid;
+  gap: 30px 25px;
+
+  @include config.container-gt('tablet', 'single-degree-program') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+    @include config.container-gt('laptop', 'single-degree-program') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .c-detail {
+    .fau-icon {
+      fill: config.color('branding', 'primary');
+      width: 36px;
+      height: 30px;
+    }
+
+    dt {
+      margin: 14px 0 12px;
+      color: config.color('content', 'headlines');
+
+      @include config.text-size('xl');
+    }
+
+    dd {
+      margin: 0;
+    }
+  }
+}

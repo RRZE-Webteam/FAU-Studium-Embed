@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-05-15T08:36:07+00:00\n"
+"POT-Creation-Date: 2023-05-15T14:04:12+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: fau-degree-program-output\n"
@@ -385,7 +385,7 @@ msgctxt "backoffice: Degree program search filters"
 msgid "Clear all filters"
 msgstr ""
 
-#: templates/search/filter/advanced-filters-dropdown.php:53
+#: templates/search/filter/advanced-filters-dropdown.php:60
 msgctxt "frontoffice: degree programs search form"
 msgid "Advanced filters"
 msgstr ""
@@ -470,6 +470,61 @@ msgstr ""
 #: templates/single-degree-program/accordion.php:104
 msgctxt "frontoffice: single view"
 msgid "Limited degree program combinations"
+msgstr ""
+
+#: templates/single-degree-program/accordion.php:124
+msgctxt "frontoffice: single view"
+msgid "Admission requirements, application, and enrollment"
+msgstr ""
+
+#: templates/single-degree-program/admission-requirements.php:27
+msgctxt "frontoffice: single view"
+msgid "Admission requirements Master"
+msgstr ""
+
+#: templates/single-degree-program/admission-requirements.php:41
+msgctxt "frontoffice: single view"
+msgid "Admission requirements Bachelor/Teaching"
+msgstr ""
+
+#: templates/single-degree-program/admission-requirements.php:55
+msgctxt "frontoffice: single view"
+msgid "Admission requirements for higher semester"
+msgstr ""
+
+#: templates/single-degree-program/admission-requirements.php:69
+msgctxt "frontoffice: single view"
+msgid "Application deadline winter semester"
+msgstr ""
+
+#: templates/single-degree-program/admission-requirements.php:81
+msgctxt "frontoffice: single view"
+msgid "Application deadline summer semester"
+msgstr ""
+
+#: templates/single-degree-program/admission-requirements.php:93
+msgctxt "frontoffice: single view"
+msgid "Details and notes"
+msgstr ""
+
+#: templates/single-degree-program/admission-requirements.php:105
+msgctxt "frontoffice: single view"
+msgid "Language skills"
+msgstr ""
+
+#: templates/single-degree-program/admission-requirements.php:117
+msgctxt "frontoffice: single view"
+msgid "Language skills for Faculty of Humanities, Social Sciences, and Theology only"
+msgstr ""
+
+#: templates/single-degree-program/admission-requirements.php:129
+msgctxt "frontoffice: single view"
+msgid "German language skills for international applicants"
+msgstr ""
+
+#: templates/single-degree-program/admission-requirements.php:141
+msgctxt "frontoffice: single view"
+msgid "Degree Program Fees"
 msgstr ""
 
 #: templates/single-degree-program/back.php:34
