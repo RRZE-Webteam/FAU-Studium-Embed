@@ -5,12 +5,37 @@
   border-top: solid 1px;
   border-color: config.color('content', 'borders');
 
+  &--advanced-filters {
+    .c-filter-dropdown__label-icon {
+      width: 18px;
+      height: 18px;
+      fill: config.color('button', 'bg');
+      margin-right: 8px;
+
+      &.-close-icon {
+        display: none;
+        width: 12px;
+        height: 12px;
+      }
+    }
+
+    &[aria-expanded='true'] {
+      .c-filter-dropdown__label-icon {
+        display: none;
+
+        &.-close-icon {
+          display: inline-flex;
+        }
+      }
+    }
+  }
+
   @include config.media('>tablet') {
     border-radius: 3px;
     border: solid 1px;
     border-color: config.color('content', 'borders');
 
-    &[aria-expanded=true] {
+    &[aria-expanded='true'] {
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
     }

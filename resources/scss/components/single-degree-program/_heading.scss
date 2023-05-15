@@ -10,12 +10,13 @@
 &__title {
   color: config.color('primary', 'basis-kontrast');
   font-weight: normal;
-  font-size: 24px;
   margin: 0;
+  @include config.text-size('2xl');
 }
 
 &__subtitle {
   color: config.color('primary', 'basis-kontrast');
+  @include config.text-size('lg');
 }
 
 &__title + &__subtitle {

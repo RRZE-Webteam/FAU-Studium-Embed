@@ -3,8 +3,11 @@
 .c-details {
   margin: 0;
   background-color: config.color('primary', 'ci-hell2');
-  border-radius: 5px;
   padding: 10px;
+
+  @include config.media('>tablet') {
+    border-radius: 5px;
+  }
 
   dt,
   dd {

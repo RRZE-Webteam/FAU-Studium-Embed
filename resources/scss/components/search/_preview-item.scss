@@ -76,6 +76,7 @@
     img {
       height: 55px;
       object-fit: cover;
+      box-shadow: none !important;
       max-width: 100%;
     }
 
@@ -92,7 +93,7 @@
       }
 
       @include config.media('>tablet-lg') {
-        width: 80px;
+        width: unset;
         border-bottom: 1px solid #dfe6ec;
 
         img {
@@ -119,7 +120,6 @@
     margin-left: 10px;
     color: config.color('primary', 'basis');
     font-weight: 500;
-    max-width: 400px;
     @include config.text-size('lg');
 
     @include config.when-inside('.c-degree-programs-collection.-list') {
@@ -130,7 +130,6 @@
       }
 
       @include config.media('>tablet-lg') {
-        width: auto;
         border-bottom: 1px solid #dfe6ec;
         padding-left: 15px;
         font-weight: 300;

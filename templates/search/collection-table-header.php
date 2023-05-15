@@ -82,7 +82,7 @@ $order = $currentOrder[1];
     </div>
     <div class="c-degree-programs-collection__header-item -title">
     </div>
-    <div class="c-degree-programs-collection__header-item">
+    <div class="c-degree-programs-collection__header-item -degree">
         <?= esc_html_x(
             'Degree type',
             'frontoffice: degree programs search result list',
@@ -107,7 +107,7 @@ $order = $currentOrder[1];
             ) ?>
         </a>
     </div>
-    <div class="c-degree-programs-collection__header-item">
+    <div class="c-degree-programs-collection__header-item -start">
         <?= esc_html_x(
             'Start',
             'frontoffice: degree programs search result list',
@@ -132,7 +132,7 @@ $order = $currentOrder[1];
             ) ?>
         </a>
     </div>
-    <div class="c-degree-programs-collection__header-item">
+    <div class="c-degree-programs-collection__header-item -location">
         <?= esc_html_x(
             'Location',
             'frontoffice: degree programs search result list',
@@ -157,7 +157,7 @@ $order = $currentOrder[1];
             ) ?>
         </a>
     </div>
-    <div class="c-degree-programs-collection__header-item">
+    <div class="c-degree-programs-collection__header-item -admission-requirement">
         <?= esc_html_x(
             'NC',
             'frontoffice: degree programs search result list',

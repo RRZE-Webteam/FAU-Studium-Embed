@@ -46,7 +46,14 @@ $contentId = 'content_' . wp_generate_uuid4();
             <?= renderComponent(
                 new Component(
                     Icon::class,
-                    ['name' => 'settings']
+                    ['name' => 'settings', 'className' => 'c-filter-dropdown__label-icon']
+                )
+            ) ?>
+
+            <?= renderComponent(
+                new Component(
+                    Icon::class,
+                    ['name' => 'close', 'className' => 'c-filter-dropdown__label-icon -close-icon']
                 )
             ) ?>
 

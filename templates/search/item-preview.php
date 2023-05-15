@@ -98,6 +98,6 @@ $link = $referrerUrlHelper->addReferrerArgs($degreeProgram->link());
             'fau-degree-program-output'
         ) ?>"
     >
-        <?php // TODO: Add property to View and output it's value here ?>
+        <?= esc_html((string) $degreeProgram->admissionRequirementLink()?->name()) ?>
     </div>
 </li>
