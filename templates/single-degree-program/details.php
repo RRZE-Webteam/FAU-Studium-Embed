@@ -21,13 +21,13 @@ $details = renderComponent(
     new Component(
         DegreeProgramDetail::class,
         [
-            'icon' => 'area-of-study',
+            'icon' => 'degree',
             'term' => _x(
-                'Area of study',
+                'Degree',
                 'frontoffice: single view',
                 'fau-degree-program-output'
             ),
-            'description' => $view->areaOfStudy()->asHtml(),
+            'description' => $view->degree()->name(),
         ]
     ),
     new Component(
@@ -57,37 +57,13 @@ $details = renderComponent(
     new Component(
         DegreeProgramDetail::class,
         [
-            'icon' => 'start',
+            'icon' => 'location',
             'term' => _x(
-                'Application deadline winter semester',
+                'Study location',
                 'frontoffice: single view',
                 'fau-degree-program-output'
             ),
-            'description' => $view->applicationDeadlineWinterSemester(),
-        ]
-    ),
-    new Component(
-        DegreeProgramDetail::class,
-        [
-            'icon' => 'start',
-            'term' => _x(
-                'Application deadline summer semester',
-                'frontoffice: single view',
-                'fau-degree-program-output'
-            ),
-            'description' => $view->applicationDeadlineSummerSemester(),
-        ]
-    ),
-    new Component(
-        DegreeProgramDetail::class,
-        [
-            'icon' => 'start',
-            'term' => _x(
-                'Degree program Fee',
-                'frontoffice: single view',
-                'fau-degree-program-output'
-            ),
-            'description' => $view->degreeProgramFees(),
+            'description' => implode(', ', $view->location()->getArrayCopy()),
         ]
     ),
     new Component(
@@ -99,103 +75,7 @@ $details = renderComponent(
                 'frontoffice: single view',
                 'fau-degree-program-output'
             ),
-            'description' => $view->numberOfStudents(),
-        ]
-    ),
-    new Component(
-        DegreeProgramDetail::class,
-        [
-            'icon' => 'teaching-language',
-            'term' => _x(
-                'Teaching language',
-                'frontoffice: single view',
-                'fau-degree-program-output'
-            ),
-            'description' => $view->teachingLanguage(),
-        ]
-    ),
-    new Component(
-        DegreeProgramDetail::class,
-        [
-            'icon' => 'teaching-language',
-            'term' => _x(
-                'Language skills',
-                'frontoffice: single view',
-                'fau-degree-program-output'
-            ),
-            'description' => $view->languageSkills(),
-        ]
-    ),
-    new Component(
-        DegreeProgramDetail::class,
-        [
-            'icon' => 'teaching-language',
-            'term' => _x(
-                'Language skills for Faculty of Humanities, Social Sciences, and Theology only',
-                'frontoffice: single view',
-                'fau-degree-program-output'
-            ),
-            'description' => $view->languageSkillsHumanitiesFaculty(),
-        ]
-    ),
-    new Component(
-        DegreeProgramDetail::class,
-        [
-            'icon' => 'teaching-language',
-            'term' => _x(
-                'German language skills for international students',
-                'frontoffice: single view',
-                'fau-degree-program-output'
-            ),
-            'description' => $view->germanLanguageSkillsForInternationalStudents()->asHtml(),
-        ]
-    ),
-    new Component(
-        DegreeProgramDetail::class,
-        [
-            'icon' => 'attributes',
-            'term' => _x(
-                'Attributes',
-                'frontoffice: single view',
-                'fau-degree-program-output'
-            ),
-            'description' => implode(', ', $view->attributes()->getArrayCopy()),
-        ]
-    ),
-    new Component(
-        DegreeProgramDetail::class,
-        [
-            'icon' => 'degree',
-            'term' => _x(
-                'Degree',
-                'frontoffice: single view',
-                'fau-degree-program-output'
-            ),
-            'description' => $view->degree()->name(),
-        ]
-    ),
-    new Component(
-        DegreeProgramDetail::class,
-        [
-            'icon' => 'faculty',
-            'term' => _x(
-                'Faculty',
-                'frontoffice: single view',
-                'fau-degree-program-output'
-            ),
-            'description' => $view->faculty()->asHtml(),
-        ]
-    ),
-    new Component(
-        DegreeProgramDetail::class,
-        [
-            'icon' => 'location',
-            'term' => _x(
-                'Study location',
-                'frontoffice: single view',
-                'fau-degree-program-output'
-            ),
-            'description' => implode(', ', $view->location()->getArrayCopy()),
+            'description' => $view->numberOfStudents()->name(),
         ]
     ),
     new Component(
@@ -213,15 +93,39 @@ $details = renderComponent(
     new Component(
         DegreeProgramDetail::class,
         [
-            'icon' => 'keywords',
+            'icon' => 'attributes',
             'term' => _x(
-                'Keywords',
+                'Attributes',
                 'frontoffice: single view',
                 'fau-degree-program-output'
             ),
-            'description' => implode(', ', $view->keywords()->getArrayCopy()),
+            'description' => implode(', ', $view->attributes()->getArrayCopy()),
         ]
-    )
+    ),
+    new Component(
+        DegreeProgramDetail::class,
+        [
+            'icon' => 'teaching-language',
+            'term' => _x(
+                'Teaching language',
+                'frontoffice: single view',
+                'fau-degree-program-output'
+            ),
+            'description' => $view->teachingLanguage(),
+        ]
+    ),
+    new Component(
+        DegreeProgramDetail::class,
+        [
+            'icon' => 'faculty',
+            'term' => _x(
+                'Admission Requirements',
+                'frontoffice: single view',
+                'fau-degree-program-output'
+            ),
+            'description' => $view->admissionRequirementLink()?->name(),
+        ]
+    ),
 );
 
 $applicationLinks = renderComponent(

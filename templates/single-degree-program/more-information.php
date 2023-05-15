@@ -33,27 +33,19 @@ use function Fau\DegreeProgram\Output\renderComponent;
             new Component(
                 Link::class,
                 [
-                    'url' => $view->subjectSpecificAdvice()->linkUrl(),
-                    'text' => $view->subjectSpecificAdvice()->linkText(),
+                    'url' => $view->studentAdvice()->linkUrl(),
+                    'text' => $view->studentAdvice()->linkText(),
                 ]
             ),
             new Component(
                 Link::class,
                 [
-                    'url' => 'https://meinstudium.fau.de/barrierefreiheit/',
+                    'url' => $view->subjectSpecificAdvice()->linkUrl(),
                     'text' => _x(
-                        'Contact us',
+                        'Specific Student Advice',
                         'frontoffice: single view',
                         'fau-degree-program-output'
                     ),
-                ]
-            ),
-            new Component(
-                Link::class,
-                [
-                    'url' => $view->applyNowLink()->linkUrl(),
-                    'text' => $view->applyNowLink()->linkText(),
-                    'type' => Link::DARK,
                 ]
             ),
         ) ?>

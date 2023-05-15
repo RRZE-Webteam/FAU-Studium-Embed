@@ -53,11 +53,6 @@
   @include config.container-gt('laptop', 'single-degree-program') {
     .c-link {
       flex: 0 1 auto;
-
-      &:last-child {
-        margin-left: auto;
-        flex-basis: 300px;
-      }
     }
   }
 }
