@@ -60,13 +60,24 @@
   }
 
   &__content {
-    transition: height 0.5s, padding-bottom 0.5s;
+    transition: height 0.5s, padding-top 0.5s;
     overflow: hidden;
     height: calc(var(--content-height) + 30px);
+
+    @include config.container-gt('tablet', 'single-degree-program') {
+      padding-top: 15px;
+      height: calc(var(--content-height) + 30px + 15px);
+    }
+
+    @include config.container-gt('laptop', 'single-degree-program') {
+      padding-top: 25px;
+      height: calc(var(--content-height) + 30px + 25px);
+    }
 
     &[hidden] {
       display: block;
       height: 0;
+      padding-top: 0;
     }
   }
 }
