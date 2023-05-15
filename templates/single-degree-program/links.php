@@ -29,42 +29,8 @@ $organizational = renderComponent(
                 $view->startOfSemester()->asArray(),
                 $view->semesterDates()->asArray(),
                 $view->semesterFee()->asArray(),
-                $view->abroadOpportunities()->asArray(),
                 $view->serviceCenters()->asArray(),
-                $view->examinationsOffice()->asArray(),
-            ],
-        ]
-    )
-);
-
-$additionalInformation = renderComponent(
-    new Component(
-        Links::class,
-        [
-            'title' => _x(
-                'Additional Information',
-                'frontoffice: single view',
-                'fau-degree-program-output'
-            ),
-            'links' => [
-                [
-                    'link_text' => _x(
-                        'Degree program',
-                        'frontoffice: single view',
-                        'fau-degree-program-output'
-                    ),
-                    'link_url' => $view->url(),
-                ],
-                [
-                    'link_text' => _x(
-                        'Department/Institute',
-                        'frontoffice: single view',
-                        'fau-degree-program-output'
-                    ),
-                    'link_url' =>  $view->department(),
-                ],
-                ...array_values($view->faculty()->asArray()),
-                $view->studentInitiatives()->asArray(),
+                $view->abroadOpportunities()->asArray(),
             ],
         ]
     )
@@ -109,10 +75,44 @@ $downloads = renderComponent(
     )
 );
 
+$additionalInformation = renderComponent(
+    new Component(
+        Links::class,
+        [
+            'title' => _x(
+                'Additional Information',
+                'frontoffice: single view',
+                'fau-degree-program-output'
+            ),
+            'links' => [
+                [
+                    'link_text' => _x(
+                        'Website of the degree program',
+                        'frontoffice: single view',
+                        'fau-degree-program-output'
+                    ),
+                    'link_url' => $view->url(),
+                ],
+                $view->examinationsOffice()->asArray(),
+                [
+                    'link_text' => _x(
+                        'Department/Institute website',
+                        'frontoffice: single view',
+                        'fau-degree-program-output'
+                    ),
+                    'link_url' =>  $view->department(),
+                ],
+                ...array_values($view->faculty()->asArray()),
+                $view->studentInitiatives()->asArray(),
+            ],
+        ]
+    )
+);
+
 if (
     !$organizational
-    && !$additionalInformation
     && !$downloads
+    && !$additionalInformation
 ) {
     return;
 }
@@ -123,8 +123,8 @@ if (
     <div class="l-container">
     <?php // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
     <?= $organizational ?>
-    <?= $additionalInformation ?>
     <?= $downloads ?>
+    <?= $additionalInformation ?>
     <?php // phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
     </div>
 </div>
