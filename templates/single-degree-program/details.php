@@ -83,7 +83,7 @@ $details = renderComponent(
         [
             'icon' => 'subject-groups',
             'term' => _x(
-                'Subject groups',
+                'Subject group',
                 'frontoffice: single view',
                 'fau-degree-program-output'
             ),

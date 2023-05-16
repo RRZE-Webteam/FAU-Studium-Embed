@@ -79,7 +79,7 @@ class TinymceScriptDataInjector
     private function formFields(): array
     {
         return [
-            'title' => __('FAU Degree Program Shortcode Builder', 'fau-degree-program-output'),
+            'title' => __('FAU Degree Program Shortcode Generator', 'fau-degree-program-output'),
             'degreeProgram' => __('Degree program', 'fau-degree-program-output'),
             'language' => __('Language', 'fau-degree-program-output'),
             'format' => __('Format', 'fau-degree-program-output'),

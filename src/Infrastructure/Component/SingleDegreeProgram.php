@@ -181,7 +181,7 @@ final class SingleDegreeProgram implements RenderableComponent
             DegreeProgram::MODULE_HANDBOOK => __('Module handbook', 'fau-degree-program-output'),
             DegreeProgram::URL => __('Degree program URL', 'fau-degree-program-output'),
             DegreeProgram::DEPARTMENT => __(
-                'Department/Institute (URL)',
+                'Department/Institute',
                 'fau-degree-program-output'
             ),
             DegreeProgram::STUDENT_ADVICE => __(
