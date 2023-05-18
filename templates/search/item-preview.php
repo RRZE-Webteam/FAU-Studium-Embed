@@ -64,8 +64,7 @@ $link = $referrerUrlHelper->addReferrerArgs($degreeProgram->link());
             'fau-degree-program-output'
         ) ?>"
     >
-        <?= esc_html($degreeProgram->degree()->abbreviation()) ?>
-        (<?= esc_html($degreeProgram->degree()->name()) ?>)
+        <?= esc_html($degreeProgram->degree()->name()) ?>
     </div>
 
     <div
