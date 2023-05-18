@@ -90,6 +90,7 @@
       height: 55px;
       transition: background-color .2s linear;
       border: 0;
+      font-weight: 700;
 
       &:hover {
         background-color: config.color('button', 'hover-bg');
@@ -98,6 +99,7 @@
       @include config.media('>tablet') {
         min-width: 211px;
         width: auto;
+        @include config.text-size('xl');
       }
     }
   }

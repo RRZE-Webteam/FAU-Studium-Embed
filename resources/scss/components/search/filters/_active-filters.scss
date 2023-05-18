@@ -61,6 +61,7 @@
     text-decoration: none !important;
     display: inline-flex;
     align-items: center;
+    font-weight: 500;
 
     &:hover {
       color: config.color('button', 'hover-bg') !important;

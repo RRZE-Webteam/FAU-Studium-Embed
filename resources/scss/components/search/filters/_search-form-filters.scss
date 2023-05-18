@@ -55,6 +55,7 @@
     align-items: center;
     column-gap: 9px;
     color: config.color('button', 'bg');
+    font-weight: 500;
     @include config.text-size('base');
 
     &::before,

@@ -1,8 +1,8 @@
 @use '../../abstracts/config';
 
 .l-heading {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 30px;
+  padding-bottom: 30px;
   background-color: config.color('primary', 'basis');
   color: config.color('primary', 'basis-kontrast');
 }
@@ -12,13 +12,21 @@
   font-weight: normal;
   margin: 0;
   @include config.text-size('2xl');
+
+  @include config.container-gt('tablet', 'single-degree-program') {
+    @include config.text-size('3xl');
+  }
 }
 
 &__subtitle {
   color: config.color('primary', 'basis-kontrast');
   @include config.text-size('lg');
+
+  @include config.container-gt('tablet', 'single-degree-program') {
+    @include config.text-size('xl');
+  }
 }
 
 &__title + &__subtitle {
-  margin-top: 12px;
+  margin-top: 15px;
 }
