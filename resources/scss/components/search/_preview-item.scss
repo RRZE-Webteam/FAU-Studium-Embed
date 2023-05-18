@@ -132,7 +132,7 @@
       @include config.media('>tablet-lg') {
         border-bottom: 1px solid #dfe6ec;
         padding-left: 15px;
-        font-weight: 300;
+        font-weight: normal;
         @include config.text-size('base');
       }
     }
@@ -153,6 +153,7 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
+        font-weight: 500;
         @include config.text-size('sm');
       }
     }
@@ -170,6 +171,7 @@
     align-items: center;
     justify-content: center;
     display: none;
+    font-weight: 500;
 
     @include config.text-size('xs');
 
@@ -202,7 +204,7 @@
 
     &[aria-label]::before {
       content: attr(aria-label) ': ';
-      font-weight: 700;
+      font-weight: 500;
 
       @include config.media('>tablet-lg') {
         content: none;

@@ -13,6 +13,13 @@
       padding: 0;
 
       .c-accordion-item {
+        &__icon {
+          fill: config.color('button', 'bg');
+          width: 1rem;
+          height: 1rem;
+          margin-left: 11px;
+        }
+
         &__button {
           background: none;
           border: none;
@@ -22,13 +29,7 @@
           width: 100%;
           text-align: left;
           padding: 5px 0;
-
-          &__icon {
-            fill: config.color('button', 'bg');
-            width: 1rem;
-            height: 1rem;
-            margin-left: 11px;
-          }
+          font-weight: 500;
 
           &[aria-expanded='true'] .c-accordion-item__icon {
             transform: scaleY(-1);
