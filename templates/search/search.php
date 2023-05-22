@@ -34,7 +34,7 @@ use function Fau\DegreeProgram\Output\renderComponent;
 
 ?>
 
-<div class="c-degree-programs-search">
+<section class="c-degree-programs-search">
     <h1 class="c-degree-programs-search__title">
         <?= esc_html_x(
             'Degree programs',
@@ -81,4 +81,4 @@ use function Fau\DegreeProgram\Output\renderComponent;
             ]
         )
     ) ?>
-</div>
+</section>
