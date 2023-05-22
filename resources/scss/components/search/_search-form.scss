@@ -42,7 +42,7 @@
       font-weight: 300;
       padding: 0 15px;
       color: config.color('primary', 'ci-hell2-kontrast');
-      border-radius: 5px 0 0 5px;
+      border-radius: config.borderRadius() 0 0 config.borderRadius();
       border: 1px solid #{config.color('grey', 'muted')};
       box-shadow: unset;
       outline: none;
@@ -85,7 +85,7 @@
     @at-root button[type='submit']#{&} {
       background-color: config.color('button', 'bg');
       color: config.color('button', 'text');
-      border-radius: 0 5px 5px 0;
+      border-radius: 0 config.borderRadius('buttons') config.borderRadius('buttons') 0;
       width: 55px;
       height: 55px;
       transition: background-color .2s linear;
