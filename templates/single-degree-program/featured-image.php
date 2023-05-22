@@ -19,17 +19,23 @@ if (!$view->featuredImage()->rendered()) {
 ?>
 
 <div class="c-single-degree-program__featured-image">
-    <?= wp_kses($view->featuredImage()->rendered(), [
-        'img' => [
-            'width' => true,
-            'height' => true,
-            'src' => true,
-            'class' => true,
-            'alt' => true,
-            'decoding' => true,
-            'loading' => true,
-            'srcset' => true,
-            'sizes' => true,
-        ],
-    ]) ?>
+    <?= str_replace( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        '<img',
+        '<img alt=""',
+        wp_kses(
+            $view->featuredImage()->rendered(),
+            [
+                'img' => [
+                    'width' => true,
+                    'height' => true,
+                    'src' => true,
+                    'class' => true,
+                    'decoding' => true,
+                    'loading' => true,
+                    'srcset' => true,
+                    'sizes' => true,
+                ],
+            ]
+        )
+    ) ?>
 </div>
