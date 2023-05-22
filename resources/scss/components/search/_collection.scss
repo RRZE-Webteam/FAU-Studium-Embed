@@ -89,10 +89,14 @@
   }
 
   &__header-item {
-    display: table-cell;
+    background: none !important;
+    color: inherit !important;
+    display: table-cell !important;
+    text-align: left !important;
     vertical-align: middle;
-    padding: 12px 15px;
-    font-weight: 500;
+    padding: 12px 15px !important;
+    font-weight: 500 !important;
+    margin: 0 !important;;
 
     &.-thumbnail {
       white-space: nowrap;
@@ -117,7 +121,7 @@
     }
   }
 
-  &__sort-link {
+  &__sort-icon {
     width: 36px;
     height: 36px;
     display: inline-flex;

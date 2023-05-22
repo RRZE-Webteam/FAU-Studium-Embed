@@ -202,16 +202,6 @@
       margin-bottom: 5px;
     }
 
-    &[aria-label]::before {
-      content: attr(aria-label) ': ';
-      font-weight: 500;
-
-      @include config.media('>tablet-lg') {
-        content: none;
-        display: none;
-      }
-    }
-
     @include config.when-inside('.c-degree-programs-collection.-list') {
       @include config.media('>tablet') {
         grid-column: 2;
@@ -232,6 +222,14 @@
       @include config.media('>tablet') {
         display: none;
       }
+    }
+  }
+
+  &__label {
+    font-weight: 500;
+
+    @include config.media('>tablet-lg') {
+      @include config.screen-reader-text;
     }
   }
 }

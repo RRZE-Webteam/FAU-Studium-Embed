@@ -3,9 +3,11 @@
 declare(strict_types=1);
 
 use Fau\DegreeProgram\Common\Application\DegreeProgramViewTranslated;
+use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
 
 /**
  * @var array{view: DegreeProgramViewTranslated} $data
+ * @var Renderer $renderer
  */
 
 [
@@ -18,24 +20,13 @@ if (!$view->featuredImage()->rendered()) {
 
 ?>
 
+<?php // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 <div class="c-single-degree-program__featured-image">
-    <?= str_replace( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        '<img',
-        '<img alt=""',
-        wp_kses(
-            $view->featuredImage()->rendered(),
-            [
-                'img' => [
-                    'width' => true,
-                    'height' => true,
-                    'src' => true,
-                    'class' => true,
-                    'decoding' => true,
-                    'loading' => true,
-                    'srcset' => true,
-                    'sizes' => true,
-                ],
-            ]
-        )
+    <?= $renderer->render(
+        'common/image',
+        [
+            'html' => $view->featuredImage()->rendered(),
+        ]
     ) ?>
 </div>
+<?php // phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
