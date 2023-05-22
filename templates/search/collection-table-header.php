@@ -55,131 +55,164 @@ $order = $currentOrder[1];
 </li>
 
 <li class="c-degree-programs-collection__header">
-    <div class="c-degree-programs-collection__header-item -thumbnail">
+    <a class="c-degree-programs-collection__header-item -thumbnail"
+       role="button"
+       href="<?= esc_url(
+           add_query_arg(
+               [
+                   'orderby' => DegreeProgram::TITLE,
+                   'order' => $order === 'asc' ? 'desc' : 'asc',
+               ],
+           )
+       ) ?>">
+        <span class="screen-reader-text">
+            <?= esc_html_x(
+                'Sort by',
+                'frontoffice: degree programs search result list',
+                'fau-degree-program-output'
+            ) ?>
+        </span>
         <?= esc_html_x(
             'Degree program',
             'frontoffice: degree programs search result list',
             'fau-degree-program-output'
         ) ?>
-        <a
-            href="<?= esc_url(
-                add_query_arg(
-                    [
-                        'orderby' => DegreeProgram::TITLE,
-                        'order' => $order === 'asc' ? 'desc' : 'asc',
-                    ],
-                )
-            ) ?>"
-            class="c-degree-programs-collection__sort-link"
-        >
+        <span class="c-degree-programs-collection__sort-icon">
             <?= renderComponent(
                 new Component(
                     Icon::class,
                     ['name' => 'sort']
                 )
             ) ?>
-        </a>
-    </div>
+        </span>
+    </a>
     <div class="c-degree-programs-collection__header-item -title">
     </div>
-    <div class="c-degree-programs-collection__header-item -degree">
+    <a class="c-degree-programs-collection__header-item -degree"
+       role="button"
+       href="<?= esc_url(
+           add_query_arg(
+               [
+                   'orderby' => DegreeProgram::DEGREE,
+                   'order' => $order === 'asc' ? 'desc' : 'asc',
+               ],
+           )
+       ) ?>"
+    >
+        <span class="screen-reader-text">
+            <?= esc_html_x(
+                'Sort by',
+                'frontoffice: degree programs search result list',
+                'fau-degree-program-output'
+            ) ?>
+        </span>
         <?= esc_html_x(
             'Degree type',
             'frontoffice: degree programs search result list',
             'fau-degree-program-output'
         ) ?>
-        <a
-            href="<?= esc_url(
-                add_query_arg(
-                    [
-                        'orderby' => DegreeProgram::DEGREE,
-                        'order' => $order === 'asc' ? 'desc' : 'asc',
-                    ],
-                )
-            ) ?>"
-            class="c-degree-programs-collection__sort-link"
-        >
+        <span class="c-degree-programs-collection__sort-icon">
             <?= renderComponent(
                 new Component(
                     Icon::class,
                     ['name' => 'sort']
                 )
             ) ?>
-        </a>
-    </div>
-    <div class="c-degree-programs-collection__header-item -start">
+        </span>
+    </a>
+    <a class="c-degree-programs-collection__header-item -start"
+       role="button"
+       href="<?= esc_url(
+           add_query_arg(
+               [
+                   'orderby' => DegreeProgram::START,
+                   'order' => $order === 'asc' ? 'desc' : 'asc',
+               ],
+           )
+       ) ?>"
+    >
+        <span class="screen-reader-text">
+            <?= esc_html_x(
+                'Sort by',
+                'frontoffice: degree programs search result list',
+                'fau-degree-program-output'
+            ) ?>
+        </span>
         <?= esc_html_x(
             'Start',
             'frontoffice: degree programs search result list',
             'fau-degree-program-output'
         ) ?>
-        <a
-            href="<?= esc_url(
-                add_query_arg(
-                    [
-                        'orderby' => DegreeProgram::START,
-                        'order' => $order === 'asc' ? 'desc' : 'asc',
-                    ],
-                )
-            ) ?>"
-            class="c-degree-programs-collection__sort-link"
-        >
+        <span class="c-degree-programs-collection__sort-icon">
             <?= renderComponent(
                 new Component(
                     Icon::class,
                     ['name' => 'sort']
                 )
             ) ?>
-        </a>
-    </div>
-    <div class="c-degree-programs-collection__header-item -location">
+        </span>
+    </a>
+    <a class="c-degree-programs-collection__header-item -location"
+       role="button"
+       href="<?= esc_url(
+           add_query_arg(
+               [
+                   'orderby' => DegreeProgram::LOCATION,
+                   'order' => $order === 'asc' ? 'desc' : 'asc',
+               ],
+           )
+       ) ?>"
+    >
+        <span class="screen-reader-text">
+            <?= esc_html_x(
+                'Sort by',
+                'frontoffice: degree programs search result list',
+                'fau-degree-program-output'
+            ) ?>
+        </span>
         <?= esc_html_x(
             'Location',
             'frontoffice: degree programs search result list',
             'fau-degree-program-output'
         ) ?>
-        <a
-            href="<?= esc_url(
-                add_query_arg(
-                    [
-                        'orderby' => DegreeProgram::LOCATION,
-                        'order' => $order === 'asc' ? 'desc' : 'asc',
-                    ],
-                )
-            ) ?>"
-            class="c-degree-programs-collection__sort-link"
-        >
+        <span class="c-degree-programs-collection__sort-icon">
             <?= renderComponent(
                 new Component(
                     Icon::class,
                     ['name' => 'sort']
                 )
             ) ?>
-        </a>
-    </div>
-    <div class="c-degree-programs-collection__header-item -admission-requirement">
+        </span>
+    </a>
+    <a class="c-degree-programs-collection__header-item -admission-requirement"
+       role="button"
+       href="<?= esc_url(
+           add_query_arg(
+               [
+                   'orderby' => DegreeProgram::ADMISSION_REQUIREMENTS,
+                   'order' => $order === 'asc' ? 'desc' : 'asc',
+               ],
+           )
+       ) ?>"
+    >
+        <span class="screen-reader-text">
+            <?= esc_html_x(
+                'Sort by',
+                'frontoffice: degree programs search result list',
+                'fau-degree-program-output'
+            ) ?>
+        </span>
         <?= esc_html_x(
             'NC',
             'frontoffice: degree programs search result list',
             'fau-degree-program-output'
         ) ?>
-        <a
-            href="<?= esc_url(
-                add_query_arg(
-                    [
-                        'orderby' => DegreeProgram::ADMISSION_REQUIREMENTS,
-                        'order' => $order === 'asc' ? 'desc' : 'asc',
-                    ],
-                )
-            ) ?>"
-            class="c-degree-programs-collection__sort-link"
-        >
+        <span class="c-degree-programs-collection__sort-icon">
             <?= renderComponent(
                 new Component(
                     Icon::class,
                     ['name' => 'sort']
                 )
             ) ?>
-        </a>
-    </div>
+    </a>
 </li>
