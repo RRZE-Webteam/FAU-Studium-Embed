@@ -6,7 +6,7 @@ import { Editor } from './types';
         init: (editor: Editor): void => {
             editor.addButton('fau_degree_program_output_shortcodes', {
                 title: 'FAU Degree Program Shortcodes',
-                icon: 'is-dashicon dashicons dashicons-shortcode',
+                icon: 'is-dashicon dashicons dashicons-welcome-learn-more',
                 onclick: (): void => handleDialogs(editor),
                 onPostRender: (): void => {
                     jQuery('.mce-i-is-dashicon').css('font-family', 'dashicons');
