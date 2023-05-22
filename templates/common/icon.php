@@ -13,6 +13,9 @@ declare(strict_types=1);
 
 ?>
 
-<svg class="<?= esc_attr(sprintf('fau-icon %s', $className)) ?>">
+<svg class="<?= esc_attr(sprintf('fau-icon %s', $className)) ?>"
+     aria-hidden="true"
+     focusable="false"
+     role="img">
     <use xlink:href="<?= esc_url($iconUrl) ?>"></use>
 </svg>
