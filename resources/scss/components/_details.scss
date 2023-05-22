@@ -2,7 +2,7 @@
 
 .c-details {
   margin: 0;
-  background-color: config.color('primary', 'ci-hell2');
+  background-color: config.color('ContentRegions');
   padding: 10px;
 
   @include config.media('>tablet') {
