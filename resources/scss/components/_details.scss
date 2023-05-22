@@ -6,7 +6,7 @@
   padding: 10px;
 
   @include config.media('>tablet') {
-    border-radius: 5px;
+    border-radius: config.borderRadius();
   }
 
   dt,

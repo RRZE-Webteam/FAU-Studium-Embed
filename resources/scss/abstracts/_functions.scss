@@ -1,4 +1,5 @@
 @use 'sass:string';
+@use 'sass:map';
 @use 'variables';
 
 /// Replace `$search` with `$replace` in `$string`
@@ -20,10 +21,10 @@
 }
 
 @function getColorValue($color, $variation: '') {
-  @if type-of(map-get(variables.$colorsMap, $color)) == 'color' {
-    @return map-get(variables.$colorsMap, $color);
-  } @else if type-of(map-get(variables.$colorsMap, $color)) == 'map' {
-    @return map-get(map-get(variables.$colorsMap, $color), $variation);
+  @if type-of(map.get(variables.$colorsMap, $color)) == 'color' {
+    @return map.get(variables.$colorsMap, $color);
+  } @else if type-of(map.get(variables.$colorsMap, $color)) == 'map' {
+    @return map.get(map.get(variables.$colorsMap, $color), $variation);
   }
 
   @error 'No such color exists';
@@ -34,4 +35,15 @@
   $colorValue: getColorValue($color, $variation);
 
   @return var(--color-#{$color}#{$variationPostfix}, $colorValue);
+}
+
+@function borderRadius($variation: 'default') {
+  $variationPostfix: if($variation != 'default', -#{$variation}, '');
+  $value: map.get(variables.$borderRadius, $variation);
+
+  @if type-of($value) == 'number' {
+    @return var(--border-radius#{$variationPostfix}, $value);
+  }
+
+  @error 'No such border radius variation exists';
 }
