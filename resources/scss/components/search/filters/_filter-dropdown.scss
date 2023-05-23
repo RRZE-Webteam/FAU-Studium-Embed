@@ -148,6 +148,11 @@
         content: '';
       }
 
+      .c-filter-choices {
+        max-height: 410px;
+        overflow: auto;
+      }
+
       @include config.when-inside('.c-filter-dropdown--advanced-filters') {
         top: calc(100% + 20px);
         border-top-right-radius: 3px;
@@ -155,6 +160,11 @@
 
         &::before {
           top: 0;
+        }
+
+        .c-filter-choices {
+          max-height: unset;
+          overflow: unset;
         }
       }
     }
