@@ -3,13 +3,11 @@
 &__featured-image {
   width: 100%;
   position: relative;
-  background-color: config.color('primary', 'basis');
 
   img {
     width: 100%;
     height: auto;
     object-fit: cover;
-    max-height: 350px;
     max-width: 1400px;
     margin: 0 auto;
     display: block;
