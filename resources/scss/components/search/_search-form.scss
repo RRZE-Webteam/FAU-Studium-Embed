@@ -91,6 +91,7 @@
       transition: background-color .2s linear;
       border: 0;
       font-weight: 700;
+      margin: 0;
 
       &:hover {
         background-color: config.color('button', 'hover-bg');
