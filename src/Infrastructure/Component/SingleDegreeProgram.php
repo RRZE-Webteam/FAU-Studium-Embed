@@ -12,6 +12,7 @@ use Fau\DegreeProgram\Common\Domain\DegreeProgramId;
 use Fau\DegreeProgram\Common\Domain\MultilingualString;
 use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
 use Fau\DegreeProgram\Output\Application\DegreeProgramViewPropertiesFilter;
+use Fau\DegreeProgram\Output\Infrastructure\Rewrite\LocaleHelper;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\ReferrerUrlHelper;
 use Psr\Log\LoggerInterface;
 
@@ -48,6 +49,9 @@ final class SingleDegreeProgram implements RenderableComponent
 
     public function render(array $attributes = self::DEFAULT_ATTRIBUTES): string
     {
+        $localeHelper = LocaleHelper::new();
+        $attributes['lang'] = $attributes['lang'] ?? $localeHelper->languageCodeFromLocale();
+
         /** @var SingleDegreeProgramAttributes $attributes */
         $attributes = wp_parse_args($attributes, self::DEFAULT_ATTRIBUTES);
         if (!$attributes['id']) {
@@ -76,7 +80,12 @@ final class SingleDegreeProgram implements RenderableComponent
             $attributes['exclude'],
         );
 
-        return $this->renderer->render(
+        $localeHelper = $localeHelper->withLocale(
+            $localeHelper->localeFromLanguageCode($attributes['lang'])
+        );
+
+        add_filter('locale', [$localeHelper, 'filterLocale']);
+        $html = $this->renderer->render(
             'single-degree-program-' . $attributes['format'],
             [
                 'view' => $view,
@@ -84,6 +93,9 @@ final class SingleDegreeProgram implements RenderableComponent
                 'className' => $attributes['className'],
             ]
         );
+        remove_filter('locale', [$localeHelper, 'filterLocale']);
+
+        return $html;
     }
 
     /**

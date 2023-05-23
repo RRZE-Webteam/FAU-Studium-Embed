@@ -15,6 +15,7 @@ use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
 use Fau\DegreeProgram\Output\Application\Filter\FilterView;
 use Fau\DegreeProgram\Output\Infrastructure\Filter\FilterViewFactory;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\CurrentRequest;
+use Fau\DegreeProgram\Output\Infrastructure\Rewrite\LocaleHelper;
 
 /**
  * @psalm-import-type LanguageCodes from MultilingualString
@@ -61,14 +62,24 @@ final class DegreeProgramsSearch implements RenderableComponent
 
     public function render(array $attributes = self::DEFAULT_ATTRIBUTES): string
     {
+        $localeHelper = LocaleHelper::new();
+        $attributes['lang'] = $attributes['lang'] ?? $localeHelper->languageCodeFromLocale();
+
         /** @var DegreeProgramsSearchAttributes $attributes */
         $attributes = wp_parse_args($attributes, self::DEFAULT_ATTRIBUTES);
 
         $collection = $this->findCollection($attributes);
+
+        $localeHelper = $localeHelper->withLocale(
+            $localeHelper->localeFromLanguageCode($attributes['lang'])
+        );
+
+        add_filter('locale', [$localeHelper, 'filterLocale']);
+
         $filterViews = $this->buildFilterViews($attributes);
         [$filters, $advancedFilters] = $this->splitFilterViews(...$filterViews);
 
-        return $this->renderer->render(
+        $html = $this->renderer->render(
             'search/search',
             [
                 'collection' => $collection,
@@ -83,6 +94,9 @@ final class DegreeProgramsSearch implements RenderableComponent
                 ),
             ],
         );
+        remove_filter('locale', [$localeHelper, 'filterLocale']);
+
+        return $html;
     }
 
     /**

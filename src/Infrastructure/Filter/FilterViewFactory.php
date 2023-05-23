@@ -18,7 +18,6 @@ use Fau\DegreeProgram\Common\Application\Filter\TeachingLanguageFilter;
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\TaxonomiesList;
 use Fau\DegreeProgram\Output\Application\Filter\FilterView;
 use Fau\DegreeProgram\Output\Infrastructure\Repository\WordPressTermRepository;
-use WP_Taxonomy;
 use WP_Term;
 
 final class FilterViewFactory
@@ -113,22 +112,17 @@ final class FilterViewFactory
 
     private function labelFromTaxonomyLabel(string $filterId): string
     {
-        $taxonomyName = $this->taxonomiesList->convertRestBaseToSlug($filterId);
+        foreach ($this->taxonomiesList->getArrayCopy() as $taxonomyClass) {
+            if ((string) constant("{$taxonomyClass}::REST_BASE") !== $filterId) {
+                continue;
+            }
 
-        if (!$taxonomyName) {
-            return '';
+            /** @var array{labels: array{singular_name: string}} $taxonomyArgs */
+            $taxonomyArgs = $taxonomyClass::public()->args();
+            return $taxonomyArgs['labels']['singular_name'];
         }
 
-        $taxonomyObject = get_taxonomy($taxonomyName);
-
-        if (!$taxonomyObject instanceof WP_Taxonomy) {
-            return '';
-        }
-
-        /** @var string $label */
-        $label = $taxonomyObject->labels->singular_name;
-
-        return $label;
+        return '';
     }
 
     /**
