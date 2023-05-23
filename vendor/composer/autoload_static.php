@@ -287,6 +287,7 @@ class ComposerStaticInit8d286870ef9262dc7134d60e1d1777bd
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Repository\\WordPressTermRepository' => __DIR__ . '/../..' . '/src/Infrastructure/Repository/WordPressTermRepository.php',
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Rewrite\\CurrentRequest' => __DIR__ . '/../..' . '/src/Infrastructure/Rewrite/CurrentRequest.php',
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Rewrite\\InjectLanguageQueryVariable' => __DIR__ . '/../..' . '/src/Infrastructure/Rewrite/InjectLanguageQueryVariable.php',
+        'Fau\\DegreeProgram\\Output\\Infrastructure\\Rewrite\\LocaleHelper' => __DIR__ . '/../..' . '/src/Infrastructure/Rewrite/LocaleHelper.php',
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Rewrite\\ModifyRequestArgs' => __DIR__ . '/../..' . '/src/Infrastructure/Rewrite/ModifyRequestArgs.php',
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Rewrite\\ReferrerUrlHelper' => __DIR__ . '/../..' . '/src/Infrastructure/Rewrite/ReferrerUrlHelper.php',
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Rewrite\\RewriteModule' => __DIR__ . '/../..' . '/src/Infrastructure/Rewrite/RewriteModule.php',
