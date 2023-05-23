@@ -207,6 +207,7 @@ return array(
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Repository\\WordPressTermRepository' => $baseDir . '/src/Infrastructure/Repository/WordPressTermRepository.php',
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Rewrite\\CurrentRequest' => $baseDir . '/src/Infrastructure/Rewrite/CurrentRequest.php',
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Rewrite\\InjectLanguageQueryVariable' => $baseDir . '/src/Infrastructure/Rewrite/InjectLanguageQueryVariable.php',
+    'Fau\\DegreeProgram\\Output\\Infrastructure\\Rewrite\\LocaleHelper' => $baseDir . '/src/Infrastructure/Rewrite/LocaleHelper.php',
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Rewrite\\ModifyRequestArgs' => $baseDir . '/src/Infrastructure/Rewrite/ModifyRequestArgs.php',
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Rewrite\\ReferrerUrlHelper' => $baseDir . '/src/Infrastructure/Rewrite/ReferrerUrlHelper.php',
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Rewrite\\RewriteModule' => $baseDir . '/src/Infrastructure/Rewrite/RewriteModule.php',
