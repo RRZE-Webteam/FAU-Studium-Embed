@@ -19,7 +19,7 @@ use function Fau\DegreeProgram\Output\renderComponent;
 
 ?>
 
-<div class="c-degree-program-short">
+<div class="c-degree-program-short" lang="<?= esc_attr(get_bloginfo('language')) ?>">
     <div class="c-degree-program-short__grid">
         <div class="c-degree-program-short__title">
             <?= esc_html($view->title()) ?>

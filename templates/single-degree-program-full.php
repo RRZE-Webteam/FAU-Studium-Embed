@@ -23,7 +23,9 @@ use Fau\DegreeProgram\Output\Infrastructure\Rewrite\ReferrerUrlHelper;
 
 ?>
 
-<div class="c-single-degree-program <?= esc_attr($className) ?>">
+<div class="c-single-degree-program <?= esc_attr($className) ?>"
+     lang="<?= esc_attr(get_bloginfo('language')) ?>"
+>
     <?php // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
     <?= $renderer->render('single-degree-program/heading', ['view' => $view]) ?>
     <?= $renderer->render('single-degree-program/featured-image', ['view' => $view]) ?>

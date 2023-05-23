@@ -34,7 +34,7 @@ use function Fau\DegreeProgram\Output\renderComponent;
 
 ?>
 
-<section class="c-degree-programs-search">
+<section class="c-degree-programs-search" lang="<?= esc_attr(get_bloginfo('language')) ?>">
     <h1 class="c-degree-programs-search__title">
         <?= esc_html_x(
             'Degree programs',
