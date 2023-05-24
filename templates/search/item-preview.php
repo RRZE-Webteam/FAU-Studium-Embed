@@ -4,7 +4,11 @@ declare(strict_types=1);
 
 use Fau\DegreeProgram\Common\Application\DegreeProgramViewTranslated;
 use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
+use Fau\DegreeProgram\Output\Infrastructure\Component\Component;
+use Fau\DegreeProgram\Output\Infrastructure\Component\Icon;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\ReferrerUrlHelper;
+
+use function Fau\DegreeProgram\Output\renderComponent;
 
 /**
  * @var array{
@@ -21,7 +25,6 @@ use Fau\DegreeProgram\Output\Infrastructure\Rewrite\ReferrerUrlHelper;
 
 $link = $referrerUrlHelper->addReferrerArgs($degreeProgram->link());
 $titleId = sprintf('degree-program-title-%d', $degreeProgram->id());
-
 ?>
 
 <li class="c-degree-program-preview">
@@ -39,6 +42,13 @@ $titleId = sprintf('degree-program-title-%d', $degreeProgram->id());
             [
                 'html' => $degreeProgram->teaserImage()->rendered(),
             ]
+        ) ?: renderComponent(
+            new Component(
+                Icon::class,
+                [
+                    'name' => 'degree',
+                ]
+            )
         ) ?>
         <?php // phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
     </div>

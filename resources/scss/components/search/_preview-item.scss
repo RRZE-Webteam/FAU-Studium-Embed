@@ -47,6 +47,10 @@
         .c-degree-program-preview__title {
           color: #fff;
         }
+
+        .c-degree-program-preview__teaser-image {
+          background-color: config.color('primary', 'basis');
+        }
       }
     }
   }
@@ -72,12 +76,22 @@
   &__teaser-image {
     margin-bottom: 15px;
     width: 55px;
+    background-color: config.color('ContentRegions');
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 
-    img {
+    img,
+    .fau-icon {
       height: 55px;
       object-fit: cover;
       box-shadow: none !important;
       max-width: 100%;
+    }
+
+    .fau-icon {
+      width: 2em;
     }
 
     @include config.when-inside('.c-degree-programs-collection.-list') {
@@ -87,7 +101,8 @@
         width: 178px;
         margin-bottom: 0;
 
-        img {
+        img,
+        .fau-icon {
           height: 178px;
         }
       }
@@ -96,7 +111,8 @@
         width: unset;
         border-bottom: 1px solid #dfe6ec;
 
-        img {
+        img,
+        .fau-icon {
           height: 80px;
         }
       }
@@ -107,7 +123,8 @@
         width: 100%;
         margin-bottom: 0;
 
-        img {
+        img,
+        .fau-icon {
           height: auto;
         }
       }
@@ -162,6 +179,10 @@
       @include config.media('>tablet') {
         top: 0;
       }
+    }
+
+    abbr {
+      display: contents;
     }
   }
 
