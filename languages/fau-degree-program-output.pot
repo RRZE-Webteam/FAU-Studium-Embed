@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: FAU Degree Program Output 0.0.3\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/fau-degree-program-output\n"
+"Project-Id-Version: FAU Degree Program Output 0.0.4\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/fau-degree-program-sync-and-output\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-05-18T07:58:36+00:00\n"
+"POT-Creation-Date: 2023-05-24T10:06:22+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: fau-degree-program-output\n"
@@ -89,199 +89,199 @@ msgctxt "backoffice: Sort by options"
 msgid "Sort by admission requirement Z-A"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:114
+#: src/Infrastructure/Component/SingleDegreeProgram.php:126
 msgid "Teaser image"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:115
+#: src/Infrastructure/Component/SingleDegreeProgram.php:127
 msgid "Title"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:116
+#: src/Infrastructure/Component/SingleDegreeProgram.php:128
 msgid "Subtitle"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:117
+#: src/Infrastructure/Component/SingleDegreeProgram.php:129
 msgid "Standard duration of study"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:121
+#: src/Infrastructure/Component/SingleDegreeProgram.php:133
 msgid "Start of degree program"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:122
+#: src/Infrastructure/Component/SingleDegreeProgram.php:134
 msgid "Number of students"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:126
+#: src/Infrastructure/Component/SingleDegreeProgram.php:138
 msgid "Teaching language"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:130
+#: src/Infrastructure/Component/SingleDegreeProgram.php:142
 msgid "Attributes"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:131
+#: src/Infrastructure/Component/SingleDegreeProgram.php:143
 msgid "Degree"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:132
+#: src/Infrastructure/Component/SingleDegreeProgram.php:144
 msgid "Faculty"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:133
+#: src/Infrastructure/Component/SingleDegreeProgram.php:145
 msgid "Study location"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:134
+#: src/Infrastructure/Component/SingleDegreeProgram.php:146
 msgid "Subject groups"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:135
+#: src/Infrastructure/Component/SingleDegreeProgram.php:147
 msgid "Videos"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:136
+#: src/Infrastructure/Component/SingleDegreeProgram.php:148
 msgid "What is the degree program about?"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:140
+#: src/Infrastructure/Component/SingleDegreeProgram.php:152
 msgid "Design and structure"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:144
+#: src/Infrastructure/Component/SingleDegreeProgram.php:156
 msgid "Fields of study and specializations"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:148
+#: src/Infrastructure/Component/SingleDegreeProgram.php:160
 msgid "Which qualities and skills do I need?"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:152
+#: src/Infrastructure/Component/SingleDegreeProgram.php:164
 msgid "Why should I study at FAU?"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:156
+#: src/Infrastructure/Component/SingleDegreeProgram.php:168
 msgid "Which career prospects are open to me?"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:160
+#: src/Infrastructure/Component/SingleDegreeProgram.php:172
 msgid "Admission requirement link"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:164
+#: src/Infrastructure/Component/SingleDegreeProgram.php:176
 msgid "Details and notes"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:168
+#: src/Infrastructure/Component/SingleDegreeProgram.php:180
 msgid "Start of semester"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:172
+#: src/Infrastructure/Component/SingleDegreeProgram.php:184
 msgid "Semester dates"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:173
+#: src/Infrastructure/Component/SingleDegreeProgram.php:185
 msgid "Examinations Office"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:177
+#: src/Infrastructure/Component/SingleDegreeProgram.php:189
 msgid "Degree program and examination regulations"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:181
+#: src/Infrastructure/Component/SingleDegreeProgram.php:193
 msgid "Module handbook"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:182
+#: src/Infrastructure/Component/SingleDegreeProgram.php:194
 msgid "Degree program URL"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:183
+#: src/Infrastructure/Component/SingleDegreeProgram.php:195
 msgid "Department/Institute"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:187
+#: src/Infrastructure/Component/SingleDegreeProgram.php:199
 msgid "Student Advice and Career Service"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:191
+#: src/Infrastructure/Component/SingleDegreeProgram.php:203
 msgid "Subject-specific advice"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:195
+#: src/Infrastructure/Component/SingleDegreeProgram.php:207
 msgid "Counseling and Service Centers at FAU"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:199
+#: src/Infrastructure/Component/SingleDegreeProgram.php:211
 msgid "Info brochure degree program"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:203
+#: src/Infrastructure/Component/SingleDegreeProgram.php:215
 msgid "Semester fee"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:204
+#: src/Infrastructure/Component/SingleDegreeProgram.php:216
 msgid "Opportunities for spending time abroad"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:208
+#: src/Infrastructure/Component/SingleDegreeProgram.php:220
 msgid "Keywords"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:209
+#: src/Infrastructure/Component/SingleDegreeProgram.php:221
 msgid "Area of study"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:210
+#: src/Infrastructure/Component/SingleDegreeProgram.php:222
 msgid "Combination options"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:211
+#: src/Infrastructure/Component/SingleDegreeProgram.php:223
 msgid "Limited combination options"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:215
+#: src/Infrastructure/Component/SingleDegreeProgram.php:227
 msgid "Notes for international applicants"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:219
+#: src/Infrastructure/Component/SingleDegreeProgram.php:231
 msgid "Students' Union/Student Initiatives"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:223
+#: src/Infrastructure/Component/SingleDegreeProgram.php:235
 msgid "\"Apply now\" link"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:224
+#: src/Infrastructure/Component/SingleDegreeProgram.php:236
 msgid "Entry text (promotional)"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:228
+#: src/Infrastructure/Component/SingleDegreeProgram.php:240
 msgid "Content-related admission requirements for Master's degree"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:232
+#: src/Infrastructure/Component/SingleDegreeProgram.php:244
 msgid "Application deadline winter semester"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:236
+#: src/Infrastructure/Component/SingleDegreeProgram.php:248
 msgid "Application deadline summer semester"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:240
+#: src/Infrastructure/Component/SingleDegreeProgram.php:252
 msgid "Language skills"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:241
+#: src/Infrastructure/Component/SingleDegreeProgram.php:253
 msgid "Language skills for Faculty of Humanities, Social Sciences, and Theology only"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:245
+#: src/Infrastructure/Component/SingleDegreeProgram.php:257
 msgid "Language certificates/German language skills for international applicants"
 msgstr ""
 
-#: src/Infrastructure/Component/SingleDegreeProgram.php:249
+#: src/Infrastructure/Component/SingleDegreeProgram.php:261
 msgid "Degree Program Fees"
 msgstr ""
 
@@ -332,50 +332,59 @@ msgstr ""
 msgid "Ignored if \"include\" is specified."
 msgstr ""
 
-#: src/Infrastructure/Filter/FilterViewFactory.php:69
+#: src/Infrastructure/Filter/FilterViewFactory.php:68
 msgctxt "backoffice: Filter label"
 msgid "Keyword"
 msgstr ""
 
-#: src/Infrastructure/Filter/FilterViewFactory.php:78
+#: src/Infrastructure/Filter/FilterViewFactory.php:77
 msgctxt "backoffice: Filter label"
 msgid "Admission Requirement"
 msgstr ""
 
-#: src/Infrastructure/Filter/FilterViewFactory.php:142
+#: src/Infrastructure/Filter/FilterViewFactory.php:136
 msgctxt "backoffice: Filter label"
 msgid "Free"
 msgstr ""
 
-#: src/Infrastructure/Filter/FilterViewFactory.php:151
+#: src/Infrastructure/Filter/FilterViewFactory.php:145
 msgctxt "backoffice: Filter label"
 msgid "Restricted"
 msgstr ""
 
-#: templates/search/collection-table-header.php:59
+#: templates/search/collection-table-header.php:69
+#: templates/search/collection-table-header.php:103
+#: templates/search/collection-table-header.php:135
+#: templates/search/collection-table-header.php:167
+#: templates/search/collection-table-header.php:199
+msgctxt "frontoffice: degree programs search result list"
+msgid "Sort by"
+msgstr ""
+
+#: templates/search/collection-table-header.php:75
 msgctxt "frontoffice: degree programs search result list"
 msgid "Degree program"
 msgstr ""
 
-#: templates/search/collection-table-header.php:86
+#: templates/search/collection-table-header.php:109
 msgctxt "frontoffice: degree programs search result list"
 msgid "Degree type"
 msgstr ""
 
-#: templates/search/collection-table-header.php:111
-#: templates/search/item-preview.php:73
+#: templates/search/collection-table-header.php:141
+#: templates/search/item-preview.php:82
 msgctxt "frontoffice: degree programs search result list"
 msgid "Start"
 msgstr ""
 
-#: templates/search/collection-table-header.php:136
-#: templates/search/item-preview.php:84
+#: templates/search/collection-table-header.php:173
+#: templates/search/item-preview.php:93
 msgctxt "frontoffice: degree programs search result list"
 msgid "Location"
 msgstr ""
 
-#: templates/search/collection-table-header.php:161
-#: templates/search/item-preview.php:95
+#: templates/search/collection-table-header.php:205
+#: templates/search/item-preview.php:104
 msgctxt "frontoffice: degree programs search result list"
 msgid "NC"
 msgstr ""
@@ -410,7 +419,7 @@ msgctxt "frontoffice: degree programs search form"
 msgid "Switch to list view"
 msgstr ""
 
-#: templates/search/item-preview.php:61
+#: templates/search/item-preview.php:71
 msgctxt "frontoffice: degree programs search result list"
 msgid "Type"
 msgstr ""
