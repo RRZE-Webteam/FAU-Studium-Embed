@@ -35,7 +35,11 @@ final class WpQueryModifier
             return;
         }
 
-        $orderBy = (string) $query->get('orderby');
+        $orderBy = $query->get('orderby');
+        if (!is_string($orderBy)) {
+            return;
+        }
+
         $metaQuery = array_filter((array) $query->get('meta_query'));
         $isTermMetaOrdering = $this->isTermMetaOrdering($orderBy);
 
