@@ -4,7 +4,7 @@
  * Plugin Name: FAU Degree Program Output
  * Plugin URI:  https://github.com/RRZE-Webteam/FAU-Studium-Embed
  * Description: Fetch degree programs via the REST API and display them.
- * Version:     0.0.3
+ * Version:     0.0.4
  * Author:      Inpsyde GmbH
  * Author URI:  https://inpsyde.com/
  * Update URI:  false
@@ -20,7 +20,6 @@ namespace Fau\DegreeProgram\Output;
 
 // phpcs:disable PSR1.Files.SideEffects
 
-use Fau\DegreeProgram\Output\Infrastructure\Editor\EditorModule;
 use Fau\DegreeProgram\Output\Infrastructure\ApiClient\ApiClientModule;
 use Fau\DegreeProgram\Output\Infrastructure\Assets\AssetsModule;
 use Fau\DegreeProgram\Output\Infrastructure\Block\BlockModule;
@@ -30,6 +29,7 @@ use Fau\DegreeProgram\Output\Infrastructure\CliModule;
 use Fau\DegreeProgram\Output\Infrastructure\Component\ComponentModule;
 use Fau\DegreeProgram\Output\Infrastructure\Content\ContentModule;
 use Fau\DegreeProgram\Output\Infrastructure\Dashboard\AdminBarModule;
+use Fau\DegreeProgram\Output\Infrastructure\Editor\EditorModule;
 use Fau\DegreeProgram\Output\Infrastructure\Embed\EmbedModule;
 use Fau\DegreeProgram\Output\Infrastructure\Environment\EnvironmentModule;
 use Fau\DegreeProgram\Output\Infrastructure\EventDispatcherModule;
