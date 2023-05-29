@@ -70,6 +70,13 @@ final class SingleDegreeProgram implements RenderableComponent
             $attributes['lang']
         );
 
+        $view = apply_filters(
+            'fau.degree-program-output.single-view',
+            $view,
+            $attributes['id'],
+            $attributes['lang']
+        );
+
         if (!$view instanceof DegreeProgramViewTranslated) {
             return '';
         }

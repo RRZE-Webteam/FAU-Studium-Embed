@@ -7,7 +7,6 @@ namespace Fau\DegreeProgram\Output\Infrastructure\Template;
 use Fau\DegreeProgram\Common\Infrastructure\Content\PostType\DegreeProgramPostType;
 use Fau\DegreeProgram\Output\Infrastructure\Component\SingleDegreeProgram;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\CurrentRequest;
-use Inpsyde\WpContext;
 use WP_Post;
 
 final class SingleDegreeProgramContentFilter
@@ -32,9 +31,15 @@ final class SingleDegreeProgramContentFilter
             return $content;
         }
 
-        return $this->singleDegreeProgram->render([
+        // Removing filter to avoid endless loop
+        // if translated view generation uses `the_content` filter under hood.
+        remove_filter('the_content', [$this, 'filterContent']);
+        $html = $this->singleDegreeProgram->render([
             'id' => $post->ID,
             'lang' => $this->currentRequest->languageCode(),
         ]);
+        add_filter('the_content', [$this, 'filterContent']);
+
+        return $html;
     }
 }
