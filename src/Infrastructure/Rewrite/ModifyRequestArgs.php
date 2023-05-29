@@ -48,7 +48,9 @@ class ModifyRequestArgs
     private function shouldIntercept(array $queryVars): bool
     {
         $context = WpContext::determine();
-        return $context->isFrontoffice() && array_key_exists('post_type', $queryVars) &&
-            $queryVars['post_type'] === DegreeProgramPostType::KEY;
+        return $context->isFrontoffice()
+            && array_key_exists('post_type', $queryVars)
+            && $queryVars['post_type'] === DegreeProgramPostType::KEY
+            && isset($queryVars['name']);
     }
 }
