@@ -35,6 +35,17 @@
     @include config.media('>tablet-lg') {
       display: table-row;
 
+      // Safari doesn't respect `position: relative` on table rows.
+      // This fixes the wrong link position.
+      // @link https://github.com/w3c/csswg-drafts/issues/1899#issuecomment-1232707455
+      @supports (background: -webkit-named-image(i)) {
+        clip-path: inset(0);
+      }
+
+      @at-root .is-safari & {
+        clip-path: inset(0);
+      }
+
       & > * {
         display: table-cell;
         vertical-align: middle;
