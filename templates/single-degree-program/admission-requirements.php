@@ -18,7 +18,7 @@ use function Fau\DegreeProgram\Output\renderComponent;
 
 ?>
 
-<div class="c-single-degree-program__admission-requirements">
+<dl class="c-single-degree-program__admission-requirements">
     <?= renderComponent(
         new Component(
             DegreeProgramDetail::class,
@@ -147,4 +147,4 @@ use function Fau\DegreeProgram\Output\renderComponent;
             ]
         )
     ) ?>
-</div>
+</dl>

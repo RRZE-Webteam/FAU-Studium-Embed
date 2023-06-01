@@ -18,7 +18,7 @@ class SearchForm implements RenderableComponent
     public function render(array $attributes = []): string
     {
         return $this->renderer->render(
-            'search/search-form',
+            'search/text-input-search',
             [
                 'searchQuery' => $this->currentRequest->searchKeyword(),
                 'queryStrings' => $this->currentRequest->flattenedQueryStrings(),

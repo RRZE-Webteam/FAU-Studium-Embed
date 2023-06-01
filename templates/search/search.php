@@ -43,34 +43,38 @@ use function Fau\DegreeProgram\Output\renderComponent;
         ) ?>
     </h1>
 
-    <?= renderComponent(
-        new Component(
-            SearchForm::class,
-            []
-        )
-    ) ?>
+    <form
+        action="<?= esc_url((string) get_permalink((int) get_the_id())) ?>"
+        method="get"
+    >
+        <?= renderComponent(
+            new Component(
+                SearchForm::class,
+                []
+            )
+        ) ?>
 
-    <?= renderComponent(
-        new Component(
-            ActiveFilters::class,
-            [
-                'activeFilters' => $activeFilters,
-            ],
-        ),
-    ) ?>
+        <?= renderComponent(
+            new Component(
+                ActiveFilters::class,
+                [
+                    'activeFilters' => $activeFilters,
+                ],
+            ),
+        ) ?>
 
-    <?= renderComponent(
-        new Component(
-            SearchFilters::class,
-            [
-                'filters' => $filters,
-                'output' => $output,
-                'activeFilters' => $activeFilters,
-                'advancedFilters' => $advancedFilters,
-            ]
-        )
-    ) ?>
-
+        <?= renderComponent(
+            new Component(
+                SearchFilters::class,
+                [
+                    'filters' => $filters,
+                    'output' => $output,
+                    'activeFilters' => $activeFilters,
+                    'advancedFilters' => $advancedFilters,
+                ]
+            )
+        ) ?>
+    </form>
 
     <?= renderComponent(
         new Component(

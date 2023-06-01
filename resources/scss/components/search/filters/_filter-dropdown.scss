@@ -55,6 +55,13 @@
     padding: 0 15px;
     height: 50px;
     cursor: pointer;
+    background: none;
+    width: 100%;
+
+    &:hover,
+    &:focus {
+      background: none;
+    }
 
     @include config.media('>tablet') {
       height: 40px;
@@ -182,16 +189,19 @@
     .c-filter-checkbox {
       margin: 0 !important;
       padding: 0 !important;
-
-      .c-filter-checkbox__inner {
-        display: flex;
-        padding: 12px 10px !important;
-        border-top: solid 1px #{config.color('content', 'borders')};
-      }
+      padding: 12px 10px !important;
+      border-top: solid 1px #{config.color('content', 'borders')};
 
       input[type='checkbox']:checked,
       input[type='radio']:checked {
-        & ~ .c-filter-checkbox__inner {
+        & ~ .c-filter-checkbox__label::before {
+          content: '';
+          position: absolute;
+          z-index: -1;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
           background-color: config.color('grey', 'light');
         }
       }

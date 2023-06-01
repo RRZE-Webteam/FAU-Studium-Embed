@@ -1,4 +1,4 @@
-const TOGGLES_SELECTOR = '.search-filter__output_modes a';
+const TOGGLES_SELECTOR = '.search-filter__output_modes .search-filter__output-mode-option';
 const TOGGLE_ACTIVE_CLASSNAME = '-active';
 const COLLECTION_SELECTOR = '.c-degree-programs-collection';
 const LIST_VIEW_CLASSNAME = '-list';

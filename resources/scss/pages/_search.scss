@@ -1,6 +1,13 @@
 @use '../abstracts/config';
 
 .c-degree-programs-search {
+  form {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
   @include config.media('<tablet') {
     margin-left: -15px;
     margin-right: -15px;
