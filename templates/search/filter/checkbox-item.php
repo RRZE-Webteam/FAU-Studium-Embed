@@ -26,15 +26,10 @@ declare(strict_types=1);
         type="checkbox"
         name="<?= esc_attr($filterId) ?>"
         value="<?= esc_attr((string) $value) ?>"
-        tabindex="-1"
         <?= checked($isSelected) ?>
     />
 
-    <div class="c-filter-checkbox__inner">
-        <span class="c-filter-checkbox__check">
-        </span>
-        <span class="c-filter-checkbox__label">
-            <?= esc_html($label) ?>
-        </span>
-    </div>
+    <span class="c-filter-checkbox__label">
+        <?= esc_html($label) ?>
+    </span>
 </label>

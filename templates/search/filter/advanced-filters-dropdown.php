@@ -36,9 +36,9 @@ $contentId = 'content_' . wp_generate_uuid4();
     aria-labelledby="<?= esc_attr($labelId) ?>"
     aria-expanded="false"
 >
-    <div
+    <button
         class="c-filter-dropdown__header fau-dropdown__toggle"
-        role="button"
+        type="button"
         id="<?= esc_attr($buttonId) ?>"
         aria-controls="<?= esc_attr($contentId) ?>"
     >
@@ -69,7 +69,7 @@ $contentId = 'content_' . wp_generate_uuid4();
                 <?= esc_html((string) $selectedCount) ?>
             </span>
         <?php endif ?>
-    </div>
+    </button>
 
     <div
         class="c-filter-dropdown__content fau-dropdown__content"

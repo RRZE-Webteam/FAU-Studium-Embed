@@ -65,10 +65,8 @@
 
   &__submit {
     .label {
-      display: none;
-
-      @include config.media('>tablet') {
-        display: inline-block;
+      @include config.media('<tablet') {
+        @include config.screen-reader-text;
       }
     }
 

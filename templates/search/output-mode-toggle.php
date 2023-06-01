@@ -28,12 +28,11 @@ use function Fau\DegreeProgram\Output\renderComponent;
 
 ?>
 
-<a
-    role="button"
-    href="<?= esc_url($url) ?>"
-    class="<?= esc_attr($selected ? '-active' : '') ?>"
+<button
+    type="button"
+    class="search-filter__output-mode-option <?= esc_attr($selected ? '-active' : '') ?>"
     data-mode="<?= esc_attr($mode) ?>"
-    aria-selected="<?= esc_attr($selected ? 'true' : 'false') ?>"
+    role="menuitem"
 >
     <span class="screen-reader-text">
         <?= esc_html($label) ?>
@@ -44,4 +43,4 @@ use function Fau\DegreeProgram\Output\renderComponent;
             ['name' => $icon]
         )
     ) ?>
-</a>
+</button>

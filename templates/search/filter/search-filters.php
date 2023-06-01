@@ -82,14 +82,15 @@ $contentId = 'content_' . wp_generate_uuid4();
         ) ?>
 
         <div class="search-filter search-filter--output">
-            <div class="search-filter__label screen-reader-text" role="label">
-                <?= esc_html_x(
-                    'Layout',
+            <nav
+                class="search-filter__output_modes"
+                role="menu"
+                aria-label="<?= esc_attr_x(
+                    'Display mode',
                     'frontoffice: degree programs search form',
                     'fau-degree-program-output'
-                ) ?>
-            </div>
-            <div class="search-filter__output_modes">
+                ) ?>"
+            >
                 <?php // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
                 <?= $renderer->render('search/output-mode-toggle', [
                     'url' => $outputModeUrls[DegreeProgramsSearch::OUTPUT_TILES],
@@ -114,7 +115,7 @@ $contentId = 'content_' . wp_generate_uuid4();
                     'icon' => 'list',
                 ]) ?>
                 <?php // phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-            </div>
+            </nav>
         </div>
     </div>
 </div>
