@@ -87,22 +87,27 @@
   &__teaser-image {
     margin-bottom: 15px;
     width: 55px;
+    height: 55px;
     background-color: config.color('ContentRegions');
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
+    position: relative;
+
+    @include config.aspect-ratio(500, 500);
 
     img,
     .fau-icon {
-      height: 55px;
-      object-fit: cover;
       box-shadow: none !important;
-      max-width: 100%;
+
+      @include config.object-cover;
     }
 
     .fau-icon {
       width: 2em;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
     @include config.when-inside('.c-degree-programs-collection.-list') {
@@ -110,34 +115,22 @@
         grid-column: 1;
         grid-row: 1 / span 999;
         width: 178px;
+        height: 178px;
         margin-bottom: 0;
-
-        img,
-        .fau-icon {
-          height: 178px;
-        }
       }
 
       @include config.media('>tablet-lg') {
-        width: unset;
+        width: 80px;
+        height: 80px;
         border-bottom: 1px solid #dfe6ec;
-
-        img,
-        .fau-icon {
-          height: 80px;
-        }
       }
     }
 
     @include config.when-inside('.c-degree-programs-collection.-tiles') {
       @include config.media('>tablet') {
-        width: 100%;
         margin-bottom: 0;
-
-        img,
-        .fau-icon {
-          height: auto;
-        }
+        width: 100%;
+        height: unset;
       }
     }
   }
