@@ -143,7 +143,7 @@ final class CurrentRequest
     }
 
     /**
-     * @return array{string, 'asc' | 'desc'}
+     * @return array{?string, 'asc' | 'desc' | null}
      */
     public function orderby(): array
     {
@@ -159,7 +159,7 @@ final class CurrentRequest
         );
 
         if (!in_array($orderby, CollectionCriteria::SORTABLE_PROPERTIES, true)) {
-            return CollectionCriteria::DEFAULT_ORDERBY;
+            return [null, null];
         }
 
         return [$orderby, $order === 'asc' ? 'asc' : 'desc'];

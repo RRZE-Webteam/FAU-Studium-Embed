@@ -131,31 +131,31 @@ function initialize(): void
         setUpAutoloader();
 
         // Initialize plugin
-        plugin()->boot(
-            new TranslationModule(),
-            new ContentModule(),
-            new RewriteModule(),
-            new RepositoryModule(),
-            new ApiClientModule(),
-            new EnvironmentModule(),
-            new LoggerModule(),
-            new CacheModule(__FILE__),
-            new AdminBarModule(),
-            new CliModule(),
-            new EventDispatcherModule(),
-            new QueueModule(),
-            new SearchModule(),
-            new QueryModule(),
-            new ComponentModule(),
-            new ShortcodeModule(),
-            new TemplateModule(),
-            new AssetsModule(),
-            new FilterModule(),
-            new EmbedModule(),
-            new StructuredDataModule(),
-            new EditorModule(),
-            new BlockModule(__DIR__ . '/resources/ts/blocks')
-        );
+        plugin()
+            ->addModule(new TranslationModule())
+            ->addModule(new ContentModule())
+            ->addModule(new RewriteModule())
+            ->addModule(new RepositoryModule())
+            ->addModule(new ApiClientModule())
+            ->addModule(new EnvironmentModule())
+            ->addModule(new LoggerModule())
+            ->addModule(new CacheModule(__FILE__))
+            ->addModule(new AdminBarModule())
+            ->addModule(new CliModule())
+            ->addModule(new EventDispatcherModule())
+            ->addModule(new QueueModule())
+            ->addModule(new SearchModule())
+            ->addModule(new QueryModule())
+            ->addModule(new ComponentModule())
+            ->addModule(new ShortcodeModule())
+            ->addModule(new TemplateModule())
+            ->addModule(new AssetsModule())
+            ->addModule(new FilterModule())
+            ->addModule(new EmbedModule())
+            ->addModule(new StructuredDataModule())
+            ->addModule(new EditorModule())
+            ->addModule(new BlockModule(__DIR__ . '/resources/ts/blocks'))
+            ->boot();
     } catch (Throwable $throwable) {
         handleException($throwable);
     }

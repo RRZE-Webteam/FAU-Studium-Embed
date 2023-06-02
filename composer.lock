@@ -79,12 +79,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/RRZE-Webteam/FAU-Studium-Common.git",
-                "reference": "fc97072739ae7d10bb659ab462d21cfa3372eaa1"
+                "reference": "9c373d11e8612d84e74d9968349a89e2d1650bb1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RRZE-Webteam/FAU-Studium-Common/zipball/fc97072739ae7d10bb659ab462d21cfa3372eaa1",
-                "reference": "fc97072739ae7d10bb659ab462d21cfa3372eaa1",
+                "url": "https://api.github.com/repos/RRZE-Webteam/FAU-Studium-Common/zipball/9c373d11e8612d84e74d9968349a89e2d1650bb1",
+                "reference": "9c373d11e8612d84e74d9968349a89e2d1650bb1",
                 "shasum": ""
             },
             "require": {
@@ -151,20 +151,20 @@
                 "source": "https://github.com/RRZE-Webteam/FAU-Studium-Common/tree/main",
                 "issues": "https://github.com/RRZE-Webteam/FAU-Studium-Common/issues"
             },
-            "time": "2023-05-18T07:48:25+00:00"
+            "time": "2023-06-01T12:52:05+00:00"
         },
         {
             "name": "inpsyde/modularity",
-            "version": "1.6.1",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/inpsyde/modularity.git",
-                "reference": "eb14a9b0468000fa88646824080bc035a7a03b61"
+                "reference": "0bde4d19f3739c382faf4203aa707049de42563e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/inpsyde/modularity/zipball/eb14a9b0468000fa88646824080bc035a7a03b61",
-                "reference": "eb14a9b0468000fa88646824080bc035a7a03b61",
+                "url": "https://api.github.com/repos/inpsyde/modularity/zipball/0bde4d19f3739c382faf4203aa707049de42563e",
+                "reference": "0bde4d19f3739c382faf4203aa707049de42563e",
                 "shasum": ""
             },
             "require": {
@@ -178,7 +178,7 @@
                 "johnpbloch/wordpress-core": ">=5.8",
                 "mikey179/vfsstream": "^v1.6.10",
                 "php-stubs/wordpress-stubs": ">=5.8@stable",
-                "phpunit/phpunit": "^8.5.21",
+                "phpunit/phpunit": "^8.5.21 || ^9.6.7",
                 "vimeo/psalm": "^4.13.1"
             },
             "type": "library",
@@ -217,9 +217,9 @@
             "description": "Modular PSR-11 implementation for WordPress plugins, themes or libraries.",
             "support": {
                 "issues": "https://github.com/inpsyde/modularity/issues",
-                "source": "https://github.com/inpsyde/modularity/tree/1.6.1"
+                "source": "https://github.com/inpsyde/modularity/tree/1.7.0"
             },
-            "time": "2023-02-16T09:37:57+00:00"
+            "time": "2023-05-26T10:04:19+00:00"
         },
         {
             "name": "inpsyde/wp-context",
@@ -1142,16 +1142,16 @@
         },
         {
             "name": "doctrine/deprecations",
-            "version": "v1.0.0",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/deprecations.git",
-                "reference": "0e2a4f1f8cdfc7a92ec3b01c9334898c806b30de"
+                "reference": "8cffffb2218e01f3b370bf763e00e81697725259"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/deprecations/zipball/0e2a4f1f8cdfc7a92ec3b01c9334898c806b30de",
-                "reference": "0e2a4f1f8cdfc7a92ec3b01c9334898c806b30de",
+                "url": "https://api.github.com/repos/doctrine/deprecations/zipball/8cffffb2218e01f3b370bf763e00e81697725259",
+                "reference": "8cffffb2218e01f3b370bf763e00e81697725259",
                 "shasum": ""
             },
             "require": {
@@ -1179,9 +1179,9 @@
             "homepage": "https://www.doctrine-project.org/",
             "support": {
                 "issues": "https://github.com/doctrine/deprecations/issues",
-                "source": "https://github.com/doctrine/deprecations/tree/v1.0.0"
+                "source": "https://github.com/doctrine/deprecations/tree/v1.1.0"
             },
-            "time": "2022-05-02T15:47:09+00:00"
+            "time": "2023-05-29T18:55:17+00:00"
         },
         {
             "name": "doctrine/instantiator",
@@ -1942,16 +1942,16 @@
         },
         {
             "name": "phpdocumentor/type-resolver",
-            "version": "1.7.1",
+            "version": "1.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/TypeResolver.git",
-                "reference": "dfc078e8af9c99210337325ff5aa152872c98714"
+                "reference": "b2fe4d22a5426f38e014855322200b97b5362c0d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/dfc078e8af9c99210337325ff5aa152872c98714",
-                "reference": "dfc078e8af9c99210337325ff5aa152872c98714",
+                "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/b2fe4d22a5426f38e014855322200b97b5362c0d",
+                "reference": "b2fe4d22a5426f38e014855322200b97b5362c0d",
                 "shasum": ""
             },
             "require": {
@@ -1994,22 +1994,22 @@
             "description": "A PSR-5 based resolver of Class names, Types and Structural Element Names",
             "support": {
                 "issues": "https://github.com/phpDocumentor/TypeResolver/issues",
-                "source": "https://github.com/phpDocumentor/TypeResolver/tree/1.7.1"
+                "source": "https://github.com/phpDocumentor/TypeResolver/tree/1.7.2"
             },
-            "time": "2023-03-27T19:02:04+00:00"
+            "time": "2023-05-30T18:13:47+00:00"
         },
         {
             "name": "phpstan/phpdoc-parser",
-            "version": "1.21.0",
+            "version": "1.21.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpdoc-parser.git",
-                "reference": "6df62b08faef4f899772bc7c3bbabb93d2b7a21c"
+                "reference": "b0c366dd2cea79407d635839d25423ba07c55dd6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/6df62b08faef4f899772bc7c3bbabb93d2b7a21c",
-                "reference": "6df62b08faef4f899772bc7c3bbabb93d2b7a21c",
+                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/b0c366dd2cea79407d635839d25423ba07c55dd6",
+                "reference": "b0c366dd2cea79407d635839d25423ba07c55dd6",
                 "shasum": ""
             },
             "require": {
@@ -2040,9 +2040,9 @@
             "description": "PHPDoc parser with support for nullable, intersection and generic types",
             "support": {
                 "issues": "https://github.com/phpstan/phpdoc-parser/issues",
-                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.21.0"
+                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.21.3"
             },
-            "time": "2023-05-17T13:13:44+00:00"
+            "time": "2023-05-29T19:31:28+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
