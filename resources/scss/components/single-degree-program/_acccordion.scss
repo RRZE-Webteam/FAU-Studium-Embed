@@ -32,6 +32,10 @@
     height: 14px !important;
     fill: config.color('primary', 'dunkler') !important;
     transition: transform 0.5s;
+
+    @include config.media('print') {
+      display: none !important;
+    }
   }
 
   &__button {
@@ -79,6 +83,10 @@
       display: block;
       height: 0;
       padding-top: 0;
+
+      @include config.media('print') {
+        height: inherit;
+      }
     }
   }
 }
