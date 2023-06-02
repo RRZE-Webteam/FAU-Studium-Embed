@@ -77,12 +77,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/RRZE-Webteam/FAU-Studium-Common.git",
-                "reference": "fc97072739ae7d10bb659ab462d21cfa3372eaa1"
+                "reference": "9c373d11e8612d84e74d9968349a89e2d1650bb1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RRZE-Webteam/FAU-Studium-Common/zipball/fc97072739ae7d10bb659ab462d21cfa3372eaa1",
-                "reference": "fc97072739ae7d10bb659ab462d21cfa3372eaa1",
+                "url": "https://api.github.com/repos/RRZE-Webteam/FAU-Studium-Common/zipball/9c373d11e8612d84e74d9968349a89e2d1650bb1",
+                "reference": "9c373d11e8612d84e74d9968349a89e2d1650bb1",
                 "shasum": ""
             },
             "require": {
@@ -104,7 +104,7 @@
             "suggest": {
                 "inpsyde/modularity": "Modular PSR-11 implementation for WordPress Plugins, Themes or Libraries"
             },
-            "time": "2023-05-18T07:48:25+00:00",
+            "time": "2023-06-01T12:52:05+00:00",
             "default-branch": true,
             "type": "library",
             "installation-source": "dist",
@@ -155,17 +155,17 @@
         },
         {
             "name": "inpsyde/modularity",
-            "version": "1.6.1",
-            "version_normalized": "1.6.1.0",
+            "version": "1.7.0",
+            "version_normalized": "1.7.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/inpsyde/modularity.git",
-                "reference": "eb14a9b0468000fa88646824080bc035a7a03b61"
+                "reference": "0bde4d19f3739c382faf4203aa707049de42563e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/inpsyde/modularity/zipball/eb14a9b0468000fa88646824080bc035a7a03b61",
-                "reference": "eb14a9b0468000fa88646824080bc035a7a03b61",
+                "url": "https://api.github.com/repos/inpsyde/modularity/zipball/0bde4d19f3739c382faf4203aa707049de42563e",
+                "reference": "0bde4d19f3739c382faf4203aa707049de42563e",
                 "shasum": ""
             },
             "require": {
@@ -179,10 +179,10 @@
                 "johnpbloch/wordpress-core": ">=5.8",
                 "mikey179/vfsstream": "^v1.6.10",
                 "php-stubs/wordpress-stubs": ">=5.8@stable",
-                "phpunit/phpunit": "^8.5.21",
+                "phpunit/phpunit": "^8.5.21 || ^9.6.7",
                 "vimeo/psalm": "^4.13.1"
             },
-            "time": "2023-02-16T09:37:57+00:00",
+            "time": "2023-05-26T10:04:19+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -220,7 +220,7 @@
             "description": "Modular PSR-11 implementation for WordPress plugins, themes or libraries.",
             "support": {
                 "issues": "https://github.com/inpsyde/modularity/issues",
-                "source": "https://github.com/inpsyde/modularity/tree/1.6.1"
+                "source": "https://github.com/inpsyde/modularity/tree/1.7.0"
             },
             "install-path": "../inpsyde/modularity"
         },
