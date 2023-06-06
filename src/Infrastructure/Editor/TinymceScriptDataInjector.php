@@ -39,6 +39,7 @@ class TinymceScriptDataInjector
                 $degreeProgramData[] = [
                     'id' => $degreeProgram->id(),
                     'title' => $degreeProgram->title(),
+                    'degree' => $degreeProgram->degree(),
                 ];
             }
         }

@@ -6,7 +6,7 @@ const degreeProgramsFetcher = (): object[] => {
     return window.fauDegreeProgramData.degreePrograms.map((degreeProgram) => {
         return {
             value: degreeProgram.id,
-            text: `${degreeProgram.title.de} (${degreeProgram.title.en})`,
+            text: `${degreeProgram.title.de} (${degreeProgram.degree.abbreviation.de})`,
         };
     });
 };
