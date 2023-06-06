@@ -31,6 +31,7 @@ class AccordionItem implements RenderableComponent
     {
         /** @var AccordionItemAttributes $attributes */
         $attributes = wp_parse_args($attributes, self::DEFAULT_ATTRIBUTES);
+        $attributes['content'] = trim($attributes['content']);
 
         if (
             empty($attributes['title'])
