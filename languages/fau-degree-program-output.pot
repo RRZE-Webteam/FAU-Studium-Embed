@@ -3,13 +3,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: FAU Degree Program Output 0.0.4\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/fau-degree-program-output\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/fau-degree-program-sync-and-output\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-05-30T14:24:56+00:00\n"
+"POT-Creation-Date: 2023-06-06T11:17:12+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: fau-degree-program-output\n"
@@ -332,22 +332,62 @@ msgstr ""
 msgid "Ignored if \"include\" is specified."
 msgstr ""
 
-#: src/Infrastructure/Filter/FilterViewFactory.php:68
-msgctxt "backoffice: Filter label"
+#: src/Infrastructure/Filter/FilterViewFactory.php:51
+msgctxt "frontoffice: Filter label"
+msgid "Area of study"
+msgstr ""
+
+#: src/Infrastructure/Filter/FilterViewFactory.php:63
+msgctxt "frontoffice: Filter label"
+msgid "Attribute"
+msgstr ""
+
+#: src/Infrastructure/Filter/FilterViewFactory.php:75
+msgctxt "frontoffice: Filter label"
+msgid "Degree"
+msgstr ""
+
+#: src/Infrastructure/Filter/FilterViewFactory.php:87
+msgctxt "frontoffice: Filter label"
+msgid "Faculty"
+msgstr ""
+
+#: src/Infrastructure/Filter/FilterViewFactory.php:99
+msgctxt "frontoffice: Filter label"
+msgid "Semester"
+msgstr ""
+
+#: src/Infrastructure/Filter/FilterViewFactory.php:111
+msgctxt "frontoffice: Filter label"
+msgid "Study location"
+msgstr ""
+
+#: src/Infrastructure/Filter/FilterViewFactory.php:123
+msgctxt "frontoffice: Filter label"
+msgid "Subject group"
+msgstr ""
+
+#: src/Infrastructure/Filter/FilterViewFactory.php:135
+msgctxt "frontoffice: Filter label"
+msgid "Teaching language"
+msgstr ""
+
+#: src/Infrastructure/Filter/FilterViewFactory.php:147
+msgctxt "frontoffice: Filter label"
 msgid "Keyword"
 msgstr ""
 
-#: src/Infrastructure/Filter/FilterViewFactory.php:77
-msgctxt "backoffice: Filter label"
+#: src/Infrastructure/Filter/FilterViewFactory.php:156
+msgctxt "frontoffice: Filter label"
 msgid "Admission Requirement"
 msgstr ""
 
-#: src/Infrastructure/Filter/FilterViewFactory.php:136
+#: src/Infrastructure/Filter/FilterViewFactory.php:203
 msgctxt "backoffice: Filter label"
 msgid "Free"
 msgstr ""
 
-#: src/Infrastructure/Filter/FilterViewFactory.php:145
+#: src/Infrastructure/Filter/FilterViewFactory.php:212
 msgctxt "backoffice: Filter label"
 msgid "Restricted"
 msgstr ""
@@ -404,17 +444,17 @@ msgctxt "frontoffice: degree programs search form"
 msgid "Show filter options"
 msgstr ""
 
-#: templates/search/filter/search-filters.php:87
+#: templates/search/filter/search-filters.php:88
 msgctxt "frontoffice: degree programs search form"
 msgid "Display mode"
 msgstr ""
 
-#: templates/search/filter/search-filters.php:98
+#: templates/search/filter/search-filters.php:99
 msgctxt "frontoffice: degree programs search form"
 msgid "Switch to grid view"
 msgstr ""
 
-#: templates/search/filter/search-filters.php:109
+#: templates/search/filter/search-filters.php:110
 msgctxt "frontoffice: degree programs search form"
 msgid "Switch to list view"
 msgstr ""
@@ -626,12 +666,12 @@ msgctxt "frontoffice: single view"
 msgid "Specific Student Advice"
 msgstr ""
 
-#: assets/ts/gutenberg.js:191
+#: assets/ts/gutenberg.js:1
 msgctxt "backoffice: block editor"
 msgid "Select degree program"
 msgstr ""
 
-#: assets/ts/gutenberg.js:201
+#: assets/ts/gutenberg.js:1
 msgctxt "backend: block editor"
 msgid "Could not load suggestion list"
 msgstr ""
