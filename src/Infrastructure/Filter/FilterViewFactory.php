@@ -18,7 +18,6 @@ use Fau\DegreeProgram\Common\Application\Filter\TeachingLanguageFilter;
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\TaxonomiesList;
 use Fau\DegreeProgram\Output\Application\Filter\FilterView;
 use Fau\DegreeProgram\Output\Infrastructure\Repository\WordPressTermRepository;
-use WP_Term;
 
 final class FilterViewFactory
 {
@@ -40,34 +39,114 @@ final class FilterViewFactory
         );
     }
 
+    /**
+     * phpcs:disable Generic.Metrics.CyclomaticComplexity.TooHigh
+     * phpcs:disable Inpsyde.CodeQuality.FunctionLength.TooLong
+     */
     private function createFilterView(Filter $filter): ?FilterView
     {
         return match ($filter->id()) {
-            AreaOfStudyFilter::KEY,
-            AttributeFilter::KEY,
-            DegreeFilter::KEY,
-            FacultyFilter::KEY,
-            SemesterFilter::KEY,
-            StudyLocationFilter::KEY,
-            SubjectGroupFilter::KEY,
-            TeachingLanguageFilter::KEY => new FilterView(
+            AreaOfStudyFilter::KEY => new FilterView(
                 $filter,
-                $this->labelFromTaxonomyLabel($filter->id()),
+                _x(
+                    'Area of study',
+                    'frontoffice: Filter label',
+                    'fau-degree-program-output',
+                ),
                 FilterView::MULTISELECT,
                 [
-                    'options' => $this->buildOptionsFromTerms(
-                        $filter->id(),
-                        $this->termsRepository->findTerms(
-                            (string) $this->taxonomiesList->convertRestBaseToSlug($filter->id())
-                        )
-                    ),
+                    'options' => $this->buildOptionsForTaxonomyBasedFilter($filter),
+                ]
+            ),
+            AttributeFilter::KEY => new FilterView(
+                $filter,
+                _x(
+                    'Attribute',
+                    'frontoffice: Filter label',
+                    'fau-degree-program-output',
+                ),
+                FilterView::MULTISELECT,
+                [
+                    'options' => $this->buildOptionsForTaxonomyBasedFilter($filter),
+                ]
+            ),
+            DegreeFilter::KEY => new FilterView(
+                $filter,
+                _x(
+                    'Degree',
+                    'frontoffice: Filter label',
+                    'fau-degree-program-output',
+                ),
+                FilterView::MULTISELECT,
+                [
+                    'options' => $this->buildOptionsForTaxonomyBasedFilter($filter),
+                ]
+            ),
+            FacultyFilter::KEY => new FilterView(
+                $filter,
+                _x(
+                    'Faculty',
+                    'frontoffice: Filter label',
+                    'fau-degree-program-output',
+                ),
+                FilterView::MULTISELECT,
+                [
+                    'options' => $this->buildOptionsForTaxonomyBasedFilter($filter),
+                ]
+            ),
+            SemesterFilter::KEY => new FilterView(
+                $filter,
+                _x(
+                    'Semester',
+                    'frontoffice: Filter label',
+                    'fau-degree-program-output',
+                ),
+                FilterView::MULTISELECT,
+                [
+                    'options' => $this->buildOptionsForTaxonomyBasedFilter($filter),
+                ]
+            ),
+            StudyLocationFilter::KEY => new FilterView(
+                $filter,
+                _x(
+                    'Study location',
+                    'frontoffice: Filter label',
+                    'fau-degree-program-output',
+                ),
+                FilterView::MULTISELECT,
+                [
+                    'options' => $this->buildOptionsForTaxonomyBasedFilter($filter),
+                ]
+            ),
+            SubjectGroupFilter::KEY => new FilterView(
+                $filter,
+                _x(
+                    'Subject group',
+                    'frontoffice: Filter label',
+                    'fau-degree-program-output',
+                ),
+                FilterView::MULTISELECT,
+                [
+                    'options' => $this->buildOptionsForTaxonomyBasedFilter($filter),
+                ]
+            ),
+            TeachingLanguageFilter::KEY => new FilterView(
+                $filter,
+                _x(
+                    'Teaching language',
+                    'frontoffice: Filter label',
+                    'fau-degree-program-output',
+                ),
+                FilterView::MULTISELECT,
+                [
+                    'options' => $this->buildOptionsForTaxonomyBasedFilter($filter),
                 ]
             ),
             SearchKeywordFilter::KEY => new FilterView(
                 $filter,
                 _x(
                     'Keyword',
-                    'backoffice: Filter label',
+                    'frontoffice: Filter label',
                     'fau-degree-program-output',
                 ),
                 FilterView::TEXT
@@ -76,7 +155,7 @@ final class FilterViewFactory
                 $filter,
                 _x(
                     'Admission Requirement',
-                    'backoffice: Filter label',
+                    'frontoffice: Filter label',
                     'fau-degree-program-output',
                 ),
                 FilterView::MULTISELECT,
@@ -89,11 +168,14 @@ final class FilterViewFactory
     }
 
     /**
-     * @param array<WP_Term> $terms
      * @return array<Option>
      */
-    private function buildOptionsFromTerms(string $id, array $terms): array
+    private function buildOptionsForTaxonomyBasedFilter(Filter $filter): array
     {
+        $terms = $this->termsRepository->findTerms(
+            (string) $this->taxonomiesList->convertRestBaseToSlug($filter->id())
+        );
+
         $result = [];
         foreach ($terms as $term) {
             if ($term->parent) {
@@ -101,28 +183,13 @@ final class FilterViewFactory
             }
 
             $result[] = new Option(
-                $id,
+                $filter->id(),
                 $term->name,
                 $term->term_id,
             );
         }
 
         return $result;
-    }
-
-    private function labelFromTaxonomyLabel(string $filterId): string
-    {
-        foreach ($this->taxonomiesList->getArrayCopy() as $taxonomyClass) {
-            if ((string) constant("{$taxonomyClass}::REST_BASE") !== $filterId) {
-                continue;
-            }
-
-            /** @var array{labels: array{singular_name: string}} $taxonomyArgs */
-            $taxonomyArgs = $taxonomyClass::public()->args();
-            return $taxonomyArgs['labels']['singular_name'];
-        }
-
-        return '';
     }
 
     /**
