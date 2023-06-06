@@ -1,6 +1,15 @@
 @use '../../abstracts/config';
 @use '../../base/base';
 
+.c-links {
+  &__title {
+    margin: 0 0 15px;
+    padding: 0;
+
+    @include config.text-size('xl');
+  }
+}
+
 &__links {
   margin-top: 60px;
   margin-bottom: 30px;
@@ -22,13 +31,10 @@
       column-gap: 40px;
     }
   }
-}
 
-.c-links {
-  &__title {
-    margin: 0 0 15px;
-    padding: 0;
-
-    @include config.text-size('xl');
+  .c-links {
+    @include config.media('>mobile') {
+      flex: 1 1 30%;
+    }
   }
 }

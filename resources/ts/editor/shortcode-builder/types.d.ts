@@ -2,11 +2,17 @@ import { create, PluginManager } from 'tinymce';
 
 export { Editor } from 'tinymce';
 
+type MultilingualString = {
+    de: string;
+    en: string;
+};
+
 export interface DegreeProgram {
     id: number;
-    title: {
-        de: string;
-        en: string;
+    title: MultilingualString;
+    degree: {
+        name: MultilingualString;
+        abbreviation: MultilingualString;
     };
 }
 
