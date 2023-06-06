@@ -228,6 +228,9 @@
     }
 
     @include config.when-inside('.c-degree-programs-collection.-list') {
+      word-wrap: normal;
+      hyphens: auto;
+
       @include config.media('>tablet') {
         grid-column: 2;
 
