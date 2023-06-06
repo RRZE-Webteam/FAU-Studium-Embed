@@ -80,22 +80,21 @@ final class FilterablePostsMetaUpdater
             $rawView->degree()->name()->asString($languageCode)
         );
 
-        /** @var ?MultilingualString $start */
-        $start = $rawView->start()->offsetGet(0);
-
-        if ($start) {
+        if ($rawView->start()->offsetExists(0)) {
             update_post_meta(
                 $rawView->id()->asInt(),
                 DegreeProgram::START . '_' . $languageCode,
-                $start->asString($languageCode),
+                $rawView->start()->offsetGet(0)->asString($languageCode),
             );
         }
 
-        update_post_meta(
-            $rawView->id()->asInt(),
-            DegreeProgram::LOCATION . '_' . $languageCode,
-            $rawView->location()->offsetGet(0)->asString($languageCode)
-        );
+        if ($rawView->location()->offsetExists(0)) {
+            update_post_meta(
+                $rawView->id()->asInt(),
+                DegreeProgram::LOCATION . '_' . $languageCode,
+                $rawView->location()->offsetGet(0)->asString($languageCode)
+            );
+        }
 
         $admissionRequirement = AdmissionRequirementsTranslated::fromAdmissionRequirements(
             $rawView->admissionRequirements(),
