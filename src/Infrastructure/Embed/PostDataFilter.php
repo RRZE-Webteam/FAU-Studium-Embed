@@ -5,11 +5,9 @@ declare(strict_types=1);
 namespace Fau\DegreeProgram\Output\Infrastructure\Embed;
 
 use Fau\DegreeProgram\Common\Application\DegreeProgramViewTranslated;
-use Fau\DegreeProgram\Common\Application\Repository\DegreeProgramViewRepository;
-use Fau\DegreeProgram\Common\Domain\DegreeProgramId;
 use Fau\DegreeProgram\Common\Domain\MultilingualString;
 use Fau\DegreeProgram\Common\Infrastructure\Content\PostType\DegreeProgramPostType;
-use Fau\DegreeProgram\Output\Infrastructure\Rewrite\CurrentRequest;
+use Fau\DegreeProgram\Output\Infrastructure\Repository\CurrentViewRepository;
 use WP_Post;
 
 /**
@@ -18,8 +16,7 @@ use WP_Post;
 final class PostDataFilter
 {
     public function __construct(
-        private DegreeProgramViewRepository $degreeProgramViewRepository,
-        private CurrentRequest $currentRequest,
+        private CurrentViewRepository $currentViewRepository,
     ) {
     }
 
@@ -32,10 +29,7 @@ final class PostDataFilter
             return $postTitle;
         }
 
-        $view = $this->currentView(
-            $postId,
-            $this->currentRequest->languageCode()
-        );
+        $view = $this->currentViewRepository->findTranslatedView($postId);
 
         if (!$view instanceof DegreeProgramViewTranslated) {
             return $postTitle;
@@ -53,10 +47,7 @@ final class PostDataFilter
             return $postLink;
         }
 
-        $view = $this->currentView(
-            $post->ID,
-            $this->currentRequest->languageCode()
-        );
+        $view = $this->currentViewRepository->findTranslatedView($post);
 
         if (!$view instanceof DegreeProgramViewTranslated) {
             return $postLink;
@@ -69,27 +60,5 @@ final class PostDataFilter
     {
         return did_filter('oembed_request_post_id')
             && get_post_type($post) === DegreeProgramPostType::KEY;
-    }
-
-    /**
-     * @psalm-param LanguageCodes $languageCode
-     */
-    private function currentView(
-        int $postId,
-        string $languageCode
-    ): ?DegreeProgramViewTranslated {
-        /** @var array<string, null|DegreeProgramViewTranslated> $cache */
-        static $cache = [];
-        $cacheKey = sprintf('%d_%s', $postId, $languageCode);
-        if (array_key_exists($cacheKey, $cache)) {
-            return $cache[$cacheKey];
-        }
-
-        $cache[$cacheKey] = $this->degreeProgramViewRepository->findTranslated(
-            DegreeProgramId::fromInt($postId),
-            $languageCode,
-        );
-
-        return $cache[$cacheKey];
     }
 }

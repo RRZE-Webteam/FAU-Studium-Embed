@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Fau\DegreeProgram\Output\Infrastructure\Template;
 
-use Fau\DegreeProgram\Common\Application\Repository\DegreeProgramViewRepository;
 use Fau\DegreeProgram\Output\Application\OriginalDegreeProgramViewRepository;
 use Fau\DegreeProgram\Output\Infrastructure\Component\SingleDegreeProgram;
 use Fau\DegreeProgram\Output\Infrastructure\Embed\PostDataFilter;
 use Fau\DegreeProgram\Output\Infrastructure\Environment\EnvironmentDetector;
+use Fau\DegreeProgram\Output\Infrastructure\Repository\CurrentViewRepository;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\CurrentRequest;
 use Inpsyde\Modularity\Module\ExecutableModule;
 use Inpsyde\Modularity\Module\ModuleClassNameIdTrait;
@@ -32,17 +32,21 @@ final class TemplateModule implements ServiceModule, ExecutableModule
                 $container->get(CurrentRequest::class),
             ),
             SeoFrameworkIntegration::class => static fn(ContainerInterface $container) => new SeoFrameworkIntegration(
-                $container->get(DegreeProgramViewRepository::class),
-                $container->get(CurrentRequest::class),
+                $container->get(CurrentViewRepository::class),
             ),
             PostDataFilter::class => static fn(ContainerInterface $container) => new PostDataFilter(
-                $container->get(DegreeProgramViewRepository::class),
-                $container->get(CurrentRequest::class),
+                $container->get(CurrentViewRepository::class),
             ),
             ImageSizeRegistrar::class => static fn() => new ImageSizeRegistrar(),
+            TitleModifier::class => static fn(ContainerInterface $container) => new TitleModifier(
+                $container->get(CurrentViewRepository::class),
+            ),
         ];
     }
 
+    /**
+     * phpcs:disable Inpsyde.CodeQuality.FunctionLength.TooLong
+     */
     public function run(ContainerInterface $container): bool
     {
         self::registerImageSizes(
@@ -60,6 +64,26 @@ final class TemplateModule implements ServiceModule, ExecutableModule
                 $container->get(SingleDegreeProgramContentFilter::class),
                 'filterContent',
             ]
+        );
+
+        add_filter(
+            'single_post_title',
+            [
+                $container->get(TitleModifier::class),
+                'modify',
+            ],
+            10,
+            2
+        );
+
+        add_filter(
+            'the_title',
+            [
+                $container->get(TitleModifier::class),
+                'modify',
+            ],
+            10,
+            2
         );
 
         $seoFrameworkIntegration = $container->get(SeoFrameworkIntegration::class);
