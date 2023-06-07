@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Fau\DegreeProgram\Common\Domain\DegreeProgramSanitizer;
 use Fau\DegreeProgram\Output\Infrastructure\Component\Component;
 use Fau\DegreeProgram\Output\Infrastructure\Component\Icon;
 
@@ -28,9 +29,9 @@ use function Fau\DegreeProgram\Output\renderComponent;
     ) ?>
     <dt><?= esc_html($term) ?></dt>
     <dd>
-        <?= wp_kses( // Could be string, link or list of links
+        <?= wp_kses(
             $description,
-            ['a' => ['href' => true]]
+            DegreeProgramSanitizer::ALLOWED_ENTITIES,
         ) ?>
     </dd>
 </div>
