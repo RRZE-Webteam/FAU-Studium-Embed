@@ -15,6 +15,7 @@ use Fau\DegreeProgram\Common\Infrastructure\Repository\WpQueryArgsBuilder;
 use Fau\DegreeProgram\Output\Application\OriginalDegreeProgramViewRepository;
 use Fau\DegreeProgram\Output\Infrastructure\ApiClient\ApiClient;
 use Fau\DegreeProgram\Output\Infrastructure\Environment\EnvironmentDetector;
+use Fau\DegreeProgram\Output\Infrastructure\Rewrite\CurrentRequest;
 use Inpsyde\Modularity\Module\ModuleClassNameIdTrait;
 use Inpsyde\Modularity\Module\ServiceModule;
 use Psr\Container\ContainerInterface;
@@ -58,6 +59,10 @@ class RepositoryModule implements ServiceModule
                 $container->get(EnvironmentDetector::class),
             ),
             WordPressTermRepository::class => static fn () => new WordPressTermRepository(),
+            CurrentViewRepository::class => static fn(ContainerInterface $container) => new CurrentViewRepository(
+                $container->get(DegreeProgramViewRepository::class),
+                $container->get(CurrentRequest::class),
+            ),
         ];
     }
 }
