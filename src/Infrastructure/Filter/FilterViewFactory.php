@@ -61,7 +61,7 @@ final class FilterViewFactory
             AttributeFilter::KEY => new FilterView(
                 $filter,
                 _x(
-                    'Attribute',
+                    'Special ways to study',
                     'frontoffice: Filter label',
                     'fau-degree-program-output',
                 ),

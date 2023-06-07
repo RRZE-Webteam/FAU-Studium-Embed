@@ -1,10 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: FAU Degree Program Output 0.0.4\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/fau-degree-"
-"program-sync-and-output\n"
-"POT-Creation-Date: 2023-06-06T11:17:12+00:00\n"
-"PO-Revision-Date: 2023-05-16 11:52+0200\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/fau-degree-program-sync-and-output\n"
+"POT-Creation-Date: 2023-06-06T13:08:12+00:00\n"
+"PO-Revision-Date: 2023-06-07 09:47+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -12,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.1\n"
 "X-Domain: fau-degree-program-output\n"
 
 #. Plugin Name of the plugin
@@ -275,18 +274,12 @@ msgid "Language skills"
 msgstr "Sprachkenntnisse"
 
 #: src/Infrastructure/Component/SingleDegreeProgram.php:260
-msgid ""
-"Language skills for Faculty of Humanities, Social Sciences, and Theology only"
-msgstr ""
-"Sprachkenntnisse nur für die Philosophische Fakultät und Fachbereich "
-"Theologie"
+msgid "Language skills for Faculty of Humanities, Social Sciences, and Theology only"
+msgstr "Sprachkenntnisse nur für die Philosophische Fakultät und Fachbereich Theologie"
 
 #: src/Infrastructure/Component/SingleDegreeProgram.php:264
-msgid ""
-"Language certificates/German language skills for international applicants"
-msgstr ""
-"Sprachnachweise/Deutschkenntnisse für internationale Bewerberinnen und "
-"Bewerber"
+msgid "Language certificates/German language skills for international applicants"
+msgstr "Sprachnachweise/Deutschkenntnisse für internationale Bewerberinnen und Bewerber"
 
 #: src/Infrastructure/Component/SingleDegreeProgram.php:268
 msgid "Degree Program Fees"
@@ -307,35 +300,35 @@ msgctxt "backoffice: admin bar menu item"
 msgid "Invalidate degree program caches"
 msgstr "Studiengang-Caches invalidieren"
 
-#: src/Infrastructure/Editor/TinymceScriptDataInjector.php:82
+#: src/Infrastructure/Editor/TinymceScriptDataInjector.php:83
 msgid "FAU Degree Program Shortcode Generator"
 msgstr "FAU Studiengang Shortcode-Generator"
 
-#: src/Infrastructure/Editor/TinymceScriptDataInjector.php:83
+#: src/Infrastructure/Editor/TinymceScriptDataInjector.php:84
 msgid "Degree program"
 msgstr "Studiengang"
 
-#: src/Infrastructure/Editor/TinymceScriptDataInjector.php:84
+#: src/Infrastructure/Editor/TinymceScriptDataInjector.php:85
 msgid "Language"
 msgstr "Sprache"
 
-#: src/Infrastructure/Editor/TinymceScriptDataInjector.php:85
+#: src/Infrastructure/Editor/TinymceScriptDataInjector.php:86
 msgid "Format"
 msgstr "Format"
 
-#: src/Infrastructure/Editor/TinymceScriptDataInjector.php:86
+#: src/Infrastructure/Editor/TinymceScriptDataInjector.php:87
 msgid "Include"
 msgstr "Einbeziehen"
 
-#: src/Infrastructure/Editor/TinymceScriptDataInjector.php:87
+#: src/Infrastructure/Editor/TinymceScriptDataInjector.php:88
 msgid "Exclude"
 msgstr "Ausschließen"
 
-#: src/Infrastructure/Editor/TinymceScriptDataInjector.php:88
+#: src/Infrastructure/Editor/TinymceScriptDataInjector.php:89
 msgid "The following attributes are ignored if \"format\" is \"short\"."
 msgstr "Die folgenden Attribute werden ignoriert, wenn „Format“ „short“ ist."
 
-#: src/Infrastructure/Editor/TinymceScriptDataInjector.php:92
+#: src/Infrastructure/Editor/TinymceScriptDataInjector.php:93
 msgid "Ignored if \"include\" is specified."
 msgstr "Wird ignoriert, wenn „einbeziehen“ angegeben ist."
 
@@ -346,7 +339,7 @@ msgstr "Studienbereich"
 
 #: src/Infrastructure/Filter/FilterViewFactory.php:63
 msgctxt "frontoffice: Filter label"
-msgid "Attribute"
+msgid "Special ways to study"
 msgstr "Besondere Studienformen"
 
 #: src/Infrastructure/Filter/FilterViewFactory.php:75
@@ -516,9 +509,7 @@ msgstr "Inhaltliche Zugangsvoraussetzungen Master"
 #: templates/single-degree-program/accordion.php:79
 msgctxt "frontoffice: single view"
 msgid "Degree program combinations & limited degree program combinations"
-msgstr ""
-"Mögliche Studiengangskombinationen und eingeschränkt mögliche "
-"Studiengangskombinationen"
+msgstr "Mögliche Studiengangskombinationen und eingeschränkt mögliche Studiengangskombinationen"
 
 #: templates/single-degree-program/accordion.php:89
 msgctxt "frontoffice: single view"
@@ -572,11 +563,8 @@ msgstr "Nachweis Sprachkenntnisse vor dem Studium"
 
 #: templates/single-degree-program/admission-requirements.php:117
 msgctxt "frontoffice: single view"
-msgid ""
-"Language skills for Faculty of Humanities, Social Sciences, and Theology only"
-msgstr ""
-"Nachweis Sprachkenntnisse während des Studiums (nur für die Philosophische "
-"Fakultät und Fachbereich Theologie)"
+msgid "Language skills for Faculty of Humanities, Social Sciences, and Theology only"
+msgstr "Nachweis Sprachkenntnisse während des Studiums (nur für die Philosophische Fakultät und Fachbereich Theologie)"
 
 #: templates/single-degree-program/admission-requirements.php:129
 msgctxt "frontoffice: single view"
@@ -615,7 +603,7 @@ msgstr "Fächergruppe"
 
 #: templates/single-degree-program/details.php:97
 msgctxt "frontoffice: single view"
-msgid "Attributes"
+msgid "Special ways to study"
 msgstr "Besondere Studienformen"
 
 #: templates/single-degree-program/details.php:109

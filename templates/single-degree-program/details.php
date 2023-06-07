@@ -95,7 +95,7 @@ $details = renderComponent(
         [
             'icon' => 'attributes',
             'term' => _x(
-                'Attributes',
+                'Special ways to study',
                 'frontoffice: single view',
                 'fau-degree-program-output'
             ),
