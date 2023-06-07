@@ -5,6 +5,10 @@
   border-top: solid 1px;
   border-color: config.color('content', 'borders');
 
+  &[aria-expanded='true'] {
+    z-index: 1;
+  }
+
   &--advanced-filters {
     .c-filter-dropdown__label-icon {
       width: 18px;
@@ -149,7 +153,6 @@
       background-color: #fff;
       border-bottom-left-radius: 3px;
       border-bottom-right-radius: 3px;
-      z-index: 20;
 
       &::before {
         content: '';
