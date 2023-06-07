@@ -3,15 +3,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: FAU Degree Program Output 0.0.4\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/fau-degree-program-sync-and-output\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/fau-degree-program-output\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-06-06T11:17:12+00:00\n"
+"POT-Creation-Date: 2023-06-07T07:47:02+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.7.1\n"
+"X-Generator: WP-CLI 2.8.1\n"
 "X-Domain: fau-degree-program-output\n"
 
 #. Plugin Name of the plugin
@@ -300,35 +300,35 @@ msgctxt "backoffice: admin bar menu item"
 msgid "Invalidate degree program caches"
 msgstr ""
 
-#: src/Infrastructure/Editor/TinymceScriptDataInjector.php:82
+#: src/Infrastructure/Editor/TinymceScriptDataInjector.php:83
 msgid "FAU Degree Program Shortcode Generator"
 msgstr ""
 
-#: src/Infrastructure/Editor/TinymceScriptDataInjector.php:83
+#: src/Infrastructure/Editor/TinymceScriptDataInjector.php:84
 msgid "Degree program"
 msgstr ""
 
-#: src/Infrastructure/Editor/TinymceScriptDataInjector.php:84
+#: src/Infrastructure/Editor/TinymceScriptDataInjector.php:85
 msgid "Language"
 msgstr ""
 
-#: src/Infrastructure/Editor/TinymceScriptDataInjector.php:85
+#: src/Infrastructure/Editor/TinymceScriptDataInjector.php:86
 msgid "Format"
 msgstr ""
 
-#: src/Infrastructure/Editor/TinymceScriptDataInjector.php:86
+#: src/Infrastructure/Editor/TinymceScriptDataInjector.php:87
 msgid "Include"
 msgstr ""
 
-#: src/Infrastructure/Editor/TinymceScriptDataInjector.php:87
+#: src/Infrastructure/Editor/TinymceScriptDataInjector.php:88
 msgid "Exclude"
 msgstr ""
 
-#: src/Infrastructure/Editor/TinymceScriptDataInjector.php:88
+#: src/Infrastructure/Editor/TinymceScriptDataInjector.php:89
 msgid "The following attributes are ignored if \"format\" is \"short\"."
 msgstr ""
 
-#: src/Infrastructure/Editor/TinymceScriptDataInjector.php:92
+#: src/Infrastructure/Editor/TinymceScriptDataInjector.php:93
 msgid "Ignored if \"include\" is specified."
 msgstr ""
 
@@ -339,7 +339,7 @@ msgstr ""
 
 #: src/Infrastructure/Filter/FilterViewFactory.php:63
 msgctxt "frontoffice: Filter label"
-msgid "Attribute"
+msgid "Special ways to study"
 msgstr ""
 
 #: src/Infrastructure/Filter/FilterViewFactory.php:75
@@ -603,7 +603,7 @@ msgstr ""
 
 #: templates/single-degree-program/details.php:97
 msgctxt "frontoffice: single view"
-msgid "Attributes"
+msgid "Special ways to study"
 msgstr ""
 
 #: templates/single-degree-program/details.php:109
