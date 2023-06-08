@@ -63,7 +63,7 @@ final class DegreeProgramsSearch implements RenderableComponent
     public function render(array $attributes = self::DEFAULT_ATTRIBUTES): string
     {
         $localeHelper = LocaleHelper::new();
-        $attributes['lang'] = $attributes['lang'] ?? $localeHelper->languageCodeFromLocale();
+        $attributes['lang'] = $attributes['lang'] ?? $this->currentRequest->languageCode();
 
         /** @var DegreeProgramsSearchAttributes $attributes */
         $attributes = wp_parse_args($attributes, self::DEFAULT_ATTRIBUTES);

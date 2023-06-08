@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Fau\DegreeProgram\Output\Infrastructure\Embed;
 
 use Fau\DegreeProgram\Common\Infrastructure\Content\PostType\DegreeProgramPostType;
-use Fau\DegreeProgram\Output\Infrastructure\Environment\EnvironmentDetector;
 use Fau\DegreeProgram\Output\Infrastructure\Repository\PostsRepository;
 use Inpsyde\Modularity\Module\ExecutableModule;
 use Inpsyde\Modularity\Module\ModuleClassNameIdTrait;
@@ -41,10 +40,6 @@ final class EmbedModule implements ServiceModule, ExecutableModule
                 'addProvidingWebsite',
             ]
         );
-
-        if (!$container->get(EnvironmentDetector::class)->isProvidingWebsite()) {
-            return true;
-        }
 
         add_filter(
             'oembed_request_post_id',

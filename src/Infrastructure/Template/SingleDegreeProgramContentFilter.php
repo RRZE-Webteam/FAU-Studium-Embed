@@ -6,14 +6,12 @@ namespace Fau\DegreeProgram\Output\Infrastructure\Template;
 
 use Fau\DegreeProgram\Common\Infrastructure\Content\PostType\DegreeProgramPostType;
 use Fau\DegreeProgram\Output\Infrastructure\Component\SingleDegreeProgram;
-use Fau\DegreeProgram\Output\Infrastructure\Rewrite\CurrentRequest;
 use WP_Post;
 
 final class SingleDegreeProgramContentFilter
 {
     public function __construct(
         private SingleDegreeProgram $singleDegreeProgram,
-        private CurrentRequest $currentRequest,
     ) {
     }
 
@@ -36,7 +34,6 @@ final class SingleDegreeProgramContentFilter
         remove_filter('the_content', [$this, 'filterContent']);
         $html = $this->singleDegreeProgram->render([
             'id' => $post->ID,
-            'lang' => $this->currentRequest->languageCode(),
         ]);
         add_filter('the_content', [$this, 'filterContent']);
 

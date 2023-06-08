@@ -12,6 +12,7 @@ use Fau\DegreeProgram\Common\Domain\DegreeProgramId;
 use Fau\DegreeProgram\Common\Domain\MultilingualString;
 use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
 use Fau\DegreeProgram\Output\Application\DegreeProgramViewPropertiesFilter;
+use Fau\DegreeProgram\Output\Infrastructure\Rewrite\CurrentRequest;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\LocaleHelper;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\ReferrerUrlHelper;
 use Psr\Log\LoggerInterface;
@@ -44,13 +45,14 @@ final class SingleDegreeProgram implements RenderableComponent
         private LoggerInterface $logger,
         private ReferrerUrlHelper $referrerUrlHelper,
         private DegreeProgramViewPropertiesFilter $degreeProgramViewPropertiesFilter,
+        private CurrentRequest $currentRequest,
     ) {
     }
 
     public function render(array $attributes = self::DEFAULT_ATTRIBUTES): string
     {
         $localeHelper = LocaleHelper::new();
-        $attributes['lang'] = $attributes['lang'] ?? $localeHelper->languageCodeFromLocale();
+        $attributes['lang'] = $attributes['lang'] ?? $this->currentRequest->languageCode();
 
         /** @var SingleDegreeProgramAttributes $attributes */
         $attributes = wp_parse_args($attributes, self::DEFAULT_ATTRIBUTES);

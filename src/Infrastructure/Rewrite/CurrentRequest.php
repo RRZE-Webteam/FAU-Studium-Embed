@@ -68,16 +68,9 @@ final class CurrentRequest
      */
     public function languageCode(): string
     {
-        $queriedLanguage = (string) get_query_var(
-            InjectLanguageQueryVariable::LANGUAGE_QUERY_VAR,
-        );
-
-        return in_array(
-            $queriedLanguage,
-            [MultilingualString::DE, MultilingualString::EN],
-            true
-        )
-            ? $queriedLanguage
+        $languageCode = explode('_', get_locale())[0] ?? '';
+        return in_array($languageCode, [MultilingualString::DE, MultilingualString::EN], true)
+            ? $languageCode
             : MultilingualString::DE;
     }
 

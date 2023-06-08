@@ -21,7 +21,7 @@ use Fau\DegreeProgram\Common\Infrastructure\Repository\BilingualRepository;
 use Fau\DegreeProgram\Common\Infrastructure\Repository\IdGenerator;
 use Fau\DegreeProgram\Output\Application\Filter\FilterView;
 use Fau\DegreeProgram\Output\Infrastructure\Repository\WordPressTermRepository;
-use Fau\DegreeProgram\Output\Infrastructure\Rewrite\LocaleHelper;
+use Fau\DegreeProgram\Output\Infrastructure\Rewrite\CurrentRequest;
 use WP_Term;
 
 final class FilterViewFactory
@@ -30,6 +30,7 @@ final class FilterViewFactory
         private TaxonomiesList $taxonomiesList,
         private WordPressTermRepository $termsRepository,
         private IdGenerator $idGenerator,
+        private CurrentRequest $currentRequest,
     ) {
     }
 
@@ -237,7 +238,7 @@ final class FilterViewFactory
             ),
         );
 
-        $languageCode = LocaleHelper::new()->languageCodeFromLocale();
+        $languageCode = $this->currentRequest->languageCode();
 
         return $title->asString($languageCode);
     }
