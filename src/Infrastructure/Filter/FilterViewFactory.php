@@ -15,15 +15,21 @@ use Fau\DegreeProgram\Common\Application\Filter\SemesterFilter;
 use Fau\DegreeProgram\Common\Application\Filter\StudyLocationFilter;
 use Fau\DegreeProgram\Common\Application\Filter\SubjectGroupFilter;
 use Fau\DegreeProgram\Common\Application\Filter\TeachingLanguageFilter;
+use Fau\DegreeProgram\Common\Domain\MultilingualString;
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\TaxonomiesList;
+use Fau\DegreeProgram\Common\Infrastructure\Repository\BilingualRepository;
+use Fau\DegreeProgram\Common\Infrastructure\Repository\IdGenerator;
 use Fau\DegreeProgram\Output\Application\Filter\FilterView;
 use Fau\DegreeProgram\Output\Infrastructure\Repository\WordPressTermRepository;
+use Fau\DegreeProgram\Output\Infrastructure\Rewrite\LocaleHelper;
+use WP_Term;
 
 final class FilterViewFactory
 {
     public function __construct(
         private TaxonomiesList $taxonomiesList,
         private WordPressTermRepository $termsRepository,
+        private IdGenerator $idGenerator,
     ) {
     }
 
@@ -184,7 +190,7 @@ final class FilterViewFactory
 
             $result[] = new Option(
                 $filter->id(),
-                $term->name,
+                $this->translatedTermName($term),
                 $term->term_id,
             );
         }
@@ -217,5 +223,22 @@ final class FilterViewFactory
                 AdmissionRequirementTypeFilter::RESTRICTED,
             ),
         ];
+    }
+
+    private function translatedTermName(WP_Term $term): string
+    {
+        $title = MultilingualString::fromTranslations(
+            $this->idGenerator->generateTermMetaId($term, 'name'),
+            (string) get_term_meta($term->term_id, 'name', true),
+            (string) get_term_meta(
+                $term->term_id,
+                BilingualRepository::addEnglishSuffix('name'),
+                true
+            ),
+        );
+
+        $languageCode = LocaleHelper::new()->languageCodeFromLocale();
+
+        return $title->asString($languageCode);
     }
 }
