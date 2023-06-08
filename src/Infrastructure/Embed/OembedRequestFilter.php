@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Fau\DegreeProgram\Output\Infrastructure\Embed;
 
-use Fau\DegreeProgram\Common\Domain\MultilingualString;
 use Fau\DegreeProgram\Common\Infrastructure\Content\PostType\DegreeProgramPostType;
 use Fau\DegreeProgram\Output\Infrastructure\Repository\PostsRepository;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\InjectLanguageQueryVariable;
@@ -35,16 +34,11 @@ final class OembedRequestFilter
             return $postId;
         }
 
-        $englishPost = $this->postsRepository->findByEnglishSlug($matches['slug']);
-        if (! $englishPost instanceof WP_Post) {
+        $degreeProgramPost = $this->postsRepository->findByEnglishSlug($matches['slug']);
+        if (! $degreeProgramPost instanceof WP_Post) {
             return $postId;
         }
 
-        set_query_var(
-            InjectLanguageQueryVariable::LANGUAGE_QUERY_VAR,
-            MultilingualString::EN
-        );
-
-        return $englishPost->ID;
+        return $degreeProgramPost->ID;
     }
 }

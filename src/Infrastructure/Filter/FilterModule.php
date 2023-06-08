@@ -8,6 +8,7 @@ use Fau\DegreeProgram\Common\Application\Filter\FilterFactory;
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\TaxonomiesList;
 use Fau\DegreeProgram\Common\Infrastructure\Repository\IdGenerator;
 use Fau\DegreeProgram\Output\Infrastructure\Repository\WordPressTermRepository;
+use Fau\DegreeProgram\Output\Infrastructure\Rewrite\CurrentRequest;
 use Inpsyde\Modularity\Module\ModuleClassNameIdTrait;
 use Inpsyde\Modularity\Module\ServiceModule;
 use Psr\Container\ContainerInterface;
@@ -24,6 +25,7 @@ final class FilterModule implements ServiceModule
                 $container->get(TaxonomiesList::class),
                 $container->get(WordPressTermRepository::class),
                 $container->get(IdGenerator::class),
+                $container->get(CurrentRequest::class),
             ),
         ];
     }

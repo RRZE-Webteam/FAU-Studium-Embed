@@ -20,7 +20,6 @@ class RewriteModule implements ServiceModule, ExecutableModule
             ModifyRequestArgs::class => static fn(ContainerInterface $container) => new ModifyRequestArgs(
                 $container->get(PostsRepository::class)
             ),
-            InjectLanguageQueryVariable::class => static fn() => new InjectLanguageQueryVariable(),
             CurrentRequest::class => static fn() => new CurrentRequest(),
             ReferrerUrlHelper::class => static fn(ContainerInterface $container) => new ReferrerUrlHelper(
                 $container->get(CurrentRequest::class),
@@ -30,11 +29,6 @@ class RewriteModule implements ServiceModule, ExecutableModule
 
     public function run(ContainerInterface $container): bool
     {
-        add_filter(
-            'query_vars',
-            [$container->get(InjectLanguageQueryVariable::class), 'inject']
-        );
-
         add_filter(
             'request',
             [$container->get(ModifyRequestArgs::class), 'modify']

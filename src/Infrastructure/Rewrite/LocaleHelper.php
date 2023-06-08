@@ -26,17 +26,6 @@ final class LocaleHelper
     }
 
     /**
-     * @return LanguageCodes
-     */
-    public function languageCodeFromLocale(): string
-    {
-        $languageCode = explode('_', get_locale())[0] ?? '';
-        return in_array($languageCode, [MultilingualString::DE, MultilingualString::EN], true)
-            ? $languageCode
-            : MultilingualString::DE;
-    }
-
-    /**
      * @psalm-param LanguageCodes $languageCode
      */
     public function localeFromLanguageCode(string $languageCode): string

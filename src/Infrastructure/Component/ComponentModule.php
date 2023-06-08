@@ -11,10 +11,10 @@ use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\TaxonomiesList;
 use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\DirectoryLocator;
 use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
 use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\TemplateRenderer;
-use Fau\DegreeProgram\Output\Infrastructure\Filter\FilterViewFactory;
-use Fau\DegreeProgram\Output\Infrastructure\Repository\WordPressTermRepository;
 use Fau\DegreeProgram\Output\Application\ArrayPropertiesAccessor;
 use Fau\DegreeProgram\Output\Application\DegreeProgramViewPropertiesFilter;
+use Fau\DegreeProgram\Output\Infrastructure\Filter\FilterViewFactory;
+use Fau\DegreeProgram\Output\Infrastructure\Repository\WordPressTermRepository;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\CurrentRequest;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\ReferrerUrlHelper;
 use Inpsyde\Modularity\Module\ModuleClassNameIdTrait;
@@ -55,6 +55,7 @@ final class ComponentModule implements ServiceModule
                 $container->get(LoggerInterface::class),
                 $container->get(ReferrerUrlHelper::class),
                 $container->get(DegreeProgramViewPropertiesFilter::class),
+                $container->get(CurrentRequest::class),
             ),
             DegreeProgramCombinations::class => static fn(ContainerInterface $container) => new DegreeProgramCombinations(),
             ComponentFactory::class => static fn(ContainerInterface $container) => new ComponentFactory(

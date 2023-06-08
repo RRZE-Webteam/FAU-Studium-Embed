@@ -29,7 +29,6 @@ final class TemplateModule implements ServiceModule, ExecutableModule
             ),
             SingleDegreeProgramContentFilter::class => static fn(ContainerInterface $container) => new SingleDegreeProgramContentFilter(
                 $container->get(SingleDegreeProgram::class),
-                $container->get(CurrentRequest::class),
             ),
             SeoFrameworkIntegration::class => static fn(ContainerInterface $container) => new SeoFrameworkIntegration(
                 $container->get(CurrentViewRepository::class),
