@@ -3,14 +3,4 @@
 &__about {
   margin-top: 30px;
   margin-bottom: 30px;
-
-  h2 {
-    @include config.text-size('xl');
-
-    margin: 0 0 20px;
-  }
-
-  p:last-child {
-    padding-bottom: 0;
-  }
 }

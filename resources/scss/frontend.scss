@@ -27,6 +27,7 @@
 @use 'components/search/filters/filter-dropdown';
 @use 'components/search/filters/advanced-filters';
 @use 'components/single-degree-program' as degree-program-component;
+@use 'components/single-degree-program/post-content';
 @use 'components/link';
 @use 'components/details';
 @use 'components/degree-program-short';
