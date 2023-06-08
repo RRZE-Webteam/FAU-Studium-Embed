@@ -153,7 +153,7 @@ final class DegreeProgramsSearch implements RenderableComponent
             CollectionCriteria::new()
                 ->withPerPage(-1)
                 ->addFilter(...$filters)
-                ->withOrderby(...$this->currentRequest->orderby()),
+                ->withOrderBy($this->currentRequest->orderBy()),
             $attributes['lang'],
         );
     }

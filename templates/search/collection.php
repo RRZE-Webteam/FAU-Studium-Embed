@@ -12,8 +12,8 @@ use Fau\DegreeProgram\Output\Infrastructure\Rewrite\ReferrerUrlHelper;
  *     collection: PaginationAwareCollection<DegreeProgramViewTranslated>,
  *     referrerUrlHelper: ReferrerUrlHelper,
  *     output: 'tiles' | 'list',
- *     currentOrder: array{0: string, 1: 'asc' | 'desc'},
- *     orderbyOptions: array<string, array{label_asc: string, label_desc: string}>,
+ *     currentOrder: array<string, 'asc' | 'desc'>,
+ *     orderByOptions: array<string, array{label_asc: string, label_desc: string}>,
  * } $data
  * @var array $data
  * @var Renderer $renderer
@@ -24,7 +24,7 @@ use Fau\DegreeProgram\Output\Infrastructure\Rewrite\ReferrerUrlHelper;
     'referrerUrlHelper' => $referrerUrlHelper,
     'output' => $output,
     'currentOrder' => $currentOrder,
-    'orderbyOptions' => $orderbyOptions,
+    'orderByOptions' => $orderByOptions,
 ] = $data;
 
 $viewModeClass = $output === 'list' ? '-list' : '-tiles';
@@ -36,7 +36,7 @@ $viewModeClass = $output === 'list' ? '-list' : '-tiles';
     <?php // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
     <?= $renderer->render('search/collection-table-header', [
         'currentOrder' => $currentOrder,
-        'orderbyOptions' => $orderbyOptions,
+        'orderByOptions' => $orderByOptions,
     ]) ?>
     <?php // phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 

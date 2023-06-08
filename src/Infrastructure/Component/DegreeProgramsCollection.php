@@ -41,10 +41,10 @@ class DegreeProgramsCollection implements RenderableComponent
             'search/collection',
             [
                 'collection' => $attributes['collection'],
-                'currentOrder' => $this->currentRequest->orderby(),
+                'currentOrder' => $this->currentRequest->orderBy(),
                 'referrerUrlHelper' => $this->referrerUrlHelper,
                 'output' => $attributes['output'],
-                'orderbyOptions' => $this->orderByOptions(),
+                'orderByOptions' => $this->orderByOptions(),
             ]
         );
     }
