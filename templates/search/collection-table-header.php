@@ -11,33 +11,33 @@ use function Fau\DegreeProgram\Output\renderComponent;
 
 /**
  * @psalm-var array{
- *     currentOrder: array{0: string, 1: 'asc' | 'desc'},
- *     orderbyOptions: array<string, array{label_asc: string, label_desc: string}>,
+ *     currentOrder: array<string, 'asc' | 'desc'>,
+ *     orderByOptions: array<string, array{label_asc: string, label_desc: string}>,
  * } $data
  * @var array $data
  */
 
 [
     'currentOrder' => $currentOrder,
-    'orderbyOptions' => $orderbyOptions,
+    'orderByOptions' => $orderByOptions,
 ] = $data;
 
-$orderby = $currentOrder[0];
-$order = $currentOrder[1];
+$orderBy = count($currentOrder) === 1 ? key($currentOrder) : null;
+$order = count($currentOrder) === 1 ? current($currentOrder) : null;
 
 ?>
 
 <li class="c-degree-programs-collection__header -mobile">
     <div class="c-sort-selector">
         <select>
-            <?php foreach ($orderbyOptions as $key => $labels) : ?>
+            <?php foreach ($orderByOptions as $key => $labels) : ?>
                 <?php foreach (['asc', 'desc'] as $orderValue) : ?>
                     <option
                         value="<?= esc_url(add_query_arg([
-                            CurrentRequest::ORDERBY_QUERY_PARAM => $key,
+                            CurrentRequest::ORDER_BY_QUERY_PARAM => $key,
                             CurrentRequest::ORDER_QUERY_PARAM => $orderValue,
                         ])) ?>"
-                        <?php selected($key === $orderby && $order === $orderValue) ?>
+                        <?php selected($key === $orderBy && $order === $orderValue) ?>
                     >
                         <?= esc_html($labels['label_' . $orderValue]) ?>
                     </option>
@@ -60,8 +60,8 @@ $order = $currentOrder[1];
        href="<?= esc_url(
            add_query_arg(
                [
-                   'orderby' => DegreeProgram::TITLE,
-                   'order' => $order === 'asc' ? 'desc' : 'asc',
+                   CurrentRequest::ORDER_BY_QUERY_PARAM => DegreeProgram::TITLE,
+                   CurrentRequest::ORDER_QUERY_PARAM => $order === 'asc' ? 'desc' : 'asc',
                ],
            )
        ) ?>">
@@ -93,8 +93,8 @@ $order = $currentOrder[1];
        href="<?= esc_url(
            add_query_arg(
                [
-                   'orderby' => DegreeProgram::DEGREE,
-                   'order' => $order === 'asc' ? 'desc' : 'asc',
+                   CurrentRequest::ORDER_BY_QUERY_PARAM => DegreeProgram::DEGREE,
+                   CurrentRequest::ORDER_QUERY_PARAM => $order === 'asc' ? 'desc' : 'asc',
                ],
            )
        ) ?>"
@@ -125,8 +125,8 @@ $order = $currentOrder[1];
        href="<?= esc_url(
            add_query_arg(
                [
-                   'orderby' => DegreeProgram::START,
-                   'order' => $order === 'asc' ? 'desc' : 'asc',
+                   CurrentRequest::ORDER_BY_QUERY_PARAM => DegreeProgram::START,
+                   CurrentRequest::ORDER_QUERY_PARAM => $order === 'asc' ? 'desc' : 'asc',
                ],
            )
        ) ?>"
@@ -157,8 +157,8 @@ $order = $currentOrder[1];
        href="<?= esc_url(
            add_query_arg(
                [
-                   'orderby' => DegreeProgram::LOCATION,
-                   'order' => $order === 'asc' ? 'desc' : 'asc',
+                   CurrentRequest::ORDER_BY_QUERY_PARAM => DegreeProgram::LOCATION,
+                   CurrentRequest::ORDER_QUERY_PARAM => $order === 'asc' ? 'desc' : 'asc',
                ],
            )
        ) ?>"
@@ -189,8 +189,8 @@ $order = $currentOrder[1];
        href="<?= esc_url(
            add_query_arg(
                [
-                   'orderby' => DegreeProgram::ADMISSION_REQUIREMENTS,
-                   'order' => $order === 'asc' ? 'desc' : 'asc',
+                   CurrentRequest::ORDER_BY_QUERY_PARAM => DegreeProgram::ADMISSION_REQUIREMENTS,
+                   CurrentRequest::ORDER_QUERY_PARAM => $order === 'asc' ? 'desc' : 'asc',
                ],
            )
        ) ?>"

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Fau\DegreeProgram\Output\Infrastructure\Query;
 
-use Fau\DegreeProgram\Common\Application\Repository\CollectionCriteria;
 use Fau\DegreeProgram\Common\Domain\DegreeProgram;
 use Fau\DegreeProgram\Common\Domain\MultilingualString;
 use Fau\DegreeProgram\Common\Infrastructure\Content\PostType\DegreeProgramPostType;
@@ -15,7 +14,7 @@ final class WpQueryModifier
     /**
      * Mapped `orderby` keywords to meta keys
      */
-    private const SUPPORTED_ORDERBY = [
+    private const SUPPORTED_ORDER_BY = [
         DegreeProgram::TITLE . '_' . MultilingualString::EN,
         DegreeProgram::DEGREE . '_' . MultilingualString::EN,
         DegreeProgram::DEGREE . '_' . MultilingualString::DE,
@@ -36,35 +35,39 @@ final class WpQueryModifier
             return;
         }
 
+        /** @var array<string, string>|string $orderBy */
         $orderBy = $query->get('orderby');
-        if (!is_string($orderBy)) {
+        if (!is_array($orderBy)) {
             return;
         }
 
-        if ($this->isStickyOrdering($orderBy)) {
-            self::updateMetaQuery($query, $orderBy, 'UNSIGNED');
-            $query->set('orderby', [
-                'orderby_' . $orderBy => 'DESC',
-                CollectionCriteria::DEFAULT_ORDERBY[0] => CollectionCriteria::DEFAULT_ORDERBY[1],
-            ]);
+        $updatedOrderBy = [];
+        foreach ($orderBy as $property => $order) {
+            $isSticky = $this->isStickyOrdering($property);
+            $isSupported = $isSticky
+                || in_array($property, self::SUPPORTED_ORDER_BY, true);
 
-            return;
+            if (!$isSupported) {
+                $updatedOrderBy[$property] = $order;
+                continue;
+            }
+
+            $key = self::buildOrderByKey($property);
+            $updatedOrderBy[$key] = $order;
+            $metaType = $isSticky ? 'UNSIGNED' : 'CHAR';
+            self::updateMetaQuery($query, $property, $metaType);
         }
 
-        if (!in_array($orderBy, self::SUPPORTED_ORDERBY, true)) {
-            return;
-        }
-
-        self::updateMetaQuery($query, $orderBy);
-
-        $query->set('orderby', [
-            'orderby_' . $orderBy => $query->get('order') ?: 'ASC',
-        ]);
+        $query->set('orderby', $updatedOrderBy);
     }
 
     private function isDegreeProgramQuery(WP_Query $query): bool
     {
-        return in_array(DegreeProgramPostType::KEY, (array) $query->get('post_type'), true);
+        return in_array(
+            DegreeProgramPostType::KEY,
+            (array) $query->get('post_type'),
+            true
+        );
     }
 
     private function isStickyOrdering(string $orderBy): bool
@@ -84,7 +87,7 @@ final class WpQueryModifier
                 'relation' => 'AND',
                 [
                     'relation' => 'OR',
-                    'orderby_' . $orderBy => [
+                    self::buildOrderByKey($orderBy) => [
                         'key' => $orderBy,
                         'type' => $type,
                     ],
@@ -97,5 +100,10 @@ final class WpQueryModifier
                 array_filter((array) $query->get('meta_query')),
             ],
         );
+    }
+
+    private static function buildOrderByKey(string $property): string
+    {
+        return 'order_by_' . $property;
     }
 }

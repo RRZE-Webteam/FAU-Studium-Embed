@@ -19,12 +19,13 @@ use Fau\DegreeProgram\Common\Domain\MultilingualString;
 
 /**
  * @psalm-import-type LanguageCodes from MultilingualString
+ * @psalm-import-type OrderBy from CollectionCriteria
  * phpcs:disable Inpsyde.CodeQuality.NoAccessors.NoGetter
  */
 final class CurrentRequest
 {
     public const SEARCH_QUERY_PARAM = SearchKeywordFilter::KEY;
-    public const ORDERBY_QUERY_PARAM = 'orderby';
+    public const ORDER_BY_QUERY_PARAM = 'order_by';
     public const ORDER_QUERY_PARAM = 'order';
     public const OUTPUT_MODE_QUERY_PARAM = 'output';
 
@@ -57,7 +58,7 @@ final class CurrentRequest
         AdmissionRequirementTypeFilter::KEY => [
             'filter' => FILTER_SANITIZE_SPECIAL_CHARS,
         ],
-        'orderby' => FILTER_SANITIZE_SPECIAL_CHARS,
+        'order_by' => FILTER_SANITIZE_SPECIAL_CHARS,
         'order' => FILTER_SANITIZE_SPECIAL_CHARS,
         'output' => FILTER_SANITIZE_SPECIAL_CHARS,
     ];
@@ -143,13 +144,13 @@ final class CurrentRequest
     }
 
     /**
-     * @return array{?string, 'asc' | 'desc' | null}
+     * @return OrderBy
      */
-    public function orderby(): array
+    public function orderBy(): array
     {
-        $orderby = (string) filter_input(
+        $orderBy = (string) filter_input(
             INPUT_GET,
-            self::ORDERBY_QUERY_PARAM,
+            self::ORDER_BY_QUERY_PARAM,
             FILTER_SANITIZE_SPECIAL_CHARS
         );
         $order = filter_input(
@@ -158,11 +159,11 @@ final class CurrentRequest
             FILTER_SANITIZE_SPECIAL_CHARS
         );
 
-        if (!in_array($orderby, CollectionCriteria::SORTABLE_PROPERTIES, true)) {
-            return [null, null];
+        if (!in_array($orderBy, CollectionCriteria::SORTABLE_PROPERTIES, true)) {
+            return [];
         }
 
-        return [$orderby, $order === 'asc' ? 'asc' : 'desc'];
+        return [$orderBy => $order === 'asc' ? 'asc' : 'desc'];
     }
 
     public function outputMode(): string

@@ -29,7 +29,7 @@ class TinymceScriptDataInjector
         }
 
         $degreePrograms = $this->degreeProgramViewRepository->findRawCollection(
-            CollectionCriteria::new()->withoutPagination()->withOrderby(DegreeProgram::TITLE, 'asc')
+            CollectionCriteria::new()->withoutPagination()->withOrderby([DegreeProgram::TITLE => 'asc'])
         );
 
         $degreeProgramData = [];
