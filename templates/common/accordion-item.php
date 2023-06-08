@@ -43,7 +43,7 @@ if (empty($data['content']) && empty($innerContent)) {
             ) ?>
         </button>
     </h2>
-    <div class="c-accordion-item__content"
+    <div class="c-accordion-item__content h-post-content"
          role="region"
          id="<?= esc_attr($contentId) ?>"
          aria-labelledby="<?= esc_attr($buttonId) ?>"

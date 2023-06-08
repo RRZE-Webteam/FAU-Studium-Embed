@@ -18,7 +18,7 @@ if (!$view->content()->about()->description()) {
 
 ?>
 
-<div class="c-single-degree-program__about l-container">
+<div class="c-single-degree-program__about h-post-content l-container">
     <h2><?= esc_html($view->content()->about()->title()) ?></h2>
     <?= wp_kses_post($view->content()->about()->description()) ?>
 </div>
