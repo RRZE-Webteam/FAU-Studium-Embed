@@ -230,7 +230,7 @@ final class FilterViewFactory
     {
         $title = MultilingualString::fromTranslations(
             $this->idGenerator->generateTermMetaId($term, 'name'),
-            (string) get_term_meta($term->term_id, 'name', true),
+            $term->name,
             (string) get_term_meta(
                 $term->term_id,
                 BilingualRepository::addEnglishSuffix('name'),

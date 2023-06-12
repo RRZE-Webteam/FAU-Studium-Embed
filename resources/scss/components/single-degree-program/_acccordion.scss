@@ -12,11 +12,8 @@
 }
 
 .c-accordion-item {
-  @extend %container-paddings;
-
   border-top: solid 1px config.color('content', 'borders');
-  padding-top: 0;
-  padding-bottom: 0;
+  padding: 0;
   list-style-type: none;
 
   &:last-child {
@@ -39,20 +36,28 @@
   }
 
   &__button {
+    @extend %container-paddings;
+
     min-height: 80px;
     padding: 15px 0;
+    margin: 0;
     background: none;
     border: none;
-    outline: none;
     color: config.color('content', 'headlines');
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 10px;
     width: 100%;
+    cursor: pointer;
 
     &[aria-expanded="true"] .c-accordion-item__icon {
       transform: rotate(180deg);
+    }
+
+    &:hover,
+    &:focus {
+      background-color: config.color('ContentRegions');
     }
   }
 
@@ -69,6 +74,8 @@
   }
 
   &__content {
+    @extend %container-paddings;
+
     transition: height 0.5s, padding-top 0.5s;
     overflow: hidden;
     height: calc(var(--content-height) + 30px);
