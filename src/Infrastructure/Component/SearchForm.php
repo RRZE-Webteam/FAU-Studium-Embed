@@ -21,7 +21,6 @@ class SearchForm implements RenderableComponent
             'search/text-input-search',
             [
                 'searchQuery' => $this->currentRequest->searchKeyword(),
-                'queryStrings' => $this->currentRequest->flattenedQueryStrings(),
                 'name' => CurrentRequest::SEARCH_QUERY_PARAM,
             ]
         );

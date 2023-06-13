@@ -29,35 +29,28 @@ final class CurrentRequest
     public const ORDER_QUERY_PARAM = 'order';
     public const OUTPUT_MODE_QUERY_PARAM = 'output';
 
+    private const ARRAY_OF_IDS = [
+        'filter' => FILTER_VALIDATE_INT,
+        'flags' => FILTER_REQUIRE_ARRAY,
+        'options' => ['min_range' => 1],
+    ];
+
+    private const ARRAY_OF_STRING = [
+        'filter' => FILTER_SANITIZE_SPECIAL_CHARS,
+        'flags' => FILTER_REQUIRE_ARRAY,
+    ];
+
     public const QUERY_PARAMS_SANITIZATION_FILTERS = [
         self::SEARCH_QUERY_PARAM => FILTER_SANITIZE_SPECIAL_CHARS,
-        AreaOfStudyFilter::KEY => [
-            'filter' => FILTER_SANITIZE_SPECIAL_CHARS,
-        ],
-        AttributeFilter::KEY => [
-            'filter' => FILTER_SANITIZE_SPECIAL_CHARS,
-        ],
-        DegreeFilter::KEY => [
-            'filter' => FILTER_SANITIZE_SPECIAL_CHARS,
-        ],
-        FacultyFilter::KEY => [
-            'filter' => FILTER_SANITIZE_SPECIAL_CHARS,
-        ],
-        SemesterFilter::KEY => [
-            'filter' => FILTER_SANITIZE_SPECIAL_CHARS,
-        ],
-        StudyLocationFilter::KEY => [
-            'filter' => FILTER_SANITIZE_SPECIAL_CHARS,
-        ],
-        SubjectGroupFilter::KEY => [
-            'filter' => FILTER_SANITIZE_SPECIAL_CHARS,
-        ],
-        TeachingLanguageFilter::KEY => [
-            'filter' => FILTER_SANITIZE_SPECIAL_CHARS,
-        ],
-        AdmissionRequirementTypeFilter::KEY => [
-            'filter' => FILTER_SANITIZE_SPECIAL_CHARS,
-        ],
+        AreaOfStudyFilter::KEY => self::ARRAY_OF_IDS,
+        AttributeFilter::KEY => self::ARRAY_OF_IDS,
+        DegreeFilter::KEY => self::ARRAY_OF_IDS,
+        FacultyFilter::KEY => self::ARRAY_OF_IDS,
+        SemesterFilter::KEY => self::ARRAY_OF_IDS,
+        StudyLocationFilter::KEY => self::ARRAY_OF_IDS,
+        SubjectGroupFilter::KEY => self::ARRAY_OF_IDS,
+        TeachingLanguageFilter::KEY => self::ARRAY_OF_IDS,
+        AdmissionRequirementTypeFilter::KEY => self::ARRAY_OF_STRING,
         'order_by' => FILTER_SANITIZE_SPECIAL_CHARS,
         'order' => FILTER_SANITIZE_SPECIAL_CHARS,
         'output' => FILTER_SANITIZE_SPECIAL_CHARS,
@@ -103,34 +96,6 @@ final class CurrentRequest
 
         foreach ($params as $param) {
             $result[$param] =  $this->queryStrings()[$param] ?? $default;
-        }
-
-        return $result;
-    }
-
-    /**
-     * @return array<string, string>
-     */
-    public function flattenedQueryStrings(): array
-    {
-        return $this->flattenQueryStringsArray($this->queryStrings());
-    }
-
-    /**
-     * @return array<string, string>
-     */
-    private function flattenQueryStringsArray(array $array, string $prefix = ''): array
-    {
-        $result = [];
-        foreach ($array as $key => $value) {
-            $newKey = $prefix ? $prefix . '[' . (string) $key . ']' : (string) $key;
-
-            if (is_array($value)) {
-                $result = array_merge($result, $this->flattenQueryStringsArray($value, $newKey));
-                continue;
-            }
-
-            $result[$newKey] = (string) $value;
         }
 
         return $result;

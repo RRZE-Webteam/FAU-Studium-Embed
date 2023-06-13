@@ -4,15 +4,11 @@ declare(strict_types=1);
 
 namespace Fau\DegreeProgram\Output\Infrastructure\Component;
 
-use Fau\DegreeProgram\Common\Application\Filter\Filter;
 use Fau\DegreeProgram\Common\Application\Filter\FilterFactory;
-use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\TaxonomiesList;
 use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
 use Fau\DegreeProgram\Output\Application\Filter\FilterView;
 use Fau\DegreeProgram\Output\Infrastructure\Filter\Option;
-use Fau\DegreeProgram\Output\Infrastructure\Repository\WordPressTermRepository;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\CurrentRequest;
-use WP_Term;
 
 /**
  * @psalm-type ActiveFiltersAttributes = array{
@@ -29,8 +25,6 @@ class ActiveFilters implements RenderableComponent
 
     public function __construct(
         private Renderer $renderer,
-        private WordPressTermRepository $termRepository,
-        private TaxonomiesList $taxonomiesList,
         private CurrentRequest $currentRequest,
     ) {
     }
@@ -39,39 +33,35 @@ class ActiveFilters implements RenderableComponent
     {
         /** @var ActiveFiltersAttributes $attributes */
         $attributes = wp_parse_args($attributes, self::DEFAULT_ATTRIBUTES);
-        $activeFilters = [];
+        $activeFilterGroups = [];
 
         if (!count($attributes['activeFilters'])) {
             return '';
         }
 
         foreach ($attributes['activeFilters'] as $filterView) {
-            $value = $filterView->value();
-
             if ($filterView->type() === FilterView::TEXT) {
-                $activeFilters[] = [
-                    'label' => sprintf(
-                        '%s: %s',
-                        $filterView->label(),
-                        (string) $filterView->value(),
-                    ),
-                    'url' => remove_query_arg($filterView->id()),
+                $activeFilterGroups[] = [
+                    [
+                        'label' => sprintf(
+                            '%s: %s',
+                            $filterView->label(),
+                            (string) $filterView->value(),
+                        ),
+                        'url' => remove_query_arg($filterView->id()),
+                    ],
                 ];
 
                 continue;
             }
 
-            $activeFilters = array_merge(
-                $activeFilters,
-                // Each selected item in multi choice filter is considered separately
-                $this->activeFiltersFromMultiChoiceFilter($filterView),
-            );
+            $activeFilterGroups[] = $this->activeFiltersFromMultiChoiceFilter($filterView);
         }
 
         return $this->renderer->render(
             'search/filter/active-filters',
             [
-                'activeFilters' => $activeFilters,
+                'activeFilters' => array_merge([], ...$activeFilterGroups),
                 'removeAllUrl' => $this->removeAllUrl(),
             ]
         );
@@ -94,7 +84,7 @@ class ActiveFilters implements RenderableComponent
             $selectedOption = array_values(
                 array_filter(
                     $options,
-                    static fn (Option $option) => $option->value() === $value,
+                    static fn(Option $option) => $option->value() === $value,
                 )
             )[0] ?? null;
 
@@ -108,33 +98,29 @@ class ActiveFilters implements RenderableComponent
                     $filterView->label(),
                     $selectedOption->label(),
                 ),
-                'url' => $this->removeUrl($filterView->id(), (string) $value),
+                'url' => $this->removeUrl($filterView->id(), $value),
             ];
         }
 
         return $result;
     }
 
-    private function removeUrl(string $key, string $value): string
+    private function removeUrl(string $key, int|string $value): string
     {
         $currentValue = $this->currentRequest->queryStrings()[$key] ?? null;
 
-        if (!is_string($currentValue)) {
+        if (!is_array($currentValue)) {
             return '';
         }
 
-        // Remove entirely if only one id is set
-        if (!str_contains($currentValue, ',')) {
+        $newValue = array_filter(
+            $currentValue,
+            static fn($item) => (string) $item !== (string) $value,
+        );
+
+        if (count($newValue) === 0) {
             return remove_query_arg($key);
         }
-
-        $newValue = implode(
-            ',',
-            array_filter(
-                explode(',', $currentValue),
-                static fn ($item) => $item !== $value,
-            ),
-        );
 
         return add_query_arg($key, $newValue);
     }
