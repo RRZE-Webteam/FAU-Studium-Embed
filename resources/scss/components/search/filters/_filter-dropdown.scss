@@ -161,6 +161,10 @@
       .c-filter-choices {
         max-height: 410px;
         overflow: auto;
+
+        &__item:hover {
+          background-color: config.color('grey', 'light');
+        }
       }
 
       @include config.when-inside('.c-filter-dropdown--advanced-filters') {

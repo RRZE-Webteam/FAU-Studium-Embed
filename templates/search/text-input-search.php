@@ -10,7 +10,6 @@ use function Fau\DegreeProgram\Output\renderComponent;
 /**
  * @psalm-var array{
  *     searchQuery: string,
- *     queryStrings: array<string, string>,
  *     name: string,
  * } $data
  * @var array $data
@@ -18,7 +17,6 @@ use function Fau\DegreeProgram\Output\renderComponent;
 
 [
     'searchQuery' => $searchQuery,
-    'queryStrings' => $queryStrings,
     'name' => $name,
 ] = $data;
 
@@ -60,10 +58,4 @@ use function Fau\DegreeProgram\Output\renderComponent;
             ) ?>
         </button>
     </div>
-
-    <?php foreach ($queryStrings as $key => $value) : ?>
-        <?php if ($key !== $name) : ?>
-            <input type="hidden" name="<?= esc_attr($key) ?>" value="<?= esc_attr($value) ?>" />
-        <?php endif; ?>
-    <?php endforeach; ?>
 </div>

@@ -24,7 +24,7 @@ declare(strict_types=1);
 <label class="c-filter-checkbox">
     <input
         type="checkbox"
-        name="<?= esc_attr($filterId) ?>"
+        name="<?= esc_attr($filterId) ?>[]"
         value="<?= esc_attr((string) $value) ?>"
         <?= checked($isSelected) ?>
     />

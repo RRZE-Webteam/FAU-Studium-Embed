@@ -29,7 +29,9 @@
     appearance: none;
 
     &:focus {
-      outline-offset: 0;
+      outline-offset: 1px;
+      outline: 5px auto Highlight;
+      outline: 5px auto -webkit-focus-ring-color;
     }
 
     &:not(:checked) {
