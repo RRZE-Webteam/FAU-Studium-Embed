@@ -16,6 +16,7 @@ use Fau\DegreeProgram\Common\Domain\MultilingualLinks;
 use Fau\DegreeProgram\Common\Domain\MultilingualList;
 use Fau\DegreeProgram\Common\Domain\MultilingualString;
 use Fau\DegreeProgram\Common\Infrastructure\Content\PostType\DegreeProgramPostType;
+use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\AreaOfStudyTaxonomy;
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\AttributeTaxonomy;
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\BachelorOrTeachingDegreeAdmissionRequirementTaxonomy;
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\DegreeTaxonomy;
@@ -121,6 +122,8 @@ final class FilterableTermsUpdater
                 $rawView->admissionRequirements()->teachingDegreeHigherSemester(),
             MasterDegreeAdmissionRequirementTaxonomy::KEY =>
                 $rawView->admissionRequirements()->master(),
+            AreaOfStudyTaxonomy::KEY =>
+                $rawView->areaOfStudy(),
         ];
     }
 
