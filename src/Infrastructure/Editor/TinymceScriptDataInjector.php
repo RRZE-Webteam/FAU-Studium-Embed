@@ -74,7 +74,8 @@ class TinymceScriptDataInjector
             return false;
         }
 
-        return $screen->parent_base === 'edit';
+        return $screen->parent_base === 'edit'
+            && $screen->base === 'post';
     }
 
     private function formFields(): array

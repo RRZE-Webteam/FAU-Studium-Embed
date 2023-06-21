@@ -15,7 +15,7 @@ use function Fau\DegreeProgram\Output\renderComponent;
 
 /**
  * @psalm-var array{
- *     collection: PaginationAwareCollection<DegreeProgramViewTranslated>,
+ *     collection: PaginationAwareCollection<DegreeProgramViewTranslated>|null,
  *     filters: array<FilterView>,
  *     output: 'list' | 'tiles',
  *     activeFilters: array<FilterView>,
@@ -43,46 +43,56 @@ use function Fau\DegreeProgram\Output\renderComponent;
         ) ?>
     </h1>
 
-    <form
-        action="<?= esc_url((string) get_permalink((int) get_the_id())) ?>"
-        method="get"
-    >
-        <?= renderComponent(
-            new Component(
-                SearchForm::class,
-                []
-            )
-        ) ?>
+    <?php if ($collection instanceof PaginationAwareCollection) : ?>
+        <form
+            action="<?= esc_url((string) get_permalink((int) get_the_id())) ?>"
+            method="get"
+        >
+            <?= renderComponent(
+                new Component(
+                    SearchForm::class,
+                    []
+                )
+            ) ?>
+
+            <?= renderComponent(
+                new Component(
+                    ActiveFilters::class,
+                    [
+                        'activeFilters' => $activeFilters,
+                    ],
+                ),
+            ) ?>
+
+            <?= renderComponent(
+                new Component(
+                    SearchFilters::class,
+                    [
+                        'filters' => $filters,
+                        'output' => $output,
+                        'activeFilters' => $activeFilters,
+                        'advancedFilters' => $advancedFilters,
+                    ]
+                )
+            ) ?>
+        </form>
 
         <?= renderComponent(
             new Component(
-                ActiveFilters::class,
+                DegreeProgramsCollection::class,
                 [
-                    'activeFilters' => $activeFilters,
-                ],
-            ),
-        ) ?>
-
-        <?= renderComponent(
-            new Component(
-                SearchFilters::class,
-                [
-                    'filters' => $filters,
+                    'collection' => $collection,
                     'output' => $output,
-                    'activeFilters' => $activeFilters,
-                    'advancedFilters' => $advancedFilters,
                 ]
             )
         ) ?>
-    </form>
-
-    <?= renderComponent(
-        new Component(
-            DegreeProgramsCollection::class,
-            [
-                'collection' => $collection,
-                'output' => $output,
-            ]
-        )
-    ) ?>
+    <?php else : ?>
+        <p>
+            <?= esc_html_x(
+                'The degree program data is being processed. Please try again in a few minutes.',
+                'frontoffice: degree programs search form',
+                'fau-degree-program-output'
+            ) ?>
+        </p>
+    <?php endif; ?>
 </section>
