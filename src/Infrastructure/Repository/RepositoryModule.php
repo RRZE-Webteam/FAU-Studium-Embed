@@ -51,7 +51,6 @@ class RepositoryModule implements ServiceModule
                 $container->get(ApiClient::class)
             ),
             DegreeProgramCollectionRepository::class => static fn(ContainerInterface $container) => new CachedApiCollectionRepository(
-                $container->get(self::COLLECTION_REPOSITORY_UNCACHED),
                 $container->get(WordPressDatabaseDegreeProgramCollectionRepository::class),
             ),
             IdGenerator::class => static fn() => new IdGenerator(),
