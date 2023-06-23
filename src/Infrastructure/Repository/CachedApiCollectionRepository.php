@@ -56,7 +56,7 @@ final class CachedApiCollectionRepository implements DegreeProgramCollectionRepo
             'post_type' => DegreeProgramPostType::KEY,
             'post_status' => ['publish'],
             'meta_query' => [
-                'relation' => 'OR',
+                'relation' => 'AND',
                 [
                     'key' => PostMetaDegreeProgramCache::postMetaKey(
                         CacheKeyGenerator::RAW_TYPE
