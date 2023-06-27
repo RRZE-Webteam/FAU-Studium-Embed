@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Fau\DegreeProgram\Output\Infrastructure\Template;
 
 use Fau\DegreeProgram\Common\Application\DegreeProgramViewTranslated;
+use Fau\DegreeProgram\Common\Infrastructure\Content\PostType\DegreeProgramPostType;
 use Fau\DegreeProgram\Output\Infrastructure\Repository\CurrentViewRepository;
 
 final class SeoFrameworkIntegration
@@ -43,5 +44,16 @@ final class SeoFrameworkIntegration
         }
 
         return $view->metaDescription();
+    }
+
+    /**
+     * @wp-hook the_seo_framework_supported_post_type
+     */
+    public function alwaysSupportDegreeProgramPostType(
+        bool $isSupported,
+        string $postType
+    ): bool {
+
+        return $postType === DegreeProgramPostType::KEY ?: $isSupported;
     }
 }
