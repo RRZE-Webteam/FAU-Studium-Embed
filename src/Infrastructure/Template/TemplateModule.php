@@ -100,6 +100,15 @@ final class TemplateModule implements ServiceModule, ExecutableModule
                 'filterGeneratedDescription',
             ]
         );
+        add_filter(
+            'the_seo_framework_supported_post_type',
+            [
+                $seoFrameworkIntegration,
+                'alwaysSupportDegreeProgramPostType',
+            ],
+            10,
+            2
+        );
 
         if ($container->get(EnvironmentDetector::class)->isProvidingWebsite()) {
             return false;
