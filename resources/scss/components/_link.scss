@@ -13,13 +13,6 @@
 
   @include config.text-size('xl');
 
-  .fau-icon {
-    padding: 0 !important;
-    box-shadow: none !important;
-    height: 0.8em;
-    vertical-align: baseline;
-  }
-
   &--dark {
     color: config.color('button', 'text') !important;
     background-color: config.color('button', 'bg');

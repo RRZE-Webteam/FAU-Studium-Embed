@@ -11,7 +11,6 @@ use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
  *     url: string,
  *     text: string,
  *     type: 'dark' | 'light',
- *     icon: string,
  * }
  */
 final class Link implements RenderableComponent
@@ -22,7 +21,6 @@ final class Link implements RenderableComponent
         'url' => '',
         'text' => '',
         'type' => self::LIGHT,
-        'icon' => '',
     ];
 
     public function __construct(

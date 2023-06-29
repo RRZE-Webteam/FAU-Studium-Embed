@@ -21,9 +21,6 @@ class RewriteModule implements ServiceModule, ExecutableModule
                 $container->get(PostsRepository::class)
             ),
             CurrentRequest::class => static fn() => new CurrentRequest(),
-            ReferrerUrlHelper::class => static fn(ContainerInterface $container) => new ReferrerUrlHelper(
-                $container->get(CurrentRequest::class),
-            ),
         ];
     }
 

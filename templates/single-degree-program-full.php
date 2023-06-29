@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 use Fau\DegreeProgram\Common\Application\DegreeProgramViewTranslated;
 use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
-use Fau\DegreeProgram\Output\Infrastructure\Rewrite\ReferrerUrlHelper;
 
 /**
  * @var array{
  *     view: DegreeProgramViewTranslated,
- *     referrerUrlHelper: ReferrerUrlHelper,
  *     className: string,
  * } $data
  * @var Renderer $renderer
@@ -17,7 +15,6 @@ use Fau\DegreeProgram\Output\Infrastructure\Rewrite\ReferrerUrlHelper;
 
 [
     'view' => $view,
-    'referrerUrlHelper' => $referrerUrlHelper,
     'className' => $className,
 ] = $data
 
@@ -37,7 +34,5 @@ use Fau\DegreeProgram\Output\Infrastructure\Rewrite\ReferrerUrlHelper;
     <?= $renderer->render('single-degree-program/featured-video', ['view' => $view]) ?>
     <?= $renderer->render('single-degree-program/more-information', ['view' => $view]) ?>
     <?= $renderer->render('single-degree-program/links', ['view' => $view]) ?>
-    <?= $renderer->render('single-degree-program/back', [
-        'referrerUrlHelper' => $referrerUrlHelper, ]) ?>
     <?php // phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 </div>

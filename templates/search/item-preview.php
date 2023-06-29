@@ -6,24 +6,20 @@ use Fau\DegreeProgram\Common\Application\DegreeProgramViewTranslated;
 use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
 use Fau\DegreeProgram\Output\Infrastructure\Component\Component;
 use Fau\DegreeProgram\Output\Infrastructure\Component\Icon;
-use Fau\DegreeProgram\Output\Infrastructure\Rewrite\ReferrerUrlHelper;
 
 use function Fau\DegreeProgram\Output\renderComponent;
 
 /**
  * @var array{
  *     degreeProgram: DegreeProgramViewTranslated,
- *     referrerUrlHelper: ReferrerUrlHelper,
  * } $data
  * @var Renderer $renderer
  */
 
 [
     'degreeProgram' => $degreeProgram,
-    'referrerUrlHelper' => $referrerUrlHelper,
 ] = $data;
 
-$link = $referrerUrlHelper->addReferrerArgs($degreeProgram->link());
 $titleId = sprintf('degree-program-title-%d', $degreeProgram->id());
 ?>
 
@@ -49,7 +45,7 @@ $titleId = sprintf('degree-program-title-%d', $degreeProgram->id());
     <div class="c-degree-program-preview__title">
         <a
             class="c-degree-program-preview__link"
-            href="<?= esc_url($link) ?>"
+            href="<?= esc_url($degreeProgram->link()) ?>"
             rel="bookmark"
             aria-labelledby="<?= esc_attr($titleId) ?>"
         ></a>
