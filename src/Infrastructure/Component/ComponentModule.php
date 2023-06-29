@@ -14,7 +14,6 @@ use Fau\DegreeProgram\Output\Application\ArrayPropertiesAccessor;
 use Fau\DegreeProgram\Output\Application\DegreeProgramViewPropertiesFilter;
 use Fau\DegreeProgram\Output\Infrastructure\Filter\FilterViewFactory;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\CurrentRequest;
-use Fau\DegreeProgram\Output\Infrastructure\Rewrite\ReferrerUrlHelper;
 use Inpsyde\Modularity\Module\ModuleClassNameIdTrait;
 use Inpsyde\Modularity\Module\ServiceModule;
 use Inpsyde\Modularity\Package;
@@ -51,7 +50,6 @@ final class ComponentModule implements ServiceModule
                 $container->get(Renderer::class),
                 $container->get(DegreeProgramViewRepository::class),
                 $container->get(LoggerInterface::class),
-                $container->get(ReferrerUrlHelper::class),
                 $container->get(DegreeProgramViewPropertiesFilter::class),
                 $container->get(CurrentRequest::class),
             ),
@@ -83,7 +81,6 @@ final class ComponentModule implements ServiceModule
             ),
             DegreeProgramsCollection::class => static fn(ContainerInterface $container) => new DegreeProgramsCollection(
                 $container->get(Renderer::class),
-                $container->get(ReferrerUrlHelper::class),
                 $container->get(CurrentRequest::class),
             ),
             DegreeProgramDetail::class => static fn(ContainerInterface $container) => new DegreeProgramDetail(

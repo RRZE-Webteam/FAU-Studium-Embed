@@ -5,12 +5,10 @@ declare(strict_types=1);
 use Fau\DegreeProgram\Common\Application\DegreeProgramViewTranslated;
 use Fau\DegreeProgram\Common\Application\Repository\PaginationAwareCollection;
 use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
-use Fau\DegreeProgram\Output\Infrastructure\Rewrite\ReferrerUrlHelper;
 
 /**
  * @psalm-var array{
  *     collection: PaginationAwareCollection<DegreeProgramViewTranslated>,
- *     referrerUrlHelper: ReferrerUrlHelper,
  *     output: 'tiles' | 'list',
  *     currentOrder: array<string, 'asc' | 'desc'>,
  *     orderByOptions: array<string, array{label_asc: string, label_desc: string}>,
@@ -21,7 +19,6 @@ use Fau\DegreeProgram\Output\Infrastructure\Rewrite\ReferrerUrlHelper;
 
 [
     'collection' => $collection,
-    'referrerUrlHelper' => $referrerUrlHelper,
     'output' => $output,
     'currentOrder' => $currentOrder,
     'orderByOptions' => $orderByOptions,
@@ -45,7 +42,6 @@ $viewModeClass = $output === 'list' ? '-list' : '-tiles';
         <?php // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
         <?= $renderer->render('search/item-preview', [
             'degreeProgram' => $view,
-            'referrerUrlHelper' => $referrerUrlHelper,
         ]) ?>
         <?php // phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
     <?php endforeach; ?>

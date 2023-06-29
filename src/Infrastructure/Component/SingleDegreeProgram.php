@@ -14,7 +14,6 @@ use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
 use Fau\DegreeProgram\Output\Application\DegreeProgramViewPropertiesFilter;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\CurrentRequest;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\LocaleHelper;
-use Fau\DegreeProgram\Output\Infrastructure\Rewrite\ReferrerUrlHelper;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -43,7 +42,6 @@ final class SingleDegreeProgram implements RenderableComponent
         private Renderer $renderer,
         private DegreeProgramViewRepository $degreeProgramViewRepository,
         private LoggerInterface $logger,
-        private ReferrerUrlHelper $referrerUrlHelper,
         private DegreeProgramViewPropertiesFilter $degreeProgramViewPropertiesFilter,
         private CurrentRequest $currentRequest,
     ) {
@@ -98,7 +96,6 @@ final class SingleDegreeProgram implements RenderableComponent
             'single-degree-program-' . $attributes['format'],
             [
                 'view' => $view,
-                'referrerUrlHelper' => $this->referrerUrlHelper,
                 'className' => $attributes['className'],
             ]
         );
