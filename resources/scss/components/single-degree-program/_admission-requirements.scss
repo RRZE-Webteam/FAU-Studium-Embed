@@ -1,33 +1,69 @@
 @use '../../abstracts/config';
 
-&__admission-requirements {
-  display: grid;
-  gap: 30px 25px;
+@mixin admission-requirement-icon {
+  .fau-icon {
+    fill: config.color('branding', 'primary');
+    width: 36px;
+    height: 30px;
+  }
+}
 
-  @include config.container-gt('tablet', 'single-degree-program') {
-    grid-template-columns: repeat(2, 1fr);
+@mixin admission-requirement-header {
+  margin: 14px 0 12px;
+  color: config.color('content', 'headlines');
+
+  @include config.text-size('xl');
+}
+
+.c-language-skills {
+  @include admission-requirement-icon;
+
+  &__header {
+    @include admission-requirement-header;
   }
 
-    @include config.container-gt('laptop', 'single-degree-program') {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .c-detail {
-    .fau-icon {
-      fill: config.color('branding', 'primary');
-      width: 36px;
-      height: 30px;
-    }
-
+  &__details {
     dt {
-      margin: 14px 0 12px;
-      color: config.color('content', 'headlines');
+      margin: 0;
 
-      @include config.text-size('xl');
+      &::after {
+        content: ':';
+      }
     }
 
     dd {
-      margin: 0;
+      margin: 0 0 10px;
+    }
+  }
+}
+
+&__admission-requirements {
+  dl {
+    margin: 0 0 30px;
+
+    &:not(.c-language-skills__details) {
+      display: flex;
+      flex-flow: column wrap;
+      justify-content: space-between;
+      gap: 30px 25px;
+
+      @include config.container-gt('tablet', 'single-degree-program') {
+        flex-direction: row;
+      }
+
+      .c-detail {
+        flex: 1 1;
+
+        @include admission-requirement-icon;
+
+        dt {
+          @include admission-requirement-header;
+        }
+
+        dd {
+          margin: 0;
+        }
+      }
     }
   }
 }
