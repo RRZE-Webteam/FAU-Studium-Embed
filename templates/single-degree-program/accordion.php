@@ -65,6 +65,13 @@ $accordion = renderComponent(
             new Component(
                 AccordionItem::class,
                 [
+                    'title' => $view->content()->specialFeatures()->title(),
+                    'content' => wp_kses_post($view->content()->specialFeatures()->description()),
+                ]
+            ),
+            new Component(
+                AccordionItem::class,
+                [
                     'title' => _x(
                         'Degree program combinations & limited degree program combinations',
                         'frontoffice: single view',
