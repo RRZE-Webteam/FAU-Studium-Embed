@@ -104,7 +104,7 @@ final class FilterViewFactory
             SemesterFilter::KEY => new FilterView(
                 $filter,
                 _x(
-                    'Semester',
+                    'Start of degree program',
                     'frontoffice: Filter label',
                     'fau-degree-program-output',
                 ),
