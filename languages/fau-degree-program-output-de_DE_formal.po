@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: FAU Degree Program Output 0.0.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/fau-degree-program-sync-and-output\n"
 "POT-Creation-Date: 2023-06-06T13:08:12+00:00\n"
-"PO-Revision-Date: 2023-06-29 14:50+0200\n"
+"PO-Revision-Date: 2023-07-05 12:35+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -352,11 +352,6 @@ msgctxt "frontoffice: Filter label"
 msgid "Faculty"
 msgstr "Fakultät"
 
-#: src/Infrastructure/Filter/FilterViewFactory.php:106
-msgctxt "frontoffice: Filter label"
-msgid "Semester"
-msgstr "Semesterbeitrag"
-
 #: src/Infrastructure/Filter/FilterViewFactory.php:118
 msgctxt "frontoffice: Filter label"
 msgid "Study location"
@@ -501,22 +496,22 @@ msgctxt "frontoffice: shortcode link"
 msgid "Read more"
 msgstr "Mehr lesen"
 
-#: templates/single-degree-program/accordion.php:68
+#: templates/single-degree-program/accordion.php:75
 msgctxt "frontoffice: single view"
 msgid "Degree program combinations & limited degree program combinations"
 msgstr "Mögliche Studiengangskombinationen und eingeschränkt mögliche Studiengangskombinationen"
 
-#: templates/single-degree-program/accordion.php:78
+#: templates/single-degree-program/accordion.php:85
 msgctxt "frontoffice: single view"
 msgid "Degree program combinations"
 msgstr "Mögliche Studiengangskombinationen"
 
-#: templates/single-degree-program/accordion.php:93
+#: templates/single-degree-program/accordion.php:100
 msgctxt "frontoffice: single view"
 msgid "Limited degree program combinations"
 msgstr "Eingeschränkt mögliche Studiengangskombinationen"
 
-#: templates/single-degree-program/accordion.php:113
+#: templates/single-degree-program/accordion.php:120
 msgctxt "frontoffice: single view"
 msgid "Admission requirements, application, and enrollment"
 msgstr "Zugangsvoraussetzungen, Bewerbung und Einschreibung"
@@ -531,22 +526,22 @@ msgctxt "frontoffice: single view"
 msgid "Application deadline summer semester"
 msgstr "Bewerbungsfrist Sommersemester"
 
-#: templates/single-degree-program/admission-requirements.php:121
+#: templates/single-degree-program/admission-requirements.php:112
 msgctxt "frontoffice: single view"
 msgid "Details and notes"
 msgstr "Details und Anmerkungen"
 
-#: templates/single-degree-program/admission-requirements.php:179
+#: templates/single-degree-program/admission-requirements.php:170
 msgctxt "frontoffice: single view"
 msgid "Language skills"
 msgstr "Sprachkenntnisse"
 
-#: templates/single-degree-program/admission-requirements.php:95
+#: templates/single-degree-program/admission-requirements.php:85
 msgctxt "frontoffice: single view"
 msgid "German language skills for international applicants"
 msgstr "Deutschkenntnisse für internationale Studierende"
 
-#: templates/single-degree-program/admission-requirements.php:136
+#: templates/single-degree-program/admission-requirements.php:127
 msgctxt "frontoffice: single view"
 msgid "Degree Program Fees"
 msgstr "Studiengebühren"
@@ -636,12 +631,12 @@ msgctxt "frontoffice: single view"
 msgid "Specific Student Advice"
 msgstr "Spezifische Studienberatung"
 
-#: assets/ts/gutenberg.js:1
+#: assets/ts/gutenberg.js:191
 msgctxt "backoffice: block editor"
 msgid "Select degree program"
 msgstr "Studiengang wählen"
 
-#: assets/ts/gutenberg.js:1
+#: assets/ts/gutenberg.js:201
 msgctxt "backend: block editor"
 msgid "Could not load suggestion list"
 msgstr "Vorschlagsliste konnte nicht geladen werden"
@@ -681,7 +676,12 @@ msgctxt "frontoffice: single view"
 msgid "Content-related admission requirements"
 msgstr "Inhaltliche Zugangsvoraussetzungen"
 
-#: templates/single-degree-program/admission-requirements.php:106
+#: templates/single-degree-program/admission-requirements.php:96
 msgctxt "frontoffice: single view"
 msgid "General language skills"
 msgstr "Allgemeine Sprachkenntnisse"
+
+#: src/Infrastructure/Filter/FilterViewFactory.php:106
+msgctxt "frontoffice: Filter label"
+msgid "Start of degree program"
+msgstr "Studienbeginn"

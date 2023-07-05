@@ -3,15 +3,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: FAU Degree Program Output 0.0.7\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/fau-degree-program-sync-and-output\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/fau-degree-program-output\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-06-29T09:14:28+00:00\n"
+"POT-Creation-Date: 2023-07-05T10:33:38+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.7.1\n"
+"X-Generator: WP-CLI 2.8.1\n"
 "X-Domain: fau-degree-program-output\n"
 
 #. Plugin Name of the plugin
@@ -354,7 +354,7 @@ msgstr ""
 
 #: src/Infrastructure/Filter/FilterViewFactory.php:106
 msgctxt "frontoffice: Filter label"
-msgid "Semester"
+msgid "Start of degree program"
 msgstr ""
 
 #: src/Infrastructure/Filter/FilterViewFactory.php:118
@@ -506,67 +506,67 @@ msgctxt "frontoffice: shortcode link"
 msgid "Read more"
 msgstr ""
 
-#: templates/single-degree-program/accordion.php:68
+#: templates/single-degree-program/accordion.php:75
 msgctxt "frontoffice: single view"
 msgid "Degree program combinations & limited degree program combinations"
 msgstr ""
 
-#: templates/single-degree-program/accordion.php:78
+#: templates/single-degree-program/accordion.php:85
 msgctxt "frontoffice: single view"
 msgid "Degree program combinations"
 msgstr ""
 
-#: templates/single-degree-program/accordion.php:93
+#: templates/single-degree-program/accordion.php:100
 msgctxt "frontoffice: single view"
 msgid "Limited degree program combinations"
 msgstr ""
 
-#: templates/single-degree-program/accordion.php:113
+#: templates/single-degree-program/accordion.php:120
 msgctxt "frontoffice: single view"
 msgid "Admission requirements, application, and enrollment"
 msgstr ""
 
-#: templates/single-degree-program/admission-requirements.php:26
+#: templates/single-degree-program/admission-requirements.php:27
 msgctxt "frontoffice: single view"
 msgid "Admission requirements"
 msgstr ""
 
-#: templates/single-degree-program/admission-requirements.php:43
+#: templates/single-degree-program/admission-requirements.php:44
 msgctxt "frontoffice: single view"
 msgid "Application deadline winter semester"
 msgstr ""
 
-#: templates/single-degree-program/admission-requirements.php:55
+#: templates/single-degree-program/admission-requirements.php:56
 msgctxt "frontoffice: single view"
 msgid "Application deadline summer semester"
 msgstr ""
 
-#: templates/single-degree-program/admission-requirements.php:70
+#: templates/single-degree-program/admission-requirements.php:71
 msgctxt "frontoffice: single view"
 msgid "Content-related admission requirements"
 msgstr ""
 
-#: templates/single-degree-program/admission-requirements.php:94
+#: templates/single-degree-program/admission-requirements.php:85
 msgctxt "frontoffice: single view"
 msgid "German language skills for international applicants"
 msgstr ""
 
-#: templates/single-degree-program/admission-requirements.php:105
+#: templates/single-degree-program/admission-requirements.php:96
 msgctxt "frontoffice: single view"
 msgid "General language skills"
 msgstr ""
 
-#: templates/single-degree-program/admission-requirements.php:120
+#: templates/single-degree-program/admission-requirements.php:112
 msgctxt "frontoffice: single view"
 msgid "Details and notes"
 msgstr ""
 
-#: templates/single-degree-program/admission-requirements.php:135
+#: templates/single-degree-program/admission-requirements.php:127
 msgctxt "frontoffice: single view"
 msgid "Degree Program Fees"
 msgstr ""
 
-#: templates/single-degree-program/admission-requirements.php:179
+#: templates/single-degree-program/admission-requirements.php:170
 msgctxt "frontoffice: single view"
 msgid "Language skills"
 msgstr ""
