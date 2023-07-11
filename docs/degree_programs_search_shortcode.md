@@ -5,33 +5,33 @@ See below for a list of supported attributes.
 
 ## Attributes
 
-| Attribute       | Description                                                               | Required | Default | Valid options     |
-|-----------------|---------------------------------------------------------------------------|----------|---------|-------------------|
-| `display`       | Entry point for degree programs search rendering.                         | yes      |         | `search`          |
-| `lang`          | Language                                                                  | no       | `de`    | `de` or `en`      |
-| `output`        | Output mode                                                               | no       | `list`  | `list` or `tiles` |
-| `filters`       | Comma-separated list of filters to be shown to visitors.                  | no       |         | See list below    |
-| `[filter-name]` | Pre-applied filters with comma-separated term slug or name as their value | no       |         | See list below    |
+| Attribute       | Description                                                        | Required | Default | Valid options     |
+|-----------------|--------------------------------------------------------------------|----------|---------|-------------------|
+| `display`       | Entry point for degree programs search rendering.                  | yes      |         | `search`          |
+| `lang`          | Language                                                           | no       | `de`    | `de` or `en`      |
+| `output`        | Output mode                                                        | no       | `list`  | `list` or `tiles` |
+| `filters`       | Comma-separated list of filters to be shown to visitors            | no       |         | See list below    |
+| `<filter-name>` | Pre-applied filters with comma-separated term names as their value | no       |         | See list below    |
 
 ## List of supported filters
 
 | Filter                  | Description                                                             | Accepted values (if used as a pre-applied filter) |
 |-------------------------|-------------------------------------------------------------------------|---------------------------------------------------|
-| `admission-requirement` | Admission requirements filter                                           | Not Available                                     |
-| `area-of-study`         | Area of study filter                                                    | Comma-separated term slug or name                 |
-| `attribute`             | Attribute filter                                                        | Comma-separated term slug or name                 |
-| `degree`                | Degree filter                                                           | Comma-separated term slug or name                 |
-| `faculty`               | Faculty filter                                                          | Comma-separated term slug or name                 |
-| `search`                | Search keyword filter (explicitly added by default, no need to include) | Not Available                                     |
-| `semester`              | Semester filter                                                         | Comma-separated term slug or name                 |
-| `study-location`        | Study location filter                                                   | Comma-separated term slug or name                 |
-| `subject-group`         | Subject group filter                                                    | Comma-separated term slug or name                 |
-| `teaching-language`     | Teaching language filter                                                | Comma-separated term slug or name                 |
+| `admission-requirement` | Admission requirements filter                                           | Not available                                     |
+| `area-of-study`         | Area of study filter                                                    | Comma-separated term names                        |
+| `attribute`             | Attribute filter                                                        | Comma-separated term names                        |
+| `degree`                | Degree filter                                                           | Comma-separated term names                        |
+| `faculty`               | Faculty filter                                                          | Comma-separated term names                        |
+| `search`                | Search keyword filter (explicitly added by default, no need to include) | Not available                                     |
+| `semester`              | Semester filter                                                         | Comma-separated term names                        |
+| `study-location`        | Study location filter                                                   | Comma-separated term names                        |
+| `subject-group`         | Subject group filter                                                    | Comma-separated term names                        |
+| `teaching-language`     | Teaching language filter                                                | Comma-separated term names                        |
 
 ## Usage
 
-Include a comma-separated list of filters in the `filters` attribute to specify which filters should be shown to
-visitors.
+Include a comma-separated list of filters in the `filters` attribute to specify which filters to
+show visitors.
 
 ### Example without pre-applied filters
 
@@ -41,9 +41,9 @@ visitors.
 
 ### Example with pre-applied filters
 
-To pre-apply filters and hide them from visitors, add an attribute with the name of the filter as the key and a
-comma-separated term slugs or names as the value.
-Example: To pre-apply the `degree` filter with `Bachelor` and `Masters` and also add `faculty` and `study-location` as
+To pre-apply filters and hide them from visitors, add an attribute with the name of the filter as the key and
+comma-separated term names as the value.
+Example: To pre-apply the `degree` filter with `Bachelor` and `Master` and also add `faculty` and `study-location` as
 visible filters, use the following shortcode:
 
 ```
@@ -52,7 +52,10 @@ visible filters, use the following shortcode:
 
 Note that in this example, although `degree` is a hidden filter, it still must be included in the `filters` attributes.
 
+Note that on the main website (meinstudium.fau.de), instead of using term names, it is possible to use term IDs or
+slugs. This does **not** work on other websites.
+
 ## Advanced filters
 
 If a shortcode includes more than three visible filters in the `filters` attribute, the first three will be outputted in
-the top filter bar while the rest will be hidden in the **"Advanced filters"** dropdown.
+the top filter bar, while the rest will be hidden in the **"Advanced filters"** dropdown.
