@@ -16,6 +16,10 @@ use function Fau\DegreeProgram\Output\renderComponent;
     'view' => $view,
 ] = $data;
 
+if (!$view->studentAdvice()->linkUrl() && !$view->subjectSpecificAdvice()->linkUrl()) {
+    return '';
+}
+
 ?>
 
 <div class="c-single-degree-program__more-information l-container">

@@ -2,6 +2,20 @@
 
 declare(strict_types=1);
 
+/**
+ * @var array{
+ *     isFeaturedVideoDisabled: bool,
+ * } $data
+ */
+
+[
+    'isFeaturedVideoDisabled' => $isFeaturedVideoDisabled,
+] = $data;
+
+if ($isFeaturedVideoDisabled) {
+    return;
+}
+
 ?>
 
 <div class="c-single-degree-program__featured-video">
