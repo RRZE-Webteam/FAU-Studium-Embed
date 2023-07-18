@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: FAU Degree Program Output 0.0.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/fau-degree-program-sync-and-output\n"
 "POT-Creation-Date: 2023-06-06T13:08:12+00:00\n"
-"PO-Revision-Date: 2023-07-05 12:35+0200\n"
+"PO-Revision-Date: 2023-07-10 14:55+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.3.2\n"
 "X-Domain: fau-degree-program-output\n"
 
 #. Plugin Name of the plugin
@@ -516,32 +516,32 @@ msgctxt "frontoffice: single view"
 msgid "Admission requirements, application, and enrollment"
 msgstr "Zugangsvoraussetzungen, Bewerbung und Einschreibung"
 
-#: templates/single-degree-program/admission-requirements.php:44
+#: templates/single-degree-program/admission-requirements.php:72
 msgctxt "frontoffice: single view"
 msgid "Application deadline winter semester"
 msgstr "Bewerbungsfrist Wintersemester"
 
-#: templates/single-degree-program/admission-requirements.php:56
+#: templates/single-degree-program/admission-requirements.php:84
 msgctxt "frontoffice: single view"
 msgid "Application deadline summer semester"
 msgstr "Bewerbungsfrist Sommersemester"
 
-#: templates/single-degree-program/admission-requirements.php:112
+#: templates/single-degree-program/admission-requirements.php:140
 msgctxt "frontoffice: single view"
 msgid "Details and notes"
 msgstr "Details und Anmerkungen"
 
-#: templates/single-degree-program/admission-requirements.php:170
+#: templates/single-degree-program/admission-requirements.php:198
 msgctxt "frontoffice: single view"
 msgid "Language skills"
 msgstr "Sprachkenntnisse"
 
-#: templates/single-degree-program/admission-requirements.php:85
+#: templates/single-degree-program/admission-requirements.php:113
 msgctxt "frontoffice: single view"
 msgid "German language skills for international applicants"
 msgstr "Deutschkenntnisse für internationale Studierende"
 
-#: templates/single-degree-program/admission-requirements.php:127
+#: templates/single-degree-program/admission-requirements.php:155
 msgctxt "frontoffice: single view"
 msgid "Degree Program Fees"
 msgstr "Studiengebühren"
@@ -666,17 +666,12 @@ msgctxt "frontoffice: degree programs search form"
 msgid "The degree program data is being processed. Please try again in a few minutes."
 msgstr "Die Studiengangsdaten werden gerade verarbeitet. Bitte versuche es in ein paar Minuten erneut."
 
-#: templates/single-degree-program/admission-requirements.php:27
-msgctxt "frontoffice: single view"
-msgid "Admission requirements"
-msgstr "Zugangsvoraussetzungen"
-
-#: templates/single-degree-program/admission-requirements.php:71
+#: templates/single-degree-program/admission-requirements.php:99
 msgctxt "frontoffice: single view"
 msgid "Content-related admission requirements"
 msgstr "Inhaltliche Zugangsvoraussetzungen"
 
-#: templates/single-degree-program/admission-requirements.php:96
+#: templates/single-degree-program/admission-requirements.php:124
 msgctxt "frontoffice: single view"
 msgid "General language skills"
 msgstr "Allgemeine Sprachkenntnisse"
@@ -685,3 +680,14 @@ msgstr "Allgemeine Sprachkenntnisse"
 msgctxt "frontoffice: Filter label"
 msgid "Start of degree program"
 msgstr "Studienbeginn"
+
+#: templates/single-degree-program/admission-requirements.php:27
+#: templates/single-degree-program/admission-requirements.php:56
+msgctxt "frontoffice: single view"
+msgid "Admission requirements (first semester)"
+msgstr "Zugangsvoraussetzungen (1. Semester)"
+
+#: templates/single-degree-program/admission-requirements.php:39
+msgctxt "frontoffice: single view"
+msgid "Admission requirements (higher semester)"
+msgstr "Zugangsvoraussetzungen (höheres Semester)"
