@@ -52,7 +52,9 @@ final class WpQueryModifier
                 continue;
             }
 
-            $key = self::buildOrderByKey($property);
+            $key = $isSticky
+                ? self::buildOrderByNotExistsKey($property)
+                : self::buildOrderByKey($property);
             $updatedOrderBy[$key] = $order;
             $metaType = $isSticky ? 'UNSIGNED' : 'CHAR';
             self::updateMetaQuery($query, $property, $metaType);
@@ -91,7 +93,7 @@ final class WpQueryModifier
                         'key' => $orderBy,
                         'type' => $type,
                     ],
-                    [
+                    self::buildOrderByNotExistsKey($orderBy) => [
                         'key' => $orderBy,
                         'compare' => 'NOT EXISTS',
                     ],
@@ -105,5 +107,10 @@ final class WpQueryModifier
     private static function buildOrderByKey(string $property): string
     {
         return 'order_by_' . $property;
+    }
+
+    private static function buildOrderByNotExistsKey(string $property): string
+    {
+        return 'order_by_not_exists_' . $property;
     }
 }
