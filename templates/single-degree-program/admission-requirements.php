@@ -156,6 +156,17 @@ $degreeProgramFees = renderComponent(
     )
 );
 
+if (
+    !$admissionRequirements
+    && !$durations
+    && !$contentRelatedAdmissionRequirements
+    && !$languageSkills
+    && !$detailsAndNotes
+    && !$degreeProgramFees
+) {
+    return;
+}
+
 ?>
 
 <div class="c-single-degree-program__admission-requirements">

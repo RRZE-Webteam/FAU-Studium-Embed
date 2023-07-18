@@ -37,6 +37,7 @@ The only required attribute is `id`, the degree program's post ID.
 | `content.qualities_and_skills`                      | Was sollte ich mitbringen?                                                      |
 | `content.why_should_study`                          | Gute Gründe für ein Studium an der FAU                                          |
 | `content.career_prospects`                          | Welche beruflichen Perspektiven stehen mir offen?                               |
+| `admission_requirements`                            | Admission requirements                                                          |
 | `admission_requirement_link`                        | Tipps zur Bewerbung                                                             |
 | `details_and_notes`                                 | Details und Anmerkungen                                                         |
 | `start_of_semester`                                 | Semesterstart                                                                   |
@@ -67,3 +68,4 @@ The only required attribute is `id`, the degree program's post ID.
 | `language_skills_humanities_faculty`                | Sprachkenntnisse nur für die Philosophische Fakultät und Fachbereich Theologie  |
 | `german_language_skills_for_international_students` | Sprachnachweise/Deutschkenntnisse für internationale Bewerberinnen und Bewerber |
 | `degree_program_fees`                               | Studiengangsgebühren                                                            |
+| `featured_video`                                    | Imagevideo                                                                      |

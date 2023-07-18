@@ -16,6 +16,8 @@ use Fau\DegreeProgram\Output\Infrastructure\Repository\WordPressTermRepository;
 
 final class ShortcodeAttributesNormalizer
 {
+    private const SINGLE_OUTPUT_FORMATS = ['short', 'full'];
+
     /**
      * @var array<string, callable(array<string, mixed>): array<string, mixed>>
      */
@@ -135,6 +137,13 @@ final class ShortcodeAttributesNormalizer
         $attributes['include'] = wp_parse_list((string) ($attributes['include'] ?? ''));
         $attributes['exclude'] = wp_parse_list((string) ($attributes['exclude'] ?? ''));
         $attributes['className'] = 'is-shortcode';
+
+        if (
+            array_key_exists('format', $attributes)
+            && !in_array($attributes['format'], self::SINGLE_OUTPUT_FORMATS, true)
+        ) {
+            $attributes['format'] = 'full';
+        }
 
         return $attributes;
     }
