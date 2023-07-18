@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use Fau\DegreeProgram\Common\Application\AdmissionRequirementTranslated;
 use Fau\DegreeProgram\Common\Application\DegreeProgramViewTranslated;
 use Fau\DegreeProgram\Output\Infrastructure\Component\Component;
 use Fau\DegreeProgram\Output\Infrastructure\Component\DegreeProgramDetail;
@@ -19,21 +18,44 @@ use function Fau\DegreeProgram\Output\renderComponent;
 ] = $data;
 
 $admissionRequirements = renderComponent(
-    ...array_map(
-        static fn(AdmissionRequirementTranslated $requirement) => new Component(
-            DegreeProgramDetail::class,
-            [
-                'icon' => 'degree',
-                'term' => _x(
-                    'Admission requirements',
-                    'frontoffice: single view',
-                    'fau-degree-program-output'
-                ),
-                'description' => $requirement->asHtml(),
-            ]
-        ),
-        $view->admissionRequirements()->requirements(),
-    )
+    new Component(
+        DegreeProgramDetail::class,
+        [
+            'icon' => 'degree',
+            'term' => _x(
+                'Admission requirements (first semester)',
+                'frontoffice: single view',
+                'fau-degree-program-output'
+            ),
+            'description' =>
+                $view->admissionRequirements()->bachelorOrTeachingDegree()?->asHtml(),
+        ]
+    ),
+    new Component(
+        DegreeProgramDetail::class,
+        [
+            'icon' => 'degree',
+            'term' => _x(
+                'Admission requirements (higher semester)',
+                'frontoffice: single view',
+                'fau-degree-program-output'
+            ),
+            'description' =>
+                $view->admissionRequirements()->teachingDegreeHigherSemester()?->asHtml(),
+        ]
+    ),
+    new Component(
+        DegreeProgramDetail::class,
+        [
+            'icon' => 'degree',
+            'term' => _x(
+                'Admission requirements (first semester)',
+                'frontoffice: single view',
+                'fau-degree-program-output'
+            ),
+            'description' => $view->admissionRequirements()->master()?->asHtml(),
+        ]
+    ),
 );
 
 $durations = renderComponent(
