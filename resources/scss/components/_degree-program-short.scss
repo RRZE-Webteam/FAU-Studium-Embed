@@ -6,22 +6,24 @@
   &__grid {
     display: grid;
     grid-template-areas:
-    'title'
-    'description'
-    'details'
-    'link';
+      'title'
+      'description'
+      'details'
+      'link';
     gap: 20px;
 
     @include config.container-gt('tablet', 'degree-program-short') {
       grid-template-areas:
-      'title title'
-      'description description'
-      'details link';
+        'title title'
+        'description description'
+        'details link';
     }
   }
 
   &__title {
     grid-area: title;
+    margin: 0;
+    font-weight: 400;
 
     @include config.text-size('xl');
   }
