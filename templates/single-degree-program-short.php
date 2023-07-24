@@ -19,12 +19,12 @@ use function Fau\DegreeProgram\Output\renderComponent;
 
 ?>
 
-<div class="c-degree-program-short" lang="<?= esc_attr(get_bloginfo('language')) ?>">
+<section class="c-degree-program-short" lang="<?= esc_attr(get_bloginfo('language')) ?>">
     <div class="c-degree-program-short__grid">
-        <div class="c-degree-program-short__title">
+        <h1 class="c-degree-program-short__title">
             <?= esc_html($view->title()) ?>
             (<?= esc_html($view->degree()->abbreviation()) ?>)
-        </div>
+        </h1>
         <div class="c-degree-program-short__description">
             <?= wp_kses_post($view->entryText()) ?>
         </div>
@@ -73,4 +73,4 @@ use function Fau\DegreeProgram\Output\renderComponent;
             ) ?>
         </div>
     </div>
-</div>
+</section>
