@@ -68,4 +68,3 @@ The only required attribute is `id`, the degree program's post ID.
 | `language_skills_humanities_faculty`                | Sprachkenntnisse nur für die Philosophische Fakultät und Fachbereich Theologie  |
 | `german_language_skills_for_international_students` | Sprachnachweise/Deutschkenntnisse für internationale Bewerberinnen und Bewerber |
 | `degree_program_fees`                               | Studiengangsgebühren                                                            |
-| `featured_video`                                    | Imagevideo                                                                      |

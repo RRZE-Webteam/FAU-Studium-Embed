@@ -9,7 +9,6 @@ use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
  * @var array{
  *     view: DegreeProgramViewTranslated,
  *     className: string,
- *     isFeaturedVideoDisabled: bool,
  * } $data
  * @var Renderer $renderer
  */
@@ -17,7 +16,6 @@ use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
 [
     'view' => $view,
     'className' => $className,
-    'isFeaturedVideoDisabled' => $isFeaturedVideoDisabled,
 ] = $data
 
 ?>
@@ -34,10 +32,6 @@ use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
     <?= $renderer->render('single-degree-program/about', ['view' => $view]) ?>
     <?= $renderer->render('single-degree-program/video', ['view' => $view]) ?>
     <?= $renderer->render('single-degree-program/accordion', ['view' => $view]) ?>
-    <?= $renderer->render(
-        'single-degree-program/featured-video',
-        ['isFeaturedVideoDisabled' => $isFeaturedVideoDisabled]
-    ) ?>
     <?= $renderer->render('single-degree-program/more-information', ['view' => $view]) ?>
     <?= $renderer->render('single-degree-program/links', ['view' => $view]) ?>
     <?php // phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
