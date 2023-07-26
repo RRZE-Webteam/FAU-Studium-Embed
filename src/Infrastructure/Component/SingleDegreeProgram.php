@@ -6,7 +6,6 @@ namespace Fau\DegreeProgram\Output\Infrastructure\Component;
 
 use Fau\DegreeProgram\Common\Application\DegreeProgramViewTranslated;
 use Fau\DegreeProgram\Common\Application\Repository\DegreeProgramViewRepository;
-use Fau\DegreeProgram\Common\Domain\AdmissionRequirements;
 use Fau\DegreeProgram\Common\Domain\Content;
 use Fau\DegreeProgram\Common\Domain\DegreeProgram;
 use Fau\DegreeProgram\Common\Domain\DegreeProgramId;
@@ -98,10 +97,6 @@ final class SingleDegreeProgram implements RenderableComponent
             [
                 'view' => $view,
                 'className' => $attributes['className'],
-                'isFeaturedVideoDisabled' => $this->isFeaturedVideoDisabled(
-                    $attributes['include'],
-                    $attributes['exclude'],
-                ),
             ]
         );
         remove_filter('locale', [$localeHelper, 'filterLocale']);
@@ -130,30 +125,12 @@ final class SingleDegreeProgram implements RenderableComponent
         return $view;
     }
 
-    /**
-     * @param array<string> $include
-     * @param array<string> $exclude
-     */
-    private function isFeaturedVideoDisabled(array $include, array $exclude): bool
-    {
-        if (in_array('featured_video', $exclude, true)) {
-            return true;
-        }
-
-        if ($include && !in_array('featured_video', $include, true)) {
-            return true;
-        }
-
-        return false;
-    }
-
     // phpcs:ignore Inpsyde.CodeQuality.FunctionLength.TooLong
     public static function supportedProperties(): array
     {
         return [
             DegreeProgram::FEATURED_IMAGE => __('Featured image', 'fau-degree-program-output'),
             DegreeProgram::TEASER_IMAGE => __('Teaser image', 'fau-degree-program-output'),
-            'featured_video' => __('Featured video', 'fau-degree-program-output'),
             DegreeProgram::TITLE => __('Title', 'fau-degree-program-output'),
             DegreeProgram::SUBTITLE => __('Subtitle', 'fau-degree-program-output'),
             DegreeProgram::STANDARD_DURATION => __(
