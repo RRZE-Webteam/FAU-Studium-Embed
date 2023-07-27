@@ -55,7 +55,7 @@ class RepositoryModule implements ServiceModule, FactoryModule
                     $container->get(TaxonomiesList::class),
                 ),
                 WordPressDatabaseDegreeProgramCollectionRepository::class => static fn(ContainerInterface $container) => new WordPressDatabaseDegreeProgramCollectionRepository(
-                    $container->get(self::VIEW_REPOSITORY_UNCACHED),
+                    $container->get(DegreeProgramViewRepository::class),
                     $container->get(WpQueryArgsBuilder::class),
                 ),
                 DegreeProgramCollectionRepository::class => static fn(ContainerInterface $container) => new CachedApiCollectionRepository(
