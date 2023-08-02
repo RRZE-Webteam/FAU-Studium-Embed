@@ -1,10 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: FAU Degree Program Output 0.0.4\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/fau-degree-"
-"program-sync-and-output\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/fau-degree-program-sync-and-output\n"
 "POT-Creation-Date: 2023-07-26T07:16:49+00:00\n"
-"PO-Revision-Date: 2023-07-10 14:55+0200\n"
+"PO-Revision-Date: 2023-08-02 08:39+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -172,7 +171,7 @@ msgstr "Welche beruflichen Perspektiven stehen mir offen?"
 
 #: src/Infrastructure/Component/SingleDegreeProgram.php:179
 msgid "Special features"
-msgstr ""
+msgstr "Besondere Hinweise"
 
 #: src/Infrastructure/Component/SingleDegreeProgram.php:183
 msgid "All admission requirements"
@@ -287,18 +286,12 @@ msgid "Language skills"
 msgstr "Sprachkenntnisse"
 
 #: src/Infrastructure/Component/SingleDegreeProgram.php:268
-msgid ""
-"Language skills for Faculty of Humanities, Social Sciences, and Theology only"
-msgstr ""
-"Sprachkenntnisse nur für die Philosophische Fakultät und Fachbereich "
-"Theologie"
+msgid "Language skills for Faculty of Humanities, Social Sciences, and Theology only"
+msgstr "Sprachkenntnisse nur für die Philosophische Fakultät und Fachbereich Theologie"
 
 #: src/Infrastructure/Component/SingleDegreeProgram.php:272
-msgid ""
-"Language certificates/German language skills for international applicants"
-msgstr ""
-"Sprachnachweise/Deutschkenntnisse für internationale Bewerberinnen und "
-"Bewerber"
+msgid "Language certificates/German language skills for international applicants"
+msgstr "Sprachnachweise/Deutschkenntnisse für internationale Bewerberinnen und Bewerber"
 
 #: src/Infrastructure/Component/SingleDegreeProgram.php:276
 msgid "Degree Program Fees"
@@ -466,7 +459,7 @@ msgstr "Filteroptionen anzeigen"
 #: templates/search/filter/search-filters.php:88
 msgctxt "frontoffice: degree programs search form"
 msgid "Display mode"
-msgstr ""
+msgstr "Anzeigemodus"
 
 #: templates/search/filter/search-filters.php:99
 msgctxt "frontoffice: degree programs search form"
@@ -488,19 +481,10 @@ msgctxt "backoffice: Search results"
 msgid "No degree programs found"
 msgstr "Keine Studiengänge gefunden."
 
-#: templates/search/search.php:39
+#: templates/search/search.php:83
 msgctxt "frontoffice: degree programs search form"
-msgid "Degree programs"
-msgstr "Studiengänge"
-
-#: templates/search/search.php:91
-msgctxt "frontoffice: degree programs search form"
-msgid ""
-"The degree program data is being processed. Please try again in a few "
-"minutes."
-msgstr ""
-"Die Studiengangsdaten werden gerade verarbeitet. Bitte versuche es in ein "
-"paar Minuten erneut."
+msgid "The degree program data is being processed. Please try again in a few minutes."
+msgstr "Die Studiengangsdaten werden gerade verarbeitet. Bitte versuche es in ein paar Minuten erneut."
 
 #: templates/search/text-input-search.php:39
 msgctxt "frontoffice: degree programs search form"
@@ -532,9 +516,7 @@ msgstr "Mehr lesen"
 #: templates/single-degree-program/accordion.php:75
 msgctxt "frontoffice: single view"
 msgid "Degree program combinations & limited degree program combinations"
-msgstr ""
-"Mögliche Studiengangskombinationen und eingeschränkt mögliche "
-"Studiengangskombinationen"
+msgstr "Mögliche Studiengangskombinationen und eingeschränkt mögliche Studiengangskombinationen"
 
 #: templates/single-degree-program/accordion.php:85
 msgctxt "frontoffice: single view"
@@ -687,12 +669,12 @@ msgctxt "frontoffice: single view"
 msgid "Specific Student Advice"
 msgstr "Spezifische Studienberatung"
 
-#: assets/ts/gutenberg.js:191
+#: assets/ts/gutenberg.js:1
 msgctxt "backoffice: block editor"
 msgid "Select degree program"
 msgstr "Studiengang wählen"
 
-#: assets/ts/gutenberg.js:201
+#: assets/ts/gutenberg.js:1
 msgctxt "backend: block editor"
 msgid "Could not load suggestion list"
 msgstr "Vorschlagsliste konnte nicht geladen werden"

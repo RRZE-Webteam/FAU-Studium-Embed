@@ -1,32 +1,16 @@
 @use '../abstracts/config';
 
 .c-degree-programs-search {
+
+  @include config.media('<tablet') {
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+
   form {
     display: block;
     width: 100%;
     margin: 0;
     padding: 0;
-  }
-
-  @include config.media('<tablet') {
-    margin-left: -15px;
-    margin-right: -15px;
-
-    &__title {
-      padding-left: 15px;
-      padding-right: 15px;
-    }
-  }
-
-  &__title {
-    font-weight: normal;
-    margin-top: 0;
-    margin-bottom: 20px;
-    @include config.text-size('2xl');
-
-    @include config.media('>tablet') {
-      margin-bottom: 31px;
-      @include config.text-size('3xl');
-    }
   }
 }
