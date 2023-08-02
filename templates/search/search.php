@@ -35,14 +35,6 @@ use function Fau\DegreeProgram\Output\renderComponent;
 ?>
 
 <section class="c-degree-programs-search" lang="<?= esc_attr(get_bloginfo('language')) ?>">
-    <h1 class="c-degree-programs-search__title">
-        <?= esc_html_x(
-            'Degree programs',
-            'frontoffice: degree programs search form',
-            'fau-degree-program-output'
-        ) ?>
-    </h1>
-
     <?php if ($collection instanceof PaginationAwareCollection) : ?>
         <form
             action="<?= esc_url((string) get_permalink((int) get_the_id())) ?>"
