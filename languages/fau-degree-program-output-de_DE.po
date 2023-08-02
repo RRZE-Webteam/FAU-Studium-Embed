@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: FAU Degree Program Output 0.0.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/fau-degree-program-sync-and-output\n"
 "POT-Creation-Date: 2023-07-26T07:16:49+00:00\n"
-"PO-Revision-Date: 2023-08-02 08:39+0200\n"
+"PO-Revision-Date: 2023-08-02 09:33+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -659,12 +659,12 @@ msgctxt "frontoffice: single view"
 msgid "Department/Institute website"
 msgstr "Webseite des Departments/Instituts"
 
-#: templates/single-degree-program/more-information.php:26
+#: templates/single-degree-program/more-information.php:27
 msgctxt "frontoffice: single view"
 msgid "Do you need help or more information?"
 msgstr "Benötigst du Hilfe oder weitere Informationen?"
 
-#: templates/single-degree-program/more-information.php:48
+#: templates/single-degree-program/more-information.php:53
 msgctxt "frontoffice: single view"
 msgid "Specific Student Advice"
 msgstr "Spezifische Studienberatung"
@@ -698,3 +698,8 @@ msgstr "Studiengang"
 msgctxt "block keyword"
 msgid "study"
 msgstr "Studium"
+
+#: templates/single-degree-program/more-information.php:34
+msgctxt "frontoffice: single view"
+msgid "Our Student Advice and Career Service (IBZ) is the central point of contact for all questions about studying and starting a degree programme. Our Student Service Centres and subject advisors support you in planning your studies."
+msgstr "Unsere Studienberatung ist die zentrale Anlaufstelle für alle Fragen rund ums Studium und den Studieneinstieg. Unsere Studien-Service-Center und Studienfachberaterinnen unterstützen dich bei der Planung deines Studiums."

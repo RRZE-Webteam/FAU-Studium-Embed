@@ -23,15 +23,20 @@ if (!$view->studentAdvice()->linkUrl() && !$view->subjectSpecificAdvice()->linkU
 ?>
 
 <div class="c-single-degree-program__more-information l-container">
-    <h2><?= esc_html_x(
-        'Do you need help or more information?',
-        'frontoffice: single view',
-        'fau-degree-program-output'
-    ) ?></h2>
-    <p>Unsere Studienberatung ist die zentrale Anlaufstelle für
-        alle Fragen rund ums Studium und den Studieneinstieg.
-        Unsere Studien-Service-Center und Studienfachberaterinnen unterstützen
-        Sie bei der Planung Ihres Studiums.</p>
+    <h2>
+        <?= esc_html_x(
+            'Do you need help or more information?',
+            'frontoffice: single view',
+            'fau-degree-program-output'
+        ) ?>
+    </h2>
+    <p>
+        <?= esc_html_x(
+            'Our Student Advice and Career Service (IBZ) is the central point of contact for all questions about studying and starting a degree programme. Our Student Service Centres and subject advisors support you in planning your studies.',
+            'frontoffice: single view',
+            'fau-degree-program-output'
+        ) ?>
+    </p>
     <div class="l-information-links">
         <?= renderComponent(
             new Component(
