@@ -11,3 +11,5 @@ on:
 jobs:
   static-code-analysis-sass:
     uses: inpsyde/reusable-workflows/.github/workflows/static-analysis-sass.yml@main
+    with:
+      NODE_VERSION: 18
