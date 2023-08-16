@@ -60,14 +60,6 @@ final class SearchModule implements ServiceModule, ExecutableModule
             ]
         );
 
-        add_action(
-            CacheWarmed::NAME,
-            [
-                $container->get(WhenCacheWarmed::class),
-                'scheduleFilterablePostsMetaUpdating',
-            ]
-        );
-
         if ($container->get(EnvironmentDetector::class)->isProvidingWebsite()) {
             return true;
         }

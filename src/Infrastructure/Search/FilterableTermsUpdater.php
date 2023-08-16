@@ -37,6 +37,8 @@ use WP_Post;
 final class FilterableTermsUpdater
 {
     public const ORIGINAL_TERM_ID_KEY = 'fau_original_term_id';
+    private const TAXONOMIES_CACHE_NAME_PROPERTY = 'name';
+    private const TAXONOMIES_CACHE_ORIGINAL_ID_PROPERTY = 'original_id';
 
     public function __construct(
         private DegreeProgramCollectionRepository $degreeProgramCollectionRepository,
@@ -164,6 +166,7 @@ final class FilterableTermsUpdater
 
     /**
      * phpcs:disable Generic.Metrics.CyclomaticComplexity.TooHigh
+     * phpcs:disable Inpsyde.CodeQuality.FunctionLength.TooLong
      *
      * Refactoring could decrease performance.
      */
@@ -173,9 +176,10 @@ final class FilterableTermsUpdater
     ): array {
 
         /**
-         * @psalm-var array<string, array<int, int>> $taxonomiesCache
+         * phpcs:ignore Inpsyde.CodeQuality.LineLength.TooLong
+         * @psalm-var array<string, array<int, array{name: string, original_id: int}>> $taxonomiesCache
          *          array where keys are taxonomy slugs,
-         *          nested array where keys are term IDs, values are remote term IDs
+         *          nested array where keys are term IDs, values are remote term data
          */
         static $taxonomiesCache = [];
         if (!array_key_exists($taxonomy, $taxonomiesCache)) {
@@ -210,7 +214,12 @@ final class FilterableTermsUpdater
             }
             $name = $flatProperty instanceof MultilingualString ? $flatProperty : $flatProperty->name();
 
-            $newTermId = array_search($termId, $taxonomiesCache[$taxonomy], true);
+            $newTermId = self::arraySearchBy(
+                $taxonomiesCache[$taxonomy],
+                self::TAXONOMIES_CACHE_ORIGINAL_ID_PROPERTY,
+                $termId
+            );
+
             if ($newTermId) {
                 // Term was persisted already
                 $result[] = $newTermId;
@@ -218,10 +227,29 @@ final class FilterableTermsUpdater
                 continue;
             }
 
+            $newTermId = self::arraySearchBy(
+                $taxonomiesCache[$taxonomy],
+                self::TAXONOMIES_CACHE_NAME_PROPERTY,
+                $name->inGerman()
+            );
+
+            if ($newTermId) {
+                // Term with the name already exists
+                $result[] = $newTermId;
+                $taxonomiesCache[$taxonomy][$newTermId] = [
+                    self::TAXONOMIES_CACHE_ORIGINAL_ID_PROPERTY => $termId,
+                ];
+                $this->updateTerm($taxonomy, $newTermId, $name, $termId);
+                continue;
+            }
+
             $newTermId = $this->createTerm($taxonomy, $termId, $name);
             if ($newTermId) {
                 $result[] = $newTermId;
-                $taxonomiesCache[$taxonomy][$newTermId] = $termId;
+                $taxonomiesCache[$taxonomy][$newTermId] = [
+                    self::TAXONOMIES_CACHE_NAME_PROPERTY => $name->inGerman(),
+                    self::TAXONOMIES_CACHE_ORIGINAL_ID_PROPERTY => $termId,
+                ];
             }
         }
 
@@ -280,6 +308,7 @@ final class FilterableTermsUpdater
         string $taxonomy,
         int $termId,
         MultilingualString $name,
+        ?int $remoteTermId = null,
     ): void {
         /** @var array<int, int> $memo */
         static $memo = [];
@@ -313,25 +342,61 @@ final class FilterableTermsUpdater
         }
 
         $memo[$termId] = $termId;
+
+        if (!$remoteTermId) {
+            return;
+        }
+
+        $result = update_term_meta($termId, self::ORIGINAL_TERM_ID_KEY, $remoteTermId);
+        if ($result instanceof WP_Error) {
+            $this->logger->warning($result->get_error_message());
+        }
     }
 
     /**
-     * @psalm-return array<int, int> array where keys are term IDs, values are remote term IDs
+     * @psalm-return array<int, array{name: string, original_id: int}> array where keys are term IDs
      */
     private function populateTaxonomiesCache(string $taxonomy): array
     {
-        /** @var array<int> $terms */
+        /** @var array<int, string> $terms */
         $terms = get_terms([
             'taxonomy' => $taxonomy,
             'hide_empty' => false,
-            'fields' => 'ids',
+            'fields' => 'id=>name',
         ]);
 
         $result = [];
-        foreach ($terms as $termId) {
-            $result[$termId] = (int) get_term_meta($termId, self::ORIGINAL_TERM_ID_KEY, true);
+        foreach ($terms as $termId => $termName) {
+            $result[$termId] = [
+                self::TAXONOMIES_CACHE_NAME_PROPERTY => $termName,
+                self::TAXONOMIES_CACHE_ORIGINAL_ID_PROPERTY => (int) get_term_meta(
+                    $termId,
+                    self::ORIGINAL_TERM_ID_KEY,
+                    true
+                ),
+            ];
         }
 
         return $result;
+    }
+
+    /**
+     * @psalm-param array<int, array<string, mixed>> $array
+     * @psalm-param string $property
+     * @psalm-param mixed $value
+     */
+    private static function arraySearchBy(array $array, string $property, mixed $value): ?int
+    {
+        foreach ($array as $key => $item) {
+            if (!isset($item[$property])) {
+                continue;
+            }
+
+            if ($item[$property] === $value) {
+                return $key;
+            }
+        }
+
+        return null;
     }
 }
