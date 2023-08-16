@@ -33,14 +33,4 @@ final class WhenCacheWarmed
             ),
         );
     }
-
-    public function scheduleFilterablePostsMetaUpdating(CacheWarmed $event): void
-    {
-        $this->messageBus->dispatch(
-            UpdateSearchableContentMessage::new(
-                $event->isFully(),
-                $event->ids()
-            ),
-        );
-    }
 }
