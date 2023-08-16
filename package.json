@@ -1,6 +1,6 @@
 {
   "name": "@inpsyde/fau-degree-program-output",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Fetch degree programs via the REST API and display them.",
   "author": "Inpsyde GmbH",
   "browserslist": [
