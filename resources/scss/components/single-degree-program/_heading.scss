@@ -3,12 +3,12 @@
 .l-heading {
   padding-top: 30px;
   padding-bottom: 30px;
-  background-color: config.color('primary', 'basis');
-  color: config.color('primary', 'basis-kontrast');
+  background-color: config.color('hero', 'bg');
+  color: config.color('hero', 'text');
 }
 
 &__title {
-  color: config.color('primary', 'basis-kontrast');
+  color: config.color('hero', 'text');
   font-weight: normal;
   margin: 0;
   @include config.text-size('2xl');
