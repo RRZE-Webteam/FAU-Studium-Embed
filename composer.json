@@ -1,20 +1,20 @@
 {
-    "name": "inpsyde/fau-degree-program-output",
+    "name": "rrze-webteam/fau-studium-embed",
     "description": "Fetch degree programs via the REST API and display them.",
     "license": "GPL-2.0-or-later",
     "type": "wordpress-plugin",
     "authors": [
         {
-            "name": "Inpsyde GmbH",
-            "email": "hello@inpsyde.com",
-            "homepage": "https://inpsyde.com/",
+            "name": "Syde GmbH",
+            "email": "hello@syde.com",
+            "homepage": "https://syde.com/",
             "role": "Company"
         }
     ],
     "require": {
         "php": "^8.0",
         "inpsyde/assets": "^2.8",
-        "inpsyde/fau-degree-program-common": "*",
+        "rrze-webteam/fau-studium-common": "*",
         "inpsyde/modularity": "^1.5",
         "inpsyde/wp-context": "^1.5"
     },
