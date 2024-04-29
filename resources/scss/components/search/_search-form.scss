@@ -1,105 +1,111 @@
-@use '../../abstracts/config';
+@use "../../abstracts/config";
 
 .c-degree-programs-sarchform {
-  background-color: config.color('grey', 'light');
-  width: 100%;
-  padding: 10px 15px;
-  margin-top: 0;
-  margin-bottom: 20px;
+	background-color: config.color("grey", "light");
+	width: 100%;
+	padding: 10px 15px;
+	margin-top: 0;
+	margin-bottom: 20px;
 
-  @include config.media('>tablet') {
-    padding: 24px 25px;
-    margin-bottom: 30px;
-  }
+	@include config.media(">tablet") {
+		padding: 24px 25px;
+		margin-bottom: 30px;
+	}
 
-  &__inner {
-    position: relative;
-    display: flex;
-  }
+	&__inner {
+		position: relative;
+		display: flex;
+	}
 
-  &__search-icon {
-    width: 28px;
-    height: 28px;
-    position: absolute;
-    left: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: none;
-    fill: config.color('primary', 'basis');
+	&__search-icon {
+		width: 28px;
+		height: 28px;
+		position: absolute;
+		left: 14px;
+		top: 50%;
+		transform: translateY(-50%);
+		display: none;
+		fill: config.color("primary", "basis");
 
-    @include config.media('>tablet') {
-      display: block;
-    }
-  }
+		@include config.media(">tablet") {
+			display: block;
+		}
+	}
 
-  &__input {
-    @at-root input#{&} {
-      flex: 1;
-      min-width: 0;
-      height: 55px;
-      box-sizing: border-box;
-      margin-bottom: 0;
-      font-weight: 300;
-      padding: 0 15px;
-      color: config.color('primary', 'ci-hell2-kontrast');
-      border-radius: config.borderRadius() 0 0 config.borderRadius();
-      border: 1px solid #{config.color('grey', 'muted')};
-      box-shadow: unset;
-      outline: none;
-      @include config.text-size('base');
+	&__input {
 
-      &::placeholder {
-        color: currentcolor;
-        opacity: 1;
-      }
+		@at-root input#{&} {
+			flex: 1;
+			min-width: 0;
+			height: 55px;
+			box-sizing: border-box;
+			margin-bottom: 0;
+			font-weight: 300;
+			padding: 0 15px;
+			color: config.color("primary", "ci-hell2-kontrast");
+			border-radius: config.border-radius() 0 0 config.border-radius();
+			border: 1px solid #{config.color("grey", "muted")};
+			box-shadow: unset;
+			outline: none;
 
-      &:focus {
-        border-color: config.color('button', 'bg');
-      }
+			@include config.text-size("base");
 
-      @include config.media('>tablet') {
-        padding-left: 68px;
-      }
-    }
-  }
+			&::placeholder {
+				color: currentcolor;
+				opacity: 1;
+			}
 
-  &__submit {
-    .label {
-      @include config.media('<tablet') {
-        @include config.screen-reader-text;
-      }
-    }
+			&:focus {
+				border-color: config.color("button", "bg");
+			}
 
-    .fau-icon {
-      width: 28px;
-      height: 28px;
-      fill: #fff;
+			@include config.media(">tablet") {
+				padding-left: 68px;
+			}
+		}
+	}
 
-      @include config.media('>tablet') {
-        display: none;
-      }
-    }
+	&__submit {
 
-    @at-root button[type='submit']#{&} {
-      background-color: config.color('button', 'bg');
-      color: config.color('button', 'text');
-      border-radius: 0 config.borderRadius('buttons') config.borderRadius('buttons') 0;
-      width: 55px;
-      height: 55px;
-      transition: background-color .2s linear;
-      border: 0;
-      font-weight: 700;
-      margin: 0;
+		.label {
 
-      &:hover {
-        background-color: config.color('button', 'hover-bg');
-      }
+			@include config.media("<tablet") {
 
-      @include config.media('>tablet') {
-        min-width: 211px;
-        width: auto;
-        @include config.text-size('xl');
-      }
-    }
-  }
+				@include config.screen-reader-text;
+			}
+		}
+
+		.fau-icon {
+			width: 28px;
+			height: 28px;
+			fill: #fff;
+
+			@include config.media(">tablet") {
+				display: none;
+			}
+		}
+
+		@at-root button[type="submit"]#{&} {
+			background-color: config.color("button", "bg");
+			color: config.color("button", "text");
+			border-radius: 0 config.border-radius("buttons") config.border-radius("buttons") 0;
+			width: 55px;
+			height: 55px;
+			transition: background-color 0.2s linear;
+			border: 0;
+			font-weight: 700;
+			margin: 0;
+
+			&:hover {
+				background-color: config.color("button", "hover-bg");
+			}
+
+			@include config.media(">tablet") {
+				min-width: 211px;
+				width: auto;
+
+				@include config.text-size("xl");
+			}
+		}
+	}
 }

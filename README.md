@@ -40,12 +40,13 @@ On the degree program management site, editors can use this feature to sort the 
 
 ## Usage
 
-The plugin fetches degree program data from https://meinstudium.fau.de. To change the domain
+The plugin fetches degree program data from <https://meinstudium.fau.de>. To change the domain
 (for testing purposes only!), add an environment variable or PHP constant `FAU_DEGREE_PROGRAM_API_HOST`.
 
 On the providing website, the "FAU Degree Program" plugin is installed for managing the degree programs.
 
 The plugin provides the shortcode `[fau-studium]` with two main variations:
+
 1. `[fau-studium display="search"]` to display
 the degree programs overview ([documentation](./docs/degree_programs_search_shortcode.md))
 2. `[fau-studium display="degree-program" id="123"]` to display

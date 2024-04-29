@@ -1,39 +1,35 @@
 @charset "UTF-8";
 
-// -----------------------------------------------------------------------------
-// The 7-1 Pattern (https://sass-guidelin.es/#the-7-1-pattern)
-// -----------------------------------------------------------------------------
-
 // 1. Configuration and helpers
-@use 'abstracts/variables';
-@use 'abstracts/functions';
-@use 'abstracts/mixins';
+@use "abstracts/variables";
+@use "abstracts/functions";
+@use "abstracts/mixins";
 
 // 2. Vendors
 
 // 3. Base stuff
-@use 'base/base';
+@use "base/base";
 
 // 4. Layout-related sections
 
 // 5. Components
-@use 'components/search/search-form';
-@use 'components/search/collection';
-@use 'components/search/preview-item';
-@use 'components/search/no-results';
-@use 'components/search/filters/active-filters';
-@use 'components/search/filters/search-form-filters';
-@use 'components/search/filters/filter-checkbox';
-@use 'components/search/filters/filter-dropdown';
-@use 'components/search/filters/advanced-filters';
-@use 'components/single-degree-program' as degree-program-component;
-@use 'components/single-degree-program/post-content';
-@use 'components/link';
-@use 'components/details';
-@use 'components/degree-program-short';
+@use "components/search/search-form";
+@use "components/search/collection";
+@use "components/search/preview-item";
+@use "components/search/no-results";
+@use "components/search/filters/active-filters";
+@use "components/search/filters/search-form-filters";
+@use "components/search/filters/filter-checkbox";
+@use "components/search/filters/filter-dropdown";
+@use "components/search/filters/advanced-filters";
+@use "components/single-degree-program" as degree-program-component;
+@use "components/single-degree-program/post-content";
+@use "components/link";
+@use "components/details";
+@use "components/degree-program-short";
 
 // 6. Page-specific styles
-@use 'pages/search';
-@use 'pages/single-degree-program' as degree-program-page;
+@use "pages/search";
+@use "pages/single-degree-program" as degree-program-page;
 
 // 7. Themes

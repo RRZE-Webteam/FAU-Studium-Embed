@@ -5,7 +5,7 @@ import DegreeProgramEdit from './edit';
 
 import './styles.scss';
 
-registerBlockType(name, {
-    edit: DegreeProgramEdit,
-    save: () => null,
-});
+registerBlockType( name, {
+	edit: DegreeProgramEdit,
+	save: () => null,
+} );

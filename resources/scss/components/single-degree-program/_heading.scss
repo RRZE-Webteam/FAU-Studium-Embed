@@ -1,32 +1,36 @@
-@use '../../abstracts/config';
+@use "../../abstracts/config";
 
 .l-heading {
-  padding-top: 30px;
-  padding-bottom: 30px;
-  background-color: config.color('hero', 'bg');
-  color: config.color('hero', 'text');
+	padding-top: 30px;
+	padding-bottom: 30px;
+	background-color: config.color("hero", "bg");
+	color: config.color("hero", "text");
 }
 
 &__title {
-  color: config.color('hero', 'text');
-  font-weight: normal;
-  margin: 0;
-  @include config.text-size('2xl');
+	color: config.color("hero", "text");
+	font-weight: 400;
+	margin: 0;
 
-  @include config.container-gt('tablet', 'single-degree-program') {
-    @include config.text-size('3xl');
-  }
+	@include config.text-size("2xl");
+
+	@include config.container-gt("tablet", "single-degree-program") {
+
+		@include config.text-size("3xl");
+	}
 }
 
 &__subtitle {
-  color: config.color('primary', 'basis-kontrast');
-  @include config.text-size('lg');
+	color: config.color("primary", "basis-kontrast");
 
-  @include config.container-gt('tablet', 'single-degree-program') {
-    @include config.text-size('xl');
-  }
+	@include config.text-size("lg");
+
+	@include config.container-gt("tablet", "single-degree-program") {
+
+		@include config.text-size("xl");
+	}
 }
 
 &__title + &__subtitle {
-  margin-top: 15px;
+	margin-top: 15px;
 }

@@ -1,34 +1,35 @@
 body.single-studiengang {
-  .hero-small {
-    margin-bottom: 0 !important;
 
-    .presentationtitle {
-      display: none !important;
-    }
-  }
+	.hero-small {
+		margin-bottom: 0 !important;
 
-  #content {
-    display: block !important;
-  }
+		.presentationtitle {
+			display: none !important;
+		}
+	}
 
-  .content-container,
-  .post-row,
-  .entry-content {
-    max-width: 100% !important;
-    width: 100% !important;
-    padding: 0 !important;
-    display: block !important;
-  }
+	#content {
+		display: block !important;
+	}
 
-  .news-details {
-    margin: 0 !important;
-  }
+	.content-container,
+	.post-row,
+	.entry-content {
+		max-width: 100% !important;
+		width: 100% !important;
+		padding: 0 !important;
+		display: block !important;
+	}
 
-  .mobiletitle,
-  .post-image,
-  .post-meta,
-  .meta-footer {
-    // @TODO: Maybe theme can provide clean template for single degree program?
-    display: none !important;
-  }
+	.news-details {
+		margin: 0 !important;
+	}
+
+	.mobiletitle,
+	.post-image,
+	.post-meta,
+	.meta-footer {
+		// @TODO: Maybe theme can provide clean template for single degree program?
+		display: none !important;
+	}
 }

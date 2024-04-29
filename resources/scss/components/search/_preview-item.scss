@@ -1,263 +1,278 @@
-@use '../../abstracts/config';
+@use "../../abstracts/config";
 
 .c-degree-program-preview {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  position: relative;
-  font-weight: 300;
-  padding: 0 10px;
-  @include config.text-size('base');
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+	position: relative;
+	font-weight: 300;
+	padding: 0 10px;
 
-  &:not(:last-child) {
-    border-bottom: 1px solid #dfe6ec;
-    padding-bottom: 15px;
-    margin-bottom: 15px;
-  }
+	@include config.text-size("base");
 
-  @include config.when-inside('.c-degree-programs-collection.-list') {
-    @include config.media('>tablet') {
-      display: grid;
-      grid-template-columns: 178px 1fr;
-      gap: 0 20px;
-      padding: 0;
+	&:not(:last-child) {
+		border-bottom: 1px solid #dfe6ec;
+		padding-bottom: 15px;
+		margin-bottom: 15px;
+	}
 
-      &:last-child {
-        border-bottom: 1px solid #dfe6ec;
-      }
+	@include config.when-inside(".c-degree-programs-collection.-list") {
 
-      &:not(:last-child) {
-        padding-bottom: 0;
-        margin-bottom: 10px;
-      }
-    }
+		@include config.media(">tablet") {
+			display: grid;
+			grid-template-columns: 178px 1fr;
+			gap: 0 20px;
+			padding: 0;
 
-    @include config.media('>tablet-lg') {
-      display: table-row;
+			&:last-child {
+				border-bottom: 1px solid #dfe6ec;
+			}
 
-      // Safari doesn't respect `position: relative` on table rows.
-      // This fixes the wrong link position.
-      // @link https://github.com/w3c/csswg-drafts/issues/1899#issuecomment-1232707455
-      @supports (background: -webkit-named-image(i)) {
-        clip-path: inset(0);
-      }
+			&:not(:last-child) {
+				padding-bottom: 0;
+				margin-bottom: 10px;
+			}
+		}
 
-      @at-root .is-safari & {
-        clip-path: inset(0);
-      }
+		@include config.media(">tablet-lg") {
+			display: table-row;
 
-      & > * {
-        display: table-cell;
-        vertical-align: middle;
-      }
+			// Safari doesn't respect `position: relative` on table rows.
+			// This fixes the wrong link position.
+			// @link https://github.com/w3c/csswg-drafts/issues/1899#issuecomment-1232707455
+			@supports (background: -webkit-named-image(i)) {
+				clip-path: inset(0);
+			}
 
-      &:hover {
-        background-color: config.color('primary', 'basis');
-        color: #fff;
+			@at-root .is-safari & {
+				clip-path: inset(0);
+			}
 
-        .c-degree-program-preview__title {
-          color: #fff;
-        }
+			> * {
+				display: table-cell;
+				vertical-align: middle;
+			}
 
-        .c-degree-program-preview__teaser-image {
-          background-color: config.color('primary', 'basis');
-        }
-      }
-    }
-  }
+			&:hover {
+				background-color: config.color("primary", "basis");
+				color: #fff;
 
-  @include config.when-inside('.c-degree-programs-collection.-tiles') {
-    @include config.media('>tablet') {
-      padding: 0 !important;
-      margin-bottom: 0;
-    }
-  }
+				.c-degree-program-preview__title {
+					color: #fff;
+				}
 
-  &__link {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 20;
-    text-decoration: none !important;
-    box-shadow: none !important;
-  }
+				.c-degree-program-preview__teaser-image {
+					background-color: config.color("primary", "basis");
+				}
+			}
+		}
+	}
 
-  &__teaser-image {
-    margin-bottom: 15px;
-    width: 55px;
-    height: 55px;
-    background-color: config.color('ContentRegions');
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    position: relative;
+	@include config.when-inside(".c-degree-programs-collection.-tiles") {
 
-    @include config.aspect-ratio(500, 500);
+		@include config.media(">tablet") {
+			padding: 0 !important;
+			margin-bottom: 0;
+		}
+	}
 
-    img,
-    .fau-icon {
-      box-shadow: none !important;
+	&__link {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 20;
+		text-decoration: none !important;
+		box-shadow: none !important;
+	}
 
-      @include config.object-cover;
-    }
+	&__teaser-image {
+		margin-bottom: 15px;
+		width: 55px;
+		height: 55px;
+		background-color: config.color("ContentRegions");
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		position: relative;
 
-    .fau-icon {
-      width: 2em;
-      left: 50%;
-      transform: translateX(-50%);
-    }
+		@include config.aspect-ratio(500, 500);
 
-    @include config.when-inside('.c-degree-programs-collection.-list') {
-      @include config.media('>tablet') {
-        grid-column: 1;
-        grid-row: 1 / span 999;
-        width: 178px;
-        height: 178px;
-        margin-bottom: 0;
-      }
+		img,
+		.fau-icon {
+			box-shadow: none !important;
 
-      @include config.media('>tablet-lg') {
-        width: 80px;
-        height: 80px;
-        border-bottom: 1px solid #dfe6ec;
-      }
-    }
+			@include config.object-cover;
+		}
 
-    @include config.when-inside('.c-degree-programs-collection.-tiles') {
-      @include config.media('>tablet') {
-        margin-bottom: 0;
-        width: 100%;
-        height: unset;
-      }
-    }
-  }
+		.fau-icon {
+			width: 2em;
+			left: 50%;
+			transform: translateX(-50%);
+		}
 
-  &__title {
-    flex: 1;
-    min-width: 0;
-    margin-left: 10px;
-    color: config.color('primary', 'basis');
-    font-weight: 500;
-    @include config.text-size('lg');
+		@include config.when-inside(".c-degree-programs-collection.-list") {
 
-    @include config.when-inside('.c-degree-programs-collection.-list') {
-      @include config.media('>tablet') {
-        grid-column: 2;
-        margin: 0 0 20px;
-        @include config.text-size('xl');
-      }
+			@include config.media(">tablet") {
+				grid-column: 1;
+				grid-row: 1 / span 999;
+				width: 178px;
+				height: 178px;
+				margin-bottom: 0;
+			}
 
-      @include config.media('>tablet-lg') {
-        border-bottom: 1px solid #dfe6ec;
-        padding-left: 15px;
-        font-weight: normal;
-        @include config.text-size('base');
-      }
-    }
+			@include config.media(">tablet-lg") {
+				width: 80px;
+				height: 80px;
+				border-bottom: 1px solid #dfe6ec;
+			}
+		}
 
-    @include config.when-inside('.c-degree-programs-collection.-tiles') {
-      @include config.media('>tablet') {
-        margin: 0;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 10;
-        background-color: config.color('primary', 'basis');
-        color: #fff;
-        text-align: center;
-        padding: 15px 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        font-weight: 500;
-        @include config.text-size('sm');
-      }
-    }
+		@include config.when-inside(".c-degree-programs-collection.-tiles") {
 
-    @include config.when-inside('.c-degree-programs-collection.-tiles .c-degree-program-preview:hover') {
-      @include config.media('>tablet') {
-        top: 0;
-      }
-    }
+			@include config.media(">tablet") {
+				margin-bottom: 0;
+				width: 100%;
+				height: unset;
+			}
+		}
+	}
 
-    abbr {
-      display: contents;
-    }
-  }
+	&__title {
+		flex: 1;
+		min-width: 0;
+		margin-left: 10px;
+		color: config.color("primary", "basis");
+		font-weight: 500;
 
-  &__subtitle {
-    padding-top: 15px;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    display: none;
-    font-weight: 500;
+		@include config.text-size("lg");
 
-    @include config.text-size('xs');
+		@include config.when-inside(".c-degree-programs-collection.-list") {
 
-    &::before {
-      content: '';
-      width: 50px;
-      display: inline-block;
-      border-top: 1px solid #fff;
-      margin-bottom: 15px;
-    }
+			@include config.media(">tablet") {
+				grid-column: 2;
+				margin: 0 0 20px;
 
-    @include config.when-inside('.c-degree-programs-collection.-tiles .c-degree-program-preview:hover') {
-      @include config.media('>tablet') {
-        display: flex;
-      }
-    }
-  }
+				@include config.text-size("xl");
+			}
 
-  &__degree,
-  &__start,
-  &__location,
-  &__admission-requirement {
-    width: 100%;
-    flex: 0 0 100%;
-    max-width: 100%;
+			@include config.media(">tablet-lg") {
+				border-bottom: 1px solid #dfe6ec;
+				padding-left: 15px;
+				font-weight: 400;
 
-    &:not(:last-child) {
-      margin-bottom: 5px;
-    }
+				@include config.text-size("base");
+			}
+		}
 
-    @include config.when-inside('.c-degree-programs-collection.-list') {
-      word-wrap: normal;
-      hyphens: auto;
+		@include config.when-inside(".c-degree-programs-collection.-tiles") {
 
-      @include config.media('>tablet') {
-        grid-column: 2;
+			@include config.media(">tablet") {
+				margin: 0;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				z-index: 10;
+				background-color: config.color("primary", "basis");
+				color: #fff;
+				text-align: center;
+				padding: 15px 10px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex-direction: column;
+				font-weight: 500;
 
-        &:not(:last-child) {
-          margin-bottom: 8px;
-        }
-      }
+				@include config.text-size("sm");
+			}
+		}
 
-      @include config.media('>tablet-lg') {
-        width: auto;
-        border-bottom: 1px solid #dfe6ec;
-        padding: 0 15px;
-      }
-    }
+		@include config.when-inside(".c-degree-programs-collection.-tiles .c-degree-program-preview:hover") {
 
-    @include config.when-inside('.c-degree-programs-collection.-tiles') {
-      @include config.media('>tablet') {
-        display: none;
-      }
-    }
-  }
+			@include config.media(">tablet") {
+				top: 0;
+			}
+		}
 
-  &__label {
-    font-weight: 500;
+		abbr {
+			display: contents;
+		}
+	}
 
-    @include config.media('>tablet-lg') {
-      @include config.screen-reader-text;
-    }
-  }
+	&__subtitle {
+		padding-top: 15px;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		display: none;
+		font-weight: 500;
+
+		@include config.text-size("xs");
+
+		&::before {
+			content: "";
+			width: 50px;
+			display: inline-block;
+			border-top: 1px solid #fff;
+			margin-bottom: 15px;
+		}
+
+		@include config.when-inside(".c-degree-programs-collection.-tiles .c-degree-program-preview:hover") {
+
+			@include config.media(">tablet") {
+				display: flex;
+			}
+		}
+	}
+
+	&__degree,
+	&__start,
+	&__location,
+	&__admission-requirement {
+		width: 100%;
+		flex: 0 0 100%;
+		max-width: 100%;
+
+		&:not(:last-child) {
+			margin-bottom: 5px;
+		}
+
+		@include config.when-inside(".c-degree-programs-collection.-list") {
+			word-wrap: normal;
+			hyphens: auto;
+
+			@include config.media(">tablet") {
+				grid-column: 2;
+
+				&:not(:last-child) {
+					margin-bottom: 8px;
+				}
+			}
+
+			@include config.media(">tablet-lg") {
+				width: auto;
+				border-bottom: 1px solid #dfe6ec;
+				padding: 0 15px;
+			}
+		}
+
+		@include config.when-inside(".c-degree-programs-collection.-tiles") {
+
+			@include config.media(">tablet") {
+				display: none;
+			}
+		}
+	}
+
+	&__label {
+		font-weight: 500;
+
+		@include config.media(">tablet-lg") {
+
+			@include config.screen-reader-text;
+		}
+	}
 }

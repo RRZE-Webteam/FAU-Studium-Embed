@@ -1,38 +1,44 @@
-@use '../abstracts/config';
-@use '../base/base';
+// stylelint-disable no-invalid-position-at-import-rule
+@use "../abstracts/config";
+@use "../base/base";
 
 .c-single-degree-program {
-  @import 'single-degree-program/featured-image';
-  @import 'single-degree-program/heading';
-  @import 'single-degree-program/entry-text';
-  @import 'single-degree-program/details';
-  @import 'single-degree-program/about';
-  @import 'single-degree-program/video';
-  @import 'single-degree-program/acccordion';
-  @import 'single-degree-program/combinations';
-  @import 'single-degree-program/admission-requirements';
-  @import 'single-degree-program/more-information';
-  @import 'single-degree-program/links';
 
-  container: single-degree-program / inline-size;
+	@import "single-degree-program/featured-image";
+	@import "single-degree-program/heading";
+	@import "single-degree-program/entry-text";
+	@import "single-degree-program/details";
+	@import "single-degree-program/about";
+	@import "single-degree-program/video";
+	@import "single-degree-program/acccordion";
+	@import "single-degree-program/combinations";
+	@import "single-degree-program/admission-requirements";
+	@import "single-degree-program/more-information";
+	@import "single-degree-program/links";
 
-  &:not(.is-shortcode),
-  &:not(.is-block) {
-    .l-container {
-      @extend %container;
-    }
-  }
+	container: single-degree-program / inline-size;
 
-  &.is-shortcode,
-  &.is-block {
-    .l-container {
-      @extend %container-paddings;
-    }
+	&:not(.is-shortcode),
+	&:not(.is-block) {
 
-    .l-details-wrapper.l-details-wrapper--has-application-links:not(.l-details-wrapper--has-details) .l-application-links,
-    .l-details-wrapper.l-details-wrapper--has-details.l-details-wrapper--has-application-links,
-    .c-accordion {
-      max-width: unset!important;
-    }
-  }
+		.l-container {
+
+			@extend %container;
+		}
+	}
+
+	&.is-shortcode,
+	&.is-block {
+
+		.l-container {
+
+			@extend %container-paddings;
+		}
+
+		.l-details-wrapper.l-details-wrapper--has-application-links:not(.l-details-wrapper--has-details) .l-application-links,
+		.l-details-wrapper.l-details-wrapper--has-details.l-details-wrapper--has-application-links,
+		.c-accordion {
+			max-width: unset !important;
+		}
+	}
 }

@@ -1,34 +1,35 @@
-@use '../abstracts/config';
+@use "../abstracts/config";
 
 .c-link {
-  padding: 15px 30px;
-  border-radius: config.borderRadius('buttons');
-  border: solid 1px config.color('content', 'borders');
-  text-decoration: none !important;
-  box-shadow: none !important;
-  display: block;
-  text-align: center;
-  font-weight: bold;
-  max-width: 500px;
+	padding: 15px 30px;
+	border-radius: config.border-radius("buttons");
+	border: solid 1px config.color("content", "borders");
+	text-decoration: none !important;
+	box-shadow: none !important;
+	display: block;
+	text-align: center;
+	font-weight: 700;
+	max-width: 500px;
 
-  @include config.text-size('xl');
+	@include config.text-size("xl");
 
-  &--dark {
-    color: config.color('button', 'text') !important;
-    background-color: config.color('button', 'bg');
-    border-color: config.color('button', 'bg');
-  }
+	&--dark {
+		color: config.color("button", "text") !important;
+		background-color: config.color("button", "bg");
+		border-color: config.color("button", "bg");
+	}
 
-  &:hover {
-    color: config.color('button', 'hover-text') !important;
-    background-color: config.color('button', 'hover-bg');
-    border-color: config.color('button', 'hover-bg');
-  }
+	&:hover {
+		color: config.color("button", "hover-text") !important;
+		background-color: config.color("button", "hover-bg");
+		border-color: config.color("button", "hover-bg");
+	}
 
-  &:not(:hover) {
-    &:focus,
-    &:active {
-      color: currentcolor !important;
-    }
-  }
+	&:not(:hover) {
+
+		&:focus,
+		&:active {
+			color: currentcolor !important;
+		}
+	}
 }

@@ -1,23 +1,24 @@
-@use '../../abstracts/config';
+@use "../../abstracts/config";
 
 &__combinations {
-  margin-bottom: 1em;
+	margin-bottom: 1em;
 
-  h3 {
-    padding: 0;
-  }
+	h3 {
+		padding: 0;
+	}
 
-  ul {
-    @include config.container-gt('tablet', 'single-degree-program') {
-      column-count: 2;
-    }
+	ul {
 
-    @include config.container-gt('laptop', 'single-degree-program') {
-      column-count: 3;
-    }
-  }
+		@include config.container-gt("tablet", "single-degree-program") {
+			column-count: 2;
+		}
 
-  p {
-    margin-top: 0.5em;
-  }
+		@include config.container-gt("laptop", "single-degree-program") {
+			column-count: 3;
+		}
+	}
+
+	p {
+		margin-top: 0.5em;
+	}
 }

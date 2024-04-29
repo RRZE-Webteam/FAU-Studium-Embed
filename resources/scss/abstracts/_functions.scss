@@ -1,6 +1,6 @@
-@use 'sass:string';
-@use 'sass:map';
-@use 'variables';
+@use "sass:string";
+@use "sass:map";
+@use "variables";
 
 /// Replace `$search` with `$replace` in `$string`
 /// @author Kitty Giraudel
@@ -9,41 +9,45 @@
 /// @param {String} $search - Substring to replace
 /// @param {String} $replace ('') - New value
 /// @return {String} - Updated string
-@function replace($string, $search, $replace: '') {
-  $index: string.index($string, $search);
+@function replace($string, $search, $replace: "") {
+	$index: string.index($string, $search);
 
-  @if $index {
-    @return string.slice($string, 1, $index - 1) + $replace +
-      replace(string.slice($string, $index + string.length($search)), $search, $replace);
-  }
+	@if $index {
 
-  @return $string;
+		@return string.slice($string, 1, $index - 1) + $replace + replace(string.slice($string, $index + string.length($search)), $search, $replace);
+	}
+
+	@return $string;
 }
 
-@function getColorValue($color, $variation: '') {
-  @if type-of(map.get(variables.$colorsMap, $color)) == 'color' {
-    @return map.get(variables.$colorsMap, $color);
-  } @else if type-of(map.get(variables.$colorsMap, $color)) == 'map' {
-    @return map.get(map.get(variables.$colorsMap, $color), $variation);
-  }
+@function get-color-value($color, $variation: "") {
 
-  @error 'No such color exists';
+	@if type-of(map.get(variables.$colorsMap, $color)) == "color" {
+
+		@return map.get(variables.$colorsMap, $color);
+	} @else if type-of(map.get(variables.$colorsMap, $color)) == "map" {
+
+		@return map.get(map.get(variables.$colorsMap, $color), $variation);
+	}
+
+	@error "No such color exists";
 }
 
-@function color($color, $variation: '') {
-  $variationPostfix: if($variation != '', -#{$variation}, '');
-  $colorValue: getColorValue($color, $variation);
+@function color($color, $variation: "") {
+	$variationPostfix: if($variation != "", -#{$variation}, "");
+	$colorValue: get-color-value($color, $variation);
 
-  @return var(--color-#{$color}#{$variationPostfix}, $colorValue);
+	@return var(--color-#{$color}#{$variationPostfix}, $colorValue);
 }
 
-@function borderRadius($variation: 'default') {
-  $variationPostfix: if($variation != 'default', -#{$variation}, '');
-  $value: map.get(variables.$borderRadius, $variation);
+@function border-radius($variation: "default") {
+	$variationPostfix: if($variation != "default", -#{$variation}, "");
+	$value: map.get(variables.$borderRadius, $variation);
 
-  @if type-of($value) == 'number' {
-    @return var(--border-radius#{$variationPostfix}, $value);
-  }
+	@if type-of($value) == "number" {
 
-  @error 'No such border radius variation exists';
+		@return var(--border-radius#{$variationPostfix}, $value);
+	}
+
+	@error "No such border radius variation exists";
 }

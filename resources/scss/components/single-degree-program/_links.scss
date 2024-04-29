@@ -1,40 +1,42 @@
-@use '../../abstracts/config';
-@use '../../base/base';
+@use "../../abstracts/config";
+@use "../../base/base";
 
 .c-links {
-  &__title {
-    margin: 0 0 15px;
-    padding: 0;
 
-    @include config.text-size('xl');
-  }
+	&__title {
+		margin: 0 0 15px;
+		padding: 0;
+
+		@include config.text-size("xl");
+	}
 }
 
 &__links {
-  margin-top: 60px;
-  margin-bottom: 30px;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  background-color: config.color('primary', 'ci-hell2');
+	margin-top: 60px;
+	margin-bottom: 30px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	background-color: config.color("primary", "ci-hell2");
 
-  .l-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px 20px;
-    justify-content: space-between;
+	.l-container {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 30px 20px;
+		justify-content: space-between;
 
-    @include config.media('>tablet') {
-      row-gap: 40px;
-    }
+		@include config.media(">tablet") {
+			row-gap: 40px;
+		}
 
-    @include config.media('>laptop') {
-      column-gap: 40px;
-    }
-  }
+		@include config.media(">laptop") {
+			column-gap: 40px;
+		}
+	}
 
-  .c-links {
-    @include config.media('>mobile') {
-      flex: 1 1 30%;
-    }
-  }
+	.c-links {
+
+		@include config.media(">mobile") {
+			flex: 1 1 30%;
+		}
+	}
 }

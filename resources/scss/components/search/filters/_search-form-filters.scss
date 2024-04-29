@@ -1,114 +1,118 @@
-@use '../../../abstracts/config';
+@use "../../../abstracts/config";
 
 .c-search-filters {
-  padding: 0;
-  margin: 0 0 20px;
-  position: sticky;
-  background-color: #fff;
-  z-index: 100;
-  top: var(--fau-top-fixed-height, 0);
+	padding: 0;
+	margin: 0 0 20px;
+	position: sticky;
+	background-color: #fff;
+	z-index: 100;
+	top: var(--fau-top-fixed-height, 0);
 
-  &.-shadow,
-  &[aria-expanded='true'] {
-    box-shadow: 0 4px 4px 0 rgb(0 0 0 / 25%);
+	&.-shadow,
+	&[aria-expanded="true"] {
+		box-shadow: 0 4px 4px 0 rgb(0 0 0 / 25%);
 
-    @include config.media('>tablet') {
-      box-shadow: none;
-    }
-  }
+		@include config.media(">tablet") {
+			box-shadow: none;
+		}
+	}
 
-  @include config.media('>tablet') {
-    position: relative;
-    z-index: 30;
-    top: 0;
-  }
+	@include config.media(">tablet") {
+		position: relative;
+		z-index: 30;
+		top: 0;
+	}
 
-  &__inner {
-    display: none;
+	&__inner {
+		display: none;
 
-    @include config.media('>tablet') {
-      display: grid;
-      gap: 10px 20px;
-      grid-template-columns: 1fr 1fr 1fr;
-    }
+		@include config.media(">tablet") {
+			display: grid;
+			gap: 10px 20px;
+			grid-template-columns: 1fr 1fr 1fr;
+		}
 
-    @include config.media('>tablet-lg') {
-      grid-template-columns: repeat(4, 1fr) 110px;
-    }
-  }
+		@include config.media(">tablet-lg") {
+			grid-template-columns: repeat(4, 1fr) 110px;
+		}
+	}
 
-  &[aria-expanded=true] {
-    .c-search-filters__inner {
-      display: block;
-    }
-  }
+	&[aria-expanded="true"] {
 
-  li {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
+		.c-search-filters__inner {
+			display: block;
+		}
+	}
 
-  &__mobile-toggle {
-    padding: 9px 15px 12px;
-    display: flex;
-    align-items: center;
-    column-gap: 9px;
-    color: config.color('button', 'bg');
-    font-weight: 500;
-    @include config.text-size('base');
+	li {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
 
-    &::before,
-    &::after {
-      content: '';
-      flex: 1;
-      min-width: 0;
-      border-top: 1px solid config.color('grey', 'muted');
-    }
+	&__mobile-toggle {
+		padding: 9px 15px 12px;
+		display: flex;
+		align-items: center;
+		column-gap: 9px;
+		color: config.color("button", "bg");
+		font-weight: 500;
 
-    @include config.media('>tablet') {
-      display: none;
-    }
-  }
+		@include config.text-size("base");
 
-  .search-filter {
-    &--output {
-      margin-left: auto;
-      display: none;
+		&::before,
+		&::after {
+			content: "";
+			flex: 1;
+			min-width: 0;
+			border-top: 1px solid config.color("grey", "muted");
+		}
 
-      @include config.media('>tablet') {
-        grid-column-start: 3;
-        display: flex;
-        align-items: center;
-      }
+		@include config.media(">tablet") {
+			display: none;
+		}
+	}
 
-      @include config.media('>tablet-lg') {
-        grid-column-start: 5;
-      }
-    }
+	.search-filter {
 
-    &__output_modes {
-      .search-filter__output-mode-option {
-        background: none !important;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0;
-        width: 36px;
-        height: 36px;
-        cursor: pointer;
+		&--output {
+			margin-left: auto;
+			display: none;
 
-        .fau-icon {
-          width: 24px;
-          height: 24px;
-          fill: config.color('grey', 'muted');
-          box-shadow: none;
+			@include config.media(">tablet") {
+				grid-column-start: 3;
+				display: flex;
+				align-items: center;
+			}
 
-          @include config.when-parent-matches-selector('.-active', '.search-filter__output-mode-option') {
-            fill: config.color('primary', 'basis');
-          }
-        }
-      }
-    }
-  }
+			@include config.media(">tablet-lg") {
+				grid-column-start: 5;
+			}
+		}
+
+		&__output_modes {
+
+			.search-filter__output-mode-option {
+				background: none !important;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				padding: 0;
+				width: 36px;
+				height: 36px;
+				cursor: pointer;
+
+				.fau-icon {
+					width: 24px;
+					height: 24px;
+					fill: config.color("grey", "muted");
+					box-shadow: none;
+
+					@include config.when-parent-matches-selector(".-active", ".search-filter__output-mode-option") {
+						fill: config.color("primary", "basis");
+					}
+				}
+			}
+		}
+	}
 }
