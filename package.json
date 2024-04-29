@@ -1,5 +1,5 @@
 {
-  "name": "@rrze-webteam/fau-studium-embed",
+  "name": "@rrze/fau-studium-embed",
   "version": "1.0.2",
   "description": "Fetch degree programs via the REST API and display them.",
   "author": "Syde GmbH",
