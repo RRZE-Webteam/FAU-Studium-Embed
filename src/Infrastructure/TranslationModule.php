@@ -24,7 +24,7 @@ final class TranslationModule implements ExecutableModule
                 'fau-degree-program-common',
                 false,
                 sprintf(
-                    '%s/vendor/inpsyde/fau-degree-program-common/languages',
+                    '%s/vendor/rrze/fau-studium-common/languages',
                     plugin_basename(dirname(__FILE__, 3))
                 )
             );

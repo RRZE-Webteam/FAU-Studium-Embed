@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="5.23.1@8471a896ccea3526b26d082f4461eeea467f10a4">
+  <file src="src/Infrastructure/ApiClient/ApiClient.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[getenv('FAU_DEGREE_PROGRAM_API_HOST')]]></code>
+    </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="src/Infrastructure/Cache/CachedDataTransformer.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[!$permalink]]></code>
+    </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="src/Infrastructure/Cache/DailyCacheInvalidationRunner.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[getenv(self::DISABLE_DAILY_CACHE_INVALIDATION)]]></code>
+      <code><![CDATA[wp_next_scheduled(self::DAILY_CACHE_INVALIDATION_HOOK)]]></code>
+    </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="src/Infrastructure/Component/ActiveFilters.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[!$options]]></code>
+    </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="src/Infrastructure/Embed/PostDataFilter.php">
+    <UndefinedFunction>
+      <code><![CDATA[did_filter('oembed_request_post_id')]]></code>
+    </UndefinedFunction>
+  </file>
+  <file src="src/Infrastructure/Repository/WordPressApiDegreeProgramViewRepository.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[!$collection->nextPage()]]></code>
+      <code><![CDATA[!$collection->nextPage()]]></code>
+    </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="src/Infrastructure/Search/FilterableTermsUpdater.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[!$remoteTermId]]></code>
+      <code><![CDATA[!$termId]]></code>
+      <code><![CDATA[$newTermId]]></code>
+      <code><![CDATA[$newTermId]]></code>
+      <code><![CDATA[$newTermId]]></code>
+    </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="src/Infrastructure/Shortcode/ShortcodeAttributesNormalizer.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[!$callable]]></code>
+    </RiskyTruthyFalsyComparison>
+  </file>
+</files>
