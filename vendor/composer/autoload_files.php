@@ -8,5 +8,5 @@ $baseDir = dirname($vendorDir);
 return array(
     '75224de648373daee048deff719e279d' => $vendorDir . '/inpsyde/assets/inc/functions.php',
     'd57dd50c5392c5a5044aae288d38e1c5' => $vendorDir . '/inpsyde/assets/inc/bootstrap.php',
-    '9d916222ac507be0ebf22a42cf22e61c' => $baseDir . '/inc/api.php',
+    '12bf47454c8d04ca5b059644211ed054' => $baseDir . '/inc/api.php',
 );
