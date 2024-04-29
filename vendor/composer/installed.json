@@ -71,101 +71,18 @@
             "install-path": "../inpsyde/assets"
         },
         {
-            "name": "inpsyde/fau-degree-program-common",
-            "version": "dev-main",
-            "version_normalized": "dev-main",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/RRZE-Webteam/FAU-Studium-Common.git",
-                "reference": "578db6d1c49126600bfb57cec13d4a28ffd73f5a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/RRZE-Webteam/FAU-Studium-Common/zipball/578db6d1c49126600bfb57cec13d4a28ffd73f5a",
-                "reference": "578db6d1c49126600bfb57cec13d4a28ffd73f5a",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^8.0",
-                "psr/event-dispatcher": "^1.0",
-                "psr/log": "^3.0",
-                "psr/simple-cache": "^3.0",
-                "webmozart/assert": "^1.11"
-            },
-            "require-dev": {
-                "brain/monkey": "^2.6",
-                "inpsyde/php-coding-standards": "^1",
-                "inpsyde/wp-stubs-versions": "dev-latest",
-                "johnpbloch/wordpress-core": "^6.1",
-                "phpunit/phpunit": "^9.5",
-                "vimeo/psalm": "^5.4",
-                "wp-cli/wp-cli": "^2.7"
-            },
-            "suggest": {
-                "inpsyde/modularity": "Modular PSR-11 implementation for WordPress Plugins, Themes or Libraries"
-            },
-            "time": "2023-11-22T07:00:31+00:00",
-            "default-branch": true,
-            "type": "library",
-            "installation-source": "dist",
-            "autoload": {
-                "psr-4": {
-                    "Fau\\DegreeProgram\\Common\\": "src/",
-                    "Fau\\DegreeProgram\\Common\\LanguageExtension\\": "lib/lang-extension/src/"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "Fau\\DegreeProgram\\Common\\Tests\\": [
-                        "tests/src/",
-                        "tests/unit/",
-                        "tests/functional/"
-                    ],
-                    "Fau\\DegreeProgram\\Common\\LanguageExtension\\Tests\\": "lib/lang-extension/tests/"
-                }
-            },
-            "scripts": {
-                "check-coding-standards": [
-                    "vendor/bin/phpcs"
-                ],
-                "check-psalm": [
-                    "vendor/bin/psalm --no-cache"
-                ],
-                "fix-coding-standards": [
-                    "vendor/bin/phpcbf"
-                ]
-            },
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Inpsyde GmbH",
-                    "email": "hello@inpsyde.com",
-                    "homepage": "https://inpsyde.com/",
-                    "role": "Company"
-                }
-            ],
-            "description": "Shared kernel for FAU Degree Program and FAU Degree Program Output plugins.",
-            "support": {
-                "source": "https://github.com/RRZE-Webteam/FAU-Studium-Common/tree/main",
-                "issues": "https://github.com/RRZE-Webteam/FAU-Studium-Common/issues"
-            },
-            "install-path": "../inpsyde/fau-degree-program-common"
-        },
-        {
             "name": "inpsyde/modularity",
-            "version": "1.7.2",
-            "version_normalized": "1.7.2.0",
+            "version": "1.7.4",
+            "version_normalized": "1.7.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/inpsyde/modularity.git",
-                "reference": "43f4b3a7c8fbb585a44fb7a619e2546b338a8934"
+                "reference": "ef0143d58e4dd358f7cc3c8d917b18d07cf6e13d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/inpsyde/modularity/zipball/43f4b3a7c8fbb585a44fb7a619e2546b338a8934",
-                "reference": "43f4b3a7c8fbb585a44fb7a619e2546b338a8934",
+                "url": "https://api.github.com/repos/inpsyde/modularity/zipball/ef0143d58e4dd358f7cc3c8d917b18d07cf6e13d",
+                "reference": "ef0143d58e4dd358f7cc3c8d917b18d07cf6e13d",
                 "shasum": ""
             },
             "require": {
@@ -182,7 +99,7 @@
                 "phpunit/phpunit": "^8.5.21 || ^9.6.7",
                 "vimeo/psalm": "^4.13.1"
             },
-            "time": "2023-11-16T11:19:47+00:00",
+            "time": "2024-03-22T07:01:53+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -220,7 +137,7 @@
             "description": "Modular PSR-11 implementation for WordPress plugins, themes or libraries.",
             "support": {
                 "issues": "https://github.com/inpsyde/modularity/issues",
-                "source": "https://github.com/inpsyde/modularity/tree/1.7.2"
+                "source": "https://github.com/inpsyde/modularity/tree/1.7.4"
             },
             "install-path": "../inpsyde/modularity"
         },
@@ -502,6 +419,89 @@
                 "source": "https://github.com/php-fig/simple-cache/tree/3.0.0"
             },
             "install-path": "../psr/simple-cache"
+        },
+        {
+            "name": "rrze/fau-studium-common",
+            "version": "dev-main",
+            "version_normalized": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/RRZE-Webteam/FAU-Studium-Common.git",
+                "reference": "2cef39901512f7b0c61ac8f319a6ff61039c60e0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/RRZE-Webteam/FAU-Studium-Common/zipball/2cef39901512f7b0c61ac8f319a6ff61039c60e0",
+                "reference": "2cef39901512f7b0c61ac8f319a6ff61039c60e0",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0",
+                "psr/event-dispatcher": "^1.0",
+                "psr/log": "^3.0",
+                "psr/simple-cache": "^3.0",
+                "webmozart/assert": "^1.11"
+            },
+            "require-dev": {
+                "brain/monkey": "^2.6",
+                "inpsyde/php-coding-standards": "^1",
+                "inpsyde/wp-stubs-versions": "dev-latest",
+                "johnpbloch/wordpress-core": "^6.1",
+                "phpunit/phpunit": "^9.5",
+                "vimeo/psalm": "^5.4",
+                "wp-cli/wp-cli": "^2.7"
+            },
+            "suggest": {
+                "inpsyde/modularity": "Modular PSR-11 implementation for WordPress Plugins, Themes or Libraries"
+            },
+            "time": "2024-04-29T08:12:47+00:00",
+            "default-branch": true,
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Fau\\DegreeProgram\\Common\\": "src/",
+                    "Fau\\DegreeProgram\\Common\\LanguageExtension\\": "lib/lang-extension/src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Fau\\DegreeProgram\\Common\\Tests\\": [
+                        "tests/src/",
+                        "tests/unit/",
+                        "tests/functional/"
+                    ],
+                    "Fau\\DegreeProgram\\Common\\LanguageExtension\\Tests\\": "lib/lang-extension/tests/"
+                }
+            },
+            "scripts": {
+                "check-coding-standards": [
+                    "vendor/bin/phpcs"
+                ],
+                "check-psalm": [
+                    "vendor/bin/psalm --no-cache"
+                ],
+                "fix-coding-standards": [
+                    "vendor/bin/phpcbf"
+                ]
+            },
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Syde GmbH",
+                    "email": "hello@syde.com",
+                    "homepage": "https://syde.com/",
+                    "role": "Company"
+                }
+            ],
+            "description": "Shared kernel for FAU Degree Program and FAU Degree Program Output plugins.",
+            "support": {
+                "source": "https://github.com/RRZE-Webteam/FAU-Studium-Common/tree/main",
+                "issues": "https://github.com/RRZE-Webteam/FAU-Studium-Common/issues"
+            },
+            "install-path": "../rrze/fau-studium-common"
         },
         {
             "name": "webmozart/assert",
