@@ -5,8 +5,8 @@
  * Plugin URI:  https://github.com/RRZE-Webteam/FAU-Studium-Embed
  * Description: Fetch degree programs via the REST API and display them.
  * Version:     1.0.2
- * Author:      Inpsyde GmbH
- * Author URI:  https://inpsyde.com/
+ * Author:      Syde GmbH
+ * Author URI:  https://syde.com/
  * Update URI:  false
  * GitHub Plugin URI: RRZE-Webteam/FAU-Studium-Embed
  * License:     GPL-2.0-or-later
