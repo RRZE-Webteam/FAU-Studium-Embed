@@ -15,7 +15,9 @@
     "lint:md-fix": "wp-scripts lint-md-docs --ignore LICENSE.md --ignore node_modules --ignore vendor --fix",
     "lint:style": "wp-scripts lint-style 'resources/**/*.scss'",
     "lint:style-fix": "wp-scripts lint-style 'resources/**/*.scss' --fix",
-    "start": "wp-scripts start"
+    "start": "wp-scripts start",
+    "prebuild": "if test \"$CI\" = \"true\" ; then composer install --no-dev ; fi",
+    "prebuild:dev": "if test \"$CI\" = \"true\" ; then composer install --no-dev ; fi"
   },
   "browserslist": [
     "last 3 years"
