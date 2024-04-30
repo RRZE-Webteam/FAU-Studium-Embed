@@ -1,6 +1,5 @@
 /** @type {import('webpack').defaultConfig} */
 const defaultConfig = require('@wordpress/scripts/config/webpack.config');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const path = require('path');
 const glob = require('glob');
