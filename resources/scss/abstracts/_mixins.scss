@@ -20,10 +20,10 @@
 }
 
 /// Create root selector when parent state is changed
+/// Parent must be defined if it's a complex selector (included space)
+/// or for BEM style.
 /// @param {String} $selector - New parent selector
 /// @param {String} $parent - Get first item from selector list
-/// Parent must be defined if it's complex selector (included space)
-// or for BEM style
 @mixin when-parent-matches-selector($selector, $parent: null) {
 	$calculatedParent: list.nth(list.nth(selector.parse(&), 1), 1);
 

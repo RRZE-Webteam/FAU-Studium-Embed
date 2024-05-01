@@ -1,20 +1,20 @@
 name: Static code analysis assets
 on:
-    pull_request:
-        branches:
-            - dev
-        paths:
-            - '**.ts'
-            - '**.tsx'
-            - '**.md'
-            - '**.scss'
-            - 'front-office-qa.yml'
+  pull_request:
+    branches:
+      - dev
+    paths:
+      - '**.ts'
+      - '**.tsx'
+      - '**.md'
+      - '**.scss'
+      - 'front-office-qa.yml'
 jobs:
-    wp-scripts-lint:
-        uses: inpsyde/reusable-workflows/.github/workflows/wp-scripts-lint.yml@main
-        secrets:
-            GITHUB_USER_EMAIL: ${{ secrets.DEPLOYBOT_EMAIL }}
-            GITHUB_USER_NAME: ${{ secrets.DEPLOYBOT_USER }}
-        with:
-            STYLELINT_ARGS: '"resources/**/*.scss"'
-            ESLINT_ARGS: '"resources/**/*.{ts,tsx}"'
+  wp-scripts-lint:
+    uses: inpsyde/reusable-workflows/.github/workflows/wp-scripts-lint.yml@main
+    secrets:
+      GITHUB_USER_EMAIL: ${{ secrets.DEPLOYBOT_EMAIL }}
+      GITHUB_USER_NAME: ${{ secrets.DEPLOYBOT_USER }}
+    with:
+      STYLELINT_ARGS: '"resources/**/*.scss"'
+      ESLINT_ARGS: '"resources/**/*.{ts,tsx}"'
