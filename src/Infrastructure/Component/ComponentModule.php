@@ -14,7 +14,7 @@ use Fau\DegreeProgram\Output\Application\ArrayPropertiesAccessor;
 use Fau\DegreeProgram\Output\Application\DegreeProgramViewPropertiesFilter;
 use Fau\DegreeProgram\Output\Infrastructure\Filter\FilterViewFactory;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\CurrentRequest;
-use Fau\DegreeProgram\Output\Infrastructure\Template\ExcludeDegreeProgramElements;
+use Fau\DegreeProgram\Output\Infrastructure\Template\HiddenDegreeProgramElements;
 use Inpsyde\Modularity\Module\ModuleClassNameIdTrait;
 use Inpsyde\Modularity\Module\ServiceModule;
 use Inpsyde\Modularity\Package;
@@ -46,7 +46,7 @@ final class ComponentModule implements ServiceModule
                 $container->get(CurrentRequest::class),
                 $container->get(FilterViewFactory::class),
                 $container->get(FilterFactory::class),
-                $container->get(ExcludeDegreeProgramElements::class),
+                $container->get(HiddenDegreeProgramElements::class),
             ),
             SingleDegreeProgram::class => static fn(ContainerInterface $container) => new SingleDegreeProgram(
                 $container->get(Renderer::class),

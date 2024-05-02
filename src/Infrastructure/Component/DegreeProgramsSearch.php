@@ -16,7 +16,7 @@ use Fau\DegreeProgram\Output\Application\Filter\FilterView;
 use Fau\DegreeProgram\Output\Infrastructure\Filter\FilterViewFactory;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\CurrentRequest;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\LocaleHelper;
-use Fau\DegreeProgram\Output\Infrastructure\Template\ExcludeDegreeProgramElements;
+use Fau\DegreeProgram\Output\Infrastructure\Template\HiddenDegreeProgramElements;
 
 /**
  * @psalm-import-type LanguageCodes from MultilingualString
@@ -55,12 +55,12 @@ final class DegreeProgramsSearch implements RenderableComponent
     public const OUTPUT_LIST = 'list';
 
     public function __construct(
-        private Renderer $renderer,
+        private Renderer                          $renderer,
         private DegreeProgramCollectionRepository $degreeProgramViewRepository,
-        private CurrentRequest $currentRequest,
-        private FilterViewFactory $filterViewFactory,
-        private FilterFactory $filterFactory,
-        private ExcludeDegreeProgramElements $excludeDegreeProgramElements,
+        private CurrentRequest                    $currentRequest,
+        private FilterViewFactory                 $filterViewFactory,
+        private FilterFactory                     $filterFactory,
+        private HiddenDegreeProgramElements       $excludeDegreeProgramElements,
     ) {
     }
 

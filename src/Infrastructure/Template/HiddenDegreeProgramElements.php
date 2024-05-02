@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Fau\DegreeProgram\Output\Infrastructure\Template;
 
-final class ExcludeDegreeProgramElements
+final class HiddenDegreeProgramElements
 {
     private const SEARCH_FORM_ELEMENT = 'search';
     private const TITLE_ELEMENT = 'heading';
     private array $excludedElements = [];
 
-    public function excludeElements(array $excludedElements): ExcludeDegreeProgramElements
+    public function excludeElements(array $excludedElements): HiddenDegreeProgramElements
     {
         $this->excludedElements = $this->sanitizeExcludedElements($excludedElements);
 

@@ -40,7 +40,7 @@ final class TemplateModule implements ServiceModule, ExecutableModule
             TitleModifier::class => static fn(ContainerInterface $container) => new TitleModifier(
                 $container->get(CurrentViewRepository::class),
             ),
-            ExcludeDegreeProgramElements::class => static fn() => new ExcludeDegreeProgramElements(),
+            HiddenDegreeProgramElements::class => static fn() => new HiddenDegreeProgramElements(),
         ];
     }
 

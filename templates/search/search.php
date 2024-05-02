@@ -10,7 +10,7 @@ use Fau\DegreeProgram\Output\Infrastructure\Component\Component;
 use Fau\DegreeProgram\Output\Infrastructure\Component\DegreeProgramsCollection;
 use Fau\DegreeProgram\Output\Infrastructure\Component\SearchFilters;
 use Fau\DegreeProgram\Output\Infrastructure\Component\SearchForm;
-use Fau\DegreeProgram\Output\Infrastructure\Template\ExcludeDegreeProgramElements;
+use Fau\DegreeProgram\Output\Infrastructure\Template\HiddenDegreeProgramElements;
 
 use function Fau\DegreeProgram\Output\renderComponent;
 
@@ -21,7 +21,7 @@ use function Fau\DegreeProgram\Output\renderComponent;
  *     output: 'list' | 'tiles',
  *     activeFilters: array<FilterView>,
  *     advancedFilters: array<FilterView>,
- *     excludedElements: ExcludeDegreeProgramElements,
+ *     excludedElements: HiddenDegreeProgramElements,
  * } $data
  * @var array $data
  */
