@@ -1,83 +1,84 @@
-@use '../../abstracts/config';
+@use "../../abstracts/config";
 
 .c-degree-programs-grid {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  padding: 0;
-  margin: 0;
-  gap: 20px 9px;
+	display: grid;
+	grid-template-columns: repeat(1, 1fr);
+	padding: 0;
+	margin: 0;
+	gap: 20px 9px;
 
-  @include config.media('>mobile') {
-    grid-template-columns: repeat(2, 1fr);
-  }
+	@include config.media(">mobile") {
+		grid-template-columns: repeat(2, 1fr);
+	}
 
-  @include config.media('>tablet') {
-    grid-template-columns: repeat(3, 1fr);
-  }
+	@include config.media(">tablet") {
+		grid-template-columns: repeat(3, 1fr);
+	}
 
-  @include config.media('>tablet-lg') {
-    grid-template-columns: repeat(4, 1fr);
-  }
+	@include config.media(">tablet-lg") {
+		grid-template-columns: repeat(4, 1fr);
+	}
 
-  @include config.media('>laptop') {
-    grid-template-columns: repeat(5, 1fr);
-  }
+	@include config.media(">laptop") {
+		grid-template-columns: repeat(5, 1fr);
+	}
 }
 
 .degree-program-preview {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  position: relative;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	position: relative;
 
-  &__link {
-    text-decoration: none !important;
+	&__link {
+		text-decoration: none !important;
 
-    &:hover {
-      box-shadow: unset !important;
-    }
-  }
+		&:hover {
+			box-shadow: unset !important;
+		}
+	}
 
-  &__teaser-image {
-    box-shadow: none !important;
-    padding: 0 !important;
-  }
+	&__teaser-image {
+		box-shadow: none !important;
+		padding: 0 !important;
+	}
 
-  &__title {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 10;
-    background-color: config.color('primary', 'basis');
-    color: #fff;
-    padding: 16px 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
+	&__title {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index: 10;
+		background-color: config.color("primary", "basis");
+		color: #fff;
+		padding: 16px 10px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		text-align: center;
 
-    &-expanded {
-      @include config.text-size('xs');
+		&-expanded {
 
-      &::before {
-        content: '';
-        height: 1px;
-        background-color: #fff;
-        width: 50px;
-        display: block;
-        margin: 16px auto;
-      }
-    }
-  }
+			@include config.text-size("xs");
 
-  &:not(:hover) &__title {
-    top: auto;
+			&::before {
+				content: "";
+				height: 1px;
+				background-color: #fff;
+				width: 50px;
+				display: block;
+				margin: 16px auto;
+			}
+		}
+	}
 
-    &-expanded {
-      display: none;
-    }
-  }
+	&:not(:hover) &__title {
+		top: auto;
+
+		&-expanded {
+			display: none;
+		}
+	}
 }

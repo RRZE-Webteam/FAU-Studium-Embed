@@ -1,69 +1,75 @@
-@use '../../abstracts/config';
+@use "../../abstracts/config";
 
 @mixin admission-requirement-icon {
-  .fau-icon {
-    fill: config.color('branding', 'primary');
-    width: 36px;
-    height: 30px;
-  }
+
+	.fau-icon {
+		fill: config.color("branding", "primary");
+		width: 36px;
+		height: 30px;
+	}
 }
 
 @mixin admission-requirement-header {
-  margin: 14px 0 12px;
-  color: config.color('content', 'headlines');
+	margin: 14px 0 12px;
+	color: config.color("content", "headlines");
 
-  @include config.text-size('xl');
+	@include config.text-size("xl");
 }
 
 .c-language-skills {
-  @include admission-requirement-icon;
 
-  &__header {
-    @include admission-requirement-header;
-  }
+	@include admission-requirement-icon;
 
-  &__details {
-    dt {
-      margin: 0;
+	&__header {
 
-      &::after {
-        content: ':';
-      }
-    }
+		@include admission-requirement-header;
+	}
 
-    dd {
-      margin: 0 0 10px;
-    }
-  }
+	&__details {
+
+		dt {
+			margin: 0;
+
+			&::after {
+				content: ":";
+			}
+		}
+
+		dd {
+			margin: 0 0 10px;
+		}
+	}
 }
 
 &__admission-requirements {
-  dl {
-    margin: 0 0 30px;
 
-    &:not(.c-language-skills__details) {
-      display: flex;
-      flex-flow: column wrap;
-      justify-content: space-between;
-      gap: 30px 25px;
+	dl {
+		margin: 0 0 30px;
 
-      @include config.container-gt('tablet', 'single-degree-program') {
-        flex-direction: row;
-      }
+		&:not(.c-language-skills__details) {
+			display: flex;
+			flex-flow: column wrap;
+			justify-content: space-between;
+			gap: 30px 25px;
 
-      .c-detail {
-        flex: 1 1;
+			@include config.container-gt("tablet", "single-degree-program") {
+				flex-direction: row;
+			}
 
-        @include admission-requirement-icon;
+			.c-detail {
+				flex: 1 1;
 
-        dt {
-          @include admission-requirement-header;
-        }
+				@include admission-requirement-icon;
 
-        dd {
-          margin: 0;
-        }
-      }
-    }
-  }
+				dt {
+
+					@include admission-requirement-header;
+				}
+
+				dd {
+					margin: 0;
+				}
+			}
+		}
+	}
 }

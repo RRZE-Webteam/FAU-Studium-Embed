@@ -1,108 +1,113 @@
-@use 'sass:selector';
-@use 'sass:list';
-@use 'sass:string';
-@use 'sass:math';
-@use 'sass:map';
-@use 'functions';
-@use 'variables';
-@use './breakpoints';
+@use "sass:selector";
+@use "sass:list";
+@use "sass:string";
+@use "sass:math";
+@use "sass:map";
+@use "functions";
+@use "variables";
+@use "./breakpoints";
 
 /// Make a context based selector a little more friendly
 /// @author Kitty Giraudel
 /// @param {String[]} $context
 @mixin when-inside($contexts...) {
-  @each $context in $contexts {
-    #{$context} & {
-      @content;
-    }
-  }
+
+	@each $context in $contexts {
+		#{$context} & {
+			@content;
+		}
+	}
 }
 
 /// Create root selector when parent state is changed
+/// Parent must be defined if it's a complex selector (included space)
+/// or for BEM style.
 /// @param {String} $selector - New parent selector
 /// @param {String} $parent - Get first item from selector list
-/// Parent must be defined if it's complex selector (included space) or for BEM style
 @mixin when-parent-matches-selector($selector, $parent: null) {
-  $calculatedParent: list.nth(list.nth(selector.parse(&), 1), 1);
+	$calculatedParent: list.nth(list.nth(selector.parse(&), 1), 1);
 
-  @if not $parent {
-    $parent: $calculatedParent;
-  }
+	@if not $parent {
+		$parent: $calculatedParent;
+	}
 
-  $parentSelector: #{functions.replace('#{&}', '#{$parent}', '#{$parent}#{$selector}')};
+	$parentSelector: #{functions.replace("#{&}", "#{$parent}", "#{$parent}#{$selector}")};
 
-  @if $calculatedParent == '#{&}' {
-    $parentSelector: '#{$parent}#{$selector} #{&}';
-  }
+	@if $calculatedParent == "#{&}" {
+		$parentSelector: "#{$parent}#{$selector} #{&}";
+	}
 
-  @at-root #{$parentSelector} {
-    @content;
-  }
+	@at-root #{$parentSelector} {
+		@content;
+	}
 }
 
 @mixin aspect-ratio($width, $height) {
-  &::before {
-    float: left;
-    padding-top: math.percentage(math.div($height, $width));
-    content: '';
-  }
 
-  &::after {
-    display: block;
-    content: '';
-    clear: both;
-  }
+	&::before {
+		float: left;
+		padding-top: math.percentage(math.div($height, $width));
+		content: "";
+	}
 
-  @supports (aspect-ratio: #{$width} / #{$height}) {
-    aspect-ratio: #{$width} / #{$height};
+	&::after {
+		display: block;
+		content: "";
+		clear: both;
+	}
 
-    &::before,
-    &::after {
-      content: unset;
-    }
-  }
+	@supports (aspect-ratio: #{$width} / #{$height}) {
+		aspect-ratio: #{$width} / #{$height};
+
+		&::before,
+		&::after {
+			content: unset;
+		}
+	}
 }
 
 @mixin object-cover {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 
 @mixin text-size($size) {
-  $map: map.get(variables.$fontSizesMap, $size);
+	$map: map.get(variables.$fontSizesMap, $size);
 
-  @if type-of($map) != 'map' {
-    @error 'Font size not defined';
-  }
+	@if type-of($map) != "map" {
 
-  $font-size: map.get($map, 'font-size');
-  $line-height: map.get($map, 'line-height');
+		@error "Font size not defined";
+	}
 
-  font-size: $font-size;
-  line-height: $line-height;
+	$font-size: map.get($map, "font-size");
+	$line-height: map.get($map, "line-height");
+
+	font-size: $font-size;
+	line-height: $line-height;
 }
 
 /// Container query with the "width great than" condition
-@mixin container-gt($breakpoint, $container: '') {
-  @container #{$container} (width > #{map.get(breakpoints.$breakpoints, $breakpoint)}) {
-    @content;
-  }
+@mixin container-gt($breakpoint, $container: "") {
+
+	@container #{$container} (width > #{map.get(breakpoints.$breakpoints, $breakpoint)}) {
+		@content;
+	}
 }
 
 @mixin screen-reader-text {
-  border: 0;
-  clip: rect(1px, 1px, 1px, 1px);
-  clip-path: inset(50%);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute !important;
-  width: 1px;
-  word-wrap: normal !important;
-  word-break: normal;
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute !important;
+	width: 1px;
+	word-wrap: normal !important;
+	word-break: normal;
 }

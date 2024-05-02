@@ -1,45 +1,46 @@
-@use '../../abstracts/config';
+@use "../../abstracts/config";
 
 .c-degree-programs-search__filters {
-  display: flex;
-  column-gap: 20px;
-  padding: 0;
-  margin: 0 0 41px;
+	display: flex;
+	column-gap: 20px;
+	padding: 0;
+	margin: 0 0 41px;
 
-  li {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
+	li {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
 
-  .search-filter {
-    display: flex;
+	.search-filter {
+		display: flex;
 
-    &--output {
-      margin-left: auto;
-    }
+		&--output {
+			margin-left: auto;
+		}
 
-    &__options {
-      a[role='button'] {
-        background: none;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0;
-        width: 36px;
-        height: 36px;
+		&__options {
 
-        .fau-icon {
-          width: 24px;
-          height: 24px;
-          fill: config.color('grey', 'muted');
-          box-shadow: none;
+			a[role="button"] {
+				background: none;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				padding: 0;
+				width: 36px;
+				height: 36px;
 
-          @include config.when-parent-matches-selector('.is-active', 'a[role=button]') {
-            fill: config.color('primary', 'basis');
-          }
-        }
-      }
-    }
-  }
+				.fau-icon {
+					width: 24px;
+					height: 24px;
+					fill: config.color("grey", "muted");
+					box-shadow: none;
+
+					@include config.when-parent-matches-selector(".is-active", "a[role=button]") {
+						fill: config.color("primary", "basis");
+					}
+				}
+			}
+		}
+	}
 }

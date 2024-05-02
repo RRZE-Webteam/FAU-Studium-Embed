@@ -1,51 +1,31 @@
-const glob = require('glob');
+const pipe =
+    (...f) =>
+    (v) =>
+        f.reduce((res, f) => f(res), v);
 
-// methods
-const getFilePaths = (pathArr) => {
-    let filePaths = [];
-    for (let path of pathArr) {
-        const files = glob.sync(path);
-        filePaths = filePaths.concat(files);
-    }
-    return filePaths;
-};
+const withPostCssConfigRules = (rules) => {
+    return rules.map((rule) => {
+        if (!Array.isArray(rule.use)) {
+            return rule;
+        }
 
-const getFilesPathObjects = (sourceFolderRelPath, pathArr, type, cb = null) => {
-    const filesPathsObjs = [];
-    for (let path of pathArr) {
-        const src = path;
-        const nameWithExtension = path.replace(sourceFolderRelPath + '/', '');
-        let name = nameWithExtension.replace(/\.[^/.]+$/, '');
-        if (type === 'css') {
-            name = name.replace(/^scss/, 'css');
-        }
-        if (cb) {
-            name = cb(name, type);
-        }
-        filesPathsObjs.push({
-            type,
-            src,
-            name,
+        rule.use.forEach((item) => {
+            if (!item.loader) {
+                return;
+            }
+
+            if (item.loader.match('postcss-loader')) {
+                item.options = {
+                    ...(item?.options || {}),
+                    postcssOptions: { config: __dirname + '/postcss.config.js' },
+                };
+            }
         });
-    }
-    return filesPathsObjs;
+
+        return rule;
+    });
 };
 
-const addEntriesToEncore = (asset, Encore) => {
-    switch (asset.type) {
-        case 'js':
-            Encore.addEntry(asset.name, asset.src);
-            break;
-        case 'css':
-            Encore.addStyleEntry(asset.name, asset.src);
-            break;
-        default:
-            break;
-    }
+exports.modifyRules = (rules) => {
+    return pipe(withPostCssConfigRules)(rules);
 };
-
-module.exports= {
-    getFilePaths,
-    getFilesPathObjects,
-    addEntriesToEncore
-}

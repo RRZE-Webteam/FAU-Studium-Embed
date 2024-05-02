@@ -1,8 +1,8 @@
 import { State } from './defs';
 
 export const INITIAL_STATE: State = {
-    queries: {},
-    degreePrograms: {},
+	queries: {},
+	degreePrograms: {},
 };
 
 export const RECEIVE_SINGLE_DEGREE_PROGRAM = 'RECEIVE_SINGLE_DEGREE_PROGRAM';

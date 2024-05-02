@@ -1,24 +1,25 @@
-@use '../../abstracts/config';
+@use "../../abstracts/config";
 
 &__testimonials {
-  margin-top: 30px;
-  margin-bottom: 40px;
-  padding-bottom: 40px;
-  border-bottom: 1px solid config.color('content', 'borders');
+	margin-top: 30px;
+	margin-bottom: 40px;
+	padding-bottom: 40px;
+	border-bottom: 1px solid config.color("content", "borders");
 
-  @include config.media('>tablet') {
-    margin-top: 60px;
-    margin-bottom: 30px;
-    padding-bottom: 60px;
-  }
+	@include config.media(">tablet") {
+		margin-top: 60px;
+		margin-bottom: 30px;
+		padding-bottom: 60px;
+	}
 
-  h2 {
-    @include config.text-size('xl');
+	h2 {
 
-    margin: 0 0 20px;
-  }
+		@include config.text-size("xl");
 
-  p:last-child {
-    padding-bottom: 0;
-  }
+		margin: 0 0 20px;
+	}
+
+	p:last-child {
+		padding-bottom: 0;
+	}
 }

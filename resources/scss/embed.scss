@@ -1,36 +1,39 @@
-@use 'abstracts/config';
-@use 'base/base';
+// stylelint-disable no-invalid-position-at-import-rule
+@use "abstracts/config";
+@use "base/base";
 
 .wp-embed-heading,
 .wp-embed-footer {
-  display: none;
+	display: none;
 }
 
-@import 'components/link';
-@import 'components/details';
+@import "components/link";
+@import "components/details";
 
 .c-single-degree-program {
-  @import 'components/single-degree-program/featured-image';
-  @import 'components/single-degree-program/heading';
-  @import 'components/single-degree-program/entry-text';
-  @import 'components/single-degree-program/details';
-  @import 'components/single-degree-program/about';
-  @import 'components/single-degree-program/acccordion';
-  @import 'components/single-degree-program/combinations';
-  @import 'components/single-degree-program/more-information';
-  @import 'components/single-degree-program/links';
 
-  container: single-degree-program / inline-size;
+	@import "components/single-degree-program/featured-image";
+	@import "components/single-degree-program/heading";
+	@import "components/single-degree-program/entry-text";
+	@import "components/single-degree-program/details";
+	@import "components/single-degree-program/about";
+	@import "components/single-degree-program/acccordion";
+	@import "components/single-degree-program/combinations";
+	@import "components/single-degree-program/more-information";
+	@import "components/single-degree-program/links";
 
-  .l-container {
-    @extend %container-paddings;
-  }
+	container: single-degree-program / inline-size;
+
+	.l-container {
+
+		@extend %container-paddings;
+	}
 }
 
 .l-details-wrapper.l-details-wrapper--has-application-links:not(.l-details-wrapper--has-details) .l-application-links,
 .l-details-wrapper.l-details-wrapper--has-details.l-details-wrapper--has-application-links,
 .c-accordion {
-    max-width: unset!important;
+	max-width: unset !important;
 }
 
 
@@ -38,9 +41,9 @@
 .c-single-degree-program__video,
 .c-single-degree-program__featured-video,
 .fau-icon {
-  display: none !important;
+	display: none !important;
 }
 
 .c-single-degree-program .c-detail {
-  padding-left: 0;
+	padding-left: 0;
 }

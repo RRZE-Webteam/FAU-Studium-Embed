@@ -1,58 +1,60 @@
-@use '../../abstracts/config';
+@use "../../abstracts/config";
 
 &__more-information {
-  margin-top: 40px;
-  margin-bottom: 60px;
+	margin-top: 40px;
+	margin-bottom: 60px;
 
-  @include config.media('>tablet') {
-    margin-top: 30px;
-  }
+	@include config.media(">tablet") {
+		margin-top: 30px;
+	}
 
-  @include config.media('>laptop') {
-    margin-top: 60px;
-    margin-bottom: 60px;
-  }
+	@include config.media(">laptop") {
+		margin-top: 60px;
+		margin-bottom: 60px;
+	}
 
-  h2 {
-    @include config.text-size('xl');
+	h2 {
 
-    margin: 0 0 20px;
-  }
+		@include config.text-size("xl");
 
-  p:last-child {
-    padding-bottom: 0;
-  }
+		margin: 0 0 20px;
+	}
+
+	p:last-child {
+		padding-bottom: 0;
+	}
 }
 
 .l-information-links {
-  margin-top: 20px;
+	margin-top: 20px;
 
-  .c-link {
-    margin-left: auto;
-    margin-right: auto;
+	.c-link {
+		margin-left: auto;
+		margin-right: auto;
 
-    & + .c-link {
-      margin-top: 10px;
-    }
-  }
+		+ .c-link {
+			margin-top: 10px;
+		}
+	}
 
-  @include config.container-gt('tablet', 'single-degree-program') {
-    display: flex;
-    gap: 20px;
+	@include config.container-gt("tablet", "single-degree-program") {
+		display: flex;
+		gap: 20px;
 
-    .c-link {
-      margin: 0;
-      flex: 1 0 auto;
+		.c-link {
+			margin: 0;
+			flex: 1 0 auto;
 
-      & + .c-link {
-        margin: 0;
-      }
-    }
-  }
+			+ .c-link {
+				margin: 0;
+			}
+		}
+	}
 
-  @include config.container-gt('laptop', 'single-degree-program') {
-    .c-link {
-      flex: 0 1 auto;
-    }
-  }
+	@include config.container-gt("laptop", "single-degree-program") {
+
+		.c-link {
+			flex: 0 1 auto;
+		}
+	}
 }

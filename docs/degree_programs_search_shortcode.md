@@ -43,7 +43,7 @@ show visitors.
 
 ### Example without pre-applied filters
 
-```
+```plaintext
 [fau-studium display="search" output="list" filters="teaching-language,semester,study-location,area-of-study,faculty,degree,subject-group,attribute,admission-requirement"]
 ```
 
@@ -54,7 +54,7 @@ comma-separated term names as the value.
 Example: To pre-apply the `degree` filter with `Bachelor` and `Master` and also add `faculty` and `study-location` as
 visible filters, use the following shortcode:
 
-```
+```plaintext
 [fau-studium display="search" filters="degree,faculty,study-location" degree="Bachelor,Master"]
 ```
 

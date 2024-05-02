@@ -1,49 +1,51 @@
-@use '../../abstracts/config';
+@use "../../abstracts/config";
 
 .c-filter-checkbox {
-  cursor: pointer;
+	cursor: pointer;
 
-  &__inner {
-    display: flex;
-    align-items: flex-start;
-    position: relative;
-  }
+	&__inner {
+		display: flex;
+		align-items: flex-start;
+		position: relative;
+	}
 
-  &__check {
-    width: 15px;
-    height: 15px;
-    background: #fff;
-    border: solid 1px #{config.color('content', 'borders')};
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 8px;
+	&__check {
+		width: 15px;
+		height: 15px;
+		background: #fff;
+		border: solid 1px #{config.color("content", "borders")};
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		margin-right: 8px;
 
-    .fau-icon {
-      width: 100%;
-      height: 100%;
-      fill: config.color('button', 'bg');
-    }
-  }
+		.fau-icon {
+			width: 100%;
+			height: 100%;
+			fill: config.color("button", "bg");
+		}
+	}
 
-  &__label {
-    user-select: none;
-    @include config.text-size('sm');
-  }
+	&__label {
+		user-select: none;
 
-  input[type='checkbox'],
-  input[type='radio'] {
-    display: none;
+		@include config.text-size("sm");
+	}
 
-    &:not(:checked) {
-      & ~ .c-filter-checkbox__inner .c-filter-checkbox__check .fau-icon {
-        display: none;
-      }
-    }
+	input[type="checkbox"],
+	input[type="radio"] {
+		display: none;
 
-    &:disabled ~ .c-filter-checkbox__inner {
-      opacity: 0.3;
-      cursor: not-allowed;
-    }
-  }
+		&:not(:checked) {
+
+			~ .c-filter-checkbox__inner .c-filter-checkbox__check .fau-icon {
+				display: none;
+			}
+		}
+
+		&:disabled ~ .c-filter-checkbox__inner {
+			opacity: 0.3;
+			cursor: not-allowed;
+		}
+	}
 }

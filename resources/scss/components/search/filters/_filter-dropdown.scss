@@ -1,217 +1,224 @@
-@use '../../../abstracts/config';
+@use "../../../abstracts/config";
 
 .c-filter-dropdown {
-  width: 100%;
-  border-top: solid 1px;
-  border-color: config.color('content', 'borders');
+	width: 100%;
+	border-top: solid 1px;
+	border-color: config.color("content", "borders");
 
-  &[aria-expanded='true'] {
-    z-index: 1;
-  }
+	&[aria-expanded="true"] {
+		z-index: 1;
+	}
 
-  &--advanced-filters {
-    .c-filter-dropdown__label-icon {
-      width: 18px;
-      height: 18px;
-      fill: config.color('button', 'bg');
-      margin-right: 8px;
+	&--advanced-filters {
 
-      &.-close-icon {
-        display: none;
-        width: 12px;
-        height: 12px;
-      }
-    }
+		.c-filter-dropdown__label-icon {
+			width: 18px;
+			height: 18px;
+			fill: config.color("button", "bg");
+			margin-right: 8px;
 
-    &[aria-expanded='true'] {
-      .c-filter-dropdown__label-icon {
-        display: none;
+			&.-close-icon {
+				display: none;
+				width: 12px;
+				height: 12px;
+			}
+		}
 
-        &.-close-icon {
-          display: inline-flex;
-        }
-      }
-    }
-  }
+		&[aria-expanded="true"] {
 
-  @include config.media('>tablet') {
-    border-radius: 3px;
-    border: solid 1px;
-    border-color: config.color('content', 'borders');
+			.c-filter-dropdown__label-icon {
+				display: none;
 
-    &[aria-expanded='true'] {
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
-    }
-  }
+				&.-close-icon {
+					display: inline-flex;
+				}
+			}
+		}
+	}
 
-  ul,
-  li {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
+	@include config.media(">tablet") {
+		border-radius: 3px;
+		border: solid 1px;
+		border-color: config.color("content", "borders");
 
-  &__header {
-    display: flex;
-    align-items: center;
-    position: relative;
-    padding: 0 15px;
-    height: 50px;
-    cursor: pointer;
-    background: none;
-    width: 100%;
+		&[aria-expanded="true"] {
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+	}
 
-    &:hover,
-    &:focus {
-      background: none;
-    }
+	ul,
+	li {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
 
-    @include config.media('>tablet') {
-      height: 40px;
+	&__header {
+		display: flex;
+		align-items: center;
+		position: relative;
+		padding: 0 15px;
+		height: 50px;
+		cursor: pointer;
+		background: none;
+		width: 100%;
 
-      @include config.when-inside('.c-filter-dropdown--advanced-filters[aria-expanded=true]') {
-        &::before {
-          content: '';
-          background-color: #fff;
-          position: absolute;
-          top: 100%;
-          height: 22px;
-          left: -1px;
-          right: -1px;
-          z-index: 25;
-          border-right: 1px solid;
-          border-left: 1px solid;
-          border-color: config.color('content', 'borders');
-        }
-      }
-    }
-  }
+		&:hover,
+		&:focus {
+			background: none;
+		}
 
-  &__label {
-    color: config.color('primary', 'ci-hell2-kontrast');
-    margin-right: auto;
-    font-weight: 500;
-    @include config.text-size('base');
-  }
+		@include config.media(">tablet") {
+			height: 40px;
 
-  &__count {
-    background-color: config.color('button', 'bg');
-    color: #fff;
-    width: 1.125rem;
-    height: 1.125rem;
-    border-radius: 100%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    @include config.text-size('xxs');
-  }
+			@include config.when-inside(".c-filter-dropdown--advanced-filters[aria-expanded=true]") {
 
-  &__arrow {
-    margin-left: 15px;
+				&::before {
+					content: "";
+					background-color: #fff;
+					position: absolute;
+					top: 100%;
+					height: 22px;
+					left: -1px;
+					right: -1px;
+					z-index: 25;
+					border-right: 1px solid;
+					border-left: 1px solid;
+					border-color: config.color("content", "borders");
+				}
+			}
+		}
+	}
 
-    .fau-icon {
-      width: 16px;
-      height: 16px;
-      fill: config.color('button', 'bg');
+	&__label {
+		color: config.color("primary", "ci-hell2-kontrast");
+		margin-right: auto;
+		font-weight: 500;
 
-      @include config.when-inside('.c-filter-dropdown[aria-expanded=true]') {
-        transform: scaleY(-1);
-      }
-    }
-  }
+		@include config.text-size("base");
+	}
 
-  &__content {
-    background: #fff;
+	&__count {
+		background-color: config.color("button", "bg");
+		color: #fff;
+		width: 1.125rem;
+		height: 1.125rem;
+		border-radius: 100%;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		font-weight: 700;
 
-    &::before {
-      content: none;
-      position: absolute;
-      top: -40px;
-      right: 0;
-      left: 0;
-      bottom: 0;
-      background-color: transparent;
-      box-shadow: 0 4px 7px rgb(0 0 0 / 45%);
-      border-radius: inherit;
-      z-index: -1;
-    }
+		@include config.text-size("xxs");
+	}
 
-    @include config.when-parent-matches-selector(
-      ':not([aria-expanded=true])',
-      '.c-filter-dropdown'
-    ) {
-      display: none;
-    }
+	&__arrow {
+		margin-left: 15px;
 
-    @include config.media('>tablet') {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      background-color: #fff;
-      border-bottom-left-radius: 3px;
-      border-bottom-right-radius: 3px;
+		.fau-icon {
+			width: 16px;
+			height: 16px;
+			fill: config.color("button", "bg");
 
-      &::before {
-        content: '';
-      }
+			@include config.when-inside(".c-filter-dropdown[aria-expanded=true]") {
+				transform: scaleY(-1);
+			}
+		}
+	}
 
-      .c-filter-choices {
-        max-height: 410px;
-        overflow: auto;
+	&__content {
+		background: #fff;
 
-        &__item:hover {
-          background-color: config.color('grey', 'light');
-        }
-      }
+		&::before {
+			content: none;
+			position: absolute;
+			top: -40px;
+			right: 0;
+			left: 0;
+			bottom: 0;
+			background-color: transparent;
+			box-shadow: 0 4px 7px rgb(0 0 0 / 45%);
+			border-radius: inherit;
+			z-index: -1;
+		}
 
-      @include config.when-inside('.c-filter-dropdown--advanced-filters') {
-        top: calc(100% + 20px);
-        border-top-right-radius: 3px;
-        border: solid 1px #{config.color('content', 'borders')};
+		@include config.when-parent-matches-selector(
+			":not([aria-expanded=true])",
+			".c-filter-dropdown"
+		) {
+			display: none;
+		}
 
-        &::before {
-          top: 0;
-        }
+		@include config.media(">tablet") {
+			position: absolute;
+			top: 100%;
+			left: 0;
+			right: 0;
+			background-color: #fff;
+			border-bottom-left-radius: 3px;
+			border-bottom-right-radius: 3px;
 
-        .c-filter-choices {
-          max-height: unset;
-          overflow: unset;
-        }
-      }
-    }
+			&::before {
+				content: "";
+			}
 
-    @include config.media('>tablet-lg') {
-      @include config.when-inside('.c-filter-dropdown--advanced-filters') {
-        border-top-left-radius: 3px;
-      }
-    }
-  }
+			.c-filter-choices {
+				max-height: 410px;
+				overflow: auto;
 
-  &:not(&--advanced-filters) {
-    position: relative;
+				&__item:hover {
+					background-color: config.color("grey", "light");
+				}
+			}
 
-    .c-filter-checkbox {
-      margin: 0 !important;
-      padding: 0 !important;
-      padding: 12px 10px !important;
-      border-top: solid 1px #{config.color('content', 'borders')};
+			@include config.when-inside(".c-filter-dropdown--advanced-filters") {
+				top: calc(100% + 20px);
+				border-top-right-radius: 3px;
+				border: solid 1px #{config.color("content", "borders")};
 
-      input[type='checkbox']:checked,
-      input[type='radio']:checked {
-        & ~ .c-filter-checkbox__label::before {
-          content: '';
-          position: absolute;
-          z-index: -1;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background-color: config.color('grey', 'light');
-        }
-      }
-    }
-  }
+				&::before {
+					top: 0;
+				}
+
+				.c-filter-choices {
+					max-height: unset;
+					overflow: unset;
+				}
+			}
+		}
+
+		@include config.media(">tablet-lg") {
+
+			@include config.when-inside(".c-filter-dropdown--advanced-filters") {
+				border-top-left-radius: 3px;
+			}
+		}
+	}
+
+	&:not(&--advanced-filters) {
+		position: relative;
+
+		.c-filter-checkbox {
+			margin: 0 !important;
+			padding: 0 !important;
+			padding: 12px 10px !important;
+			border-top: solid 1px #{config.color("content", "borders")};
+
+			input[type="checkbox"]:checked,
+			input[type="radio"]:checked {
+
+				~ .c-filter-checkbox__label::before {
+					content: "";
+					position: absolute;
+					z-index: -1;
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					background-color: config.color("grey", "light");
+				}
+			}
+		}
+	}
 }

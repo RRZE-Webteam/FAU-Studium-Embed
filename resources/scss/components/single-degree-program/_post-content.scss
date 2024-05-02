@@ -1,31 +1,34 @@
-@use '../../abstracts/config';
+@use "../../abstracts/config";
 
 .h-post-content {
-  h2 {
-    @include config.text-size('xl');
 
-    @include config.container-gt('tablet', 'single-degree-program') {
-      @include config.text-size('2.5xl');
-    }
-  }
+	h2 {
 
-  h2,
-  h3,
-  h4,
-  h5,
-  p,
-  ul,
-  ol {
-    margin-top: 0;
-    margin-bottom: 20px;
-    padding: 0;
+		@include config.text-size("xl");
 
-    @include config.container-gt('tablet', 'single-degree-program') {
-      margin-bottom: 30px;
-    }
+		@include config.container-gt("tablet", "single-degree-program") {
 
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
+			@include config.text-size("2.5xl");
+		}
+	}
+
+	h2,
+	h3,
+	h4,
+	h5,
+	p,
+	ul,
+	ol {
+		margin-top: 0;
+		margin-bottom: 20px;
+		padding: 0;
+
+		@include config.container-gt("tablet", "single-degree-program") {
+			margin-bottom: 30px;
+		}
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
 }

@@ -1,22 +1,33 @@
 {
     "compilerOptions": {
-        "target": "es6",
-        "module": "commonjs",
+        "target": "es5",
+        "module": "es6",
         "strict": true,
         "removeComments": true,
-        "lib": ["ESNext", "DOM"],
+        "lib": [
+            "dom",
+            "dom.iterable",
+            "esnext"
+        ],
         "resolveJsonModule": true,
         "importHelpers": true,
         "moduleResolution": "node",
         "declaration": false,
         "esModuleInterop": true,
         "noImplicitAny": false,
+        "noImplicitThis": true,
+        "strictNullChecks": true,
         "jsx": "react",
+        "jsxFactory": "wp.element.createElement",
+        "jsxFragmentFactory": "wp.element.Fragment",
         "sourceMap": true,
         "noLib": false,
-        "suppressImplicitAnyIndexErrors": true,
-        "baseUrl": "resources/ts",
+        "suppressImplicitAnyIndexErrors": false,
+        "downlevelIteration": true
     },
     "compileOnSave": false,
-    "exclude": ["node_modules", "vendor"]
+    "exclude": [
+        "node_modules",
+        "vendor"
+    ]
 }

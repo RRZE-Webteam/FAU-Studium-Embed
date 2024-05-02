@@ -1,152 +1,157 @@
-@use '../../abstracts/config';
+@use "../../abstracts/config";
 
 .c-degree-programs-collection {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 
-  &.-list {
-    @include config.media('>tablet-lg') {
-      display: table;
-      table-layout: fixed;
-      width: 100%;
-      border-spacing: 0 10px;
-    }
-  }
+	&.-list {
 
-  &.-tiles {
-    @include config.media('>tablet') {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px 9px;
-    }
+		@include config.media(">tablet-lg") {
+			display: table;
+			table-layout: fixed;
+			width: 100%;
+			border-spacing: 0 10px;
+		}
+	}
 
-    @include config.media('>tablet-lg') {
-      grid-template-columns: repeat(4, 1fr);
-    }
+	&.-tiles {
 
-    @include config.media('>laptop') {
-      grid-template-columns: repeat(5, 1fr);
-    }
-  }
+		@include config.media(">tablet") {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 20px 9px;
+		}
 
-  &__header {
-    display: none;
-    list-style: none;
-    background-color: config.color('grey', 'light');
-    padding: 12px 15px;
+		@include config.media(">tablet-lg") {
+			grid-template-columns: repeat(4, 1fr);
+		}
 
-    &.-mobile {
-      display: flex;
-      justify-content: flex-end;
-      margin-bottom: 15px;
+		@include config.media(">laptop") {
+			grid-template-columns: repeat(5, 1fr);
+		}
+	}
 
-      @include config.when-inside('.c-degree-programs-collection.-tiles') {
-        @include config.media('>tablet') {
-          display: none;
-        }
-      }
-    }
+	&__header {
+		display: none;
+		list-style: none;
+		background-color: config.color("grey", "light");
+		padding: 12px 15px;
 
-    @include config.when-inside('.c-degree-programs-collection.-list') {
-      @include config.media('>tablet-lg') {
-        display: table-row;
+		&.-mobile {
+			display: flex;
+			justify-content: flex-end;
+			margin-bottom: 15px;
 
-        &.-mobile {
-          display: none;
-        }
-      }
-    }
+			@include config.when-inside(".c-degree-programs-collection.-tiles") {
 
-    .c-sort-selector {
-      margin-left: auto;
-      display: flex;
-      align-items: center;
-      box-shadow: none;
-      position: relative;
-      z-index: 0;
+				@include config.media(">tablet") {
+					display: none;
+				}
+			}
+		}
 
-      select {
-        appearance: none;
-        background: none;
-        border: none;
-        outline: none !important;
-        text-align: right;
-        padding: 0;
-        line-height: 1;
-        padding-right: 27px;
-        font-weight: 500;
-      }
+		@include config.when-inside(".c-degree-programs-collection.-list") {
 
-      svg.fau-icon {
-        width: 1rem;
-        height: 1rem;
-        fill: config.color('button', 'bg');
-        position: absolute;
-        right: 0;
-        z-index: -1;
-      }
-    }
-  }
+			@include config.media(">tablet-lg") {
+				display: table-row;
 
-  &__header-item {
-    background: none !important;
-    color: inherit !important;
-    display: table-cell !important;
-    text-align: left !important;
-    vertical-align: middle;
-    padding: 12px 15px !important;
-    font-weight: 500 !important;
-    margin: 0 !important;;
+				&.-mobile {
+					display: none;
+				}
+			}
+		}
 
-    &.-thumbnail {
-      white-space: nowrap;
-      width: 80px;
-    }
+		.c-sort-selector {
+			margin-left: auto;
+			display: flex;
+			align-items: center;
+			box-shadow: none;
+			position: relative;
+			z-index: 0;
 
-    &.-start,
-    &.-location {
-      width: 15%;
+			select {
+				appearance: none;
+				background: none;
+				border: none;
+				outline: none !important;
+				text-align: right;
+				padding: 0;
+				line-height: 1;
+				padding-right: 27px;
+				font-weight: 500;
+			}
 
-      @include config.media('>laptop') {
-        width: 12%;
-      }
-    }
+			svg.fau-icon {
+				width: 1rem;
+				height: 1rem;
+				fill: config.color("button", "bg");
+				position: absolute;
+				right: 0;
+				z-index: -1;
+			}
+		}
+	}
 
-    &.-degree {
-      width: 18%;
-    }
+	&__header-item {
+		background: none !important;
+		color: inherit !important;
+		display: table-cell !important;
+		text-align: left !important;
+		vertical-align: middle;
+		padding: 12px 15px !important;
+		font-weight: 500 !important;
+		margin: 0 !important;
 
-    &.-admission-requirement {
-      width: 20%;
-    }
-  }
+		&.-thumbnail {
+			white-space: nowrap;
+			width: 80px;
+		}
 
-  &__sort-icon {
-    width: 36px;
-    height: 36px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    vertical-align: middle;
-    box-shadow: none !important;
-    text-decoration: none !important;
+		&.-start,
+		&.-location {
+			width: 15%;
 
-    .fau-icon {
-      width: 20px;
-      height: 20px;
-      box-shadow: none !important;
-      padding: 0 !important;
-    }
+			@include config.media(">laptop") {
+				width: 12%;
+			}
+		}
 
-    &:hover {
-      color: config.color('button', 'bg') !important;
-    }
+		&.-degree {
+			width: 18%;
+		}
 
-    &:not(:hover) {
-      &:active,
-      &:focus {
-        color: currentcolor !important;
-      }
-    }
-  }
+		&.-admission-requirement {
+			width: 20%;
+		}
+	}
+
+	&__sort-icon {
+		width: 36px;
+		height: 36px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		vertical-align: middle;
+		box-shadow: none !important;
+		text-decoration: none !important;
+
+		.fau-icon {
+			width: 20px;
+			height: 20px;
+			box-shadow: none !important;
+			padding: 0 !important;
+		}
+
+		&:hover {
+			color: config.color("button", "bg") !important;
+		}
+
+		&:not(:hover) {
+
+			&:active,
+			&:focus {
+				color: currentcolor !important;
+			}
+		}
+	}
 }

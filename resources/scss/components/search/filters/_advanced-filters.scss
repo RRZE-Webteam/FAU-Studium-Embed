@@ -1,74 +1,78 @@
-@use '../../../abstracts/config';
+@use "../../../abstracts/config";
 
 .c-advanced-filters {
-  padding: 0 15px 20px;
+	padding: 0 15px 20px;
 
-  @include config.media('>tablet') {
-    padding: 21px 18px;
-    columns: 200px;
-  }
+	@include config.media(">tablet") {
+		padding: 21px 18px;
+		columns: 200px;
+	}
 
-  .c-advanced-filter-item {
-    &__heading {
-      padding: 0;
+	.c-advanced-filter-item {
 
-      .c-accordion-item {
-        &__icon {
-          fill: config.color('button', 'bg');
-          width: 1rem;
-          height: 1rem;
-          margin-left: 11px;
-        }
+		&__heading {
+			padding: 0;
 
-        &__button {
-          background: none;
-          border: none;
-          outline: none;
-          color: config.color('primary', 'dunkler');
-          display: block;
-          width: 100%;
-          text-align: left;
-          padding: 5px 0;
-          font-weight: 500;
+			.c-accordion-item {
 
-          &[aria-expanded='true'] .c-accordion-item__icon {
-            transform: scaleY(-1);
-          }
+				&__icon {
+					fill: config.color("button", "bg");
+					width: 1rem;
+					height: 1rem;
+					margin-left: 11px;
+				}
 
-          @include config.media('>tablet') {
-            color: config.color('primary', 'ci-hell2-kontrast');
-            padding: 0;
-            margin-bottom: 20px;
-          }
-        }
-      }
-    }
+				&__button {
+					background: none;
+					border: none;
+					outline: none;
+					color: config.color("primary", "dunkler");
+					display: block;
+					width: 100%;
+					text-align: left;
+					padding: 5px 0;
+					font-weight: 500;
 
-    @include config.media('>tablet') {
-      &__heading {
-        pointer-events: none;
+					&[aria-expanded="true"] .c-accordion-item__icon {
+						transform: scaleY(-1);
+					}
 
-        .c-accordion-item__icon {
-          display: none;
-        }
-      }
+					@include config.media(">tablet") {
+						color: config.color("primary", "ci-hell2-kontrast");
+						padding: 0;
+						margin-bottom: 20px;
+					}
+				}
+			}
+		}
 
-      .c-accordion-item__content {
-        display: block !important;
-      }
-    }
+		@include config.media(">tablet") {
 
-    @include config.media('>tablet') {
-      page-break-inside: avoid;
-      break-inside: avoid;
-    }
+			&__heading {
+				pointer-events: none;
 
-    .c-filter-choices__item {
-      margin-bottom: 15px;
+				.c-accordion-item__icon {
+					display: none;
+				}
+			}
 
-      .c-filter-checkbox {
-        @include config.text-size('sm');
-      }
-    }
-  }
+			.c-accordion-item__content {
+				display: block !important;
+			}
+		}
+
+		@include config.media(">tablet") {
+			page-break-inside: avoid;
+			break-inside: avoid;
+		}
+
+		.c-filter-choices__item {
+			margin-bottom: 15px;
+
+			.c-filter-checkbox {
+
+				@include config.text-size("sm");
+			}
+		}
+	}
 }

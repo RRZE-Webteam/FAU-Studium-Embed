@@ -1,40 +1,40 @@
-@use '../abstracts/config';
+@use "../abstracts/config";
 
 .c-details {
-  margin: 0;
-  background-color: config.color('ContentRegions');
-  padding: 10px;
+	margin: 0;
+	background-color: config.color("ContentRegions");
+	padding: 10px;
 
-  @include config.media('>tablet') {
-    border-radius: config.borderRadius();
-  }
+	@include config.media(">tablet") {
+		border-radius: config.border-radius();
+	}
 
-  dt,
-  dd {
-    margin: 0;
-    display: inline;
-  }
+	dt,
+	dd {
+		margin: 0;
+		display: inline;
+	}
 
-  dt {
-    font-weight: bold;
+	dt {
+		font-weight: 700;
 
-    &::after {
-      display: inline;
-      content: ':';
-    }
-  }
+		&::after {
+			display: inline;
+			content: ":";
+		}
+	}
 
-  .c-detail {
-    margin-bottom: 5px;
-    padding-left: 24px;
-    position: relative;
-    break-inside: avoid;
+	.c-detail {
+		margin-bottom: 5px;
+		padding-left: 24px;
+		position: relative;
+		break-inside: avoid;
 
-    .fau-icon {
-      fill: config.color('branding', 'primary');
-      position: absolute;
-      left: 0;
-      top: 5px;
-    }
-  }
+		.fau-icon {
+			fill: config.color("branding", "primary");
+			position: absolute;
+			left: 0;
+			top: 5px;
+		}
+	}
 }

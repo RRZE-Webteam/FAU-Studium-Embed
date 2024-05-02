@@ -1,103 +1,108 @@
-@use '../../abstracts/config';
+@use "../../abstracts/config";
 
 &__accordion {
-  margin-top: 30px;
-  margin-bottom: 30px;
+	margin-top: 30px;
+	margin-bottom: 30px;
 }
 
 .c-accordion {
-  @extend %container-mobile-full-width;
 
-  list-style-type: none;
+	@extend %container-mobile-full-width;
+
+	list-style-type: none;
 }
 
 .c-accordion-item {
-  border-top: solid 1px config.color('content', 'borders');
-  padding: 0;
-  list-style-type: none;
+	border-top: solid 1px config.color("content", "borders");
+	padding: 0;
+	list-style-type: none;
 
-  &:last-child {
-    border-bottom: solid 1px config.color('content', 'borders');
-  }
+	&:last-child {
+		border-bottom: solid 1px config.color("content", "borders");
+	}
 
-  &__header {
-    margin: 0;
-  }
+	&__header {
+		margin: 0;
+	}
 
-  &__icon {
-    width: 24px !important;
-    height: 14px !important;
-    fill: config.color('primary', 'dunkler') !important;
-    transition: transform 0.5s;
+	&__icon {
+		width: 24px !important;
+		height: 14px !important;
+		fill: config.color("primary", "dunkler") !important;
+		transition: transform 0.5s;
 
-    @include config.media('print') {
-      display: none !important;
-    }
-  }
+		@include config.media("print") {
+			display: none !important;
+		}
+	}
 
-  &__button {
-    @extend %container-paddings;
+	&__button {
 
-    min-height: 80px;
-    padding: 15px 0;
-    margin: 0;
-    background: none;
-    border: none;
-    color: config.color('content', 'headlines');
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    width: 100%;
-    cursor: pointer;
+		@extend %container-paddings;
 
-    &[aria-expanded="true"] .c-accordion-item__icon {
-      transform: rotate(180deg);
-    }
+		min-height: 80px;
+		padding: 15px 0;
+		margin: 0;
+		background: none;
+		border: none;
+		color: config.color("content", "headlines");
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 10px;
+		width: 100%;
+		cursor: pointer;
 
-    &:hover,
-    &:focus {
-      background-color: config.color('ContentRegions');
-    }
-  }
+		&[aria-expanded="true"] .c-accordion-item__icon {
+			transform: rotate(180deg);
+		}
 
-  &__title {
-    @include config.text-size('xl');
+		&:hover,
+		&:focus {
+			background-color: config.color("ContentRegions");
+		}
+	}
 
-    text-align: left;
-    flex: 1;
-    font-weight: 500;
+	&__title {
 
-    @include config.container-gt('tablet', 'single-degree-program') {
-      @include config.text-size('2xl');
-    }
-  }
+		@include config.text-size("xl");
 
-  &__content {
-    @extend %container-paddings;
+		text-align: left;
+		flex: 1;
+		font-weight: 500;
 
-    transition: height 0.5s, padding-top 0.5s;
-    overflow: hidden;
-    height: calc(var(--content-height) + 30px);
+		@include config.container-gt("tablet", "single-degree-program") {
 
-    @include config.container-gt('tablet', 'single-degree-program') {
-      padding-top: 15px;
-      height: calc(var(--content-height) + 30px + 15px);
-    }
+			@include config.text-size("2xl");
+		}
+	}
 
-    @include config.container-gt('laptop', 'single-degree-program') {
-      padding-top: 25px;
-      height: calc(var(--content-height) + 30px + 25px);
-    }
+	&__content {
 
-    &[hidden] {
-      display: block;
-      height: 0;
-      padding-top: 0;
+		@extend %container-paddings;
 
-      @include config.media('print') {
-        height: inherit;
-      }
-    }
-  }
+		transition: height 0.5s, padding-top 0.5s;
+		overflow: hidden;
+		height: calc(var(--content-height) + 30px);
+
+		@include config.container-gt("tablet", "single-degree-program") {
+			padding-top: 15px;
+			height: calc(var(--content-height) + 30px + 15px);
+		}
+
+		@include config.container-gt("laptop", "single-degree-program") {
+			padding-top: 25px;
+			height: calc(var(--content-height) + 30px + 25px);
+		}
+
+		&[hidden] {
+			display: block;
+			height: 0;
+			padding-top: 0;
+
+			@include config.media("print") {
+				height: inherit;
+			}
+		}
+	}
 }

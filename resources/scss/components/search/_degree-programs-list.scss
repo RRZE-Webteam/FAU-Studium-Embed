@@ -1,216 +1,222 @@
-@use '../../abstracts/config';
-@use '../../abstracts/media';
+@use "../../abstracts/config";
+@use "../../abstracts/media";
 
 .c-degree-programs-list {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 
-  li {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
+	li {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
 
-  &__header {
-    background-color: config.color('grey', 'light');
-    padding: 16px !important;
-    margin-bottom: 15px !important;
-    display: flex;
+	&__header {
+		background-color: config.color("grey", "light");
+		padding: 16px !important;
+		margin-bottom: 15px !important;
+		display: flex;
 
-    .c-sort-selector {
-      margin-left: auto;
-    }
+		.c-sort-selector {
+			margin-left: auto;
+		}
 
-    @include config.media('>tablet-lg') {
-      display: none;
-    }
-  }
+		@include config.media(">tablet-lg") {
+			display: none;
+		}
+	}
 }
 
 .c-degree-programs-list-item {
-  display: flex;
-  flex-wrap: wrap;
-  position: relative;
-  font-weight: 300;
-  padding: 0 10px !important;
-  @include config.text-size('base');
+	display: flex;
+	flex-wrap: wrap;
+	position: relative;
+	font-weight: 300;
+	padding: 0 10px !important;
 
-  &:not(:last-child) {
-    border-bottom: 1px solid #dfe6ec;
-    padding-bottom: 15px;
-    margin-bottom: 15px;
-  }
+	@include config.text-size("base");
 
-  &__link {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 20;
-    text-decoration: none !important;
-    box-shadow: none !important;
-  }
+	&:not(:last-child) {
+		border-bottom: 1px solid #dfe6ec;
+		padding-bottom: 15px;
+		margin-bottom: 15px;
+	}
 
-  &__teaser-image {
-    margin-bottom: 15px;
-    width: 55px;
+	&__link {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 20;
+		text-decoration: none !important;
+		box-shadow: none !important;
+	}
 
-    img {
-      height: 55px;
-      object-fit: cover;
-    }
+	&__teaser-image {
+		margin-bottom: 15px;
+		width: 55px;
 
-    @include config.media('>tablet') {
-      grid-column: 1;
-      grid-row: 1 / span 999;
-      width: 178px;
-      margin-bottom: 0;
+		img {
+			height: 55px;
+			object-fit: cover;
+		}
 
-      img {
-        height: 178px;
-      }
-    }
+		@include config.media(">tablet") {
+			grid-column: 1;
+			grid-row: 1 / span 999;
+			width: 178px;
+			margin-bottom: 0;
 
-    @include config.media('>tablet-lg') {
-      width: 80px;
-      border-bottom: 1px solid #dfe6ec;
+			img {
+				height: 178px;
+			}
+		}
 
-      img {
-        height: 80px;
-      }
-    }
-  }
+		@include config.media(">tablet-lg") {
+			width: 80px;
+			border-bottom: 1px solid #dfe6ec;
 
-  &__title {
-    flex: 1;
-    min-width: 0;
-    margin-left: 10px;
-    color: config.color('primary', 'basis');
-    font-weight: 500;
-    @include config.text-size('lg');
+			img {
+				height: 80px;
+			}
+		}
+	}
 
-    @include config.media('>tablet') {
-      grid-column: 2;
-      margin: 0 0 20px;
-      @include config.text-size('xl');
-    }
+	&__title {
+		flex: 1;
+		min-width: 0;
+		margin-left: 10px;
+		color: config.color("primary", "basis");
+		font-weight: 500;
 
-    @include config.media('>tablet-lg') {
-      width: auto;
-      border-bottom: 1px solid #dfe6ec;
-      padding-left: 15px;
-      font-weight: 300;
-      @include config.text-size('base');
-    }
-  }
+		@include config.text-size("lg");
 
-  &__degree,
-  &__start,
-  &__location,
-  &__semester-fee {
-    width: 100%;
-    flex: 0 0 100%;
-    max-width: 100%;
+		@include config.media(">tablet") {
+			grid-column: 2;
+			margin: 0 0 20px;
 
-    &:not(:last-child) {
-      margin-bottom: 5px;
-    }
+			@include config.text-size("xl");
+		}
 
-    &[aria-label]::before {
-      content: attr(aria-label) ': ';
-      font-weight: 700;
-    }
+		@include config.media(">tablet-lg") {
+			width: auto;
+			border-bottom: 1px solid #dfe6ec;
+			padding-left: 15px;
+			font-weight: 300;
 
-    @include config.media('>tablet') {
-      grid-column: 2;
-      margin-bottom: 0;
-    }
+			@include config.text-size("base");
+		}
+	}
 
-    @include config.media('>tablet-lg') {
-      width: auto;
-      border-bottom: 1px solid #dfe6ec;
-    }
-  }
+	&__degree,
+	&__start,
+	&__location,
+	&__semester-fee {
+		width: 100%;
+		flex: 0 0 100%;
+		max-width: 100%;
 
-  @include config.media('>tablet') {
-    display: grid;
-    grid-template-columns: 178px 1fr;
-    gap: 0 20px;
-    padding: 0 !important;
+		&:not(:last-child) {
+			margin-bottom: 5px;
+		}
 
-    &:not(:last-child) {
-      padding-bottom: 0;
-      margin-bottom: 10px;
-    }
-  }
+		&[aria-label]::before {
+			content: attr(aria-label) ": ";
+			font-weight: 700;
+		}
+
+		@include config.media(">tablet") {
+			grid-column: 2;
+			margin-bottom: 0;
+		}
+
+		@include config.media(">tablet-lg") {
+			width: auto;
+			border-bottom: 1px solid #dfe6ec;
+		}
+	}
+
+	@include config.media(">tablet") {
+		display: grid;
+		grid-template-columns: 178px 1fr;
+		gap: 0 20px;
+		padding: 0 !important;
+
+		&:not(:last-child) {
+			padding-bottom: 0;
+			margin-bottom: 10px;
+		}
+	}
 }
 
 .c-degree-programs-list-table {
-  width: 100%;
-  display: table;
-  border-spacing: 0 10px;
+	width: 100%;
+	display: table;
+	border-spacing: 0 10px;
 
-  &__column {
-    @include config.media('>tablet-lg') {
-      display: table-cell;
-      vertical-align: middle;
+	&__column {
 
-      &[aria-label]::before {
-        content: none !important;
-      }
-    }
+		@include config.media(">tablet-lg") {
+			display: table-cell;
+			vertical-align: middle;
 
-    &.c-degree-programs-list-item__title {
-      max-width: 400px;
-      padding-right: 15px;
-    }
-  }
+			&[aria-label]::before {
+				content: none !important;
+			}
+		}
 
-  &__row {
-    &--header {
-      display: none;
+		&.c-degree-programs-list-item__title {
+			max-width: 400px;
+			padding-right: 15px;
+		}
+	}
 
-      .c-degree-programs-list-table__column {
-        padding: 10px 0;
+	&__row {
 
-        &.-thumbnail {
-          white-space: nowrap;
-          padding-left: 14px;
-          max-width: 80px;
-        }
-      }
-    }
+		&--header {
+			display: none;
 
-    @include config.media('>tablet-lg') {
-      display: table-row;
+			.c-degree-programs-list-table__column {
+				padding: 10px 0;
 
-      &:not(.c-degree-programs-list-table__row--header):hover {
-        background-color: config.color('primary', 'basis');
-        color: #fff;
+				&.-thumbnail {
+					white-space: nowrap;
+					padding-left: 14px;
+					max-width: 80px;
+				}
+			}
+		}
 
-        .c-degree-programs-list-item__title {
-          color: #fff;
-        }
-      }
-    }
-  }
+		@include config.media(">tablet-lg") {
+			display: table-row;
 
-  &__sort-link {
-    width: 36px;
-    height: 36px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    vertical-align: middle;
-    box-shadow: none !important;
-    text-decoration: none !important;
+			&:not(.c-degree-programs-list-table__row--header):hover {
+				background-color: config.color("primary", "basis");
+				color: #fff;
 
-    .fau-icon {
-      width: 20px;
-      height: 20px;
-      box-shadow: none !important;
-      padding: 0 !important;
-    }
-  }
+				.c-degree-programs-list-item__title {
+					color: #fff;
+				}
+			}
+		}
+	}
+
+	&__sort-link {
+		width: 36px;
+		height: 36px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		vertical-align: middle;
+		box-shadow: none !important;
+		text-decoration: none !important;
+
+		.fau-icon {
+			width: 20px;
+			height: 20px;
+			box-shadow: none !important;
+			padding: 0 !important;
+		}
+	}
 }

@@ -1,90 +1,96 @@
-@use '../../abstracts/config';
-@use '../../base/base';
+@use "../../abstracts/config";
+@use "../../base/base";
 
 .l-application-links {
-  margin-top: 30px;
+	margin-top: 30px;
 
-  .c-link {
-    margin: 0 auto;
+	.c-link {
+		margin: 0 auto;
 
-    & + .c-link {
-      margin-top: 10px;
-    }
-  }
+		+ .c-link {
+			margin-top: 10px;
+		}
+	}
 }
 
 .c-details {
-  padding: 20px 15px;
+	padding: 20px 15px;
 
-  @include config.container-gt('laptop', 'single-degree-program') {
-    padding: 30px;
-  }
+	@include config.container-gt("laptop", "single-degree-program") {
+		padding: 30px;
+	}
 }
 
 .l-details-wrapper {
-  margin-top: 30px;
-  margin-bottom: 30px;
+	margin-top: 30px;
+	margin-bottom: 30px;
 }
 
 .l-details-wrapper.l-details-wrapper--has-details:not(.l-details-wrapper--has-application-links) {
-  .l-details {
-    @extend %container-mobile-full-width;
-  }
 
-  .c-details {
-    @include config.container-gt('tablet', 'single-degree-program') {
-      columns: 30px 2;
-    }
+	.l-details {
 
-    @include config.container-gt('laptop', 'single-degree-program') {
-      column-count: 3;
-    }
-  }
+		@extend %container-mobile-full-width;
+	}
+
+	.c-details {
+
+		@include config.container-gt("tablet", "single-degree-program") {
+			columns: 30px 2;
+		}
+
+		@include config.container-gt("laptop", "single-degree-program") {
+			column-count: 3;
+		}
+	}
 }
 
 .l-details-wrapper.l-details-wrapper--has-application-links:not(.l-details-wrapper--has-details) {
-  .l-application-links {
-    @extend %container;
-  }
+
+	.l-application-links {
+
+		@extend %container;
+	}
 }
 
 .l-details-wrapper.l-details-wrapper--has-details.l-details-wrapper--has-application-links {
-  display: grid;
-  grid-template-areas:
-    'details'
-    'application-links';
-  gap: 0 25px;
-  @extend %container-mobile-full-width;
+	display: grid;
+	grid-template-areas:
+		"details"
+		"application-links";
+	gap: 0 25px;
 
-  @include config.container-gt('tablet', 'single-degree-program') {
-    grid-template-areas:
-     'details application-links';
-    grid-template-columns: 1fr 1fr;
-  }
+	@extend %container-mobile-full-width;
 
-  @include config.container-gt('laptop', 'single-degree-program') {
-    grid-column-gap: 40px;
-    grid-template-columns: 2fr 1fr;
-  }
+	@include config.container-gt("tablet", "single-degree-program") {
+		grid-template-areas: "details application-links";
+		grid-template-columns: 1fr 1fr;
+	}
 
-  .l-details {
-    grid-area: details;
-  }
+	@include config.container-gt("laptop", "single-degree-program") {
+		grid-column-gap: 40px;
+		grid-template-columns: 2fr 1fr;
+	}
 
-  .c-details {
-    @include config.container-gt('laptop', 'single-degree-program') {
-        columns: 40px 2;
-    }
-  }
+	.l-details {
+		grid-area: details;
+	}
 
-  .l-application-links {
-    grid-area: application-links;
+	.c-details {
 
-    @extend %container-paddings;
+		@include config.container-gt("laptop", "single-degree-program") {
+			columns: 40px 2;
+		}
+	}
 
-    @include config.container-gt('tablet', 'single-degree-program') {
-      padding: 0;
-      margin: 0;
-    }
-  }
+	.l-application-links {
+		grid-area: application-links;
+
+		@extend %container-paddings;
+
+		@include config.container-gt("tablet", "single-degree-program") {
+			padding: 0;
+			margin: 0;
+		}
+	}
 }

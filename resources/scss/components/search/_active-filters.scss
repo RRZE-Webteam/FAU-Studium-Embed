@@ -1,58 +1,59 @@
-@use '../../abstracts/config';
+@use "../../abstracts/config";
 
 .c-degree-programs-search-filters-active-filters {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
 
-  &__list {
-    padding: 0;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    column-gap: 10px;
+	&__list {
+		padding: 0;
+		margin: 0;
+		display: flex;
+		align-items: center;
+		column-gap: 10px;
 
-    li {
-      padding: 0;
-      margin: 0;
-      list-style: none;
-    }
-  }
+		li {
+			padding: 0;
+			margin: 0;
+			list-style: none;
+		}
+	}
 
-  &__item {
-    background-color: config.color('button', 'bg');
-    color: #fff !important;
-    padding: 4px 10px;
-    border-radius: 16px;
-    display: inline-flex;
-    align-items: center;
-    box-shadow: none !important;
-    text-decoration: none !important;
-    @include config.text-size('sm');
+	&__item {
+		background-color: config.color("button", "bg");
+		color: #fff !important;
+		padding: 4px 10px;
+		border-radius: 16px;
+		display: inline-flex;
+		align-items: center;
+		box-shadow: none !important;
+		text-decoration: none !important;
 
-    .fau-icon {
-      fill: #fff;
-      width: 12px;
-      height: 12px;
-      margin-right: 8px;
-      box-shadow: none !important;
-    }
-  }
+		@include config.text-size("sm");
 
-  &__clear-all-button {
-    color: config.color('button', 'bg');
-    box-shadow: none !important;
-    text-decoration: none !important;
-    display: inline-flex;
-    align-items: center;
+		.fau-icon {
+			fill: #fff;
+			width: 12px;
+			height: 12px;
+			margin-right: 8px;
+			box-shadow: none !important;
+		}
+	}
 
-    &:hover {
-      color: config.color('button', 'bg') !important;
-    }
+	&__clear-all-button {
+		color: config.color("button", "bg");
+		box-shadow: none !important;
+		text-decoration: none !important;
+		display: inline-flex;
+		align-items: center;
 
-    .fau-icon {
-      box-shadow: none !important;
-      margin-right: 8px;
-    }
-  }
+		&:hover {
+			color: config.color("button", "bg") !important;
+		}
+
+		.fau-icon {
+			box-shadow: none !important;
+			margin-right: 8px;
+		}
+	}
 }

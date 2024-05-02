@@ -1,46 +1,46 @@
-@use '../../../abstracts/config';
+@use "../../../abstracts/config";
 
 .c-filter-checkbox {
-  cursor: pointer;
-  display: flex;
-  align-items: flex-start;
-  position: relative;
-  z-index: 0;
+	cursor: pointer;
+	display: flex;
+	align-items: flex-start;
+	position: relative;
+	z-index: 0;
 
-  &__label {
-    user-select: none;
-    flex: 1;
-    min-width: 0;
-    @include config.text-size('sm');
-  }
+	&__label {
+		user-select: none;
+		flex: 1;
+		min-width: 0;
 
-  input[type='checkbox'],
-  input[type='radio'] {
-    width: 15px;
-    height: 15px;
-    background: #fff;
-    border: solid 1px #{config.color('content', 'borders')};
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 8px;
-    background-image: url("data:image/svg+xml,%3Csvg width='13' height='13' viewBox='0 0 11 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10.7698 0.269447C11.0767 0.62871 11.0767 1.21215 10.7698 1.57141L4.48482 8.92911C4.17794 9.28838 3.67956 9.28838 3.37267 8.92911L0.230164 5.25026C-0.0767213 4.891 -0.0767213 4.30756 0.230164 3.9483C0.537049 3.58903 1.03543 3.58903 1.34232 3.9483L3.92997 6.97473L9.66014 0.269447C9.96702 -0.0898157 10.4654 -0.0898157 10.7723 0.269447H10.7698Z' /%3E%3C/svg%3E%0A");
-    mask-image: config.color('button', 'bg');
-    appearance: none;
+		@include config.text-size("sm");
+	}
 
-    &:focus {
-      outline-offset: 1px;
-      outline: 5px auto Highlight;
-      outline: 5px auto -webkit-focus-ring-color;
-    }
+	input[type="checkbox"],
+	input[type="radio"] {
+		width: 15px;
+		height: 15px;
+		border: solid 1px #{config.color("content", "borders")};
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		margin-right: 8px;
+		// stylelint-disable-next-line function-url-quotes
+		background: #fff url("data:image/svg+xml,%3Csvg width='13' height='13' viewBox='0 0 11 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10.7698 0.269447C11.0767 0.62871 11.0767 1.21215 10.7698 1.57141L4.48482 8.92911C4.17794 9.28838 3.67956 9.28838 3.37267 8.92911L0.230164 5.25026C-0.0767213 4.891 -0.0767213 4.30756 0.230164 3.9483C0.537049 3.58903 1.03543 3.58903 1.34232 3.9483L3.92997 6.97473L9.66014 0.269447C9.96702 -0.0898157 10.4654 -0.0898157 10.7723 0.269447H10.7698Z' /%3E%3C/svg%3E%0A");
+		appearance: none;
 
-    &:not(:checked) {
-      background-size: 0 0;
-    }
+		&:focus {
+			outline-offset: 1px;
+			outline: 5px auto Highlight;
+			outline: 5px auto -webkit-focus-ring-color;
+		}
 
-    &:disabled {
-      opacity: 0.3;
-      cursor: not-allowed;
-    }
-  }
+		&:not(:checked) {
+			background-size: 0 0;
+		}
+
+		&:disabled {
+			opacity: 0.3;
+			cursor: not-allowed;
+		}
+	}
 }
