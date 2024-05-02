@@ -1,0 +1,26 @@
+name: Build to release branches
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ['*']
+    branches:
+      - dev-beta
+      - dev-main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build-assets:
+    uses: inpsyde/reusable-workflows/.github/workflows/build-and-push-assets.yml@main
+    with:
+      PHP_VERSION: '8.1'
+      PHP_TOOLS: composer:v2
+      BUILT_BRANCH_NAME: "${{ (github.ref_name == 'dev-main' && 'main' || (github.ref_name == 'dev-beta' && 'beta') || '') }}"
+      MODE: "${{ github.ref_name == 'dev-beta' && 'dev' || 'prod'  }}"
+      ASSETS_TARGET_PATHS: './assets ./vendor'
+    secrets:
+      GITHUB_USER_EMAIL: ${{ secrets.DEPLOYBOT_EMAIL }}
+      GITHUB_USER_NAME: ${{ secrets.DEPLOYBOT_USER }}
