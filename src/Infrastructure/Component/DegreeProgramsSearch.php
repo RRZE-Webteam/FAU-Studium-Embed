@@ -16,6 +16,7 @@ use Fau\DegreeProgram\Output\Application\Filter\FilterView;
 use Fau\DegreeProgram\Output\Infrastructure\Filter\FilterViewFactory;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\CurrentRequest;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\LocaleHelper;
+use Fau\DegreeProgram\Output\Infrastructure\Template\HiddenDegreeProgramElements;
 
 /**
  * @psalm-import-type LanguageCodes from MultilingualString
@@ -25,6 +26,7 @@ use Fau\DegreeProgram\Output\Infrastructure\Rewrite\LocaleHelper;
  *     pre_applied_filters: array<string, array<int>>,
  *     visible_filters: array<string>,
  *     output: OutputType,
+ *     hidden_elements: array<string>,
  * }
  *
  * `filters` keys are filterable taxonomy REST API bases,
@@ -46,6 +48,7 @@ final class DegreeProgramsSearch implements RenderableComponent
         'output' => 'tiles',
         'visible_filters' => [],
         'pre_applied_filters' => [],
+        'hidden_elements' => [],
     ];
 
     public const OUTPUT_TILES = 'tiles';
@@ -57,6 +60,7 @@ final class DegreeProgramsSearch implements RenderableComponent
         private CurrentRequest $currentRequest,
         private FilterViewFactory $filterViewFactory,
         private FilterFactory $filterFactory,
+        private HiddenDegreeProgramElements $excludeDegreeProgramElements,
     ) {
     }
 
@@ -91,6 +95,9 @@ final class DegreeProgramsSearch implements RenderableComponent
                 'activeFilters' => array_filter(
                     $filterViews,
                     static fn(FilterView $filterView) => !empty($filterView->value()),
+                ),
+                'hiddenElements' => $this->excludeDegreeProgramElements->hideElements(
+                    $attributes['hidden_elements']
                 ),
             ],
         );
