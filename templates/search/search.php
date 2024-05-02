@@ -21,7 +21,7 @@ use function Fau\DegreeProgram\Output\renderComponent;
  *     output: 'list' | 'tiles',
  *     activeFilters: array<FilterView>,
  *     advancedFilters: array<FilterView>,
- *     excludedElements: HiddenDegreeProgramElements,
+ *     hiddenElements: HiddenDegreeProgramElements,
  * } $data
  * @var array $data
  */
@@ -32,13 +32,13 @@ use function Fau\DegreeProgram\Output\renderComponent;
     'output' => $output,
     'activeFilters' => $activeFilters,
     'advancedFilters' => $advancedFilters,
-    'excludedElements' => $excludedElements,
+    'hiddenElements' => $hiddenElements,
 ] = $data;
 
 ?>
 
 <section class="c-degree-programs-search" lang="<?= esc_attr(get_bloginfo('language')) ?>">
-    <?php if ($excludedElements->isTitleAllowed()) : ?>
+    <?php if ($hiddenElements->isTitleVisible()) : ?>
         <h1 class="c-degree-programs-search__title">
             <?= esc_html_x(
                 'Degree programs',
@@ -48,7 +48,7 @@ use function Fau\DegreeProgram\Output\renderComponent;
         </h1>
     <?php endif ?>
     <?php if ($collection instanceof PaginationAwareCollection) : ?>
-        <?php if ($excludedElements->isSearchFormAllowed()) : ?>
+        <?php if ($hiddenElements->isSearchFormVisible()) : ?>
             <form
                 action="<?= esc_url((string) get_permalink((int) get_the_id())) ?>"
                 method="get"

@@ -8,26 +8,26 @@ final class HiddenDegreeProgramElements
 {
     private const SEARCH_FORM_ELEMENT = 'search';
     private const TITLE_ELEMENT = 'heading';
-    private array $excludedElements = [];
+    private array $hiddenElements = [];
 
-    public function excludeElements(array $excludedElements): HiddenDegreeProgramElements
+    public function hideElements(array $hiddenElements): HiddenDegreeProgramElements
     {
-        $this->excludedElements = $this->sanitizeExcludedElements($excludedElements);
+        $this->hiddenElements = $this->sanitizeHiddenElements($hiddenElements);
 
         return $this;
     }
 
-    public function isSearchFormAllowed(): bool
+    public function isSearchFormVisible(): bool
     {
-        return !in_array(self::SEARCH_FORM_ELEMENT, $this->excludedElements, true);
+        return !in_array(self::SEARCH_FORM_ELEMENT, $this->hiddenElements, true);
     }
 
-    public function isTitleAllowed(): bool
+    public function isTitleVisible(): bool
     {
-        return !in_array(self::TITLE_ELEMENT, $this->excludedElements, true);
+        return !in_array(self::TITLE_ELEMENT, $this->hiddenElements, true);
     }
 
-    public function allowedElementsToBeExcluded(): array
+    public function allowedElementsToBeHidden(): array
     {
         return [
             self::SEARCH_FORM_ELEMENT,
@@ -35,14 +35,14 @@ final class HiddenDegreeProgramElements
         ];
     }
 
-    private function sanitizeExcludedElements(array $excludedElements): array
+    private function sanitizeHiddenElements(array $hiddenElements): array
     {
-        $allowedElements = $this->allowedElementsToBeExcluded();
+        $allowedElements = $this->allowedElementsToBeHidden();
 
         return array_filter(
-            $excludedElements,
-            static fn (string $excludedElement): bool => in_array(
-                $excludedElement,
+            $hiddenElements,
+            static fn (string $hiddenElement): bool => in_array(
+                $hiddenElement,
                 $allowedElements,
                 true
             )

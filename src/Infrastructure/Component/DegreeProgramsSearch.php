@@ -26,7 +26,7 @@ use Fau\DegreeProgram\Output\Infrastructure\Template\HiddenDegreeProgramElements
  *     pre_applied_filters: array<string, array<int>>,
  *     visible_filters: array<string>,
  *     output: OutputType,
- *     excluded_elements: array<string>,
+ *     hidden_elements: array<string>,
  * }
  *
  * `filters` keys are filterable taxonomy REST API bases,
@@ -48,19 +48,19 @@ final class DegreeProgramsSearch implements RenderableComponent
         'output' => 'tiles',
         'visible_filters' => [],
         'pre_applied_filters' => [],
-        'excluded_elements' => [],
+        'hidden_elements' => [],
     ];
 
     public const OUTPUT_TILES = 'tiles';
     public const OUTPUT_LIST = 'list';
 
     public function __construct(
-        private Renderer                          $renderer,
+        private Renderer $renderer,
         private DegreeProgramCollectionRepository $degreeProgramViewRepository,
-        private CurrentRequest                    $currentRequest,
-        private FilterViewFactory                 $filterViewFactory,
-        private FilterFactory                     $filterFactory,
-        private HiddenDegreeProgramElements       $excludeDegreeProgramElements,
+        private CurrentRequest $currentRequest,
+        private FilterViewFactory $filterViewFactory,
+        private FilterFactory $filterFactory,
+        private HiddenDegreeProgramElements $excludeDegreeProgramElements,
     ) {
     }
 
@@ -96,8 +96,8 @@ final class DegreeProgramsSearch implements RenderableComponent
                     $filterViews,
                     static fn(FilterView $filterView) => !empty($filterView->value()),
                 ),
-                'excludedElements' => $this->excludeDegreeProgramElements->excludeElements(
-                    $attributes['excluded_elements']
+                'hiddenElements' => $this->excludeDegreeProgramElements->hideElements(
+                    $attributes['hidden_elements']
                 ),
             ],
         );
