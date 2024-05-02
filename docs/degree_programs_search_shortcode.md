@@ -7,7 +7,7 @@ See below for a list of supported attributes.
 
 | Attribute       | Description                                                        | Required | Default | Valid options     |
 |-----------------|--------------------------------------------------------------------|----------|---------|-------------------|
-| `display`       | Entry point for degree programs search rendering.                  | yes      |         | `search`          |
+| `display`       | Entry point for degree programs search rendering                   | yes      |         | `search`          |
 | `lang`          | Language                                                           | no       | `de`    | `de` or `en`      |
 | `hide`          | Comma-separated names of elements that should be hidden            | no       |         | See list below    |
 | `output`        | Output mode                                                        | no       | `list`  | `list` or `tiles` |
@@ -34,7 +34,7 @@ See below for a list of supported attributes.
 | Element   | Description                                                  |
 |-----------|--------------------------------------------------------------|
 | `heading` | Hide the degree program overview title                       |
-| `search`  | Hide the search form including all fields                    |
+| `search`  | Hide the search form, including all fields                   |
 
 ## Usage
 
