@@ -10,6 +10,7 @@ use Fau\DegreeProgram\Output\Infrastructure\Component\Component;
 use Fau\DegreeProgram\Output\Infrastructure\Component\DegreeProgramsCollection;
 use Fau\DegreeProgram\Output\Infrastructure\Component\SearchFilters;
 use Fau\DegreeProgram\Output\Infrastructure\Component\SearchForm;
+use Fau\DegreeProgram\Output\Infrastructure\Template\ExcludeDegreeProgramElements;
 
 use function Fau\DegreeProgram\Output\renderComponent;
 
@@ -20,6 +21,7 @@ use function Fau\DegreeProgram\Output\renderComponent;
  *     output: 'list' | 'tiles',
  *     activeFilters: array<FilterView>,
  *     advancedFilters: array<FilterView>,
+ *     excludedElements: ExcludeDegreeProgramElements,
  * } $data
  * @var array $data
  */
@@ -30,44 +32,56 @@ use function Fau\DegreeProgram\Output\renderComponent;
     'output' => $output,
     'activeFilters' => $activeFilters,
     'advancedFilters' => $advancedFilters,
+    'excludedElements' => $excludedElements,
 ] = $data;
 
 ?>
 
 <section class="c-degree-programs-search" lang="<?= esc_attr(get_bloginfo('language')) ?>">
+    <?php if ($excludedElements->isTitleAllowed()) : ?>
+        <h1 class="c-degree-programs-search__title">
+            <?= esc_html_x(
+                'Degree programs',
+                'frontoffice: degree programs search form',
+                'fau-degree-program-output'
+            ) ?>
+        </h1>
+    <?php endif ?>
     <?php if ($collection instanceof PaginationAwareCollection) : ?>
-        <form
-            action="<?= esc_url((string) get_permalink((int) get_the_id())) ?>"
-            method="get"
-        >
-            <?= renderComponent(
-                new Component(
-                    SearchForm::class,
-                    []
-                )
-            ) ?>
+        <?php if ($excludedElements->isSearchFormAllowed()) : ?>
+            <form
+                action="<?= esc_url((string) get_permalink((int) get_the_id())) ?>"
+                method="get"
+            >
+                <?= renderComponent(
+                    new Component(
+                        SearchForm::class,
+                        []
+                    )
+                ) ?>
 
-            <?= renderComponent(
-                new Component(
-                    ActiveFilters::class,
-                    [
-                        'activeFilters' => $activeFilters,
-                    ],
-                ),
-            ) ?>
+                <?= renderComponent(
+                    new Component(
+                        ActiveFilters::class,
+                        [
+                            'activeFilters' => $activeFilters,
+                        ],
+                    ),
+                ) ?>
 
-            <?= renderComponent(
-                new Component(
-                    SearchFilters::class,
-                    [
-                        'filters' => $filters,
-                        'output' => $output,
-                        'activeFilters' => $activeFilters,
-                        'advancedFilters' => $advancedFilters,
-                    ]
-                )
-            ) ?>
-        </form>
+                <?= renderComponent(
+                    new Component(
+                        SearchFilters::class,
+                        [
+                            'filters' => $filters,
+                            'output' => $output,
+                            'activeFilters' => $activeFilters,
+                            'advancedFilters' => $advancedFilters,
+                        ]
+                    )
+                ) ?>
+            </form>
+        <?php endif ?>
 
         <?= renderComponent(
             new Component(

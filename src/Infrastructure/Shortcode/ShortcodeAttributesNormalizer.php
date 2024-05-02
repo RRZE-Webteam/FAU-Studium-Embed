@@ -103,6 +103,8 @@ final class ShortcodeAttributesNormalizer
 
         $attributes['visible_filters'] = $visibleFilters;
         $attributes['pre_applied_filters'] = $preAppliedFilters;
+        $attributes['excluded_elements'] = wp_parse_list((string) ($attributes['hide'] ?? ''));
+        unset($attributes['hide']);
 
         return $attributes;
     }
