@@ -9,7 +9,7 @@ See below for a list of supported attributes.
 |-----------------|--------------------------------------------------------------------|----------|---------|-------------------|
 | `display`       | Entry point for degree programs search rendering.                  | yes      |         | `search`          |
 | `lang`          | Language                                                           | no       | `de`    | `de` or `en`      |
-| `hide`          | Comma-separate names of elements that should be hidden             | no       |         | See list below    |
+| `hide`          | Comma-separated names of elements that should be hidden            | no       |         | See list below    |
 | `output`        | Output mode                                                        | no       | `list`  | `list` or `tiles` |
 | `filters`       | Comma-separated list of filters to be shown to visitors            | no       |         | See list below    |
 | `<filter-name>` | Pre-applied filters with comma-separated term names as their value | no       |         | See list below    |
@@ -29,7 +29,7 @@ See below for a list of supported attributes.
 | `subject-group`         | Subject group filter                                                    | Comma-separated term names                        |
 | `teaching-language`     | Teaching language filter                                                | Comma-separated term names                        |
 
-## List of elements that can be excluded from display
+## List of elements that can be hidden
 
 | Element   | Description                                                  |
 |-----------|--------------------------------------------------------------|
