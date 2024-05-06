@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Only the title, subtitle, and field "What is the degree program about?" are indexed for searching.
+
 ### Fixed
 
 - Degree program URL returns 404 for consuming websites.
