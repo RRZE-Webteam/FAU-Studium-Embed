@@ -83,8 +83,8 @@ final class ShortcodeAttributesNormalizer
         $preAppliedFilters = [];
 
         $visibleFilters = ['search'];
-        foreach ($listOfSupportedFilters as $filter) {
-            if (!in_array($filter, $availableFilters, true)) {
+        foreach ($availableFilters as $filter) {
+            if (!in_array($filter, $listOfSupportedFilters, true)) {
                 continue;
             }
 

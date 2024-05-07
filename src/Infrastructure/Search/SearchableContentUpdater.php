@@ -84,14 +84,6 @@ final class SearchableContentUpdater
             $rawView->title()->asString($languageCode),
             $rawView->subtitle()->asString($languageCode),
             $rawView->content()->about()->description()->asString($languageCode),
-            $rawView->content()->structure()->description()->asString($languageCode),
-            $rawView->content()->specializations()->description()->asString($languageCode),
-            $rawView->content()->qualitiesAndSkills()->description()->asString($languageCode),
-            $rawView->content()->whyShouldStudy()->description()->asString($languageCode),
-            $rawView->content()->careerProspects()->description()->asString($languageCode),
-            $rawView->content()->specialFeatures()->description()->asString($languageCode),
-            $rawView->content()->testimonials()->description()->asString($languageCode),
-            ...array_values($rawView->keywords()->asArrayOfStrings($languageCode)->getArrayCopy()),
         ];
 
         return implode(' ', $parts);
