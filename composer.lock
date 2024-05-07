@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5374eae43f7c8d3011bf2aa7592d7ca7",
+    "content-hash": "d38609ffddf282cdc7334ff140e2d30e",
     "packages": [
         {
             "name": "inpsyde/assets",
@@ -407,16 +407,16 @@
         },
         {
             "name": "rrze/fau-studium-common",
-            "version": "dev-main",
+            "version": "dev-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RRZE-Webteam/FAU-Studium-Common.git",
-                "reference": "2cef39901512f7b0c61ac8f319a6ff61039c60e0"
+                "reference": "aed0120df29663fc47c71fb5d6133f167b2c3fb9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RRZE-Webteam/FAU-Studium-Common/zipball/2cef39901512f7b0c61ac8f319a6ff61039c60e0",
-                "reference": "2cef39901512f7b0c61ac8f319a6ff61039c60e0",
+                "url": "https://api.github.com/repos/RRZE-Webteam/FAU-Studium-Common/zipball/aed0120df29663fc47c71fb5d6133f167b2c3fb9",
+                "reference": "aed0120df29663fc47c71fb5d6133f167b2c3fb9",
                 "shasum": ""
             },
             "require": {
@@ -480,10 +480,10 @@
             ],
             "description": "Shared kernel for FAU Degree Program and FAU Degree Program Output plugins.",
             "support": {
-                "source": "https://github.com/RRZE-Webteam/FAU-Studium-Common/tree/main",
+                "source": "https://github.com/RRZE-Webteam/FAU-Studium-Common/tree/dev",
                 "issues": "https://github.com/RRZE-Webteam/FAU-Studium-Common/issues"
             },
-            "time": "2024-04-29T08:12:47+00:00"
+            "time": "2024-05-07T08:32:41+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -4491,6 +4491,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "rrze/fau-studium-common": 20,
         "inpsyde/php-coding-standards": 0,
         "inpsyde/wp-stubs-versions": 20
     },
