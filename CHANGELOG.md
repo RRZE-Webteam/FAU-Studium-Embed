@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Enabled filter reordering based on the `filters` attribute.
+
 ### Fixed
 
 - Degree program URL returns 404 for consuming websites.
