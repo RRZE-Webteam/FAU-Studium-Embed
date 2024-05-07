@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Expand the admission requirements filter to include the "Admission free with restriction" option.
+- Support filter reordering based on the `filters` attribute in the search shortcode.
 
 ### Fixed
 
