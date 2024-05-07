@@ -208,7 +208,16 @@ final class FilterViewFactory
             new Option(
                 AdmissionRequirementTypeFilter::KEY,
                 _x(
-                    'Free',
+                    'Restricted (NC)',
+                    'backoffice: Filter label',
+                    'fau-degree-program-output',
+                ),
+                AdmissionRequirementTypeFilter::RESTRICTED,
+            ),
+            new Option(
+                AdmissionRequirementTypeFilter::KEY,
+                _x(
+                    'Admission free',
                     'backoffice: Filter label',
                     'fau-degree-program-output',
                 ),
@@ -217,11 +226,11 @@ final class FilterViewFactory
             new Option(
                 AdmissionRequirementTypeFilter::KEY,
                 _x(
-                    'Restricted',
+                    'Admission free with restriction',
                     'backoffice: Filter label',
                     'fau-degree-program-output',
                 ),
-                AdmissionRequirementTypeFilter::RESTRICTED,
+                AdmissionRequirementTypeFilter::FREE_WITH_RESTRICTION,
             ),
         ];
     }

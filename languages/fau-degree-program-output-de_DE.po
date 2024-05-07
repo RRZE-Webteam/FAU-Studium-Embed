@@ -1,10 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: FAU Degree Program Output 0.0.4\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/FAU-Studium-"
-"Embed\n"
-"POT-Creation-Date: 2024-05-02T11:02:10+00:00\n"
-"PO-Revision-Date: 2024-05-02 14:03+0300\n"
+"Report-Msgid-Bugs-To: https://github.com/RRZE-Webteam/FAU-Studium-Embed\n"
+"POT-Creation-Date: 2024-05-03T11:17:44+00:00\n"
+"PO-Revision-Date: 2024-05-03 14:20+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -403,13 +402,18 @@ msgstr "Zugangsvoraussetzung"
 
 #: src/Infrastructure/Filter/FilterViewFactory.php:210
 msgctxt "backoffice: Filter label"
-msgid "Free"
-msgstr "Frei"
+msgid "Restricted (NC)"
+msgstr "Eingeschränkt (NC)"
 
 #: src/Infrastructure/Filter/FilterViewFactory.php:219
 msgctxt "backoffice: Filter label"
-msgid "Restricted"
-msgstr "Eingeschränkt"
+msgid "Admission free"
+msgstr "Zulassungsfrei"
+
+#: src/Infrastructure/Filter/FilterViewFactory.php:228
+msgctxt "backoffice: Filter label"
+msgid "Admission free with restriction"
+msgstr "Zulassungsfrei mit Einschränkung"
 
 #: templates/degree-programs-search-form.php:27
 #: templates/search/degree-programs-search.php:33
@@ -770,3 +774,7 @@ msgstr "Studiengang"
 msgctxt "block keyword"
 msgid "study"
 msgstr "Studium"
+
+#~ msgctxt "backoffice: Filter label"
+#~ msgid "Free"
+#~ msgstr "Frei"
