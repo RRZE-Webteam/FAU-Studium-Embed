@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FAU Degree Program Output 0.0.4\n"
 "Report-Msgid-Bugs-To: https://github.com/RRZE-Webteam/FAU-Studium-Embed\n"
-"POT-Creation-Date: 2024-05-03T11:17:44+00:00\n"
-"PO-Revision-Date: 2024-05-03 14:21+0300\n"
+"POT-Creation-Date: 2024-05-08T12:29:17+00:00\n"
+"PO-Revision-Date: 2024-05-08 14:34+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -15,22 +15,27 @@ msgstr ""
 "X-Domain: fau-degree-program-output\n"
 
 #. Plugin Name of the plugin
+#: fau-degree-program-output.php
 msgid "FAU Degree Program Output"
 msgstr "FAU Studiengangsanzeige"
 
 #. Plugin URI of the plugin
+#: fau-degree-program-output.php
 msgid "https://github.com/RRZE-Webteam/FAU-Studium-Embed"
 msgstr "https://github.com/RRZE-Webteam/FAU-Studium-Embed"
 
 #. Description of the plugin
+#: fau-degree-program-output.php
 msgid "Fetch degree programs via the REST API and display them."
 msgstr "Abrufen von Studiengängen über die REST-API und deren Anzeige."
 
 #. Author of the plugin
+#: fau-degree-program-output.php
 msgid "Syde GmbH"
 msgstr "Syde GmbH"
 
 #. Author URI of the plugin
+#: fau-degree-program-output.php
 msgid "https://syde.com/"
 msgstr "https://syde.com/"
 
@@ -39,55 +44,65 @@ msgctxt "backoffice: block editor category"
 msgid "FAU"
 msgstr "FAU"
 
-#: src/Infrastructure/Component/DegreeProgramsCollection.php:56
+#: src/Infrastructure/Component/DegreeProgramsCollection.php:58
 msgctxt "backoffice: Sort by options"
 msgid "Sort by title"
 msgstr "Nach Titel sortieren"
 
-#: src/Infrastructure/Component/DegreeProgramsCollection.php:61
+#: src/Infrastructure/Component/DegreeProgramsCollection.php:63
 msgctxt "backoffice: Sort by options"
 msgid "Sort by title Z-A"
 msgstr "Nach Titel sortieren Z-A"
 
-#: src/Infrastructure/Component/DegreeProgramsCollection.php:68
+#: src/Infrastructure/Component/DegreeProgramsCollection.php:70
 msgctxt "backoffice: Sort by options"
 msgid "Sort by degree"
 msgstr "Nach Abschluss sortieren"
 
-#: src/Infrastructure/Component/DegreeProgramsCollection.php:73
+#: src/Infrastructure/Component/DegreeProgramsCollection.php:75
 msgctxt "backoffice: Sort by options"
 msgid "Sort by degree Z-A"
 msgstr "Nach Abschluss sortieren Z-A"
 
-#: src/Infrastructure/Component/DegreeProgramsCollection.php:80
+#: src/Infrastructure/Component/DegreeProgramsCollection.php:82
 msgctxt "backoffice: Sort by options"
 msgid "Sort by semester"
 msgstr "Nach Semester sortieren"
 
-#: src/Infrastructure/Component/DegreeProgramsCollection.php:85
+#: src/Infrastructure/Component/DegreeProgramsCollection.php:87
 msgctxt "backoffice: Sort by options"
 msgid "Sort by semester Z-A"
 msgstr "Nach Semester sortieren Z-A"
 
-#: src/Infrastructure/Component/DegreeProgramsCollection.php:92
+#: src/Infrastructure/Component/DegreeProgramsCollection.php:94
 msgctxt "backoffice: Sort by options"
 msgid "Sort by study location"
 msgstr "Nach Studienort sortieren"
 
-#: src/Infrastructure/Component/DegreeProgramsCollection.php:97
+#: src/Infrastructure/Component/DegreeProgramsCollection.php:99
 msgctxt "backoffice: Sort by options"
 msgid "Sort by study location Z-A"
 msgstr "Nach Studienort sortieren Z-A"
 
-#: src/Infrastructure/Component/DegreeProgramsCollection.php:104
+#: src/Infrastructure/Component/DegreeProgramsCollection.php:106
 msgctxt "backoffice: Sort by options"
 msgid "Sort by admission requirement"
 msgstr "Nach Zugangsvoraussetzung sortieren"
 
-#: src/Infrastructure/Component/DegreeProgramsCollection.php:109
+#: src/Infrastructure/Component/DegreeProgramsCollection.php:111
 msgctxt "backoffice: Sort by options"
 msgid "Sort by admission requirement Z-A"
 msgstr "Nach Zugangsvoraussetzung sortieren Z-A"
+
+#: src/Infrastructure/Component/DegreeProgramsCollection.php:118
+msgctxt "backoffice: Sort by options"
+msgid "Sort by language certificates"
+msgstr "Nach Sprachnachweise sortieren"
+
+#: src/Infrastructure/Component/DegreeProgramsCollection.php:123
+msgctxt "backoffice: Sort by options"
+msgid "Sort by language certificates Z-A"
+msgstr "Nach Sprachnachweise sortieren Z-A"
 
 #: src/Infrastructure/Component/SingleDegreeProgram.php:132
 msgid "Featured image"
@@ -350,67 +365,72 @@ msgstr "Die folgenden Attribute werden ignoriert, wenn „Format“ „short“ 
 msgid "Ignored if \"include\" is specified."
 msgstr "Wird ignoriert, wenn „einbeziehen“ angegeben ist."
 
-#: src/Infrastructure/Filter/FilterViewFactory.php:58
+#: src/Infrastructure/Filter/FilterViewFactory.php:59
 msgctxt "frontoffice: Filter label"
 msgid "Area of study"
 msgstr "Studienbereich"
 
-#: src/Infrastructure/Filter/FilterViewFactory.php:70
+#: src/Infrastructure/Filter/FilterViewFactory.php:71
 msgctxt "frontoffice: Filter label"
 msgid "Special ways to study"
 msgstr "Besondere Studienformen"
 
-#: src/Infrastructure/Filter/FilterViewFactory.php:82
+#: src/Infrastructure/Filter/FilterViewFactory.php:83
 msgctxt "frontoffice: Filter label"
 msgid "Degree"
 msgstr "Abschluss"
 
-#: src/Infrastructure/Filter/FilterViewFactory.php:94
+#: src/Infrastructure/Filter/FilterViewFactory.php:95
 msgctxt "frontoffice: Filter label"
 msgid "Faculty"
 msgstr "Fakultät"
 
-#: src/Infrastructure/Filter/FilterViewFactory.php:106
+#: src/Infrastructure/Filter/FilterViewFactory.php:107
+msgctxt "frontoffice: Filter label"
+msgid "German language skills for international students"
+msgstr "Deutschkenntnisse für internationale Studierende"
+
+#: src/Infrastructure/Filter/FilterViewFactory.php:119
 msgctxt "frontoffice: Filter label"
 msgid "Start of degree program"
 msgstr "Studienbeginn"
 
-#: src/Infrastructure/Filter/FilterViewFactory.php:118
+#: src/Infrastructure/Filter/FilterViewFactory.php:131
 msgctxt "frontoffice: Filter label"
 msgid "Study location"
 msgstr "Studienort"
 
-#: src/Infrastructure/Filter/FilterViewFactory.php:130
+#: src/Infrastructure/Filter/FilterViewFactory.php:143
 msgctxt "frontoffice: Filter label"
 msgid "Subject group"
 msgstr "Fächergruppe"
 
-#: src/Infrastructure/Filter/FilterViewFactory.php:142
+#: src/Infrastructure/Filter/FilterViewFactory.php:155
 msgctxt "frontoffice: Filter label"
 msgid "Teaching language"
 msgstr "Unterrichtssprache"
 
-#: src/Infrastructure/Filter/FilterViewFactory.php:154
+#: src/Infrastructure/Filter/FilterViewFactory.php:167
 msgctxt "frontoffice: Filter label"
 msgid "Keyword"
 msgstr "Schlagwort"
 
-#: src/Infrastructure/Filter/FilterViewFactory.php:163
+#: src/Infrastructure/Filter/FilterViewFactory.php:176
 msgctxt "frontoffice: Filter label"
 msgid "Admission Requirement"
 msgstr "Zugangsvoraussetzung"
 
-#: src/Infrastructure/Filter/FilterViewFactory.php:210
+#: src/Infrastructure/Filter/FilterViewFactory.php:223
 msgctxt "backoffice: Filter label"
 msgid "Restricted (NC)"
 msgstr "Eingeschränkt (NC)"
 
-#: src/Infrastructure/Filter/FilterViewFactory.php:219
+#: src/Infrastructure/Filter/FilterViewFactory.php:232
 msgctxt "backoffice: Filter label"
 msgid "Admission free"
 msgstr "Zulassungsfrei"
 
-#: src/Infrastructure/Filter/FilterViewFactory.php:228
+#: src/Infrastructure/Filter/FilterViewFactory.php:241
 msgctxt "backoffice: Filter label"
 msgid "Admission free with restriction"
 msgstr "Zulassungsfrei mit Einschränkung"
@@ -434,6 +454,7 @@ msgstr ""
 #: templates/search/collection-table-header.php:135
 #: templates/search/collection-table-header.php:167
 #: templates/search/collection-table-header.php:199
+#: templates/search/collection-table-header.php:230
 msgctxt "frontoffice: degree programs search result list"
 msgid "Sort by"
 msgstr "Sortieren nach"
@@ -473,6 +494,11 @@ msgstr "Ort"
 msgctxt "frontoffice: degree programs search result list"
 msgid "NC"
 msgstr "NC"
+
+#: templates/search/collection-table-header.php:236
+msgctxt "frontoffice: degree programs search result list"
+msgid "Language certificates"
+msgstr "Sprachnachweise"
 
 #: templates/search/degree-program-list-item.php:45
 #: templates/search/item-preview.php:67
@@ -536,6 +562,11 @@ msgstr "Filteroptionen anzeigen"
 msgctxt "frontoffice: degree programs search form"
 msgid "Display mode"
 msgstr "Anzeigemodus"
+
+#: templates/search/item-preview.php:111
+msgctxt "frontoffice: degree programs search result list"
+msgid "German language skills for international students"
+msgstr "Deutschkenntnisse für internationale Studierende"
 
 #: templates/search/no-results.php:2
 msgctxt "backoffice: Search results"
@@ -745,12 +776,12 @@ msgctxt "frontoffice: single view"
 msgid "Specific Student Advice"
 msgstr "Spezifische Studienberatung"
 
-#: assets/ts/gutenberg.js:1
+#: assets/ts/gutenberg.js:235
 msgctxt "backoffice: block editor"
 msgid "Select degree program"
 msgstr "Studiengang wählen"
 
-#: assets/ts/gutenberg.js:1
+#: assets/ts/gutenberg.js:247
 msgctxt "backend: block editor"
 msgid "Could not load suggestion list"
 msgstr "Vorschlagsliste konnte nicht geladen werden"
