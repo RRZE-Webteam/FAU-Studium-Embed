@@ -24,6 +24,10 @@ final class WpQueryModifier
         DegreeProgram::LOCATION . '_' . MultilingualString::DE,
         DegreeProgram::ADMISSION_REQUIREMENTS . '_' . MultilingualString::EN,
         DegreeProgram::ADMISSION_REQUIREMENTS . '_' . MultilingualString::DE,
+        // phpcs:disable Inpsyde.CodeQuality.LineLength.TooLong
+        DegreeProgram::GERMAN_LANGUAGE_SKILLS_FOR_INTERNATIONAL_STUDENTS . '_' . MultilingualString::EN,
+        DegreeProgram::GERMAN_LANGUAGE_SKILLS_FOR_INTERNATIONAL_STUDENTS . '_' . MultilingualString::DE,
+        // phpcs:enable Inpsyde.CodeQuality.LineLength.TooLong
     ];
 
     /**
