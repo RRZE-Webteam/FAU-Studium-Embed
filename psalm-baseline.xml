@@ -44,11 +44,6 @@
       <code><![CDATA[empty($attributes['url'])]]></code>
     </RiskyTruthyFalsyComparison>
   </file>
-  <file src="src/Infrastructure/Embed/PostDataFilter.php">
-    <UndefinedFunction>
-      <code><![CDATA[did_filter('oembed_request_post_id')]]></code>
-    </UndefinedFunction>
-  </file>
   <file src="src/Infrastructure/Repository/WordPressApiDegreeProgramViewRepository.php">
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[!$collection->nextPage()]]></code>
