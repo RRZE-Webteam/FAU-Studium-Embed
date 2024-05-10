@@ -21,6 +21,7 @@ use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\AttributeTaxonomy;
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\BachelorOrTeachingDegreeAdmissionRequirementTaxonomy;
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\DegreeTaxonomy;
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\FacultyTaxonomy;
+use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\GermanLanguageSkillsForInternationalStudentsTaxonomy;
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\MasterDegreeAdmissionRequirementTaxonomy;
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\SemesterTaxonomy;
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\StudyLocationTaxonomy;
@@ -126,6 +127,8 @@ final class FilterableTermsUpdater
                 $rawView->admissionRequirements()->master(),
             AreaOfStudyTaxonomy::KEY =>
                 $rawView->areaOfStudy(),
+            GermanLanguageSkillsForInternationalStudentsTaxonomy::KEY =>
+                $rawView->germanLanguageSkillsForInternationalStudents(),
         ];
     }
 
