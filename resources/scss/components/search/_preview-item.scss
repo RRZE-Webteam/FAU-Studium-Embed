@@ -228,6 +228,13 @@
 		}
 	}
 
+	&__language-certificates {
+
+		@include config.when-inside(".c-degree-programs-collection:not([data-active-filters*=german-language-skills-for-international-students])") {
+			display: none;
+		}
+	}
+
 	&__degree,
 	&__start,
 	&__location,
@@ -274,12 +281,6 @@
 		@include config.media(">tablet-lg") {
 
 			@include config.screen-reader-text;
-		}
-	}
-
-	&__language-certificates {
-		@include config.when-inside(".c-degree-programs-collection:not([data-active-filters*=german-language-skills-for-international-students])") {
-			display: none;
 		}
 	}
 }

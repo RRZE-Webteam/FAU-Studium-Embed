@@ -125,6 +125,7 @@
 		}
 
 		&.-language-certificates {
+
 			@include config.when-inside(".c-degree-programs-collection:not([data-active-filters*=german-language-skills-for-international-students])") {
 				display: none !important;
 			}
