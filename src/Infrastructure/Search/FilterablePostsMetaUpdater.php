@@ -80,6 +80,12 @@ final class FilterablePostsMetaUpdater
             $rawView->degree()->name()->asString($languageCode)
         );
 
+        update_post_meta(
+            $rawView->id()->asInt(),
+            DegreeProgram::GERMAN_LANGUAGE_SKILLS_FOR_INTERNATIONAL_STUDENTS . '_' . $languageCode,
+            $rawView->germanLanguageSkillsForInternationalStudents()->name()->asString($languageCode)
+        );
+
         if ($rawView->start()->offsetExists(0)) {
             update_post_meta(
                 $rawView->id()->asInt(),

@@ -105,4 +105,15 @@ $titleId = sprintf('degree-program-title-%d', $degreeProgram->id());
         </span>
         <?= esc_html((string) $degreeProgram->admissionRequirementLink()?->name()) ?>
     </div>
+
+    <div class="c-degree-program-preview__language-certificates">
+        <span class="c-degree-program-preview__label">
+            <?= esc_html_x(
+                'German language skills for international students',
+                'frontoffice: degree programs search result list',
+                'fau-degree-program-output'
+            ) ?>:
+        </span>
+        <?= esc_html($degreeProgram->germanLanguageSkillsForInternationalStudents()->linkText()) ?>
+    </div>
 </li>

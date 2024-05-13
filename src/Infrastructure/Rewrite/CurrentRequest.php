@@ -9,6 +9,7 @@ use Fau\DegreeProgram\Common\Application\Filter\AreaOfStudyFilter;
 use Fau\DegreeProgram\Common\Application\Filter\AttributeFilter;
 use Fau\DegreeProgram\Common\Application\Filter\DegreeFilter;
 use Fau\DegreeProgram\Common\Application\Filter\FacultyFilter;
+use Fau\DegreeProgram\Common\Application\Filter\GermanLanguageSkillsForInternationalStudentsFilter;
 use Fau\DegreeProgram\Common\Application\Filter\SearchKeywordFilter;
 use Fau\DegreeProgram\Common\Application\Filter\SemesterFilter;
 use Fau\DegreeProgram\Common\Application\Filter\StudyLocationFilter;
@@ -46,6 +47,7 @@ final class CurrentRequest
         AttributeFilter::KEY => self::ARRAY_OF_IDS,
         DegreeFilter::KEY => self::ARRAY_OF_IDS,
         FacultyFilter::KEY => self::ARRAY_OF_IDS,
+        GermanLanguageSkillsForInternationalStudentsFilter::KEY => self::ARRAY_OF_IDS,
         SemesterFilter::KEY => self::ARRAY_OF_IDS,
         StudyLocationFilter::KEY => self::ARRAY_OF_IDS,
         SubjectGroupFilter::KEY => self::ARRAY_OF_IDS,

@@ -23,6 +23,7 @@ See below for a list of supported attributes.
 | `attribute`             | Attribute filter                                                        | Comma-separated term names                        |
 | `degree`                | Degree filter                                                           | Comma-separated term names                        |
 | `faculty`               | Faculty filter                                                          | Comma-separated term names                        |
+| `german-language-skills-for-international-students` | German language skills for international students filter | Comma-separated term names           |
 | `search`                | Search keyword filter (explicitly added by default, no need to include) | Not available                                     |
 | `semester`              | Semester filter                                                         | Comma-separated term names                        |
 | `study-location`        | Study location filter                                                   | Comma-separated term names                        |
