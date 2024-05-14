@@ -1,3 +1,5 @@
+import submitForm from '../form/form-handler';
+
 const DROPDOWN_SELECTOR = '.fau-dropdown';
 const DROPDOWN_TOGGLE_SELECTOR = '.fau-dropdown__toggle';
 const DROPDOWN_CONTENT_SELECTOR = '.fau-dropdown__content';
@@ -5,13 +7,17 @@ const CLICKAWAY_WINDOW_WIDTH_THRESHOLD = 768; // close on click away only works 
 
 const closeDropDown = ( dropdown: HTMLElement ) => {
 	dropdown.setAttribute( 'aria-expanded', 'false' );
+	submitForm();
 };
 
 const toggleDropdown = ( dropdown: HTMLElement ) => {
-	dropdown.setAttribute(
-		'aria-expanded',
-		dropdown.getAttribute( 'aria-expanded' ) === 'true' ? 'false' : 'true'
-	);
+	const isAriaExpanded = dropdown.getAttribute( 'aria-expanded' ) === 'true';
+
+	dropdown.setAttribute( 'aria-expanded', isAriaExpanded ? 'false' : 'true' );
+
+	if ( isAriaExpanded ) {
+		submitForm();
+	}
 };
 
 const registerClickListeners = () => {

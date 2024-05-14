@@ -67,7 +67,10 @@ const initAccordion = () => {
 	document
 		.querySelectorAll< HTMLButtonElement >( ACCORDION_BUTTON_SELECTOR )
 		.forEach( ( button: HTMLButtonElement ) => {
-			button.addEventListener( 'click', () => onClickButton( button ) );
+			button.addEventListener( 'click', ( e ) => {
+				e.preventDefault();
+				onClickButton( button );
+			} );
 		} );
 };
 
