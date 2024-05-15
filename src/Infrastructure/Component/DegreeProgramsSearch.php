@@ -27,6 +27,7 @@ use Fau\DegreeProgram\Output\Infrastructure\Template\HiddenDegreeProgramElements
  *     visible_filters: array<string>,
  *     output: OutputType,
  *     hidden_elements: array<string>,
+ *     his_codes: array<string>,
  * }
  *
  * `filters` keys are filterable taxonomy REST API bases,
@@ -156,11 +157,14 @@ final class DegreeProgramsSearch implements RenderableComponent
             )
         );
 
+        $hisCodes = $attributes['his_codes'] ?? [];
+
         return $this->degreeProgramViewRepository->findTranslatedCollection(
             CollectionCriteria::new()
                 ->withPerPage(-1)
                 ->addFilter(...$filters)
-                ->withOrderBy($this->currentRequest->orderBy()),
+                ->withOrderBy($this->currentRequest->orderBy())
+                ->withHisCodes($hisCodes),
             $attributes['lang'],
         );
     }
