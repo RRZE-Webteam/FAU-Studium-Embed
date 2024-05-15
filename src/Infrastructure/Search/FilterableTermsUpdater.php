@@ -29,6 +29,7 @@ use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\SubjectGroupTaxonom
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\TeachingDegreeHigherSemesterAdmissionRequirementTaxonomy;
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\TeachingLanguageTaxonomy;
 use Fau\DegreeProgram\Common\Infrastructure\Repository\BilingualRepository;
+use Fau\DegreeProgram\Common\Infrastructure\Repository\CampoKeysRepository;
 use Fau\DegreeProgram\Common\Infrastructure\Repository\IdGenerator;
 use LogicException;
 use Psr\Log\LoggerInterface;
@@ -93,7 +94,7 @@ final class FilterableTermsUpdater
 
             $taxonomyProperties = $this->retrieveFilterableProperties($rawView);
             foreach ($taxonomyProperties as $taxonomy => $property) {
-                $this->setObjectTerms($postId, $taxonomy, $property);
+                $this->setObjectTerms($rawView, $taxonomy, $property);
             }
         }
     }
@@ -136,17 +137,23 @@ final class FilterableTermsUpdater
      * @psalm-param array<int, MultilingualString> $terms
      */
     private function setObjectTerms(
-        int $postId,
+        DegreeProgramViewRaw $rawView,
         string $taxonomy,
         MultilingualString|MultilingualList|MultilingualLink|MultilingualLinks|Degree|AdmissionRequirement $property
     ): void {
 
         $termIds = $this->maybeCreateTerms($taxonomy, $property);
         wp_set_object_terms(
-            $postId,
+            $rawView->id()->asInt(),
             $termIds,
             $taxonomy
         );
+
+        if (! isset($termIds[0])) {
+            return;
+        }
+
+        $this->maybeUpdateCampoKeys($rawView, $taxonomy, (int) $termIds[0]);
     }
 
     private function isValidPostId(int $postId): bool
@@ -401,5 +408,18 @@ final class FilterableTermsUpdater
         }
 
         return null;
+    }
+
+    private function maybeUpdateCampoKeys(DegreeProgramViewRaw $rawView, string $taxonomy, int $termId): void
+    {
+        $campoKeys = $rawView->campoKeys()->asArray();
+        $campoKeyType = CampoKeysRepository::CAMPO_KEYS_TOTAXONOMY_MAP[$taxonomy] ?? '';
+        $campoKey = $campoKeys[$campoKeyType] ?? null;
+
+        if (is_null($campoKey)) {
+            return;
+        }
+
+        update_term_meta($termId, CampoKeysRepository::CAMPOKEY_TERM_META_KEY, $campoKey);
     }
 }
