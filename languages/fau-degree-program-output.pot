@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-05-03T11:17:44+00:00\n"
+"POT-Creation-Date: 2024-05-15T07:58:40+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 "X-Domain: fau-degree-program-output\n"
@@ -39,52 +39,52 @@ msgctxt "backoffice: block editor category"
 msgid "FAU"
 msgstr ""
 
-#: src/Infrastructure/Component/DegreeProgramsCollection.php:56
+#: src/Infrastructure/Component/DegreeProgramsCollection.php:52
 msgctxt "backoffice: Sort by options"
 msgid "Sort by title"
 msgstr ""
 
-#: src/Infrastructure/Component/DegreeProgramsCollection.php:61
+#: src/Infrastructure/Component/DegreeProgramsCollection.php:57
 msgctxt "backoffice: Sort by options"
 msgid "Sort by title Z-A"
 msgstr ""
 
-#: src/Infrastructure/Component/DegreeProgramsCollection.php:68
+#: src/Infrastructure/Component/DegreeProgramsCollection.php:64
 msgctxt "backoffice: Sort by options"
 msgid "Sort by degree"
 msgstr ""
 
-#: src/Infrastructure/Component/DegreeProgramsCollection.php:73
+#: src/Infrastructure/Component/DegreeProgramsCollection.php:69
 msgctxt "backoffice: Sort by options"
 msgid "Sort by degree Z-A"
 msgstr ""
 
-#: src/Infrastructure/Component/DegreeProgramsCollection.php:80
+#: src/Infrastructure/Component/DegreeProgramsCollection.php:76
 msgctxt "backoffice: Sort by options"
 msgid "Sort by semester"
 msgstr ""
 
-#: src/Infrastructure/Component/DegreeProgramsCollection.php:85
+#: src/Infrastructure/Component/DegreeProgramsCollection.php:81
 msgctxt "backoffice: Sort by options"
 msgid "Sort by semester Z-A"
 msgstr ""
 
-#: src/Infrastructure/Component/DegreeProgramsCollection.php:92
+#: src/Infrastructure/Component/DegreeProgramsCollection.php:88
 msgctxt "backoffice: Sort by options"
 msgid "Sort by study location"
 msgstr ""
 
-#: src/Infrastructure/Component/DegreeProgramsCollection.php:97
+#: src/Infrastructure/Component/DegreeProgramsCollection.php:93
 msgctxt "backoffice: Sort by options"
 msgid "Sort by study location Z-A"
 msgstr ""
 
-#: src/Infrastructure/Component/DegreeProgramsCollection.php:104
+#: src/Infrastructure/Component/DegreeProgramsCollection.php:100
 msgctxt "backoffice: Sort by options"
 msgid "Sort by admission requirement"
 msgstr ""
 
-#: src/Infrastructure/Component/DegreeProgramsCollection.php:109
+#: src/Infrastructure/Component/DegreeProgramsCollection.php:105
 msgctxt "backoffice: Sort by options"
 msgid "Sort by admission requirement Z-A"
 msgstr ""
@@ -529,6 +529,7 @@ msgid "Display mode"
 msgstr ""
 
 #: templates/search/no-results.php:2
+#: assets/ts/frontend.js:1
 msgctxt "backoffice: Search results"
 msgid "No degree programs found"
 msgstr ""
@@ -719,6 +720,31 @@ msgstr ""
 #: templates/single-degree-program/more-information.php:53
 msgctxt "frontoffice: single view"
 msgid "Specific Student Advice"
+msgstr ""
+
+#: assets/ts/frontend.js:1
+msgctxt "frontoffice: degree-programs-overview"
+msgid "Type"
+msgstr ""
+
+#: assets/ts/frontend.js:1
+msgctxt "frontoffice: degree-programs-overview"
+msgid "Start"
+msgstr ""
+
+#: assets/ts/frontend.js:1
+msgctxt "frontoffice: degree-programs-overview"
+msgid "Location"
+msgstr ""
+
+#: assets/ts/frontend.js:1
+msgctxt "frontoffice: degree-programs-overview"
+msgid "NC"
+msgstr ""
+
+#: assets/ts/frontend.js:1
+msgctxt "frontoffice: degree-programs-overview"
+msgid "Keyword"
 msgstr ""
 
 #: assets/ts/gutenberg.js:1

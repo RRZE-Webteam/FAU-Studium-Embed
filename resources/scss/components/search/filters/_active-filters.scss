@@ -8,6 +8,10 @@
 	margin-bottom: 20px;
 	align-items: center;
 
+	&.hidden {
+		display: none;
+	}
+
 	@extend %container-paddings;
 
 	@include config.media(">tablet") {
@@ -54,6 +58,7 @@
 			margin-right: 8px;
 			box-shadow: none !important;
 			padding: 0 !important;
+			pointer-events: none;
 		}
 	}
 
