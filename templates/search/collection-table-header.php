@@ -215,4 +215,36 @@ $order = count($currentOrder) === 1 ? current($currentOrder) : null;
                 )
             ) ?>
     </a>
+    <a class="c-degree-programs-collection__header-item -language-certificates"
+       role="button"
+       href="<?= esc_url(
+           add_query_arg(
+               [
+                   CurrentRequest::ORDER_BY_QUERY_PARAM => DegreeProgram::GERMAN_LANGUAGE_SKILLS_FOR_INTERNATIONAL_STUDENTS,
+                   CurrentRequest::ORDER_QUERY_PARAM => $order === 'asc' ? 'desc' : 'asc',
+               ],
+           )
+       ) ?>"
+    >
+        <span class="screen-reader-text">
+            <?= esc_html_x(
+                'Sort by',
+                'frontoffice: degree programs search result list',
+                'fau-degree-program-output'
+            ) ?>
+        </span>
+        <?= esc_html_x(
+            'Language certificates',
+            'frontoffice: degree programs search result list',
+            'fau-degree-program-output'
+        ) ?>
+        <span class="c-degree-programs-collection__sort-icon">
+            <?= renderComponent(
+                new Component(
+                    Icon::class,
+                    ['name' => 'sort']
+                )
+            ) ?>
+        </span>
+    </a>
 </li>

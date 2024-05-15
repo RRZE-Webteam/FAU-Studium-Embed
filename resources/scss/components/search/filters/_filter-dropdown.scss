@@ -109,6 +109,7 @@
 		align-items: center;
 		justify-content: center;
 		font-weight: 700;
+		flex-shrink: 0;
 
 		@include config.text-size("xxs");
 	}

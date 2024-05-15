@@ -10,6 +10,7 @@ use Fau\DegreeProgram\Common\Application\Filter\AttributeFilter;
 use Fau\DegreeProgram\Common\Application\Filter\DegreeFilter;
 use Fau\DegreeProgram\Common\Application\Filter\FacultyFilter;
 use Fau\DegreeProgram\Common\Application\Filter\Filter;
+use Fau\DegreeProgram\Common\Application\Filter\GermanLanguageSkillsForInternationalStudentsFilter;
 use Fau\DegreeProgram\Common\Application\Filter\SearchKeywordFilter;
 use Fau\DegreeProgram\Common\Application\Filter\SemesterFilter;
 use Fau\DegreeProgram\Common\Application\Filter\StudyLocationFilter;
@@ -93,6 +94,18 @@ final class FilterViewFactory
                 $filter,
                 _x(
                     'Faculty',
+                    'frontoffice: Filter label',
+                    'fau-degree-program-output',
+                ),
+                FilterView::MULTISELECT,
+                [
+                    'options' => $this->buildOptionsForTaxonomyBasedFilter($filter),
+                ]
+            ),
+            GermanLanguageSkillsForInternationalStudentsFilter::KEY => new FilterView(
+                $filter,
+                _x(
+                    'German language skills for international students',
                     'frontoffice: Filter label',
                     'fau-degree-program-output',
                 ),

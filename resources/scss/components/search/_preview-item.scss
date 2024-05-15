@@ -228,10 +228,18 @@
 		}
 	}
 
+	&__language-certificates {
+
+		@include config.when-inside(".c-degree-programs-collection:not([data-active-filters*=german-language-skills-for-international-students])") {
+			display: none;
+		}
+	}
+
 	&__degree,
 	&__start,
 	&__location,
-	&__admission-requirement {
+	&__admission-requirement,
+	&__language-certificates {
 		width: 100%;
 		flex: 0 0 100%;
 		max-width: 100%;

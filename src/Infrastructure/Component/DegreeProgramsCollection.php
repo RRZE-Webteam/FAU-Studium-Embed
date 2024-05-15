@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Fau\DegreeProgram\Output\Infrastructure\Component;
 
 use Fau\DegreeProgram\Common\Application\DegreeProgramViewTranslated;
+use Fau\DegreeProgram\Common\Application\Filter\FilterFactory;
 use Fau\DegreeProgram\Common\Application\Repository\PaginationAwareCollection;
 use Fau\DegreeProgram\Common\Domain\DegreeProgram;
 use Fau\DegreeProgram\Common\Domain\MultilingualString;
@@ -38,6 +39,7 @@ class DegreeProgramsCollection implements RenderableComponent
                 'currentOrder' => $this->currentRequest->orderBy(),
                 'output' => $attributes['output'],
                 'orderByOptions' => $this->orderByOptions(),
+                'activeFilterNames' => $this->activeFilterNames(),
             ]
         );
     }
@@ -108,6 +110,30 @@ class DegreeProgramsCollection implements RenderableComponent
                     'fau-degree-program-output',
                 ),
             ],
+            DegreeProgram::GERMAN_LANGUAGE_SKILLS_FOR_INTERNATIONAL_STUDENTS => [
+                'label_asc' => _x(
+                    'Sort by language certificates',
+                    'backoffice: Sort by options',
+                    'fau-degree-program-output',
+                ),
+                'label_desc' => _x(
+                    'Sort by language certificates Z-A',
+                    'backoffice: Sort by options',
+                    'fau-degree-program-output',
+                ),
+            ],
         ];
+    }
+
+    /**
+     * @return array<string>
+     */
+    private function activeFilterNames(): array
+    {
+        $activeFilters = array_filter(
+            $this->currentRequest->getParams(array_keys(FilterFactory::SUPPORTED_FILTERS))
+        );
+
+        return array_keys($activeFilters);
     }
 }
