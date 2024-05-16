@@ -13,9 +13,6 @@ const degreeProgramsSection = document.querySelector(
 const degreeProgramsOverview = degreeProgramsSection?.querySelector(
 	DEGREE_PROGRAMS_OVERVIEW_SELECTOR
 ) as HTMLElement;
-const noResults = degreeProgramsSection?.querySelector(
-	NO_SEARCH_RESULT_SELECTOR
-) as HTMLElement;
 
 export const currentLanguage =
 	degreeProgramsSection?.getAttribute( 'lang' )?.substring( 0, 2 ) || 'de';
@@ -38,6 +35,10 @@ const renderNoResults = () => {
 };
 
 const showNoResults = () => {
+	const noResults = degreeProgramsSection?.querySelector(
+		NO_SEARCH_RESULT_SELECTOR
+	) as HTMLElement;
+
 	if ( ! noResults ) {
 		renderNoResults();
 
@@ -48,6 +49,10 @@ const showNoResults = () => {
 };
 
 const hideNoResults = () => {
+	const noResults = degreeProgramsSection?.querySelector(
+		NO_SEARCH_RESULT_SELECTOR
+	) as HTMLElement;
+
 	if ( ! noResults ) {
 		return;
 	}

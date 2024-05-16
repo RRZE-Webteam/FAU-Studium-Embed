@@ -5,6 +5,7 @@ import { toggleSearchActiveFilter } from './input-handler';
 import loadData from '../utils/data-fetcher';
 import { DegreeProgramApiData } from '../degree-program-overview/degree-program';
 import { clearActiveFilters } from '../filters/active-filters';
+import updateHeadersUrls from '../order/order-updater';
 
 const DEGREE_PROGRAMS_FORM_SELECTOR = '.c-degree-programs-search form';
 
@@ -40,6 +41,8 @@ const sendForm = ( urlSearchParams: string = '' ) => {
 			'',
 			urlSearchParams || window.location.pathname
 		);
+
+		updateHeadersUrls( urlSearchParams );
 
 		try {
 			loadData(
