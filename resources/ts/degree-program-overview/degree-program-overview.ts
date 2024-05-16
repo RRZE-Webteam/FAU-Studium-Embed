@@ -13,6 +13,9 @@ const degreeProgramsSection = document.querySelector(
 const degreeProgramsOverview = degreeProgramsSection?.querySelector(
 	DEGREE_PROGRAMS_OVERVIEW_SELECTOR
 ) as HTMLElement;
+const noResults = degreeProgramsSection?.querySelector(
+	NO_SEARCH_RESULT_SELECTOR
+) as HTMLElement;
 
 export const currentLanguage =
 	degreeProgramsSection?.getAttribute( 'lang' )?.substring( 0, 2 ) || 'de';
@@ -25,20 +28,16 @@ const renderPrograms = ( programs: DegreeProgram[] ) => {
 const renderNoResults = () => {
 	const output = `
 		<p class="c-no-search-results">
-    		${ _x(
+			${ _x(
 				'No degree programs found',
 				'backoffice: Search results',
 				'fau-degree-program-output'
 			) }
-    	</p>`;
+		</p>`;
 	degreeProgramsSection?.insertAdjacentHTML( 'beforeend', output );
 };
 
 const showNoResults = () => {
-	const noResults = degreeProgramsSection?.querySelector(
-		NO_SEARCH_RESULT_SELECTOR
-	) as HTMLElement;
-
 	if ( ! noResults ) {
 		renderNoResults();
 
@@ -49,10 +48,6 @@ const showNoResults = () => {
 };
 
 const hideNoResults = () => {
-	const noResults = degreeProgramsSection?.querySelector(
-		NO_SEARCH_RESULT_SELECTOR
-	) as HTMLElement;
-
 	if ( ! noResults ) {
 		return;
 	}

@@ -68,65 +68,65 @@ class DegreeProgram {
 
 	render(): string {
 		return `
-            <li class="c-degree-program-preview">
-                <div class="c-degree-program-preview__teaser-image">
-                    ${ this.image }
-                </div>
-                <div class="c-degree-program-preview__title">
-                    <a class="c-degree-program-preview__link" href="${
+			<li class="c-degree-program-preview">
+				<div class="c-degree-program-preview__teaser-image">
+					${ this.image }
+				</div>
+				<div class="c-degree-program-preview__title">
+					<a class="c-degree-program-preview__link" href="${
 						this.url
 					}" rel="bookmark" aria-labelledby="degree-program-title-${
 						this.id
 					}"></a>
-                    <div id="degree-program-title-${ this.id }">
-                        ${ this.title } (<abbr title="${ this.degree.name }">${
+					<div id="degree-program-title-${ this.id }">
+						${ this.title } (<abbr title="${ this.degree.name }">${
 							this.degree.abbreviation
 						}</abbr>)
-                        <div class="c-degree-program-preview__subtitle"></div>
-                    </div>
-                </div>
-                <div class="c-degree-program-preview__degree">
-                    <span class="c-degree-program-preview__label">
-                    	${ _x(
+						<div class="c-degree-program-preview__subtitle"></div>
+					</div>
+				</div>
+				<div class="c-degree-program-preview__degree">
+					<span class="c-degree-program-preview__label">
+						${ _x(
 							'Type',
 							'frontoffice: degree-programs-overview',
 							'fau-degree-program-output'
 						) }:
 					</span>
-                    ${ this.degree.name }
-                </div>
-                <div class="c-degree-program-preview__start">
-                    <span class="c-degree-program-preview__label">
+					${ this.degree.name }
+				</div>
+				<div class="c-degree-program-preview__start">
+					<span class="c-degree-program-preview__label">
 						${ _x(
 							'Start',
 							'frontoffice: degree-programs-overview',
 							'fau-degree-program-output'
 						) }:
 					</span>
-                    ${ this.semester.join( ', ' ) }
-                </div>
-                <div class="c-degree-program-preview__location">
-                    <span class="c-degree-program-preview__label">
+					${ this.semester.join( ', ' ) }
+				</div>
+				<div class="c-degree-program-preview__location">
+					<span class="c-degree-program-preview__label">
 						${ _x(
 							'Location',
 							'frontoffice: degree-programs-overview',
 							'fau-degree-program-output'
 						) }:
 					</span>
-                    ${ this.location.join( ', ' ) }
-                </div>
-                <div class="c-degree-program-preview__admission-requirement">
-                    <span class="c-degree-program-preview__label">
+					${ this.location.join( ', ' ) }
+				</div>
+				<div class="c-degree-program-preview__admission-requirement">
+					<span class="c-degree-program-preview__label">
 						${ _x(
 							'NC',
 							'frontoffice: degree-programs-overview',
 							'fau-degree-program-output'
 						) }:
 					</span>
-                    ${ this.admissionRequirements }   
-                </div>
-            </li>
-        `;
+					${ this.admissionRequirements }
+				</div>
+			</li>
+		`;
 	}
 }
 
