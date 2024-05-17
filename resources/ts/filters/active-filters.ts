@@ -29,7 +29,7 @@ const maybeHideFiltersSection = () => {
 const filterEventListener = ( e: MouseEvent ) => {
 	e.preventDefault();
 	const filter = e.target as HTMLElement;
-	resetRelatedInput( filter.textContent || '' );
+	resetRelatedInput( filter.textContent?.trim() || '' );
 	filter.remove();
 	maybeHideFiltersSection();
 };
@@ -110,8 +110,7 @@ export const toggleSingleActiveFilter = ( key: string, value: string ) => {
 
 export const clearActiveFilters = () => {
 	activeFilters().forEach( ( filter ) => {
-		resetRelatedInput( filter.textContent || '' );
-		filter.remove();
+		filter.dispatchEvent( new Event( 'click' ) );
 	} );
 	maybeHideFiltersSection();
 };

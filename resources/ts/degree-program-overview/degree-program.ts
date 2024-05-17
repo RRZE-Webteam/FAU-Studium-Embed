@@ -14,6 +14,7 @@ interface DegreeProgramData {
 	location: string[];
 	semester: string[];
 	admissionRequirements: string;
+	germanLanguageSkills: string;
 }
 
 export interface DegreeProgramApiData {
@@ -28,6 +29,7 @@ export interface DegreeProgramApiData {
 	start: string[];
 	teaser_image: { rendered: string };
 	admission_requirement_link: { name: string };
+	german_language_skills_for_international_students: { name: string };
 }
 
 interface DegreeProgram extends DegreeProgramData {}
@@ -42,6 +44,7 @@ class DegreeProgram {
 		semester,
 		location,
 		admissionRequirements,
+		germanLanguageSkills,
 	}: DegreeProgramData ) {
 		this.id = id;
 		this.image = image;
@@ -51,6 +54,7 @@ class DegreeProgram {
 		this.semester = semester;
 		this.location = location;
 		this.admissionRequirements = admissionRequirements;
+		this.germanLanguageSkills = germanLanguageSkills;
 	}
 
 	static createDegreeProgram( program: DegreeProgramApiData ): DegreeProgram {
@@ -62,7 +66,9 @@ class DegreeProgram {
 			url: program.link,
 			location: program.location,
 			semester: program.start,
-			admissionRequirements: program.admission_requirement_link?.name,
+			admissionRequirements: program.admission_requirement_link.name,
+			germanLanguageSkills:
+				program.german_language_skills_for_international_students.name,
 		} );
 	}
 
@@ -124,6 +130,16 @@ class DegreeProgram {
 						) }:
 					</span>
 					${ this.admissionRequirements }
+				</div>
+				<div class="c-degree-program-preview__language-certificates">
+					<span class="c-degree-program-preview__label">
+						${ _x(
+							'Language certificates',
+							'frontoffice: degree-programs-overview',
+							'fau-degree-program-output'
+						) }:
+					</span>
+					${ this.germanLanguageSkills }
 				</div>
 			</li>
 		`;

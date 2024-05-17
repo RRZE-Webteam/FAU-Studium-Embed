@@ -1,6 +1,7 @@
 import { _x } from '@wordpress/i18n';
 
 import DegreeProgram, { DegreeProgramApiData } from './degree-program';
+import { LANGUAGE_SKILLS_INPUT } from '../filters/filters-handler';
 
 const DEGREE_PROGRAMS_SECTION_SELECTOR = '.c-degree-programs-search';
 const DEGREE_PROGRAMS_OVERVIEW_SELECTOR = '.c-degree-programs-collection';
@@ -58,6 +59,12 @@ const hideNoResults = () => {
 	}
 
 	noResults.classList.add( 'hidden' );
+};
+
+export const toggleLanguageCertificateColumn = ( show: boolean = false ) => {
+	degreeProgramsOverview.dataset.activeFilters = show
+		? LANGUAGE_SKILLS_INPUT
+		: '';
 };
 
 export default ( data: DegreeProgramApiData[] ) => {

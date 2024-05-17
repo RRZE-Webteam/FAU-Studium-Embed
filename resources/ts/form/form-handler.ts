@@ -4,7 +4,6 @@ import updateDegreePrograms, {
 import { toggleSearchActiveFilter } from './input-handler';
 import loadData from '../utils/data-fetcher';
 import { DegreeProgramApiData } from '../degree-program-overview/degree-program';
-import { clearActiveFilters } from '../filters/active-filters';
 import updateHeadersUrls from '../order/order-updater';
 
 const DEGREE_PROGRAMS_FORM_SELECTOR = '.c-degree-programs-search form';
@@ -13,10 +12,6 @@ export const form = document.querySelector< HTMLElement >(
 	DEGREE_PROGRAMS_FORM_SELECTOR
 ) as HTMLFormElement;
 
-form?.addEventListener( 'reset', () => {
-	clearActiveFilters();
-	sendForm();
-} );
 form?.addEventListener( 'submit', ( e ) => {
 	e.preventDefault();
 	submitForm();
@@ -55,7 +50,7 @@ const sendForm = ( urlSearchParams: string = '' ) => {
 			updateDegreePrograms( [] );
 		}
 		timeout = null;
-	}, 50 );
+	}, 500 );
 };
 
 export default submitForm;

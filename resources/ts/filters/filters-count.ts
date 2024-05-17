@@ -24,7 +24,7 @@ const updateFiltersCount = ( element: HTMLInputElement ) => {
 	let value = Number( count.textContent?.trim() || '0' );
 	value += element.checked ? 1 : -1;
 
-	if ( ! value ) {
+	if ( value < 1 ) {
 		count.remove();
 		return;
 	}
