@@ -3,7 +3,7 @@ import { clearInput, SEARCH_ACTIVE_FILTER_LABEL } from '../form/input-handler';
 import { toggleActiveFilter } from './active-filters';
 import updateFiltersCount from './filters-count';
 import submitForm from '../form/form-handler';
-import { toggleLanguageCertificateColumn } from '../degree-program-overview/degree-program-overview';
+import { updateDegreeProgramOverviewDataset } from '../degree-program-overview/degree-program-overview';
 
 const FILTER_SELECTOR = '.c-filter-checkbox';
 export const LANGUAGE_SKILLS_INPUT =
@@ -73,9 +73,12 @@ filters.forEach( ( filterControl ) => {
 
 		if ( checkbox.name.startsWith( LANGUAGE_SKILLS_INPUT ) ) {
 			languageCertificateCheckedCheckboxes += checkbox.checked ? 1 : -1;
-			toggleLanguageCertificateColumn(
-				languageCertificateCheckedCheckboxes >= 1
-			);
+			updateDegreeProgramOverviewDataset( {
+				activeFilters:
+					languageCertificateCheckedCheckboxes >= 1
+						? LANGUAGE_SKILLS_INPUT
+						: '',
+			} );
 		}
 
 		if ( isReducedMotion() ) {

@@ -1,19 +1,19 @@
 import { _x } from '@wordpress/i18n';
 
 import DegreeProgram, { DegreeProgramApiData } from './degree-program';
-import { LANGUAGE_SKILLS_INPUT } from '../filters/filters-handler';
 
 const DEGREE_PROGRAMS_SECTION_SELECTOR = '.c-degree-programs-search';
 const DEGREE_PROGRAMS_OVERVIEW_SELECTOR = '.c-degree-programs-collection';
 const SINGLE_PROGRAM_PREVIEW_SELECTOR = '.c-degree-program-preview';
 const NO_SEARCH_RESULT_SELECTOR = '.c-no-search-results';
 
-const degreeProgramsSection = document.querySelector(
+const degreeProgramsSection = document.querySelector< HTMLElement >(
 	DEGREE_PROGRAMS_SECTION_SELECTOR
-) as HTMLElement;
-const degreeProgramsOverview = degreeProgramsSection?.querySelector(
-	DEGREE_PROGRAMS_OVERVIEW_SELECTOR
-) as HTMLElement;
+);
+const degreeProgramsOverview =
+	degreeProgramsSection?.querySelector< HTMLElement >(
+		DEGREE_PROGRAMS_OVERVIEW_SELECTOR
+	);
 
 export const currentLanguage =
 	degreeProgramsSection?.getAttribute( 'lang' )?.substring( 0, 2 ) || 'de';
@@ -28,7 +28,7 @@ const renderNoResults = () => {
 		<p class="c-no-search-results">
 			${ _x(
 				'No degree programs found',
-				'backoffice: Search results',
+				'frontoffice: Search results',
 				'fau-degree-program-output'
 			) }
 		</p>`;
@@ -61,10 +61,16 @@ const hideNoResults = () => {
 	noResults.classList.add( 'hidden' );
 };
 
-export const toggleLanguageCertificateColumn = ( show: boolean = false ) => {
-	degreeProgramsOverview.dataset.activeFilters = show
-		? LANGUAGE_SKILLS_INPUT
-		: '';
+export const updateDegreeProgramOverviewDataset = (
+	dataset: Record< string, any >
+) => {
+	if ( ! ( degreeProgramsOverview instanceof HTMLElement ) ) {
+		return;
+	}
+
+	Object.entries( dataset ).forEach( ( [ property, value ] ) => {
+		degreeProgramsOverview.dataset[ property ] = value;
+	} );
 };
 
 export default ( data: DegreeProgramApiData[] ) => {

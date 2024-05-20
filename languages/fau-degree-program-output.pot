@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-05-17T10:09:02+00:00\n"
+"POT-Creation-Date: 2024-05-20T16:55:19+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 "X-Domain: fau-degree-program-output\n"
@@ -555,7 +555,6 @@ msgid "German language skills for international students"
 msgstr ""
 
 #: templates/search/no-results.php:2
-#: assets/ts/frontend.js:1
 msgctxt "backoffice: Search results"
 msgid "No degree programs found"
 msgstr ""
@@ -771,6 +770,11 @@ msgstr ""
 #: assets/ts/frontend.js:1
 msgctxt "frontoffice: degree-programs-overview"
 msgid "Language certificates"
+msgstr ""
+
+#: assets/ts/frontend.js:1
+msgctxt "frontoffice: Search results"
+msgid "No degree programs found"
 msgstr ""
 
 #: assets/ts/frontend.js:1
