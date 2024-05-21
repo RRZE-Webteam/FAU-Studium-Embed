@@ -1,5 +1,6 @@
 const DEGREE_PROGRAMS_HEADER_SELECTOR =
 	'a.c-degree-programs-collection__header-item';
+export const ORDER_PARAMS = [ 'order', 'order_by' ];
 
 const headers = document.querySelectorAll< HTMLLinkElement >(
 	DEGREE_PROGRAMS_HEADER_SELECTOR
@@ -17,8 +18,8 @@ const updateHeadersUrls = ( urlParams: string ) => {
 		const headerParams = new URLSearchParams( params );
 
 		headerParams.forEach( ( value, key ) => {
-			if ( [ 'order', 'order_by' ].includes( key ) ) {
-				formParams.append( key, value );
+			if ( ORDER_PARAMS.includes( key ) ) {
+				formParams.set( key, value );
 			}
 		} );
 

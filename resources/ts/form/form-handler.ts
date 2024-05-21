@@ -4,7 +4,7 @@ import updateDegreePrograms, {
 import { toggleSearchActiveFilter } from './input-handler';
 import loadData from '../utils/data-fetcher';
 import { DegreeProgramApiData } from '../degree-program-overview/degree-program';
-import updateHeadersUrls from '../order/order-updater';
+import updateHeadersUrls, { ORDER_PARAMS } from '../order/order-updater';
 
 const DEGREE_PROGRAMS_FORM_SELECTOR = '.c-degree-programs-search form';
 
@@ -19,7 +19,17 @@ form?.addEventListener( 'submit', ( e ) => {
 
 const submitForm = () => {
 	const formData = new FormData( form );
-	sendForm( `?${ new URLSearchParams( formData as any ).toString() }` );
+	const formSearchParams = new URLSearchParams( formData as any );
+
+	const currentSearchParams = new URLSearchParams( window.location.search );
+	ORDER_PARAMS.forEach( ( param ) => {
+		const value = currentSearchParams.get( param );
+		if ( value ) {
+			formSearchParams.append( param, value );
+		}
+	} );
+
+	sendForm( `?${ formSearchParams.toString() }` );
 };
 
 let timeout: ReturnType< typeof setTimeout > | null = null;
