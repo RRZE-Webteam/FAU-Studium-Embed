@@ -5,6 +5,7 @@ import submitForm from './form-handler';
 import { toggleSingleActiveFilter } from '../filters/active-filters';
 
 const INPUT_SELECTOR = '.c-degree-programs-sarchform__input';
+const MIN_CHARACTERS = 3;
 export const SEARCH_ACTIVE_FILTER_LABEL = _x(
 	'Keyword',
 	'frontoffice: degree-programs-overview',
@@ -15,7 +16,6 @@ const input = document.querySelector< HTMLInputElement >( INPUT_SELECTOR );
 
 const initLiveSearching = () => {
 	const INPUT_DELAY = 1500;
-	const MIN_CHARACTERS = 3;
 
 	let timeout: ReturnType< typeof setTimeout > | null = null;
 
@@ -39,6 +39,15 @@ if ( ! isReducedMotion() ) {
 	initLiveSearching();
 }
 
+input?.addEventListener( 'blur', () => {
+	const inputValue = input.value.trim();
+
+	if ( inputValue.length > MIN_CHARACTERS ) {
+		return;
+	}
+
+	submitForm();
+} );
 input?.addEventListener( 'search', () => {
 	submitForm();
 } );
