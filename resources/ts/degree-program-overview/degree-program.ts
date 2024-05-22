@@ -66,7 +66,7 @@ class DegreeProgram {
 			url: program.link,
 			location: program.location,
 			semester: program.start,
-			admissionRequirements: program.admission_requirement_link.name,
+			admissionRequirements: program.admission_requirement_link?.name,
 			germanLanguageSkills:
 				program.german_language_skills_for_international_students.name,
 		} );
@@ -129,7 +129,7 @@ class DegreeProgram {
 							'fau-degree-program-output'
 						) }:
 					</span>
-					${ this.admissionRequirements }
+					${ this.admissionRequirements ? this.admissionRequirements : '' }
 				</div>
 				<div class="c-degree-program-preview__language-certificates">
 					<span class="c-degree-program-preview__label">
