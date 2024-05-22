@@ -413,13 +413,13 @@ final class FilterableTermsUpdater
     private function maybeUpdateCampoKeys(DegreeProgramViewRaw $rawView, string $taxonomy, int $termId): void
     {
         $campoKeys = $rawView->campoKeys()->asArray();
-        $campoKeyType = CampoKeysRepository::CAMPO_KEYS_TOTAXONOMY_MAP[$taxonomy] ?? '';
+        $campoKeyType = CampoKeysRepository::TAXONOMY_TO_CAMPO_KEY_MAP[$taxonomy] ?? '';
         $campoKey = $campoKeys[$campoKeyType] ?? null;
 
         if (is_null($campoKey)) {
             return;
         }
 
-        update_term_meta($termId, CampoKeysRepository::CAMPOKEY_TERM_META_KEY, $campoKey);
+        update_term_meta($termId, CampoKeysRepository::CAMPO_KEY_TERM_META_KEY, $campoKey);
     }
 }
