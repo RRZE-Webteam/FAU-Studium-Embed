@@ -5,6 +5,7 @@ import { toggleSearchActiveFilter } from './input-handler';
 import loadData from '../utils/data-fetcher';
 import { DegreeProgramApiData } from '../degree-program-overview/degree-program';
 import updateHeadersUrls, { ORDER_PARAMS } from '../order/order-updater';
+import { startLoader, stopLoader } from './loader';
 
 const DEGREE_PROGRAMS_FORM_SELECTOR = '.c-degree-programs-search form';
 
@@ -35,6 +36,8 @@ const submitForm = () => {
 let timeout: ReturnType< typeof setTimeout > | null = null;
 
 const sendForm = ( urlSearchParams: string = '' ) => {
+	startLoader();
+
 	if ( timeout ) {
 		clearTimeout( timeout );
 	}
@@ -49,16 +52,17 @@ const sendForm = ( urlSearchParams: string = '' ) => {
 
 		updateHeadersUrls( urlSearchParams );
 
-		try {
-			loadData(
-				`/fau/v1/degree-program${ urlSearchParams }`,
-				currentLanguage
-			).then( ( data: DegreeProgramApiData[] ) => {
+		loadData(
+			`/fau/v1/degree-program${ urlSearchParams }`,
+			currentLanguage
+		)
+			.then( ( data: DegreeProgramApiData[] ) => {
 				updateDegreePrograms( data );
+			} )
+			.finally( () => {
+				stopLoader();
 			} );
-		} catch ( error ) {
-			updateDegreePrograms( [] );
-		}
+
 		timeout = null;
 	}, 500 );
 };
