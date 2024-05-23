@@ -74,6 +74,7 @@ export const updateDegreeProgramOverviewDataset = (
 };
 
 export default ( data: DegreeProgramApiData[] ) => {
+	degreeProgramsOverview?.setAttribute( 'aria-busy', 'true' );
 	degreeProgramsOverview
 		?.querySelectorAll( SINGLE_PROGRAM_PREVIEW_SELECTOR )
 		?.forEach( ( element ) => element.remove() );
@@ -84,9 +85,11 @@ export default ( data: DegreeProgramApiData[] ) => {
 
 	if ( ! programs.length ) {
 		showNoResults();
+		degreeProgramsOverview?.setAttribute( 'aria-busy', 'false' );
 		return;
 	}
 
 	hideNoResults();
 	renderPrograms( programs );
+	degreeProgramsOverview?.setAttribute( 'aria-busy', 'false' );
 };

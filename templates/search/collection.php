@@ -33,6 +33,9 @@ $viewModeClass = $output === 'list' ? '-list' : '-tiles';
 <ul
     class="c-degree-programs-collection <?= esc_attr($viewModeClass) ?>"
     data-active-filters="<?= esc_attr(implode(',', $activeFilterNames)) ?>"
+    role="region"
+    aria-labelledby="degree-programs-search-title"
+    aria-live="polite"
 >
     <?php /** @var DegreeProgramViewTranslated $view */ ?>
     <?php // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
