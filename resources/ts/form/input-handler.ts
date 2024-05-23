@@ -6,6 +6,7 @@ import { toggleSingleActiveFilter } from '../filters/active-filters';
 
 const INPUT_SELECTOR = '.c-degree-programs-sarchform__input';
 const MIN_CHARACTERS = 3;
+
 export const SEARCH_ACTIVE_FILTER_LABEL = _x(
 	'Keyword',
 	'frontoffice: degree-programs-overview',
@@ -19,12 +20,12 @@ const initLiveSearching = () => {
 
 	let timeout: ReturnType< typeof setTimeout > | null = null;
 
-	input?.addEventListener( 'input', () => {
+	const handleInput = () => {
 		if ( timeout ) {
 			clearTimeout( timeout );
 		}
 
-		const inputValue = input.value.trim();
+		const inputValue = input?.value.trim() || '';
 
 		if ( inputValue.length > MIN_CHARACTERS ) {
 			timeout = setTimeout( () => {
@@ -32,22 +33,34 @@ const initLiveSearching = () => {
 				timeout = null;
 			}, INPUT_DELAY );
 		}
-	} );
+	};
+
+	input?.addEventListener( 'input', handleInput );
+};
+
+let valueOnFocusEvent = '';
+
+const handleFocus = () => {
+	valueOnFocusEvent = input?.value.trim() || '';
+};
+
+const handleBlur = () => {
+	const inputValue = input?.value.trim() || '';
+
+	if (
+		inputValue.length <= MIN_CHARACTERS &&
+		valueOnFocusEvent !== inputValue
+	) {
+		submitForm();
+	}
 };
 
 if ( ! isReducedMotion() ) {
 	initLiveSearching();
 }
 
-input?.addEventListener( 'blur', () => {
-	const inputValue = input.value.trim();
-
-	if ( inputValue.length > MIN_CHARACTERS ) {
-		return;
-	}
-
-	submitForm();
-} );
+input?.addEventListener( 'focus', handleFocus );
+input?.addEventListener( 'blur', handleBlur );
 input?.addEventListener( 'search', () => {
 	submitForm();
 } );
@@ -58,7 +71,6 @@ export const toggleSearchActiveFilter = () => {
 	}
 
 	const inputValue = input.value.trim();
-
 	toggleSingleActiveFilter( SEARCH_ACTIVE_FILTER_LABEL, inputValue );
 };
 
