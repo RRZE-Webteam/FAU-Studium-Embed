@@ -22,11 +22,11 @@ use function Fau\DegreeProgram\Output\renderComponent;
     'removeAllUrl' => $removeAllUrl,
 ] = $data;
 
-$class = !$activeFilters ? ' hidden' : '';
+$class = !$activeFilters ? 'hidden' : '';
 
 ?>
 
-<div id="fau_applied_filters" class="c-active-search-filters<?= esc_attr($class) ?>">
+<div id="fau_applied_filters" class="c-active-search-filters <?= esc_attr($class) ?>">
     <nav class="c-active-search-filters__list">
         <?php foreach ($activeFilters as $filter) : ?>
             <a
