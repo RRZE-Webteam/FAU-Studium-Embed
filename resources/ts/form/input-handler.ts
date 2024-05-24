@@ -1,21 +1,31 @@
-import submitForm from './form-handler';
+import { _x } from '@wordpress/i18n';
+
 import isReducedMotion from '../common/reduced-motion-detection';
+import submitForm from './form-handler';
+import { toggleSingleActiveFilter } from '../filters/active-filters';
 
-const init = () => {
-	const INPUT_SELECTOR = '.c-degree-programs-sarchform__input';
+const INPUT_SELECTOR = '.c-degree-programs-sarchform__input';
+const MIN_CHARACTERS = 3;
+
+export const SEARCH_ACTIVE_FILTER_LABEL = _x(
+	'Keyword',
+	'frontoffice: degree-programs-overview',
+	'fau-degree-program-output'
+);
+
+const input = document.querySelector< HTMLInputElement >( INPUT_SELECTOR );
+
+const initLiveSearching = () => {
 	const INPUT_DELAY = 1500;
-	const MIN_CHARACTERS = 3;
-
-	const input = document.querySelector( INPUT_SELECTOR ) as HTMLInputElement;
 
 	let timeout: ReturnType< typeof setTimeout > | null = null;
 
-	input?.addEventListener( 'input', () => {
+	const handleInput = () => {
 		if ( timeout ) {
 			clearTimeout( timeout );
 		}
 
-		const inputValue = input.value.trim();
+		const inputValue = input?.value.trim() || '';
 
 		if ( inputValue.length > MIN_CHARACTERS ) {
 			timeout = setTimeout( () => {
@@ -23,9 +33,52 @@ const init = () => {
 				timeout = null;
 			}, INPUT_DELAY );
 		}
-	} );
+	};
+
+	input?.addEventListener( 'input', handleInput );
+};
+
+let valueOnFocusEvent = '';
+
+const handleFocus = () => {
+	valueOnFocusEvent = input?.value.trim() || '';
+};
+
+const handleBlur = () => {
+	const inputValue = input?.value.trim() || '';
+
+	if (
+		inputValue.length <= MIN_CHARACTERS &&
+		valueOnFocusEvent !== inputValue
+	) {
+		submitForm();
+	}
 };
 
 if ( ! isReducedMotion() ) {
-	init();
+	initLiveSearching();
 }
+
+input?.addEventListener( 'focus', handleFocus );
+input?.addEventListener( 'blur', handleBlur );
+input?.addEventListener( 'search', () => {
+	submitForm();
+} );
+
+export const toggleSearchActiveFilter = () => {
+	if ( ! input ) {
+		return;
+	}
+
+	const inputValue = input.value.trim();
+	toggleSingleActiveFilter( SEARCH_ACTIVE_FILTER_LABEL, inputValue );
+};
+
+export const clearInput = () => {
+	if ( ! input ) {
+		return;
+	}
+
+	input.value = '';
+	input.dispatchEvent( new Event( 'search' ) );
+};

@@ -32,10 +32,6 @@ class DegreeProgramsCollection implements RenderableComponent
         /**
          * @var DegreeProgramsSearchAttributes $attributes
          */
-        if ($attributes['collection']->totalItems() === 0) {
-            return $this->renderer->render('search/no-results');
-        }
-
         return $this->renderer->render(
             'search/collection',
             [
