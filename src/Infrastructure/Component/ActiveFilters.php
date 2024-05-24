@@ -35,10 +35,6 @@ class ActiveFilters implements RenderableComponent
         $attributes = wp_parse_args($attributes, self::DEFAULT_ATTRIBUTES);
         $activeFilterGroups = [];
 
-        if (!count($attributes['activeFilters'])) {
-            return '';
-        }
-
         foreach ($attributes['activeFilters'] as $filterView) {
             if ($filterView->type() === FilterView::TEXT) {
                 $activeFilterGroups[] = [

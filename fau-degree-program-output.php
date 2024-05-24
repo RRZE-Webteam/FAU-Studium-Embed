@@ -38,6 +38,7 @@ use Fau\DegreeProgram\Output\Infrastructure\LoggerModule;
 use Fau\DegreeProgram\Output\Infrastructure\Query\QueryModule;
 use Fau\DegreeProgram\Output\Infrastructure\QueueModule;
 use Fau\DegreeProgram\Output\Infrastructure\Repository\RepositoryModule;
+use Fau\DegreeProgram\Output\Infrastructure\RestApi\RestApiModule;
 use Fau\DegreeProgram\Output\Infrastructure\Rewrite\RewriteModule;
 use Fau\DegreeProgram\Output\Infrastructure\Search\SearchModule;
 use Fau\DegreeProgram\Output\Infrastructure\Shortcode\ShortcodeModule;
@@ -155,6 +156,7 @@ function initialize(): void
             ->addModule(new StructuredDataModule())
             ->addModule(new EditorModule())
             ->addModule(new BlockModule(__DIR__ . '/resources/ts/blocks'))
+            ->addModule(new RestApiModule())
             ->boot();
     } catch (Throwable $throwable) {
         handleException($throwable);

@@ -15,4 +15,7 @@ namespace {
      */
     function wp_parse_args(array $args, array $defaultArgs): array
     {}
+
+    function did_filter(string $hook_name): int
+    {}
 }

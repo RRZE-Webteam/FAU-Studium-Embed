@@ -411,12 +411,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/RRZE-Webteam/FAU-Studium-Common.git",
-                "reference": "58c96a8b5803f1188415fc97ba0e460527b6a755"
+                "reference": "023a63d3e7c53e6681308b20284237a68621644f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RRZE-Webteam/FAU-Studium-Common/zipball/58c96a8b5803f1188415fc97ba0e460527b6a755",
-                "reference": "58c96a8b5803f1188415fc97ba0e460527b6a755",
+                "url": "https://api.github.com/repos/RRZE-Webteam/FAU-Studium-Common/zipball/023a63d3e7c53e6681308b20284237a68621644f",
+                "reference": "023a63d3e7c53e6681308b20284237a68621644f",
                 "shasum": ""
             },
             "require": {
@@ -465,6 +465,12 @@
                 ],
                 "fix-coding-standards": [
                     "vendor/bin/phpcbf"
+                ],
+                "tests": [
+                    "@php ./vendor/phpunit/phpunit/phpunit --coverage-text"
+                ],
+                "tests:no-cov": [
+                    "@php ./vendor/phpunit/phpunit/phpunit --no-coverage"
                 ]
             },
             "license": [
@@ -483,7 +489,7 @@
                 "source": "https://github.com/RRZE-Webteam/FAU-Studium-Common/tree/dev",
                 "issues": "https://github.com/RRZE-Webteam/FAU-Studium-Common/issues"
             },
-            "time": "2024-05-10T07:24:11+00:00"
+            "time": "2024-05-24T11:51:27+00:00"
         },
         {
             "name": "webmozart/assert",
