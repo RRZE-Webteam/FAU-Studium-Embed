@@ -37,7 +37,11 @@ use function Fau\DegreeProgram\Output\renderComponent;
 
 ?>
 
-<section class="c-degree-programs-search" lang="<?= esc_attr(get_bloginfo('language')) ?>" aria-labelledby="degree-programs-search-title">
+<section
+        class="c-degree-programs-search"
+        lang="<?= esc_attr(get_bloginfo('language')) ?>"
+        aria-labelledby="degree-programs-search-title"
+>
     <?php if ($hiddenElements->isTitleVisible()) : ?>
         <h1 id="degree-programs-search-title" class="c-degree-programs-search__title">
             <?= esc_html_x(
