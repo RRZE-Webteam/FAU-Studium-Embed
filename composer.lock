@@ -75,16 +75,16 @@
         },
         {
             "name": "inpsyde/modularity",
-            "version": "1.7.4",
+            "version": "1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/inpsyde/modularity.git",
-                "reference": "ef0143d58e4dd358f7cc3c8d917b18d07cf6e13d"
+                "reference": "c6855a6d9c4ce6f090d031e820f176bddf2a0b1c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/inpsyde/modularity/zipball/ef0143d58e4dd358f7cc3c8d917b18d07cf6e13d",
-                "reference": "ef0143d58e4dd358f7cc3c8d917b18d07cf6e13d",
+                "url": "https://api.github.com/repos/inpsyde/modularity/zipball/c6855a6d9c4ce6f090d031e820f176bddf2a0b1c",
+                "reference": "c6855a6d9c4ce6f090d031e820f176bddf2a0b1c",
                 "shasum": ""
             },
             "require": {
@@ -137,9 +137,9 @@
             "description": "Modular PSR-11 implementation for WordPress plugins, themes or libraries.",
             "support": {
                 "issues": "https://github.com/inpsyde/modularity/issues",
-                "source": "https://github.com/inpsyde/modularity/tree/1.7.4"
+                "source": "https://github.com/inpsyde/modularity/tree/1.8.0"
             },
-            "time": "2024-03-22T07:01:53+00:00"
+            "time": "2024-05-14T06:07:35+00:00"
         },
         {
             "name": "inpsyde/wp-context",
@@ -411,12 +411,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/RRZE-Webteam/FAU-Studium-Common.git",
-                "reference": "58c96a8b5803f1188415fc97ba0e460527b6a755"
+                "reference": "82947001ec8016e74eb8655aba62d7e7141394ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RRZE-Webteam/FAU-Studium-Common/zipball/58c96a8b5803f1188415fc97ba0e460527b6a755",
-                "reference": "58c96a8b5803f1188415fc97ba0e460527b6a755",
+                "url": "https://api.github.com/repos/RRZE-Webteam/FAU-Studium-Common/zipball/82947001ec8016e74eb8655aba62d7e7141394ef",
+                "reference": "82947001ec8016e74eb8655aba62d7e7141394ef",
                 "shasum": ""
             },
             "require": {
@@ -465,6 +465,12 @@
                 ],
                 "fix-coding-standards": [
                     "vendor/bin/phpcbf"
+                ],
+                "tests": [
+                    "@php ./vendor/phpunit/phpunit/phpunit --coverage-text"
+                ],
+                "tests:no-cov": [
+                    "@php ./vendor/phpunit/phpunit/phpunit --no-coverage"
                 ]
             },
             "license": [
@@ -483,7 +489,7 @@
                 "source": "https://github.com/RRZE-Webteam/FAU-Studium-Common/tree/dev",
                 "issues": "https://github.com/RRZE-Webteam/FAU-Studium-Common/issues"
             },
-            "time": "2024-05-10T07:24:11+00:00"
+            "time": "2024-05-24T14:26:03+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -1890,16 +1896,16 @@
         },
         {
             "name": "phpdocumentor/reflection-docblock",
-            "version": "5.4.0",
+            "version": "5.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "298d2febfe79d03fe714eb871d5538da55205b1a"
+                "reference": "9d07b3f7fdcf5efec5d1609cba3c19c5ea2bdc9c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/298d2febfe79d03fe714eb871d5538da55205b1a",
-                "reference": "298d2febfe79d03fe714eb871d5538da55205b1a",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/9d07b3f7fdcf5efec5d1609cba3c19c5ea2bdc9c",
+                "reference": "9d07b3f7fdcf5efec5d1609cba3c19c5ea2bdc9c",
                 "shasum": ""
             },
             "require": {
@@ -1948,9 +1954,9 @@
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
             "support": {
                 "issues": "https://github.com/phpDocumentor/ReflectionDocBlock/issues",
-                "source": "https://github.com/phpDocumentor/ReflectionDocBlock/tree/5.4.0"
+                "source": "https://github.com/phpDocumentor/ReflectionDocBlock/tree/5.4.1"
             },
-            "time": "2024-04-09T21:13:58+00:00"
+            "time": "2024-05-21T05:55:05+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
