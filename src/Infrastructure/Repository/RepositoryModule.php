@@ -12,6 +12,7 @@ use Fau\DegreeProgram\Common\Application\Repository\DegreeProgramViewRepository;
 use Fau\DegreeProgram\Common\Domain\DegreeProgramRepository;
 use Fau\DegreeProgram\Common\Domain\DegreeProgramSanitizer;
 use Fau\DegreeProgram\Common\Infrastructure\Content\Taxonomy\TaxonomiesList;
+use Fau\DegreeProgram\Common\Infrastructure\Repository\CampoKeysRepository;
 use Fau\DegreeProgram\Common\Infrastructure\Repository\FacultyRepository;
 use Fau\DegreeProgram\Common\Infrastructure\Repository\IdGenerator;
 use Fau\DegreeProgram\Common\Infrastructure\Repository\WordPressDatabaseDegreeProgramCollectionRepository;
@@ -43,6 +44,7 @@ class RepositoryModule implements ServiceModule, FactoryModule
             $this->makeDatabaseViewRepositoryDefinition()
             + [
                 PostsRepository::class => static fn() => new PostsRepository(),
+                CampoKeysRepository::class => static fn() => new CampoKeysRepository(),
                 WordPressApiDegreeProgramViewRepository::class => static fn(ContainerInterface $container) => new WordPressApiDegreeProgramViewRepository(
                     $container->get(ApiClient::class)
                 ),
@@ -53,6 +55,7 @@ class RepositoryModule implements ServiceModule, FactoryModule
                 ),
                 WpQueryArgsBuilder::class => static fn(ContainerInterface $container) => new WpQueryArgsBuilder(
                     $container->get(TaxonomiesList::class),
+                    $container->get(CampoKeysRepository::class),
                 ),
                 WordPressDatabaseDegreeProgramCollectionRepository::class => static fn(ContainerInterface $container) => new WordPressDatabaseDegreeProgramCollectionRepository(
                     $container->get(DegreeProgramViewRepository::class),
@@ -103,6 +106,7 @@ class RepositoryModule implements ServiceModule, FactoryModule
                 $container->get(IdGenerator::class),
                 $container->get(EventDispatcherInterface::class),
                 $container->get(HtmlDegreeProgramSanitizer::class),
+                $container->get(CampoKeysRepository::class),
             ),
             WordPressDatabaseDegreeProgramViewRepository::class => static fn(ContainerInterface $container) => new WordPressDatabaseDegreeProgramViewRepository(
                 $container->get(DegreeProgramRepository::class),

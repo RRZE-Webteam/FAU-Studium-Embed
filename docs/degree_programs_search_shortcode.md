@@ -12,6 +12,7 @@ See below for a list of supported attributes.
 | `hide`          | Comma-separated names of elements that should be hidden            | no       |         | See list below    |
 | `output`        | Output mode                                                        | no       | `list`  | `list` or `tiles` |
 | `filters`       | Comma-separated list of filters to be shown to visitors            | no       |         | See list below    |
+| `ids`           | Comma-separated list of HIS codes                                  | no       |         | See list below    |
 | `<filter-name>` | Pre-applied filters with comma-separated term names as their value | no       |         | See list below    |
 
 ## List of supported filters
@@ -68,3 +69,13 @@ slugs. This does **not** work on other websites.
 
 If a shortcode includes more than three visible filters in the `filters` attribute, the first three will be outputted in
 the top filter bar, while the rest will be hidden in the **"Advanced filters"** dropdown.
+
+### Usage of `ids` attribute
+
+The `ids` attribute takes a comma-separated list of HIS codes, HIS codes can be complete or partial. Valid examples are:
+
+- 08|185|-|-|H|1|E|P|V|1|
+- 08|185
+- 08|185,08|145,08|185|-|-|H|1|E|P|V|1|
+
+currently, only position 1,2 and 7 of the HIS code are used, other values are ignored, in the first example of above, value `08`, `185` and `E` are used, others are ignored.
