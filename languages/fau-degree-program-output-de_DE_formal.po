@@ -2,35 +2,40 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FAU Degree Program Output 0.0.4\n"
 "Report-Msgid-Bugs-To: https://github.com/RRZE-Webteam/FAU-Studium-Embed\n"
+"POT-Creation-Date: 2024-05-20T16:55:19+00:00\n"
+"PO-Revision-Date: 2024-05-29 14:51+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-05-20T16:55:19+00:00\n"
-"PO-Revision-Date: 2024-05-20 20:12+0300\n"
-"Language: de_DE\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.3.2\n"
 "X-Domain: fau-degree-program-output\n"
 
 #. Plugin Name of the plugin
+#: fau-degree-program-output.php
 msgid "FAU Degree Program Output"
 msgstr "FAU Studiengangsanzeige"
 
 #. Plugin URI of the plugin
+#: fau-degree-program-output.php
 msgid "https://github.com/RRZE-Webteam/FAU-Studium-Embed"
 msgstr "https://github.com/RRZE-Webteam/FAU-Studium-Embed"
 
 #. Description of the plugin
+#: fau-degree-program-output.php
 msgid "Fetch degree programs via the REST API and display them."
 msgstr "Abrufen von Studiengängen über die REST-API und deren Anzeige."
 
 #. Author of the plugin
+#: fau-degree-program-output.php
 msgid "Syde GmbH"
 msgstr "Syde GmbH"
 
 #. Author URI of the plugin
+#: fau-degree-program-output.php
 msgid "https://syde.com/"
 msgstr "https://syde.com/"
 
@@ -424,19 +429,10 @@ msgctxt "backoffice: Filter label"
 msgid "Admission free with restriction"
 msgstr "Zulassungsfrei mit Einschränkung"
 
-#: templates/degree-programs-search-form.php:27
-#: templates/search/degree-programs-search.php:33
-#: templates/search/search.php:43
+#: templates/search/search.php:47
 msgctxt "frontoffice: degree programs search form"
 msgid "Degree programs"
 msgstr "Studiengänge"
-
-#: templates/degree-programs-search-form.php:44
-#: templates/search/degree-programs-search-filters.php:37
-#: templates/search/search-filters.php:58
-msgctxt "frontoffice: degree programs search form"
-msgid "Layout"
-msgstr ""
 
 #: templates/search/collection-table-header.php:69
 #: templates/search/collection-table-header.php:103
@@ -449,36 +445,28 @@ msgid "Sort by"
 msgstr "Sortieren nach"
 
 #: templates/search/collection-table-header.php:75
-#: templates/search/degree-programs-list.php:62
 msgctxt "frontoffice: degree programs search result list"
 msgid "Degree program"
 msgstr "Studiengang"
 
 #: templates/search/collection-table-header.php:109
-#: templates/search/degree-programs-list.php:89
 msgctxt "frontoffice: degree programs search result list"
 msgid "Degree type"
 msgstr "Abschlusstyp"
 
 #: templates/search/collection-table-header.php:141
-#: templates/search/degree-program-list-item.php:57
-#: templates/search/degree-programs-list.php:114
 #: templates/search/item-preview.php:78
 msgctxt "frontoffice: degree programs search result list"
 msgid "Start"
 msgstr "Start"
 
 #: templates/search/collection-table-header.php:173
-#: templates/search/degree-program-list-item.php:68
-#: templates/search/degree-programs-list.php:139
 #: templates/search/item-preview.php:89
 msgctxt "frontoffice: degree programs search result list"
 msgid "Location"
 msgstr "Ort"
 
 #: templates/search/collection-table-header.php:205
-#: templates/search/degree-program-list-item.php:79
-#: templates/search/degree-programs-list.php:164
 #: templates/search/item-preview.php:100
 msgctxt "frontoffice: degree programs search result list"
 msgid "NC"
@@ -489,41 +477,26 @@ msgctxt "frontoffice: degree programs search result list"
 msgid "Language certificates"
 msgstr "Sprachkenntnisse"
 
-#: templates/search/degree-program-list-item.php:45
 #: templates/search/item-preview.php:67
 msgctxt "frontoffice: degree programs search result list"
 msgid "Type"
 msgstr "Typ"
 
-#. translators: %s is the orderby value
-#: templates/search/degree-programs-list.php:38
-msgctxt "frontoffice: degree programs search result list"
-msgid "Sort by %s"
-msgstr "Sortieren nach %s"
-
-#: templates/search/degree-programs-search-filters.php:48
 #: templates/search/filter/search-filters.php:99
-#: templates/search/search-filters.php:69
 msgctxt "frontoffice: degree programs search form"
 msgid "Switch to grid view"
 msgstr "Zur Gitteransicht wechseln"
 
-#: templates/search/degree-programs-search-filters.php:58
 #: templates/search/filter/search-filters.php:110
-#: templates/search/search-filters.php:79
 msgctxt "frontoffice: degree programs search form"
 msgid "Switch to list view"
 msgstr "Zur Listenansicht wechseln"
 
-#: templates/search/degree-programs-searchform.php:44
-#: templates/search/search-form.php:45
 #: templates/search/text-input-search.php:39
 msgctxt "frontoffice: degree programs search form"
 msgid "Please enter search term..."
 msgstr "Bitte Suchbegriff eingeben…"
 
-#: templates/search/degree-programs-searchform.php:52
-#: templates/search/search-form.php:53
 #: templates/search/text-input-search.php:47
 msgctxt "frontoffice: degree programs search form"
 msgid "Search"
@@ -559,7 +532,7 @@ msgctxt "backoffice: Search results"
 msgid "No degree programs found"
 msgstr "Keine Studiengänge gefunden."
 
-#: templates/search/search.php:97
+#: templates/search/search.php:101
 msgctxt "frontoffice: degree programs search form"
 msgid "The degree program data is being processed. Please try again in a few minutes."
 msgstr "Die Studiengangsdaten werden gerade verarbeitet. Bitte versuchen Sie es in ein paar Minuten erneut."
@@ -651,11 +624,6 @@ msgstr "Studiengebühren"
 msgctxt "frontoffice: single view"
 msgid "Language skills"
 msgstr "Sprachkenntnisse"
-
-#: templates/single-degree-program/back.php:34
-msgctxt "frontoffice: single view"
-msgid "Back to degree programs"
-msgstr "Studienbeginn"
 
 #: templates/single-degree-program/details.php:49
 msgctxt "frontoffice: single view"
@@ -767,6 +735,47 @@ msgctxt "block keyword"
 msgid "study"
 msgstr "Studium"
 
-#~ msgctxt "backoffice: Filter label"
-#~ msgid "Free"
-#~ msgstr "Frei"
+#: assets/ts/frontend.js:1
+msgctxt "frontoffice: degree-programs-overview"
+msgid "Type"
+msgstr "Typ"
+
+#: assets/ts/frontend.js:1
+msgctxt "frontoffice: degree-programs-overview"
+msgid "Start"
+msgstr "Studienbeginn"
+
+#: assets/ts/frontend.js:1
+msgctxt "frontoffice: degree-programs-overview"
+msgid "Location"
+msgstr "Studienort"
+
+#: assets/ts/frontend.js:1
+msgctxt "frontoffice: degree-programs-overview"
+msgid "NC"
+msgstr "NC"
+
+#: assets/ts/frontend.js:1
+msgctxt "frontoffice: degree-programs-overview"
+msgid "Language certificates"
+msgstr "Sprachnachweise"
+
+#: assets/ts/frontend.js:1
+msgctxt "frontoffice: Search results"
+msgid "No degree programs found"
+msgstr "Keine Studiengänge gefunden"
+
+#: assets/ts/frontend.js:1
+msgctxt "frontoffice: degree-programs-overview"
+msgid "Keyword"
+msgstr "Schlagwort"
+
+#: assets/ts/gutenberg.js:1
+msgctxt "backoffice: block editor"
+msgid "Select degree program"
+msgstr "Studiengang wählen"
+
+#: assets/ts/gutenberg.js:1
+msgctxt "backend: block editor"
+msgid "Could not load suggestion list"
+msgstr "Vorschlagsliste konnte nicht geladen werden"
