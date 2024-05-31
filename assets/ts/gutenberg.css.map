@@ -1,0 +1,1 @@
+{"version":3,"file":"ts/gutenberg.css","mappings":";;;AAAA,+FACC,SACD,C","sources":["webpack://@rrze/fau-studium-embed/./resources/ts/blocks/degree-program/styles.scss"],"sourcesContent":[".edit-post-visual-editor .components-button.has-icon.components-form-token-field__remove-token {\n\tpadding: 0;\n}\n"],"names":[],"sourceRoot":""}
