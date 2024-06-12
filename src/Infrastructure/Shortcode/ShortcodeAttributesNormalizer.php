@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Fau\DegreeProgram\Output\Infrastructure\Shortcode;
 
+use Fau\DegreeProgram\Common\Application\Filter\AdmissionRequirementTypeFilter;
 use Fau\DegreeProgram\Common\Application\Filter\Filter;
 use Fau\DegreeProgram\Common\Application\Filter\FilterFactory;
 use Fau\DegreeProgram\Common\Domain\MultilingualString;
@@ -110,11 +111,15 @@ final class ShortcodeAttributesNormalizer
         return $attributes;
     }
 
-    /** @return array<int> */
+    /** @return array<int|string> */
     private function preAppliedFilter(string $filterName, mixed $filterValue): array
     {
         if (!is_string($filterValue)) {
             return [];
+        }
+
+        if ($filterName === AdmissionRequirementTypeFilter::KEY) {
+            return explode(',', $filterValue);
         }
 
         return array_filter(
