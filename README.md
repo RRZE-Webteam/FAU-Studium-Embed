@@ -7,7 +7,7 @@ Fetch degree programs via the REST API and display them.
 * [Installation](#installation)
 * [Requirements](#requirements)
 * [Usage](#usage)
-* [Crafted by Inpsyde](#crafted-by-inpsyde)
+* [Crafted by Syde](#crafted-by-syde)
 * [License](#license)
 * [Contributing](#contributing)
 
@@ -53,13 +53,13 @@ the degree programs overview ([documentation](./docs/degree_programs_search_shor
 a single degree program ([documentation](./docs/single_degree_program_shortcode.md))
 
 
-## Crafted by Inpsyde
+## Crafted by Syde
 
-The team at [Inpsyde](https://inpsyde.com/) is engineering the Web since 2006.
+The team at [Syde](https://syde.com/) is engineering the Web since 2006.
 
 ## License
 
-Copyright (c) 2022, Inpsyde GmbH
+Copyright (c) 2022, Syde GmbH
 
 This software is released under the ["GNU General Public License v2.0 or later"](LICENSE) license.
 
