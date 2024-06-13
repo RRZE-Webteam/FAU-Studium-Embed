@@ -3,7 +3,7 @@
         'name' => 'rrze/fau-studium-embed',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'e515f8f4fc35a3d05a5e5f931da7c07d39df6f6c',
+        'reference' => '552615cfc3d262b0dd3a7b7e88a453a4555c1820',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -87,7 +87,7 @@
         'rrze/fau-studium-embed' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'e515f8f4fc35a3d05a5e5f931da7c07d39df6f6c',
+            'reference' => '552615cfc3d262b0dd3a7b7e88a453a4555c1820',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
