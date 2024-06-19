@@ -20,7 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Dynamically load degree program search results when selecting checkboxes or typing a search term.
 - Only the title, subtitle, and field "What is the degree program about?" are indexed for searching.
-- Increase timout limit when synchronizing data from the providing website.
+- Increase timeout limit when synchronizing data from the providing website.
 
 ### Fixed
 
