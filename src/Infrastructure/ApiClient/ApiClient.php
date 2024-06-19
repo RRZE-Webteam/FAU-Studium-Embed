@@ -13,14 +13,17 @@ final class ApiClient
 {
     private const API_HOST = 'https://meinstudium.fau.de';
 
-    private array $headers;
+    private array $defaultArgs;
 
     public function __construct(
         private LoggerInterface $logger
     ) {
 
-        $this->headers = [
-            'Accept' => 'application/json',
+        $this->defaultArgs = [
+            'headers' => [
+                'Accept' => 'application/json',
+            ],
+            'timeout' => 15,
         ];
     }
 
@@ -39,9 +42,7 @@ final class ApiClient
             $requestUrl,
             wp_parse_args(
                 $args,
-                [
-                    'headers' => $this->headers,
-                ]
+                $this->defaultArgs
             )
         );
 
