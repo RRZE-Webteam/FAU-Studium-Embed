@@ -17,19 +17,19 @@ See below for a list of supported attributes.
 
 ## List of supported filters
 
-| Filter                  | Description                                                             | Accepted values (if used as a pre-applied filter) |
-|-------------------------|-------------------------------------------------------------------------|---------------------------------------------------|
-| `admission-requirement` | Admission requirements filter                                           | Not available                                     |
-| `area-of-study`         | Area of study filter                                                    | Comma-separated term names                        |
-| `attribute`             | Attribute filter                                                        | Comma-separated term names                        |
-| `degree`                | Degree filter                                                           | Comma-separated term names                        |
-| `faculty`               | Faculty filter                                                          | Comma-separated term names                        |
-| `german-language-skills-for-international-students` | German language skills for international students filter | Comma-separated term names           |
-| `search`                | Search keyword filter (explicitly added by default, no need to include) | Not available                                     |
-| `semester`              | Semester filter                                                         | Comma-separated term names                        |
-| `study-location`        | Study location filter                                                   | Comma-separated term names                        |
-| `subject-group`         | Subject group filter                                                    | Comma-separated term names                        |
-| `teaching-language`     | Teaching language filter                                                | Comma-separated term names                        |
+| Filter                                              | Description                                                             | Accepted values (if used as a pre-applied filter) |
+|-----------------------------------------------------|-------------------------------------------------------------------------|---------------------------------------------------|
+| `admission-requirement`                             | Admission requirements filter                                           | Not available                                     |
+| `area-of-study`                                     | Area of study filter                                                    | Comma-separated term names                        |
+| `attribute`                                         | Attribute filter                                                        | Comma-separated term names                        |
+| `degree`                                            | Degree filter                                                           | Comma-separated term names                        |
+| `faculty`                                           | Faculty filter                                                          | Comma-separated term names                        |
+| `german-language-skills-for-international-students` | German language skills for international students filter                | Comma-separated term names                        |
+| `search`                                            | Search keyword filter (explicitly added by default, no need to include) | Not available                                     |
+| `semester`                                          | Semester filter                                                         | Comma-separated term names                        |
+| `study-location`                                    | Study location filter                                                   | Comma-separated term names                        |
+| `subject-group`                                     | Subject group filter                                                    | Comma-separated term names                        |
+| `teaching-language`                                 | Teaching language filter                                                | Comma-separated term names                        |
 
 ## List of elements that can be hidden
 
