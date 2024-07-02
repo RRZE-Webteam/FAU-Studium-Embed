@@ -19,6 +19,7 @@ use Fau\DegreeProgram\Common\Infrastructure\Repository\WordPressDatabaseDegreePr
 use Fau\DegreeProgram\Common\Infrastructure\Repository\WordPressDatabaseDegreeProgramRepository;
 use Fau\DegreeProgram\Common\Infrastructure\Repository\WordPressDatabaseDegreeProgramViewRepository;
 use Fau\DegreeProgram\Common\Infrastructure\Repository\WpQueryArgsBuilder;
+use Fau\DegreeProgram\Common\Infrastructure\Repository\WpQuerySplitter;
 use Fau\DegreeProgram\Common\Infrastructure\Sanitizer\HtmlDegreeProgramSanitizer;
 use Fau\DegreeProgram\Output\Application\OriginalDegreeProgramViewRepository;
 use Fau\DegreeProgram\Output\Infrastructure\ApiClient\ApiClient;
@@ -60,6 +61,10 @@ class RepositoryModule implements ServiceModule, FactoryModule
                 WordPressDatabaseDegreeProgramCollectionRepository::class => static fn(ContainerInterface $container) => new WordPressDatabaseDegreeProgramCollectionRepository(
                     $container->get(DegreeProgramViewRepository::class),
                     $container->get(WpQueryArgsBuilder::class),
+                    $container->get(WpQuerySplitter::class)
+                ),
+                WpQuerySplitter::class => static fn(ContainerInterface $container) => new WpQuerySplitter(
+                    $container->get(WpQueryArgsBuilder::class)
                 ),
                 DegreeProgramCollectionRepository::class => static fn(ContainerInterface $container) => new CachedApiCollectionRepository(
                     $container->get(WordPressDatabaseDegreeProgramCollectionRepository::class),
