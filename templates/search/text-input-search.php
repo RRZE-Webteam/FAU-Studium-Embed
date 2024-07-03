@@ -22,12 +22,12 @@ use function Fau\DegreeProgram\Output\renderComponent;
 
 ?>
 
-<div class="c-degree-programs-sarchform">
-    <div class="c-degree-programs-sarchform__inner">
+<div class="c-degree-programs-searchform">
+    <div class="c-degree-programs-searchform__inner">
         <?= renderComponent(
             new Component(
                 Icon::class,
-                ['name' => 'search', 'className' => 'c-degree-programs-sarchform__search-icon']
+                ['name' => 'search', 'className' => 'c-degree-programs-searchform__search-icon']
             )
         ) ?>
 
@@ -35,14 +35,14 @@ use function Fau\DegreeProgram\Output\renderComponent;
             type="search"
             name="<?= esc_attr($name) ?>"
             value="<?= esc_attr($searchQuery) ?>"
-            class="c-degree-programs-sarchform__input"
+            class="c-degree-programs-searchform__input"
             placeholder="<?= esc_attr_x(
                 'Please enter search term...',
                 'frontoffice: degree programs search form',
                 'fau-degree-program-output'
             ) ?>"
         />
-        <button class="c-degree-programs-sarchform__submit" type="submit">
+        <button class="c-degree-programs-searchform__submit" type="submit">
             <span class="label">
                 <?= esc_html_x(
                     'Search',

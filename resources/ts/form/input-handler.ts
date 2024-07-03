@@ -4,7 +4,7 @@ import isReducedMotion from '../common/reduced-motion-detection';
 import submitForm from './form-handler';
 import { toggleSingleActiveFilter } from '../filters/active-filters';
 
-const INPUT_SELECTOR = '.c-degree-programs-sarchform__input';
+const INPUT_SELECTOR = '.c-degree-programs-searchform__input';
 const MIN_CHARACTERS = 3;
 
 export const SEARCH_ACTIVE_FILTER_LABEL = _x(
