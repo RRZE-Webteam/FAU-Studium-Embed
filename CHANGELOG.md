@@ -12,11 +12,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Expand the admission requirements filter to include the "Admission free with restriction" option.
 - Support filter reordering based on the `filters` attribute in the search shortcode.
-- Support `ids` attribute in the search shortcode.
+- Support `ids` attribute in the search shortcode to restrict search results by Campo Keys.
+- Support `german-language-skills-for-international-students` attribute in the search shortcode to restrict search results by language skills.
+- Support `hide` attribute in the search shortcode to hide the heading (`heading`) or search form (`search`).
 
 ### Changed
 
+- Dynamically load degree program search results when selecting checkboxes or typing a search term.
 - Only the title, subtitle, and field "What is the degree program about?" are indexed for searching.
+- Increase timeout limit when synchronizing data from the providing website.
 
 ### Fixed
 
