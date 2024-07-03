@@ -193,6 +193,7 @@ class ComposerStaticInitd38609ffddf282cdc7334ff140e2d30e
         'Fau\\DegreeProgram\\Common\\Infrastructure\\Repository\\WpQueryArgs' => __DIR__ . '/..' . '/rrze/fau-studium-common/src/Infrastructure/Repository/WpQueryArgs.php',
         'Fau\\DegreeProgram\\Common\\Infrastructure\\Repository\\WpQueryArgsBuilder' => __DIR__ . '/..' . '/rrze/fau-studium-common/src/Infrastructure/Repository/WpQueryArgsBuilder.php',
         'Fau\\DegreeProgram\\Common\\Infrastructure\\Repository\\WpQueryPaginationAwareCollection' => __DIR__ . '/..' . '/rrze/fau-studium-common/src/Infrastructure/Repository/WpQueryPaginationAwareCollection.php',
+        'Fau\\DegreeProgram\\Common\\Infrastructure\\Repository\\WpQuerySplitter' => __DIR__ . '/..' . '/rrze/fau-studium-common/src/Infrastructure/Repository/WpQuerySplitter.php',
         'Fau\\DegreeProgram\\Common\\Infrastructure\\RestApi\\TranslatedDegreeProgramController' => __DIR__ . '/..' . '/rrze/fau-studium-common/src/Infrastructure/RestApi/TranslatedDegreeProgramController.php',
         'Fau\\DegreeProgram\\Common\\Infrastructure\\Sanitizer\\HtmlDegreeProgramSanitizer' => __DIR__ . '/..' . '/rrze/fau-studium-common/src/Infrastructure/Sanitizer/HtmlDegreeProgramSanitizer.php',
         'Fau\\DegreeProgram\\Common\\Infrastructure\\Sanitizer\\SerializedBlocksDegreeProgramSanitizer' => __DIR__ . '/..' . '/rrze/fau-studium-common/src/Infrastructure/Sanitizer/SerializedBlocksDegreeProgramSanitizer.php',

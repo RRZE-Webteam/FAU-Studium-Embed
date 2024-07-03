@@ -787,7 +787,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var INPUT_SELECTOR = '.c-degree-programs-sarchform__input';
+var INPUT_SELECTOR = '.c-degree-programs-searchform__input';
 var MIN_CHARACTERS = 3;
 var SEARCH_ACTIVE_FILTER_LABEL = (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__._x)('Keyword', 'frontoffice: degree-programs-overview', 'fau-degree-program-output');
 var input = document.querySelector(INPUT_SELECTOR);

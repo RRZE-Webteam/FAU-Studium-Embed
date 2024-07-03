@@ -113,6 +113,7 @@ return array(
     'Fau\\DegreeProgram\\Common\\Infrastructure\\Repository\\WpQueryArgs' => $vendorDir . '/rrze/fau-studium-common/src/Infrastructure/Repository/WpQueryArgs.php',
     'Fau\\DegreeProgram\\Common\\Infrastructure\\Repository\\WpQueryArgsBuilder' => $vendorDir . '/rrze/fau-studium-common/src/Infrastructure/Repository/WpQueryArgsBuilder.php',
     'Fau\\DegreeProgram\\Common\\Infrastructure\\Repository\\WpQueryPaginationAwareCollection' => $vendorDir . '/rrze/fau-studium-common/src/Infrastructure/Repository/WpQueryPaginationAwareCollection.php',
+    'Fau\\DegreeProgram\\Common\\Infrastructure\\Repository\\WpQuerySplitter' => $vendorDir . '/rrze/fau-studium-common/src/Infrastructure/Repository/WpQuerySplitter.php',
     'Fau\\DegreeProgram\\Common\\Infrastructure\\RestApi\\TranslatedDegreeProgramController' => $vendorDir . '/rrze/fau-studium-common/src/Infrastructure/RestApi/TranslatedDegreeProgramController.php',
     'Fau\\DegreeProgram\\Common\\Infrastructure\\Sanitizer\\HtmlDegreeProgramSanitizer' => $vendorDir . '/rrze/fau-studium-common/src/Infrastructure/Sanitizer/HtmlDegreeProgramSanitizer.php',
     'Fau\\DegreeProgram\\Common\\Infrastructure\\Sanitizer\\SerializedBlocksDegreeProgramSanitizer' => $vendorDir . '/rrze/fau-studium-common/src/Infrastructure/Sanitizer/SerializedBlocksDegreeProgramSanitizer.php',
