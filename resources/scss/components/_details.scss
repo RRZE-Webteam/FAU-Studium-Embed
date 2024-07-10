@@ -30,11 +30,16 @@
     position: relative;
     break-inside: avoid;
 
+    p {
+      padding: 0;
+    }
+
     .fau-icon {
       fill: config.color('branding', 'primary');
       position: absolute;
       left: 0;
       top: 5px;
+      background: none;
     }
   }
 }
