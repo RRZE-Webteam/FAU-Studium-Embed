@@ -50,15 +50,6 @@
       <code><![CDATA[!$collection->nextPage()]]></code>
     </RiskyTruthyFalsyComparison>
   </file>
-  <file src="src/Infrastructure/Search/FilterableTermsUpdater.php">
-    <RiskyTruthyFalsyComparison>
-      <code><![CDATA[!$remoteTermId]]></code>
-      <code><![CDATA[!$termId]]></code>
-      <code><![CDATA[$newTermId]]></code>
-      <code><![CDATA[$newTermId]]></code>
-      <code><![CDATA[$newTermId]]></code>
-    </RiskyTruthyFalsyComparison>
-  </file>
   <file src="src/Infrastructure/Shortcode/ShortcodeAttributesNormalizer.php">
     <RiskyTruthyFalsyComparison>
       <code><![CDATA[!$callable]]></code>
