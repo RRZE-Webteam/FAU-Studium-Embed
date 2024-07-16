@@ -4,7 +4,7 @@
  * Plugin Name: FAU Degree Program Output
  * Plugin URI:  https://github.com/RRZE-Webteam/FAU-Studium-Embed
  * Description: Fetch degree programs via the REST API and display them.
- * Version:     2.0.0-beta.4
+ * Version:     2.0.0-beta.5
  * Author:      Syde GmbH
  * Author URI:  https://syde.com/
  * Update URI:  false
