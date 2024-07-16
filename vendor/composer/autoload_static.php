@@ -299,6 +299,7 @@ class ComposerStaticInitd38609ffddf282cdc7334ff140e2d30e
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Search\\FilterableTermsUpdater' => __DIR__ . '/../..' . '/src/Infrastructure/Search/FilterableTermsUpdater.php',
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Search\\SearchModule' => __DIR__ . '/../..' . '/src/Infrastructure/Search/SearchModule.php',
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Search\\SearchableContentUpdater' => __DIR__ . '/../..' . '/src/Infrastructure/Search/SearchableContentUpdater.php',
+        'Fau\\DegreeProgram\\Output\\Infrastructure\\Search\\TermData' => __DIR__ . '/../..' . '/src/Infrastructure/Search/TermData.php',
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Search\\UpdateFilterablePostsMetaMessageHandler' => __DIR__ . '/../..' . '/src/Infrastructure/Search/UpdateFilterablePostsMetaMessageHandler.php',
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Search\\UpdateFilterableTermsMessage' => __DIR__ . '/../..' . '/src/Infrastructure/Search/UpdateFilterableTermsMessage.php',
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Search\\UpdateFilterableTermsMessageHandler' => __DIR__ . '/../..' . '/src/Infrastructure/Search/UpdateFilterableTermsMessageHandler.php',

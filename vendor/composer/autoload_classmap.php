@@ -219,6 +219,7 @@ return array(
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Search\\FilterableTermsUpdater' => $baseDir . '/src/Infrastructure/Search/FilterableTermsUpdater.php',
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Search\\SearchModule' => $baseDir . '/src/Infrastructure/Search/SearchModule.php',
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Search\\SearchableContentUpdater' => $baseDir . '/src/Infrastructure/Search/SearchableContentUpdater.php',
+    'Fau\\DegreeProgram\\Output\\Infrastructure\\Search\\TermData' => $baseDir . '/src/Infrastructure/Search/TermData.php',
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Search\\UpdateFilterablePostsMetaMessageHandler' => $baseDir . '/src/Infrastructure/Search/UpdateFilterablePostsMetaMessageHandler.php',
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Search\\UpdateFilterableTermsMessage' => $baseDir . '/src/Infrastructure/Search/UpdateFilterableTermsMessage.php',
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Search\\UpdateFilterableTermsMessageHandler' => $baseDir . '/src/Infrastructure/Search/UpdateFilterableTermsMessageHandler.php',
