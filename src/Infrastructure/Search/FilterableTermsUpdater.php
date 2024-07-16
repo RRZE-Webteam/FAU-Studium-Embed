@@ -202,18 +202,18 @@ final class FilterableTermsUpdater
         /** @var array<MultilingualString|MultilingualLink|Degree|AdmissionRequirement> $flatProperties */
         $flatProperties = $property instanceof ArrayObject ? $property->getArrayCopy() : [$property];
 
+        // Identify parent terms and place them at the beginning of the term list to ensure they are created
+        // before updating or creating a term.
+        $flatProperties = $this->extendPropertiesWithParents($flatProperties);
+
         foreach ($flatProperties as $flatProperty) {
             if (empty($flatProperty->id())) {
                 continue;
             }
 
-            // For "Degree" and "Admission requirements …" taxonomies, only first-level terms are used as filter options
-            if ($flatProperty instanceof Degree || $flatProperty instanceof AdmissionRequirement) {
-                $flatProperty = $this->retrieveFirstLevelTerm($flatProperty);
-            }
+            $termData = $this->generateTermData($flatProperty, $taxonomiesCache, $taxonomy);
 
-            $termId = $this->idGenerator->termIdsList($flatProperty)[0] ?? null;
-            if (!$termId) {
+            if (is_null($termData)) {
                 $this->logger->error(
                     'Could not retrieve ID from structure.',
                     [
@@ -222,43 +222,21 @@ final class FilterableTermsUpdater
                 );
                 continue;
             }
-            $name = $flatProperty instanceof MultilingualString ? $flatProperty : $flatProperty->name();
 
-            $newTermId = self::arraySearchBy(
-                $taxonomiesCache[$taxonomy],
-                self::TAXONOMIES_CACHE_ORIGINAL_ID_PROPERTY,
-                $termId
-            );
-
-            if ($newTermId) {
+            if ($termData->termId()) {
                 // Term was persisted already
-                $result[] = $newTermId;
-                $this->updateTerm($taxonomy, $newTermId, $name);
+                $result[] = $termData->termId();
+                $this->updateTerm($termData);
                 continue;
             }
 
-            $newTermId = self::arraySearchBy(
-                $taxonomiesCache[$taxonomy],
-                self::TAXONOMIES_CACHE_NAME_PROPERTY,
-                $name->inGerman()
-            );
+            $termId = $this->createTerm($termData);
 
-            if ($newTermId) {
-                // Term with the name already exists
-                $result[] = $newTermId;
-                $taxonomiesCache[$taxonomy][$newTermId] = [
-                    self::TAXONOMIES_CACHE_ORIGINAL_ID_PROPERTY => $termId,
-                ];
-                $this->updateTerm($taxonomy, $newTermId, $name, $termId);
-                continue;
-            }
-
-            $newTermId = $this->createTerm($taxonomy, $termId, $name);
-            if ($newTermId) {
-                $result[] = $newTermId;
-                $taxonomiesCache[$taxonomy][$newTermId] = [
-                    self::TAXONOMIES_CACHE_NAME_PROPERTY => $name->inGerman(),
-                    self::TAXONOMIES_CACHE_ORIGINAL_ID_PROPERTY => $termId,
+            if (is_int($termId)) {
+                $result[] = $termId;
+                $taxonomiesCache[$taxonomy][$termId] = [
+                    self::TAXONOMIES_CACHE_NAME_PROPERTY => $termData->name()->inGerman(),
+                    self::TAXONOMIES_CACHE_ORIGINAL_ID_PROPERTY => $termData->remoteTermId(),
                 ];
             }
         }
@@ -266,27 +244,177 @@ final class FilterableTermsUpdater
         return $result;
     }
 
-    private function retrieveFirstLevelTerm(Degree|AdmissionRequirement $structure): Degree|AdmissionRequirement
-    {
-        $parent = $structure->parent();
-        while ($parent) {
-            $structure = $parent;
-            $parent = $structure->parent();
+    /**
+     * phpcs:ignore Inpsyde.CodeQuality.LineLength.TooLong
+     * @psalm-param array<string, array<int, array{name: string, original_id: int}>> $taxonomiesCache
+     */
+    private function generateTermData(
+        MultilingualString|MultilingualLink|AdmissionRequirement|Degree $flatProperty,
+        array &$taxonomiesCache,
+        string $taxonomy
+    ): ?TermData {
+
+        $termIdsData = $this->termIdsData($flatProperty, $taxonomiesCache[$taxonomy]);
+
+        if (is_null($termIdsData)) {
+            return null;
         }
 
-        return $structure;
+        [$termId, $remoteTermId] = $termIdsData;
+
+        return TermData::fromArray([
+            'taxonomy' => $taxonomy,
+            'name' => $flatProperty instanceof MultilingualString
+                ? $flatProperty
+                : $flatProperty->name(),
+            'slug' => $this->retrieveTermSlug($flatProperty),
+            'term_id' => $termId,
+            'remote_term_id' => $remoteTermId,
+            'parent_term_id' => $this->retrieveParentTermId(
+                $flatProperty,
+                $taxonomiesCache[$taxonomy]
+            ),
+        ]);
     }
 
-    private function createTerm(
-        string $taxonomy,
-        int $remoteTermId,
-        MultilingualString $name,
-    ): ?int {
+    /**
+     * @param AdmissionRequirement|Degree|MultilingualLink|MultilingualString $flatProperty
+     * @param array $taxonomyCache
+     * @psalm-param array<int, array{name?: string, original_id: int}> $taxonomyCache
+     * @return array<int>|null
+     */
+    private function termIdsData(
+        MultilingualString|MultilingualLink|AdmissionRequirement|Degree $flatProperty,
+        array &$taxonomyCache
+    ): ?array {
+
+        $termId = $this->idGenerator->termIdsList($flatProperty)[0] ?? null;
+
+        if (is_null($termId)) {
+            return null;
+        }
+
+        $name = $flatProperty instanceof MultilingualString ? $flatProperty : $flatProperty->name();
+        $newTermId = self::arraySearchBy(
+            $taxonomyCache,
+            self::TAXONOMIES_CACHE_ORIGINAL_ID_PROPERTY,
+            $termId
+        );
+
+        if (is_int($newTermId)) {
+            // Term was persisted already
+            return [$newTermId, $termId];
+        }
+
+        $newTermId = self::arraySearchBy(
+            $taxonomyCache,
+            self::TAXONOMIES_CACHE_NAME_PROPERTY,
+            $name->inGerman()
+        );
+
+        if (is_int($newTermId)) {
+            // Term with the name already exists
+            $taxonomyCache[$newTermId] = [
+                self::TAXONOMIES_CACHE_ORIGINAL_ID_PROPERTY => $termId,
+            ];
+
+            return [$newTermId, $termId];
+        }
+
+        return [0, $termId];
+    }
+
+    /**
+     * @param AdmissionRequirement|Degree|MultilingualLink|MultilingualString $flatProperty
+     * @param array $taxonomyCache
+     * @psalm-param array<int, array{name?: string, original_id: int}> $taxonomyCache
+     * @return int
+     */
+    private function retrieveParentTermId(
+        MultilingualString|MultilingualLink|AdmissionRequirement|Degree $flatProperty,
+        array &$taxonomyCache
+    ): int {
+
+        if (!$this->isHierarchicalProperty($flatProperty)) {
+            return 0;
+        }
+
+        /** @var AdmissionRequirement|Degree $flatProperty */
+        $parentProperty = $flatProperty->parent();
+
+        if (is_null($parentProperty)) {
+            return 0;
+        }
+
+        $parentTermData = $this->termIdsData($parentProperty, $taxonomyCache);
+
+        if (is_null($parentTermData)) {
+            return 0;
+        }
+
+        [$parentTermId] = $parentTermData;
+
+        return $parentTermId;
+    }
+
+    private function retrieveTermSlug(
+        MultilingualString|MultilingualLink|AdmissionRequirement|Degree $flatProperty
+    ): string {
+
+        if (!$flatProperty instanceof AdmissionRequirement) {
+            return '';
+        }
+
+        return $flatProperty->slug();
+    }
+
+    /**
+     * @param array<MultilingualString|MultilingualLink|Degree|AdmissionRequirement> $flatProperties
+     * @return array<MultilingualString|MultilingualLink|Degree|AdmissionRequirement>
+     */
+    private function extendPropertiesWithParents(array $flatProperties): array
+    {
+        $properties = [];
+
+        foreach ($flatProperties as $flatProperty) {
+            if (!$this->isHierarchicalProperty($flatProperty)) {
+                $properties[] = $flatProperty;
+                continue;
+            }
+
+            /** @var AdmissionRequirement|Degree $flatProperty */
+            $sequence = [$flatProperty];
+            $parent = $flatProperty->parent();
+
+            while ($parent) {
+                $sequence[] = $parent;
+                $parent = $parent->parent();
+            }
+
+            $properties = array_merge($properties, array_reverse($sequence));
+        }
+
+        return $properties;
+    }
+
+    private function isHierarchicalProperty(
+        MultilingualString|MultilingualLink|AdmissionRequirement|Degree $flatProperty
+    ): bool {
+
+        return $flatProperty instanceof Degree || $flatProperty instanceof AdmissionRequirement;
+    }
+
+    private function createTerm(TermData $termData): ?int
+    {
         // phpcs:ignore Inpsyde.CodeQuality.LineLength.TooLong
         /** @var array{term_id: int, term_taxonomy_id: string|numeric-string} | WP_Error $dbResult */
         $dbResult = wp_insert_term(
-            $name->inGerman(),
-            $taxonomy,
+            $termData->name()->inGerman(),
+            $termData->taxonomy(),
+            [
+                'parent' => $termData->parentTermId(),
+                'slug' =>  $termData->slug(),
+            ]
         );
 
         if ($dbResult instanceof WP_Error) {
@@ -296,7 +424,8 @@ final class FilterableTermsUpdater
 
         $termId = $dbResult['term_id'];
 
-        $result = update_term_meta($termId, self::ORIGINAL_TERM_ID_KEY, $remoteTermId);
+        $result = update_term_meta($termId, self::ORIGINAL_TERM_ID_KEY, $termData->remoteTermId());
+
         if ($result instanceof WP_Error) {
             $this->logger->error($result->get_error_message());
             return null;
@@ -305,8 +434,9 @@ final class FilterableTermsUpdater
         $result = update_term_meta(
             $termId,
             BilingualRepository::addEnglishSuffix('name'),
-            $name->inEnglish()
+            $termData->name()->inEnglish()
         );
+
         if ($result instanceof WP_Error) {
             $this->logger->warning($result->get_error_message());
         }
@@ -314,15 +444,12 @@ final class FilterableTermsUpdater
         return $termId;
     }
 
-    private function updateTerm(
-        string $taxonomy,
-        int $termId,
-        MultilingualString $name,
-        ?int $remoteTermId = null,
-    ): void {
+    private function updateTerm(TermData $termData): void
+    {
         /** @var array<int, int> $memo */
         static $memo = [];
-        if (isset($memo[$termId])) {
+
+        if (isset($memo[$termData->termId()])) {
             // It doesn't make sense to update the term several times during the single request
             return;
         }
@@ -330,10 +457,12 @@ final class FilterableTermsUpdater
         // phpcs:ignore Inpsyde.CodeQuality.LineLength.TooLong
         /** @var array{term_id: int, term_taxonomy_id: string|numeric-string} | WP_Error $dbResult */
         $dbResult = wp_update_term(
-            $termId,
-            $taxonomy,
+            $termData->termId(),
+            $termData->taxonomy(),
             [
-                'name' => $name->inGerman(),
+                'name' => $termData->name()->inGerman(),
+                'parent' => $termData->parentTermId(),
+                'slug' => $termData->slug(),
             ],
         );
 
@@ -342,22 +471,23 @@ final class FilterableTermsUpdater
         }
 
         $result = update_term_meta(
-            $termId,
+            $termData->termId(),
             BilingualRepository::addEnglishSuffix('name'),
-            $name->inEnglish()
+            $termData->name()->inEnglish()
         );
 
         if ($result instanceof WP_Error) {
             $this->logger->warning($result->get_error_message());
         }
 
-        $memo[$termId] = $termId;
+        $memo[$termData->termId()] = $termData->termId();
 
-        if (!$remoteTermId) {
+        if (!$termData->remoteTermId()) {
             return;
         }
 
-        $result = update_term_meta($termId, self::ORIGINAL_TERM_ID_KEY, $remoteTermId);
+        $result = update_term_meta($termData->termId(), self::ORIGINAL_TERM_ID_KEY, $termData->remoteTermId());
+
         if ($result instanceof WP_Error) {
             $this->logger->warning($result->get_error_message());
         }
