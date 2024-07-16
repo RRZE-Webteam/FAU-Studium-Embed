@@ -50,7 +50,6 @@ final class TermData
 
     public function termId(): int
     {
-
         return $this->termId;
     }
 

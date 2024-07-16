@@ -335,10 +335,11 @@ final class FilterableTermsUpdater
         array &$taxonomyCache
     ): int {
 
-        if (!$flatProperty instanceof Degree && !$flatProperty instanceof AdmissionRequirement) {
+        if (!$this->isHierarchicalProperty($flatProperty)) {
             return 0;
         }
 
+        /** @var AdmissionRequirement|Degree $flatProperty */
         $parentProperty = $flatProperty->parent();
 
         if (is_null($parentProperty)) {
@@ -376,11 +377,12 @@ final class FilterableTermsUpdater
         $properties = [];
 
         foreach ($flatProperties as $flatProperty) {
-            if (!$flatProperty instanceof Degree && !$flatProperty instanceof AdmissionRequirement) {
+            if (!$this->isHierarchicalProperty($flatProperty)) {
                 $properties[] = $flatProperty;
                 continue;
             }
 
+            /** @var AdmissionRequirement|Degree $flatProperty */
             $sequence = [$flatProperty];
             $parent = $flatProperty->parent();
 
@@ -395,15 +397,11 @@ final class FilterableTermsUpdater
         return $properties;
     }
 
-    private function retrieveFirstLevelTerm(Degree|AdmissionRequirement $structure): Degree|AdmissionRequirement
-    {
-        $parent = $structure->parent();
-        while ($parent) {
-            $structure = $parent;
-            $parent = $structure->parent();
-        }
+    private function isHierarchicalProperty(
+        MultilingualString|MultilingualLink|AdmissionRequirement|Degree $flatProperty
+    ): bool {
 
-        return $structure;
+        return $flatProperty instanceof Degree || $flatProperty instanceof AdmissionRequirement;
     }
 
     private function createTerm(TermData $termData): ?int
