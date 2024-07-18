@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Expand the admission requirements filter to include the "Admission free with restriction" option.
+- Support pre-applied values for the admission requirements filter.
 - Support filter reordering based on the `filters` attribute in the search shortcode.
 - Support `ids` attribute in the search shortcode to restrict search results by Campo Keys.
 - Support `german-language-skills-for-international-students` attribute in the search shortcode to restrict search results by language skills.
