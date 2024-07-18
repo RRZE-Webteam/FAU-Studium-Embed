@@ -221,7 +221,7 @@ final class FilterViewFactory
             new Option(
                 AdmissionRequirementTypeFilter::KEY,
                 _x(
-                    'Restricted (NC)',
+                    'Restricted (NC and others)',
                     'backoffice: Filter label',
                     'fau-degree-program-output',
                 ),

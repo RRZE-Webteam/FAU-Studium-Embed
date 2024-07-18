@@ -19,7 +19,7 @@ See below for a list of supported attributes.
 
 | Filter                                              | Description                                                             | Accepted values (if used as a pre-applied filter) |
 |-----------------------------------------------------|-------------------------------------------------------------------------|---------------------------------------------------|
-| `admission-requirement`                             | Admission requirements filter                                           | Not available                                     |
+| `admission-requirement`                             | Admission requirements filter                                           | Comma-separated term slugs                        |
 | `area-of-study`                                     | Area of study filter                                                    | Comma-separated term names                        |
 | `attribute`                                         | Attribute filter                                                        | Comma-separated term names                        |
 | `degree`                                            | Degree filter                                                           | Comma-separated term names                        |
@@ -52,7 +52,7 @@ show visitors.
 ### Example with pre-applied filters
 
 To pre-apply filters and hide them from visitors, add an attribute with the name of the filter as the key and
-comma-separated term names as the value.
+comma-separated term names as the value. Please always use slugs as the value for the admission requirement filter.
 Example: To pre-apply the `degree` filter with `Bachelor` and `Master` and also add `faculty` and `study-location` as
 visible filters, use the following shortcode:
 
@@ -63,7 +63,7 @@ visible filters, use the following shortcode:
 Note that in this example, although `degree` is a hidden filter, it still must be included in the `filters` attributes.
 
 Note that on the main website (meinstudium.fau.de), instead of using term names, it is possible to use term IDs or
-slugs. This does **not** work on other websites.
+slugs. This does **not** work on other websites, except for the admission requirement filter, which only works with slugs.
 
 ## Advanced filters
 
