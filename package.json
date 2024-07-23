@@ -1,6 +1,6 @@
 {
   "name": "@rrze/fau-studium-embed",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": true,
   "description": "Fetch degree programs via the REST API and display them.",
   "homepage": "https://github.com/RRZE-Webteam/FAU-Studium-Embed",
