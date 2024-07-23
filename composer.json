@@ -14,7 +14,7 @@
     "require": {
         "php": "^8.0",
         "inpsyde/assets": "^2.8",
-        "rrze/fau-studium-common": "dev-dev",
+        "rrze/fau-studium-common": "dev-main",
         "inpsyde/modularity": "^1.5",
         "inpsyde/wp-context": "^1.5"
     },
