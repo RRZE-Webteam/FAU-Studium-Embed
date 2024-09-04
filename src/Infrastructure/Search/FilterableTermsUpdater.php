@@ -141,19 +141,19 @@ final class FilterableTermsUpdater
         string $taxonomy,
         MultilingualString|MultilingualList|MultilingualLink|MultilingualLinks|Degree|AdmissionRequirement $property
     ): void {
-
-        $termIds = $this->maybeCreateTerms($taxonomy, $property);
+        /** @var array<int, TermData> $terms */
+        $terms = $this->maybeCreateTerms($taxonomy, $property);
         wp_set_object_terms(
             $rawView->id()->asInt(),
-            $termIds,
+            array_keys($terms),
             $taxonomy
         );
 
-        if (! isset($termIds[0])) {
+        if (!$terms) {
             return;
         }
 
-        $this->maybeUpdateCampoKeys($rawView, $taxonomy, (int) $termIds[0]);
+        $this->maybeUpdateCampoKeys($rawView, $taxonomy, $terms);
     }
 
     private function isValidPostId(int $postId): bool
@@ -179,6 +179,8 @@ final class FilterableTermsUpdater
      * phpcs:disable Inpsyde.CodeQuality.FunctionLength.TooLong
      *
      * Refactoring could decrease performance.
+     *
+     * @return array<int, TermData>
      */
     private function maybeCreateTerms(
         string $taxonomy,
@@ -225,7 +227,7 @@ final class FilterableTermsUpdater
 
             if ($termData->termId()) {
                 // Term was persisted already
-                $result[] = $termData->termId();
+                $result[$termData->termId()] = $termData;
                 $this->updateTerm($termData);
                 continue;
             }
@@ -233,7 +235,7 @@ final class FilterableTermsUpdater
             $termId = $this->createTerm($termData);
 
             if (is_int($termId)) {
-                $result[] = $termId;
+                $result[$termId] = $termData;
                 $taxonomiesCache[$taxonomy][$termId] = [
                     self::TAXONOMIES_CACHE_NAME_PROPERTY => $termData->name()->inGerman(),
                     self::TAXONOMIES_CACHE_ORIGINAL_ID_PROPERTY => $termData->remoteTermId(),
@@ -540,16 +542,25 @@ final class FilterableTermsUpdater
         return null;
     }
 
-    private function maybeUpdateCampoKeys(DegreeProgramViewRaw $rawView, string $taxonomy, int $termId): void
+    private function maybeUpdateCampoKeys(DegreeProgramViewRaw $rawView, string $taxonomy, array $terms): void
     {
         $campoKeys = $rawView->campoKeys()->asArray();
         $campoKeyType = CampoKeysRepository::TAXONOMY_TO_CAMPO_KEY_MAP[$taxonomy] ?? '';
-        $campoKey = $campoKeys[$campoKeyType] ?? null;
+        $taxonomyCampoKeys = $campoKeys[$campoKeyType] ?? null;
 
-        if (is_null($campoKey)) {
+        if (!is_array($taxonomyCampoKeys)) {
             return;
         }
 
-        update_term_meta($termId, CampoKeysRepository::CAMPO_KEY_TERM_META_KEY, $campoKey);
+        /** @var TermData $term */
+        foreach ($terms as $term) {
+            $termCampoKey = $taxonomyCampoKeys[$term->remoteTermId()] ?? null;
+
+            if (is_null($termCampoKey)) {
+                continue;
+            }
+
+            update_term_meta($term->termId(), CampoKeysRepository::CAMPO_KEY_TERM_META_KEY, $termCampoKey);
+        }
     }
 }
