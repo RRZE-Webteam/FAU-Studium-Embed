@@ -544,16 +544,16 @@ final class FilterableTermsUpdater
 
     private function maybeUpdateCampoKeys(DegreeProgramViewRaw $rawView, string $taxonomy, array $terms): void
     {
+        $campoKeys = $rawView->campoKeys()->asArray();
+        $campoKeyType = CampoKeysRepository::TAXONOMY_TO_CAMPO_KEY_MAP[$taxonomy] ?? '';
+        $taxonomyCampoKeys = $campoKeys[$campoKeyType] ?? null;
+
+        if (!is_array($taxonomyCampoKeys)) {
+            return;
+        }
+
         /** @var TermData $term */
         foreach ($terms as $term) {
-            $campoKeys = $rawView->campoKeys()->asArray();
-            $campoKeyType = CampoKeysRepository::TAXONOMY_TO_CAMPO_KEY_MAP[$taxonomy] ?? '';
-            $taxonomyCampoKeys = $campoKeys[$campoKeyType] ?? null;
-
-            if (!is_array($taxonomyCampoKeys)) {
-                continue;
-            }
-
             $termCampoKey = $taxonomyCampoKeys[$term->remoteTermId()] ?? null;
 
             if (is_null($termCampoKey)) {
