@@ -187,6 +187,7 @@ class ComposerStaticInitd38609ffddf282cdc7334ff140e2d30e
         'Fau\\DegreeProgram\\Common\\Infrastructure\\Repository\\FacultyRepository' => __DIR__ . '/..' . '/rrze/fau-studium-common/src/Infrastructure/Repository/FacultyRepository.php',
         'Fau\\DegreeProgram\\Common\\Infrastructure\\Repository\\IdGenerator' => __DIR__ . '/..' . '/rrze/fau-studium-common/src/Infrastructure/Repository/IdGenerator.php',
         'Fau\\DegreeProgram\\Common\\Infrastructure\\Repository\\StickyDegreeProgramRepository' => __DIR__ . '/..' . '/rrze/fau-studium-common/src/Infrastructure/Repository/StickyDegreeProgramRepository.php',
+        'Fau\\DegreeProgram\\Common\\Infrastructure\\Repository\\TimestampRepository' => __DIR__ . '/..' . '/rrze/fau-studium-common/src/Infrastructure/Repository/TimestampRepository.php',
         'Fau\\DegreeProgram\\Common\\Infrastructure\\Repository\\WordPressDatabaseDegreeProgramCollectionRepository' => __DIR__ . '/..' . '/rrze/fau-studium-common/src/Infrastructure/Repository/WordPressDatabaseDegreeProgramCollectionRepository.php',
         'Fau\\DegreeProgram\\Common\\Infrastructure\\Repository\\WordPressDatabaseDegreeProgramRepository' => __DIR__ . '/..' . '/rrze/fau-studium-common/src/Infrastructure/Repository/WordPressDatabaseDegreeProgramRepository.php',
         'Fau\\DegreeProgram\\Common\\Infrastructure\\Repository\\WordPressDatabaseDegreeProgramViewRepository' => __DIR__ . '/..' . '/rrze/fau-studium-common/src/Infrastructure/Repository/WordPressDatabaseDegreeProgramViewRepository.php',
