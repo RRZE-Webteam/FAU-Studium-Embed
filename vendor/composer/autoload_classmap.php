@@ -107,6 +107,7 @@ return array(
     'Fau\\DegreeProgram\\Common\\Infrastructure\\Repository\\FacultyRepository' => $vendorDir . '/rrze/fau-studium-common/src/Infrastructure/Repository/FacultyRepository.php',
     'Fau\\DegreeProgram\\Common\\Infrastructure\\Repository\\IdGenerator' => $vendorDir . '/rrze/fau-studium-common/src/Infrastructure/Repository/IdGenerator.php',
     'Fau\\DegreeProgram\\Common\\Infrastructure\\Repository\\StickyDegreeProgramRepository' => $vendorDir . '/rrze/fau-studium-common/src/Infrastructure/Repository/StickyDegreeProgramRepository.php',
+    'Fau\\DegreeProgram\\Common\\Infrastructure\\Repository\\TimestampRepository' => $vendorDir . '/rrze/fau-studium-common/src/Infrastructure/Repository/TimestampRepository.php',
     'Fau\\DegreeProgram\\Common\\Infrastructure\\Repository\\WordPressDatabaseDegreeProgramCollectionRepository' => $vendorDir . '/rrze/fau-studium-common/src/Infrastructure/Repository/WordPressDatabaseDegreeProgramCollectionRepository.php',
     'Fau\\DegreeProgram\\Common\\Infrastructure\\Repository\\WordPressDatabaseDegreeProgramRepository' => $vendorDir . '/rrze/fau-studium-common/src/Infrastructure/Repository/WordPressDatabaseDegreeProgramRepository.php',
     'Fau\\DegreeProgram\\Common\\Infrastructure\\Repository\\WordPressDatabaseDegreeProgramViewRepository' => $vendorDir . '/rrze/fau-studium-common/src/Infrastructure/Repository/WordPressDatabaseDegreeProgramViewRepository.php',
