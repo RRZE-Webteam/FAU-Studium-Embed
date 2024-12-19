@@ -84,6 +84,7 @@ final class SearchableContentUpdater
             $rawView->title()->asString($languageCode),
             $rawView->subtitle()->asString($languageCode),
             $rawView->content()->about()->description()->asString($languageCode),
+            ...array_values($rawView->keywords()->asArrayOfStrings($languageCode)->getArrayCopy()),
         ];
 
         return implode(' ', $parts);
