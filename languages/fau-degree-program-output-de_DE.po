@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FAU Degree Program Output 0.0.4\n"
 "Report-Msgid-Bugs-To: https://github.com/RRZE-Webteam/FAU-Studium-Embed\n"
-"POT-Creation-Date: 2024-07-18T12:59:56+00:00\n"
-"PO-Revision-Date: 2024-07-18 16:07+0300\n"
+"POT-Creation-Date: 2024-12-23T06:39:22+00:00\n"
+"PO-Revision-Date: 2024-12-23 08:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.5\n"
 "X-Domain: fau-degree-program-output\n"
 
 #. Plugin Name of the plugin
@@ -527,15 +527,20 @@ msgstr ""
 "Die Studiengangsdaten werden gerade verarbeitet. Bitte versuche es in ein "
 "paar Minuten erneut."
 
-#: templates/search/text-input-search.php:39
+#: templates/search/text-input-search.php:41
 msgctxt "frontoffice: degree programs search form"
 msgid "Please enter search term..."
 msgstr "Bitte Suchbegriff eingeben…"
 
-#: templates/search/text-input-search.php:47
+#: templates/search/text-input-search.php:49
 msgctxt "frontoffice: degree programs search form"
 msgid "Search"
 msgstr "Suchen"
+
+#: templates/search/text-input-search.php:69
+msgctxt "frontoffice: degree programs search form"
+msgid "Also search in text"
+msgstr "Auch im Text suchen"
 
 #: templates/single-degree-program-short.php:37
 #: templates/single-degree-program/details.php:25
