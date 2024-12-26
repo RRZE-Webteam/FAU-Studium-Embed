@@ -403,11 +403,7 @@ final class FilterableTermsUpdater
         MultilingualString|MultilingualLink|AdmissionRequirement|Degree $flatProperty
     ): bool {
 
-        return in_array($flatProperty::class, [
-            Degree::class,
-            AdmissionRequirement::class,
-            MultilingualLink::class,
-        ], true);
+        return !$flatProperty instanceof MultilingualString;
     }
 
     private function createTerm(TermData $termData): ?int
