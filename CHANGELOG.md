@@ -8,7 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
 - Add synchronization of 'German language skills for international students' child terms to consuming websites.
+
+### Changed
+
+- Keywords are indexed for searching.
 
 ## [2.1.0] - 2024-09-06
 
