@@ -5,7 +5,7 @@ import updateFiltersCount from './filters-count';
 import submitForm from '../form/form-handler';
 import { updateDegreeProgramOverviewDataset } from '../degree-program-overview/degree-program-overview';
 
-export const FILTER_SELECTOR = '.c-filter-checkbox';
+const FILTER_SELECTOR = '.c-filter-checkbox';
 export const LANGUAGE_SKILLS_INPUT =
 	'german-language-skills-for-international-students';
 
