@@ -61,7 +61,7 @@ class Dropdown {
 			isAriaExpanded ? 'false' : 'true'
 		);
 
-		if ( isAriaExpanded && this.hasStateChanged() && isReducedMotion() ) {
+		if ( isAriaExpanded && isReducedMotion() && this.hasStateChanged() ) {
 			submitForm();
 		}
 	}
