@@ -35,8 +35,8 @@ class Dropdown {
 			( checkbox ) => checkbox.checked
 		);
 
-		return ! this.initialState.every(
-			( value, index ) => value === currentState[ index ]
+		return this.initialState.some(
+			( value, index ) => value !== currentState[ index ]
 		);
 	}
 
