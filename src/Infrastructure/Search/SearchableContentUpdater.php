@@ -17,6 +17,7 @@ use Psr\Log\LoggerInterface;
 final class SearchableContentUpdater
 {
     public const SEARCHABLE_CONTENT_KEY = 'fau_degree_program_searchable_content';
+    public const SEARCHABLE_CONTENT_EXTENDED_KEY = 'fau_degree_program_searchable_content_extended';
 
     public function __construct(
         private DegreeProgramCollectionRepository $degreeProgramCollectionRepository,
@@ -68,6 +69,11 @@ final class SearchableContentUpdater
                     self::SEARCHABLE_CONTENT_KEY . '_' . $code,
                     $this->buildSearchableContent($rawView, $code)
                 );
+                update_post_meta(
+                    $rawView->id()->asInt(),
+                    self::SEARCHABLE_CONTENT_EXTENDED_KEY . '_' . $code,
+                    $this->buildSearchableContentExtended($rawView, $code)
+                );
             }
         }
     }
@@ -83,8 +89,22 @@ final class SearchableContentUpdater
         $parts = [
             $rawView->title()->asString($languageCode),
             $rawView->subtitle()->asString($languageCode),
-            $rawView->content()->about()->description()->asString($languageCode),
             ...array_values($rawView->keywords()->asArrayOfStrings($languageCode)->getArrayCopy()),
+        ];
+
+        return implode(' ', $parts);
+    }
+
+    /**
+     * @psalm-param LanguageCodes $languageCode
+     */
+    private function buildSearchableContentExtended(
+        DegreeProgramViewRaw $rawView,
+        string $languageCode
+    ): string {
+
+        $parts = [
+            $rawView->content()->about()->description()->asString($languageCode),
         ];
 
         return implode(' ', $parts);

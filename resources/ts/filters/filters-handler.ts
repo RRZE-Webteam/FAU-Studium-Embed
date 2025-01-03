@@ -8,6 +8,7 @@ import { updateDegreeProgramOverviewDataset } from '../degree-program-overview/d
 const FILTER_SELECTOR = '.c-filter-checkbox';
 export const LANGUAGE_SKILLS_INPUT =
 	'german-language-skills-for-international-students';
+const EXTENDED_INPUT = 'extended';
 
 const filters = document.querySelectorAll< HTMLElement >( FILTER_SELECTOR );
 
@@ -68,8 +69,10 @@ filters.forEach( ( filterControl ) => {
 	}
 
 	checkbox?.addEventListener( 'change', ( e ) => {
-		toggleActiveFilter( filterControl, checkbox );
-		updateFiltersCount( checkbox );
+		if ( ! checkbox.name.startsWith( EXTENDED_INPUT ) ) {
+			toggleActiveFilter( filterControl, checkbox );
+			updateFiltersCount( checkbox );
+		}
 
 		if ( checkbox.name.startsWith( LANGUAGE_SKILLS_INPUT ) ) {
 			languageCertificateCheckedCheckboxes += checkbox.checked ? 1 : -1;

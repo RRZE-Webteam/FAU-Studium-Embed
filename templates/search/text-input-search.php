@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Fau\DegreeProgram\Common\Infrastructure\TemplateRenderer\Renderer;
 use Fau\DegreeProgram\Output\Infrastructure\Component\Component;
 use Fau\DegreeProgram\Output\Infrastructure\Component\Icon;
 
@@ -13,6 +14,7 @@ use function Fau\DegreeProgram\Output\renderComponent;
  *     name: string,
  * } $data
  * @var array $data
+ * @var Renderer $renderer
  */
 
 [
@@ -57,5 +59,22 @@ use function Fau\DegreeProgram\Output\renderComponent;
                 )
             ) ?>
         </button>
+    </div>
+    <div class="c-degree-programs-searchform__options">
+        <?php // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+        <?= $renderer->render(
+            'search/filter/checkbox-item',
+            [
+                'filterId' => 'extended',
+                'label' => esc_html_x(
+                    'Also search in text',
+                    'frontoffice: degree programs search form',
+                    'fau-degree-program-output'
+                ),
+                'value' => 'enable',
+                'isSelected' => false,
+            ]
+        ) ?>
+        <?php // phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
     </div>
 </div>
