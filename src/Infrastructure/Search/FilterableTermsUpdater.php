@@ -341,7 +341,7 @@ final class FilterableTermsUpdater
             return 0;
         }
 
-        /** @var AdmissionRequirement|Degree $flatProperty */
+        /** @var AdmissionRequirement|Degree|MultilingualLink $flatProperty */
         $parentProperty = $flatProperty->parent();
 
         if (is_null($parentProperty)) {
@@ -403,7 +403,7 @@ final class FilterableTermsUpdater
         MultilingualString|MultilingualLink|AdmissionRequirement|Degree $flatProperty
     ): bool {
 
-        return $flatProperty instanceof Degree || $flatProperty instanceof AdmissionRequirement;
+        return !$flatProperty instanceof MultilingualString;
     }
 
     private function createTerm(TermData $termData): ?int

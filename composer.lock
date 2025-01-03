@@ -401,12 +401,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/RRZE-Webteam/FAU-Studium-Common.git",
-                "reference": "2314da111571d795a3f3d3dbe194680737a26e07"
+                "reference": "9d164cfcdb8ff80950fbf07b9a9e8629342d7cac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RRZE-Webteam/FAU-Studium-Common/zipball/2314da111571d795a3f3d3dbe194680737a26e07",
-                "reference": "2314da111571d795a3f3d3dbe194680737a26e07",
+                "url": "https://api.github.com/repos/RRZE-Webteam/FAU-Studium-Common/zipball/9d164cfcdb8ff80950fbf07b9a9e8629342d7cac",
+                "reference": "9d164cfcdb8ff80950fbf07b9a9e8629342d7cac",
                 "shasum": ""
             },
             "require": {
@@ -479,7 +479,7 @@
                 "source": "https://github.com/RRZE-Webteam/FAU-Studium-Common/tree/main",
                 "issues": "https://github.com/RRZE-Webteam/FAU-Studium-Common/issues"
             },
-            "time": "2024-09-04T13:20:56+00:00"
+            "time": "2025-01-03T11:55:51+00:00"
         },
         {
             "name": "webmozart/assert",
