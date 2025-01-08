@@ -100,6 +100,7 @@ final class DegreeProgramsSearch implements RenderableComponent
                 'hiddenElements' => $this->excludeDegreeProgramElements->hideElements(
                     $attributes['hidden_elements']
                 ),
+                'preAppliedFilters' =>  $attributes['pre_applied_filters'],
             ],
         );
         remove_filter('locale', [$localeHelper, 'filterLocale']);
