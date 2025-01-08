@@ -417,41 +417,72 @@ var clearActiveFilters = function () {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _form_form_handler__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../form/form-handler */ "./resources/ts/form/form-handler.ts");
+/* harmony import */ var _common_reduced_motion_detection__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/reduced-motion-detection */ "./resources/ts/common/reduced-motion-detection.ts");
+
 
 var DROPDOWN_SELECTOR = '.fau-dropdown';
 var DROPDOWN_TOGGLE_SELECTOR = '.fau-dropdown__toggle';
 var DROPDOWN_CONTENT_SELECTOR = '.fau-dropdown__content';
 var CLICKAWAY_WINDOW_WIDTH_THRESHOLD = 768;
-var closeDropDown = function (dropdown) {
-  dropdown.setAttribute('aria-expanded', 'false');
-  (0,_form_form_handler__WEBPACK_IMPORTED_MODULE_0__["default"])();
-};
-var toggleDropdown = function (dropdown) {
-  var isAriaExpanded = dropdown.getAttribute('aria-expanded') === 'true';
-  dropdown.setAttribute('aria-expanded', isAriaExpanded ? 'false' : 'true');
-  if (isAriaExpanded) {
-    (0,_form_form_handler__WEBPACK_IMPORTED_MODULE_0__["default"])();
+var Dropdown = function () {
+  function Dropdown(dropdown) {
+    this.initialState = [];
+    this.dropdown = dropdown;
+    this.toggle = dropdown.querySelector(DROPDOWN_TOGGLE_SELECTOR);
+    this.content = dropdown.querySelector(DROPDOWN_CONTENT_SELECTOR);
+    this.checkboxes = Array.from(this.content.querySelectorAll('input[type="checkbox"]'));
+    this.init();
   }
-};
-var registerClickListeners = function () {
-  document.querySelectorAll(DROPDOWN_SELECTOR).forEach(function (dropdown) {
-    var toggle = dropdown.querySelector(DROPDOWN_TOGGLE_SELECTOR);
-    var content = dropdown.querySelector(DROPDOWN_CONTENT_SELECTOR);
-    if (!toggle || !content) {
+  Dropdown.prototype.recordInitialState = function () {
+    this.initialState = this.checkboxes.map(function (checkbox) {
+      return checkbox.checked;
+    });
+  };
+  Dropdown.prototype.hasStateChanged = function () {
+    var currentState = this.checkboxes.map(function (checkbox) {
+      return checkbox.checked;
+    });
+    return this.initialState.some(function (value, index) {
+      return value !== currentState[index];
+    });
+  };
+  Dropdown.prototype.close = function () {
+    this.dropdown.setAttribute('aria-expanded', 'false');
+    if (this.hasStateChanged() && (0,_common_reduced_motion_detection__WEBPACK_IMPORTED_MODULE_1__["default"])()) {
+      (0,_form_form_handler__WEBPACK_IMPORTED_MODULE_0__["default"])();
+    }
+  };
+  Dropdown.prototype.toggleDropdown = function () {
+    var isAriaExpanded = this.dropdown.getAttribute('aria-expanded') === 'true';
+    if (!isAriaExpanded) {
+      this.recordInitialState();
+    }
+    this.dropdown.setAttribute('aria-expanded', isAriaExpanded ? 'false' : 'true');
+    if (isAriaExpanded && (0,_common_reduced_motion_detection__WEBPACK_IMPORTED_MODULE_1__["default"])() && this.hasStateChanged()) {
+      (0,_form_form_handler__WEBPACK_IMPORTED_MODULE_0__["default"])();
+    }
+  };
+  Dropdown.prototype.handleBodyClick = function (event) {
+    var target = event.target;
+    if (this.toggle.contains(target)) {
+      this.toggleDropdown();
       return;
     }
-    document.body.addEventListener('click', function (event) {
-      if (toggle.contains(event.target)) {
-        toggleDropdown(dropdown);
-        return;
-      }
-      if (dropdown.getAttribute('aria-expanded') === 'true' && !dropdown.contains(event.target) && window.innerWidth > CLICKAWAY_WINDOW_WIDTH_THRESHOLD) {
-        closeDropDown(dropdown);
-      }
-    });
+    if (this.dropdown.getAttribute('aria-expanded') === 'true' && !this.dropdown.contains(target) && window.innerWidth > CLICKAWAY_WINDOW_WIDTH_THRESHOLD) {
+      this.close();
+    }
+  };
+  Dropdown.prototype.init = function () {
+    document.body.addEventListener('click', this.handleBodyClick.bind(this));
+  };
+  return Dropdown;
+}();
+var registerDropdowns = function () {
+  document.querySelectorAll(DROPDOWN_SELECTOR).forEach(function (dropdown) {
+    return new Dropdown(dropdown);
   });
 };
-registerClickListeners();
+registerDropdowns();
 
 /***/ }),
 
@@ -521,6 +552,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var FILTER_SELECTOR = '.c-filter-checkbox';
 var LANGUAGE_SKILLS_INPUT = 'german-language-skills-for-international-students';
+var EXTENDED_INPUT = 'extended';
 var filters = document.querySelectorAll(FILTER_SELECTOR);
 var resetRelatedInput = function (label) {
   if (!label) {
@@ -561,8 +593,10 @@ filters.forEach(function (filterControl) {
     languageCertificateCheckedCheckboxes++;
   }
   checkbox === null || checkbox === void 0 ? void 0 : checkbox.addEventListener('change', function (e) {
-    (0,_active_filters__WEBPACK_IMPORTED_MODULE_2__.toggleActiveFilter)(filterControl, checkbox);
-    (0,_filters_count__WEBPACK_IMPORTED_MODULE_3__["default"])(checkbox);
+    if (!checkbox.name.startsWith(EXTENDED_INPUT)) {
+      (0,_active_filters__WEBPACK_IMPORTED_MODULE_2__.toggleActiveFilter)(filterControl, checkbox);
+      (0,_filters_count__WEBPACK_IMPORTED_MODULE_3__["default"])(checkbox);
+    }
     if (checkbox.name.startsWith(LANGUAGE_SKILLS_INPUT)) {
       languageCertificateCheckedCheckboxes += checkbox.checked ? 1 : -1;
       (0,_degree_program_overview_degree_program_overview__WEBPACK_IMPORTED_MODULE_5__.updateDegreeProgramOverviewDataset)({

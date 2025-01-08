@@ -253,6 +253,7 @@ class ComposerStaticInitd38609ffddf282cdc7334ff140e2d30e
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\Link' => __DIR__ . '/../..' . '/src/Infrastructure/Component/Link.php',
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\Links' => __DIR__ . '/../..' . '/src/Infrastructure/Component/Links.php',
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\MultichoiceFilter' => __DIR__ . '/../..' . '/src/Infrastructure/Component/MultichoiceFilter.php',
+        'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\PreAppliedFilters' => __DIR__ . '/../..' . '/src/Infrastructure/Component/PreAppliedFilters.php',
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\RenderableComponent' => __DIR__ . '/../..' . '/src/Infrastructure/Component/RenderableComponent.php',
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\SearchFilters' => __DIR__ . '/../..' . '/src/Infrastructure/Component/SearchFilters.php',
         'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\SearchForm' => __DIR__ . '/../..' . '/src/Infrastructure/Component/SearchForm.php',
