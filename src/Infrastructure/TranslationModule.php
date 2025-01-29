@@ -15,7 +15,13 @@ final class TranslationModule implements ExecutableModule
     public function run(ContainerInterface $container): bool
     {
         add_action('init', static function (): void {
-            // Bail if text domain is already loaded by the output plugin.
+            load_plugin_textdomain(
+                'fau-degree-program-output',
+                false,
+                plugin_basename(dirname(__FILE__, 3)) . '/languages'
+            );
+
+            // Bail if text domain is already loaded by the management plugin.
             if (is_textdomain_loaded('fau-degree-program-common')) {
                 return;
             }
