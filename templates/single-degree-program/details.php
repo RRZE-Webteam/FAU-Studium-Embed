@@ -126,6 +126,18 @@ $details = renderComponent(
             'description' => $view->admissionRequirementLink()?->name(),
         ]
     ),
+    new Component(
+        DegreeProgramDetail::class,
+        [
+            'icon' => 'keywords',
+            'term' => _x(
+                'Keywords',
+                'frontoffice: single view',
+                'fau-degree-program-output'
+            ),
+            'description' => implode(', ', $view->keywords()->getArrayCopy()),
+        ]
+    ),
 );
 
 $applicationLinks = renderComponent(

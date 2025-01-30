@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Synchronize "German language skills for international students" child terms to consuming websites.
 - Add "Also search in text" option to search form.
 - Support multi-word free text search.
+- Show keywords in single degree program details section.
 
 ### Changed
 
