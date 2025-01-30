@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: FAU Degree Program Output 0.0.4\n"
 "Report-Msgid-Bugs-To: https://github.com/RRZE-Webteam/FAU-Studium-Embed\n"
 "POT-Creation-Date: 2024-12-23T06:39:22+00:00\n"
-"PO-Revision-Date: 2024-12-23 08:42+0200\n"
+"PO-Revision-Date: 2025-01-29 14:18+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -11,26 +11,31 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.3.2\n"
 "X-Domain: fau-degree-program-output\n"
 
 #. Plugin Name of the plugin
+#: fau-degree-program-output.php
 msgid "FAU Degree Program Output"
 msgstr "FAU Studiengangsanzeige"
 
 #. Plugin URI of the plugin
+#: fau-degree-program-output.php
 msgid "https://github.com/RRZE-Webteam/FAU-Studium-Embed"
 msgstr "https://github.com/RRZE-Webteam/FAU-Studium-Embed"
 
 #. Description of the plugin
+#: fau-degree-program-output.php
 msgid "Fetch degree programs via the REST API and display them."
 msgstr "Abrufen von Studiengängen über die REST-API und deren Anzeige."
 
 #. Author of the plugin
+#: fau-degree-program-output.php
 msgid "Syde GmbH"
 msgstr "Syde GmbH"
 
 #. Author URI of the plugin
+#: fau-degree-program-output.php
 msgid "https://syde.com/"
 msgstr "https://syde.com/"
 
@@ -296,18 +301,12 @@ msgid "Language skills"
 msgstr "Sprachkenntnisse"
 
 #: src/Infrastructure/Component/SingleDegreeProgram.php:268
-msgid ""
-"Language skills for Faculty of Humanities, Social Sciences, and Theology only"
-msgstr ""
-"Sprachkenntnisse nur für die Philosophische Fakultät und Fachbereich "
-"Theologie"
+msgid "Language skills for Faculty of Humanities, Social Sciences, and Theology only"
+msgstr "Sprachkenntnisse nur für die Philosophische Fakultät und Fachbereich Theologie"
 
 #: src/Infrastructure/Component/SingleDegreeProgram.php:272
-msgid ""
-"Language certificates/German language skills for international applicants"
-msgstr ""
-"Sprachnachweise/Deutschkenntnisse für internationale Bewerberinnen und "
-"Bewerber"
+msgid "Language certificates/German language skills for international applicants"
+msgstr "Sprachnachweise/Deutschkenntnisse für internationale Bewerberinnen und Bewerber"
 
 #: src/Infrastructure/Component/SingleDegreeProgram.php:276
 msgid "Degree Program Fees"
@@ -513,19 +512,15 @@ msgctxt "backoffice: Search results"
 msgid "No degree programs found"
 msgstr "Keine Studiengänge gefunden."
 
-#: templates/search/search.php:47
+#: templates/search/search.php:49
 msgctxt "frontoffice: degree programs search form"
 msgid "Degree programs"
 msgstr "Studiengänge"
 
-#: templates/search/search.php:101
+#: templates/search/search.php:111
 msgctxt "frontoffice: degree programs search form"
-msgid ""
-"The degree program data is being processed. Please try again in a few "
-"minutes."
-msgstr ""
-"Die Studiengangsdaten werden gerade verarbeitet. Bitte versuche es in ein "
-"paar Minuten erneut."
+msgid "The degree program data is being processed. Please try again in a few minutes."
+msgstr "Die Studiengangsdaten werden gerade verarbeitet. Bitte versuche es in ein paar Minuten erneut."
 
 #: templates/search/text-input-search.php:41
 msgctxt "frontoffice: degree programs search form"
@@ -562,9 +557,7 @@ msgstr "Mehr lesen"
 #: templates/single-degree-program/accordion.php:75
 msgctxt "frontoffice: single view"
 msgid "Degree program combinations & limited degree program combinations"
-msgstr ""
-"Mögliche Studiengangskombinationen und eingeschränkt mögliche "
-"Studiengangskombinationen"
+msgstr "Mögliche Studiengangskombinationen und eingeschränkt mögliche Studiengangskombinationen"
 
 #: templates/single-degree-program/accordion.php:85
 msgctxt "frontoffice: single view"
@@ -714,15 +707,8 @@ msgstr "Benötigst du Hilfe oder weitere Informationen?"
 
 #: templates/single-degree-program/more-information.php:34
 msgctxt "frontoffice: single view"
-msgid ""
-"Our Student Advice and Career Service (IBZ) is the central point of contact "
-"for all questions about studying and starting a degree programme. Our "
-"Student Service Centres and subject advisors support you in planning your "
-"studies."
-msgstr ""
-"Unsere Studienberatung ist die zentrale Anlaufstelle für alle Fragen rund "
-"ums Studium und den Studieneinstieg. Unsere Studien-Service-Center und "
-"Studienfachberaterinnen unterstützen dich bei der Planung deines Studiums."
+msgid "Our Student Advice and Career Service (IBZ) is the central point of contact for all questions about studying and starting a degree programme. Our Student Service Centres and subject advisors support you in planning your studies."
+msgstr "Unsere Studienberatung ist die zentrale Anlaufstelle für alle Fragen rund ums Studium und den Studieneinstieg. Unsere Studien-Service-Center und Studienfachberaterinnen unterstützen dich bei der Planung deines Studiums."
 
 #: templates/single-degree-program/more-information.php:53
 msgctxt "frontoffice: single view"
@@ -794,6 +780,7 @@ msgctxt "block keyword"
 msgid "study"
 msgstr "Studium"
 
-#~ msgctxt "backoffice: Filter label"
-#~ msgid "Admission free with restriction"
-#~ msgstr "Zulassungsfrei mit Einschränkung"
+#: templates/single-degree-program/details.php:133
+msgctxt "frontoffice: single view"
+msgid "Keywords"
+msgstr "Schlagwörter"
