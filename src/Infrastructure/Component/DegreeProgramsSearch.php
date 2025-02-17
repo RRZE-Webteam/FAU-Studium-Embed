@@ -78,8 +78,7 @@ final class DegreeProgramsSearch implements RenderableComponent
         $localeHelper = $localeHelper->withLocale(
             $localeHelper->localeFromLanguageCode($attributes['lang'])
         );
-
-        add_filter('locale', [$localeHelper, 'filterLocale']);
+        switch_to_locale($localeHelper->localeFromLanguageCode($attributes['lang']));
 
         $filterViews = $this->buildFilterViews($attributes);
         [$filters, $advancedFilters] = $this->splitFilterViews(...$filterViews);
@@ -103,7 +102,8 @@ final class DegreeProgramsSearch implements RenderableComponent
                 'preAppliedFilters' =>  $attributes['pre_applied_filters'],
             ],
         );
-        remove_filter('locale', [$localeHelper, 'filterLocale']);
+
+        restore_previous_locale();
 
         return $html;
     }
