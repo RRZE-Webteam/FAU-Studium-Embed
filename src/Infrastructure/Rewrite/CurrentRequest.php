@@ -29,6 +29,7 @@ final class CurrentRequest
     public const ORDER_BY_QUERY_PARAM = 'order_by';
     public const ORDER_QUERY_PARAM = 'order';
     public const OUTPUT_MODE_QUERY_PARAM = 'output';
+    public const LANGUAGE_PARAM = 'lang';
 
     private const ARRAY_OF_IDS = [
         'filter' => FILTER_VALIDATE_INT,
@@ -63,10 +64,34 @@ final class CurrentRequest
      */
     public function languageCode(): string
     {
-        $languageCode = explode('_', get_locale())[0] ?? '';
-        return in_array($languageCode, [MultilingualString::DE, MultilingualString::EN], true)
-            ? $languageCode
-            : MultilingualString::DE;
+        $languageFromQuery = (string) filter_input(
+            INPUT_GET,
+            self::LANGUAGE_PARAM,
+            FILTER_SANITIZE_SPECIAL_CHARS
+        );
+
+        if ($this->isValidLanguage($languageFromQuery)) {
+            /** @psalm-var LanguageCodes $languageFromQuery */
+            return $languageFromQuery;
+        }
+
+        $languageFromLocale = explode('_', get_locale())[0] ?? '';
+
+        if ($this->isValidLanguage($languageFromLocale)) {
+            /** @psalm-var LanguageCodes $languageFromLocale */
+            return $languageFromLocale;
+        }
+
+        return MultilingualString::DE;
+    }
+
+    private function isValidLanguage(?string $languageCode): bool
+    {
+        return in_array(
+            $languageCode,
+            [MultilingualString::DE, MultilingualString::EN],
+            true
+        );
     }
 
     public function searchKeyword(): string

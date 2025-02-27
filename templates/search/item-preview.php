@@ -45,7 +45,7 @@ $titleId = sprintf('degree-program-title-%d', $degreeProgram->id());
     <div class="c-degree-program-preview__title">
         <a
             class="c-degree-program-preview__link"
-            href="<?= esc_url($degreeProgram->link()) ?>"
+            href="<?= esc_url($degreeProgram->linkWithLang()) ?>"
             rel="bookmark"
             aria-labelledby="<?= esc_attr($titleId) ?>"
         ></a>

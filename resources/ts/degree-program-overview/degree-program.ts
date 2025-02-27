@@ -15,6 +15,7 @@ interface DegreeProgramData {
 	semester: string[];
 	admissionRequirements: string;
 	germanLanguageSkills: string;
+	lang: string;
 }
 
 export interface DegreeProgramApiData {
@@ -30,6 +31,7 @@ export interface DegreeProgramApiData {
 	teaser_image: { rendered: string };
 	admission_requirement_link: { name: string };
 	german_language_skills_for_international_students: { name: string };
+	lang: string;
 }
 
 interface DegreeProgram extends DegreeProgramData {}
@@ -45,6 +47,7 @@ class DegreeProgram {
 		location,
 		admissionRequirements,
 		germanLanguageSkills,
+		lang,
 	}: DegreeProgramData ) {
 		this.id = id;
 		this.image = image;
@@ -55,6 +58,7 @@ class DegreeProgram {
 		this.location = location;
 		this.admissionRequirements = admissionRequirements;
 		this.germanLanguageSkills = germanLanguageSkills;
+		this.lang = lang;
 	}
 
 	static createDegreeProgram( program: DegreeProgramApiData ): DegreeProgram {
@@ -69,7 +73,15 @@ class DegreeProgram {
 			admissionRequirements: program.admission_requirement_link?.name,
 			germanLanguageSkills:
 				program.german_language_skills_for_international_students.name,
+			lang: program.lang,
 		} );
+	}
+
+	generateURL(): string {
+		const urlParams = new URLSearchParams();
+		urlParams.append( 'lang', this.lang );
+
+		return `${ this.url }?${ urlParams.toString() }`;
 	}
 
 	render(): string {
@@ -79,9 +91,7 @@ class DegreeProgram {
 					${ this.image }
 				</div>
 				<div class="c-degree-program-preview__title">
-					<a class="c-degree-program-preview__link" href="${
-						this.url
-					}" rel="bookmark" aria-labelledby="degree-program-title-${
+					<a class="c-degree-program-preview__link" href="${ this.generateURL() }" rel="bookmark" aria-labelledby="degree-program-title-${
 						this.id
 					}"></a>
 					<div id="degree-program-title-${ this.id }">
