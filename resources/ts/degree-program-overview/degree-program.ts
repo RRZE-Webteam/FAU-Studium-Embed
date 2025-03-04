@@ -77,21 +77,24 @@ class DegreeProgram {
 		} );
 	}
 
-	generateURL(): string {
-		const urlParams = new URLSearchParams();
-		urlParams.append( 'lang', this.lang );
-
-		return `${ this.url }?${ urlParams.toString() }`;
+	urlWithLang(): string {
+		const url = new URL( this.url );
+		url.searchParams.set( 'lang', this.lang );
+		return url.toString();
 	}
 
-	render(): string {
+	render( isLocaleSwitched: string ): string {
 		return `
 			<li class="c-degree-program-preview">
 				<div class="c-degree-program-preview__teaser-image">
 					${ this.image }
 				</div>
 				<div class="c-degree-program-preview__title">
-					<a class="c-degree-program-preview__link" href="${ this.generateURL() }" rel="bookmark" aria-labelledby="degree-program-title-${
+					<a class="c-degree-program-preview__link" href="${
+						isLocaleSwitched === 'true'
+							? this.urlWithLang()
+							: this.url
+					}" rel="bookmark" aria-labelledby="degree-program-title-${
 						this.id
 					}"></a>
 					<div id="degree-program-title-${ this.id }">

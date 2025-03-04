@@ -68,7 +68,10 @@ final class DegreeProgramsSearch implements RenderableComponent
     public function render(array $attributes = self::DEFAULT_ATTRIBUTES): string
     {
         $localeHelper = LocaleHelper::new();
-        $attributes['lang'] = $attributes['lang'] ?? $this->currentRequest->languageCode();
+
+        $requestLanguageCode = $this->currentRequest->languageCode();
+        $needSwitchLocale = !empty($attributes['lang']) && $attributes['lang'] !== $requestLanguageCode;
+        $attributes['lang'] = $attributes['lang'] ?? $requestLanguageCode;
 
         /** @var DegreeProgramsSearchAttributes $attributes */
         $attributes = wp_parse_args($attributes, self::DEFAULT_ATTRIBUTES);
@@ -78,7 +81,10 @@ final class DegreeProgramsSearch implements RenderableComponent
         $localeHelper = $localeHelper->withLocale(
             $localeHelper->localeFromLanguageCode($attributes['lang'])
         );
-        switch_to_locale($localeHelper->localeFromLanguageCode($attributes['lang']));
+
+        if ($needSwitchLocale) {
+            switch_to_locale($localeHelper->localeFromLanguageCode($attributes['lang']));
+        }
 
         $filterViews = $this->buildFilterViews($attributes);
         [$filters, $advancedFilters] = $this->splitFilterViews(...$filterViews);
@@ -103,7 +109,9 @@ final class DegreeProgramsSearch implements RenderableComponent
             ],
         );
 
-        restore_previous_locale();
+        if ($needSwitchLocale) {
+            restore_previous_locale();
+        }
 
         return $html;
     }
