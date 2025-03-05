@@ -68,17 +68,26 @@ final class DegreeProgramsSearch implements RenderableComponent
     public function render(array $attributes = self::DEFAULT_ATTRIBUTES): string
     {
         $localeHelper = LocaleHelper::new();
-        $attributes['lang'] = $attributes['lang'] ?? $this->currentRequest->languageCode();
+        $requestLanguageCode = $this->currentRequest->languageCode();
 
         /** @var DegreeProgramsSearchAttributes $attributes */
-        $attributes = wp_parse_args($attributes, self::DEFAULT_ATTRIBUTES);
+        $attributes = wp_parse_args(
+            $attributes,
+            array_merge(self::DEFAULT_ATTRIBUTES, ['lang' => $requestLanguageCode])
+        );
+
+        $language = $attributes['lang'];
+        $shouldSwitchLocale = $language !== $requestLanguageCode;
 
         $collection = $this->findCollection($attributes);
 
         $localeHelper = $localeHelper->withLocale(
-            $localeHelper->localeFromLanguageCode($attributes['lang'])
+            $localeHelper->localeFromLanguageCode($language)
         );
-        switch_to_locale($localeHelper->localeFromLanguageCode($attributes['lang']));
+
+        if ($shouldSwitchLocale) {
+            switch_to_locale($localeHelper->localeFromLanguageCode($language));
+        }
 
         $filterViews = $this->buildFilterViews($attributes);
         [$filters, $advancedFilters] = $this->splitFilterViews(...$filterViews);
@@ -103,7 +112,9 @@ final class DegreeProgramsSearch implements RenderableComponent
             ],
         );
 
-        restore_previous_locale();
+        if ($shouldSwitchLocale) {
+            restore_previous_locale();
+        }
 
         return $html;
     }
