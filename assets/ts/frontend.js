@@ -156,10 +156,11 @@ var SINGLE_PROGRAM_PREVIEW_SELECTOR = '.c-degree-program-preview';
 var NO_SEARCH_RESULT_SELECTOR = '.c-no-search-results';
 var degreeProgramsSection = document.querySelector(DEGREE_PROGRAMS_SECTION_SELECTOR);
 var degreeProgramsOverview = degreeProgramsSection === null || degreeProgramsSection === void 0 ? void 0 : degreeProgramsSection.querySelector(DEGREE_PROGRAMS_OVERVIEW_SELECTOR);
+var isLocaleSwitched = (degreeProgramsSection === null || degreeProgramsSection === void 0 ? void 0 : degreeProgramsSection.getAttribute('data-locale-switched')) || '';
 var currentLanguage = ((_a = degreeProgramsSection === null || degreeProgramsSection === void 0 ? void 0 : degreeProgramsSection.getAttribute('lang')) === null || _a === void 0 ? void 0 : _a.substring(0, 2)) || 'de';
 var renderPrograms = function (programs) {
   var output = programs.map(function (program) {
-    return program.render();
+    return program.render(isLocaleSwitched);
   }).join('');
   degreeProgramsOverview === null || degreeProgramsOverview === void 0 ? void 0 : degreeProgramsOverview.insertAdjacentHTML('beforeend', output);
 };
@@ -239,7 +240,8 @@ var DegreeProgram = function () {
       semester = _a.semester,
       location = _a.location,
       admissionRequirements = _a.admissionRequirements,
-      germanLanguageSkills = _a.germanLanguageSkills;
+      germanLanguageSkills = _a.germanLanguageSkills,
+      lang = _a.lang;
     this.id = id;
     this.image = image;
     this.url = url;
@@ -249,6 +251,7 @@ var DegreeProgram = function () {
     this.location = location;
     this.admissionRequirements = admissionRequirements;
     this.germanLanguageSkills = germanLanguageSkills;
+    this.lang = lang;
   }
   DegreeProgram.createDegreeProgram = function (program) {
     var _a;
@@ -261,11 +264,17 @@ var DegreeProgram = function () {
       location: program.location,
       semester: program.start,
       admissionRequirements: (_a = program.admission_requirement_link) === null || _a === void 0 ? void 0 : _a.name,
-      germanLanguageSkills: program.german_language_skills_for_international_students.name
+      germanLanguageSkills: program.german_language_skills_for_international_students.name,
+      lang: program.lang
     });
   };
-  DegreeProgram.prototype.render = function () {
-    return "\n\t\t\t<li class=\"c-degree-program-preview\">\n\t\t\t\t<div class=\"c-degree-program-preview__teaser-image\">\n\t\t\t\t\t".concat(this.image, "\n\t\t\t\t</div>\n\t\t\t\t<div class=\"c-degree-program-preview__title\">\n\t\t\t\t\t<a class=\"c-degree-program-preview__link\" href=\"").concat(this.url, "\" rel=\"bookmark\" aria-labelledby=\"degree-program-title-").concat(this.id, "\"></a>\n\t\t\t\t\t<div id=\"degree-program-title-").concat(this.id, "\">\n\t\t\t\t\t\t").concat(this.title, " (<abbr title=\"").concat(this.degree.name, "\">").concat(this.degree.abbreviation, "</abbr>)\n\t\t\t\t\t\t<div class=\"c-degree-program-preview__subtitle\"></div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"c-degree-program-preview__degree\">\n\t\t\t\t\t<span class=\"c-degree-program-preview__label\">\n\t\t\t\t\t\t").concat((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__._x)('Type', 'frontoffice: degree-programs-overview', 'fau-degree-program-output'), ":\n\t\t\t\t\t</span>\n\t\t\t\t\t").concat(this.degree.name, "\n\t\t\t\t</div>\n\t\t\t\t<div class=\"c-degree-program-preview__start\">\n\t\t\t\t\t<span class=\"c-degree-program-preview__label\">\n\t\t\t\t\t\t").concat((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__._x)('Start', 'frontoffice: degree-programs-overview', 'fau-degree-program-output'), ":\n\t\t\t\t\t</span>\n\t\t\t\t\t").concat(this.semester.join(', '), "\n\t\t\t\t</div>\n\t\t\t\t<div class=\"c-degree-program-preview__location\">\n\t\t\t\t\t<span class=\"c-degree-program-preview__label\">\n\t\t\t\t\t\t").concat((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__._x)('Location', 'frontoffice: degree-programs-overview', 'fau-degree-program-output'), ":\n\t\t\t\t\t</span>\n\t\t\t\t\t").concat(this.location.join(', '), "\n\t\t\t\t</div>\n\t\t\t\t<div class=\"c-degree-program-preview__admission-requirement\">\n\t\t\t\t\t<span class=\"c-degree-program-preview__label\">\n\t\t\t\t\t\t").concat((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__._x)('NC', 'frontoffice: degree-programs-overview', 'fau-degree-program-output'), ":\n\t\t\t\t\t</span>\n\t\t\t\t\t").concat(this.admissionRequirements ? this.admissionRequirements : '', "\n\t\t\t\t</div>\n\t\t\t\t<div class=\"c-degree-program-preview__language-certificates\">\n\t\t\t\t\t<span class=\"c-degree-program-preview__label\">\n\t\t\t\t\t\t").concat((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__._x)('Language certificates', 'frontoffice: degree-programs-overview', 'fau-degree-program-output'), ":\n\t\t\t\t\t</span>\n\t\t\t\t\t").concat(this.germanLanguageSkills, "\n\t\t\t\t</div>\n\t\t\t</li>\n\t\t");
+  DegreeProgram.prototype.urlWithLang = function () {
+    var url = new URL(this.url);
+    url.searchParams.set('lang', this.lang);
+    return url.toString();
+  };
+  DegreeProgram.prototype.render = function (isLocaleSwitched) {
+    return "\n\t\t\t<li class=\"c-degree-program-preview\">\n\t\t\t\t<div class=\"c-degree-program-preview__teaser-image\">\n\t\t\t\t\t".concat(this.image, "\n\t\t\t\t</div>\n\t\t\t\t<div class=\"c-degree-program-preview__title\">\n\t\t\t\t\t<a class=\"c-degree-program-preview__link\" href=\"").concat(isLocaleSwitched === 'true' ? this.urlWithLang() : this.url, "\" rel=\"bookmark\" aria-labelledby=\"degree-program-title-").concat(this.id, "\"></a>\n\t\t\t\t\t<div id=\"degree-program-title-").concat(this.id, "\">\n\t\t\t\t\t\t").concat(this.title, " (<abbr title=\"").concat(this.degree.name, "\">").concat(this.degree.abbreviation, "</abbr>)\n\t\t\t\t\t\t<div class=\"c-degree-program-preview__subtitle\"></div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"c-degree-program-preview__degree\">\n\t\t\t\t\t<span class=\"c-degree-program-preview__label\">\n\t\t\t\t\t\t").concat((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__._x)('Type', 'frontoffice: degree-programs-overview', 'fau-degree-program-output'), ":\n\t\t\t\t\t</span>\n\t\t\t\t\t").concat(this.degree.name, "\n\t\t\t\t</div>\n\t\t\t\t<div class=\"c-degree-program-preview__start\">\n\t\t\t\t\t<span class=\"c-degree-program-preview__label\">\n\t\t\t\t\t\t").concat((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__._x)('Start', 'frontoffice: degree-programs-overview', 'fau-degree-program-output'), ":\n\t\t\t\t\t</span>\n\t\t\t\t\t").concat(this.semester.join(', '), "\n\t\t\t\t</div>\n\t\t\t\t<div class=\"c-degree-program-preview__location\">\n\t\t\t\t\t<span class=\"c-degree-program-preview__label\">\n\t\t\t\t\t\t").concat((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__._x)('Location', 'frontoffice: degree-programs-overview', 'fau-degree-program-output'), ":\n\t\t\t\t\t</span>\n\t\t\t\t\t").concat(this.location.join(', '), "\n\t\t\t\t</div>\n\t\t\t\t<div class=\"c-degree-program-preview__admission-requirement\">\n\t\t\t\t\t<span class=\"c-degree-program-preview__label\">\n\t\t\t\t\t\t").concat((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__._x)('NC', 'frontoffice: degree-programs-overview', 'fau-degree-program-output'), ":\n\t\t\t\t\t</span>\n\t\t\t\t\t").concat(this.admissionRequirements ? this.admissionRequirements : '', "\n\t\t\t\t</div>\n\t\t\t\t<div class=\"c-degree-program-preview__language-certificates\">\n\t\t\t\t\t<span class=\"c-degree-program-preview__label\">\n\t\t\t\t\t\t").concat((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__._x)('Language certificates', 'frontoffice: degree-programs-overview', 'fau-degree-program-output'), ":\n\t\t\t\t\t</span>\n\t\t\t\t\t").concat(this.germanLanguageSkills, "\n\t\t\t\t</div>\n\t\t\t</li>\n\t\t");
   };
   return DegreeProgram;
 }();
