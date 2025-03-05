@@ -42,7 +42,7 @@ use function Fau\DegreeProgram\Output\renderComponent;
 <section
         class="c-degree-programs-search"
         lang="<?= esc_attr(get_bloginfo('language')) ?>"
-        data-locale-switched="<?= is_locale_switched() ? 'true' : 'false' ?>"
+        data-locale-switched="<?= esc_attr((string) json_encode(is_locale_switched())) ?>"
         aria-labelledby="degree-programs-search-title"
 >
     <?php if ($hiddenElements->isTitleVisible()) : ?>

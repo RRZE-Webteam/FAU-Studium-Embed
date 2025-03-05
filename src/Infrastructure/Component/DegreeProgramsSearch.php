@@ -70,11 +70,14 @@ final class DegreeProgramsSearch implements RenderableComponent
         $localeHelper = LocaleHelper::new();
 
         $requestLanguageCode = $this->currentRequest->languageCode();
-        $needSwitchLocale = !empty($attributes['lang']) && $attributes['lang'] !== $requestLanguageCode;
-        $attributes['lang'] = $attributes['lang'] ?? $requestLanguageCode;
+        $shouldSwitchLocale =
+            !empty($attributes['lang']) && $attributes['lang'] !== $requestLanguageCode;
 
         /** @var DegreeProgramsSearchAttributes $attributes */
-        $attributes = wp_parse_args($attributes, self::DEFAULT_ATTRIBUTES);
+        $attributes = wp_parse_args(
+            $attributes,
+            array_merge(self::DEFAULT_ATTRIBUTES, ['lang' => $requestLanguageCode])
+        );
 
         $collection = $this->findCollection($attributes);
 
@@ -82,7 +85,7 @@ final class DegreeProgramsSearch implements RenderableComponent
             $localeHelper->localeFromLanguageCode($attributes['lang'])
         );
 
-        if ($needSwitchLocale) {
+        if ($shouldSwitchLocale) {
             switch_to_locale($localeHelper->localeFromLanguageCode($attributes['lang']));
         }
 
@@ -109,7 +112,7 @@ final class DegreeProgramsSearch implements RenderableComponent
             ],
         );
 
-        if ($needSwitchLocale) {
+        if ($shouldSwitchLocale) {
             restore_previous_locale();
         }
 
