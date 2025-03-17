@@ -173,6 +173,7 @@ return array(
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\Link' => $baseDir . '/src/Infrastructure/Component/Link.php',
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\Links' => $baseDir . '/src/Infrastructure/Component/Links.php',
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\MultichoiceFilter' => $baseDir . '/src/Infrastructure/Component/MultichoiceFilter.php',
+    'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\PreAppliedFilters' => $baseDir . '/src/Infrastructure/Component/PreAppliedFilters.php',
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\RenderableComponent' => $baseDir . '/src/Infrastructure/Component/RenderableComponent.php',
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\SearchFilters' => $baseDir . '/src/Infrastructure/Component/SearchFilters.php',
     'Fau\\DegreeProgram\\Output\\Infrastructure\\Component\\SearchForm' => $baseDir . '/src/Infrastructure/Component/SearchForm.php',
