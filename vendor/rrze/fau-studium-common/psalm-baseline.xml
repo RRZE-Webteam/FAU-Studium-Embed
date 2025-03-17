@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="5.24.0@462c80e31c34e58cc4f750c656be3927e80e550e">
+  <file src="src/Application/AdmissionRequirementTranslated.php">
+    <InvalidArrayOffset>
+      <code><![CDATA[$data[AdmissionRequirement::PARENT]]]></code>
+    </InvalidArrayOffset>
+    <InvalidReturnStatement>
+      <code><![CDATA[$currentData]]></code>
+    </InvalidReturnStatement>
+    <InvalidReturnType>
+      <code><![CDATA[AdmissionRequirementTranslatedType]]></code>
+    </InvalidReturnType>
+  </file>
+  <file src="src/Application/Filter/AdmissionRequirementTypeFilter.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[$sanitizedValue]]></code>
+    </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="src/Application/Filter/ArrayOfIdsFilterTrait.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[$sanitizedValue]]></code>
+    </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="src/Application/Filter/SearchKeywordFilter.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[$sanitizedValue]]></code>
+    </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="src/Infrastructure/Repository/BilingualRepository.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[!$key]]></code>
+    </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="src/Infrastructure/Repository/WordPressDatabaseDegreeProgramViewRepository.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[!$permalink]]></code>
+    </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="src/Infrastructure/Repository/WpQueryArgsBuilder.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[!$orderBy]]></code>
+      <code><![CDATA[!$taxonomy]]></code>
+      <code><![CDATA[$languageCode]]></code>
+      <code><![CDATA[$orderBy]]></code>
+      <code><![CDATA[empty($criteria->args()['search'])]]></code>
+    </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="src/Infrastructure/TemplateRenderer/TemplateRenderer.php">
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[ob_get_clean()]]></code>
+    </RiskyTruthyFalsyComparison>
+  </file>
+</files>
