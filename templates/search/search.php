@@ -8,6 +8,7 @@ use Fau\DegreeProgram\Output\Application\Filter\FilterView;
 use Fau\DegreeProgram\Output\Infrastructure\Component\ActiveFilters;
 use Fau\DegreeProgram\Output\Infrastructure\Component\Component;
 use Fau\DegreeProgram\Output\Infrastructure\Component\DegreeProgramsCollection;
+use Fau\DegreeProgram\Output\Infrastructure\Component\PreAppliedFilters;
 use Fau\DegreeProgram\Output\Infrastructure\Component\SearchFilters;
 use Fau\DegreeProgram\Output\Infrastructure\Component\SearchForm;
 use Fau\DegreeProgram\Output\Infrastructure\Template\HiddenDegreeProgramElements;
@@ -33,6 +34,7 @@ use function Fau\DegreeProgram\Output\renderComponent;
     'activeFilters' => $activeFilters,
     'advancedFilters' => $advancedFilters,
     'hiddenElements' => $hiddenElements,
+    'preAppliedFilters' => $preAppliedFilters,
 ] = $data;
 
 ?>
@@ -40,6 +42,7 @@ use function Fau\DegreeProgram\Output\renderComponent;
 <section
         class="c-degree-programs-search"
         lang="<?= esc_attr(get_bloginfo('language')) ?>"
+        data-locale-switched="<?= esc_attr((string) json_encode(is_locale_switched())) ?>"
         aria-labelledby="degree-programs-search-title"
 >
     <?php if ($hiddenElements->isTitleVisible()) : ?>
@@ -57,6 +60,14 @@ use function Fau\DegreeProgram\Output\renderComponent;
                 action="<?= esc_url((string) get_permalink((int) get_the_id())) ?>"
                 method="get"
             >
+                <?= renderComponent(
+                    new Component(
+                        PreAppliedFilters::class,
+                        [
+                            'preAppliedFilters' => $preAppliedFilters,
+                        ],
+                    )
+                ) ?>
                 <?= renderComponent(
                     new Component(
                         SearchForm::class,

@@ -15,11 +15,16 @@ const degreeProgramsOverview =
 		DEGREE_PROGRAMS_OVERVIEW_SELECTOR
 	);
 
+const isLocaleSwitched =
+	degreeProgramsSection?.getAttribute( 'data-locale-switched' ) || '';
+
 export const currentLanguage =
 	degreeProgramsSection?.getAttribute( 'lang' )?.substring( 0, 2 ) || 'de';
 
 const renderPrograms = ( programs: DegreeProgram[] ) => {
-	const output = programs.map( ( program ) => program.render() ).join( '' );
+	const output = programs
+		.map( ( program ) => program.render( isLocaleSwitched ) )
+		.join( '' );
 	degreeProgramsOverview?.insertAdjacentHTML( 'beforeend', output );
 };
 

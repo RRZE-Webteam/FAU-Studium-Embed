@@ -104,6 +104,9 @@ final class ComponentModule implements ServiceModule
             AdvancedFilters::class => static fn(ContainerInterface $container) => new AdvancedFilters(
                 $container->get(Renderer::class),
             ),
+            PreAppliedFilters::class => static fn(ContainerInterface $container) => new PreAppliedFilters(
+                $container->get(Renderer::class),
+            ),
         ];
     }
 }

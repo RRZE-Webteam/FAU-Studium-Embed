@@ -91,7 +91,7 @@ final class SingleDegreeProgram implements RenderableComponent
             $localeHelper->localeFromLanguageCode($attributes['lang'])
         );
 
-        add_filter('locale', [$localeHelper, 'filterLocale']);
+        switch_to_locale($localeHelper->localeFromLanguageCode($attributes['lang']));
         $html = $this->renderer->render(
             'single-degree-program-' . $attributes['format'],
             [
@@ -99,7 +99,7 @@ final class SingleDegreeProgram implements RenderableComponent
                 'className' => $attributes['className'],
             ]
         );
-        remove_filter('locale', [$localeHelper, 'filterLocale']);
+        restore_previous_locale();
 
         return $html;
     }

@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "inpsyde/assets",
-            "version": "2.8.3",
+            "version": "2.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/inpsyde/assets.git",
-                "reference": "f198d7d8b726132851413a6a9b4918e02c077a4b"
+                "reference": "2b2d2ac359383e24284388bf54a6ff4f122d3c67"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/inpsyde/assets/zipball/f198d7d8b726132851413a6a9b4918e02c077a4b",
-                "reference": "f198d7d8b726132851413a6a9b4918e02c077a4b",
+                "url": "https://api.github.com/repos/inpsyde/assets/zipball/2b2d2ac359383e24284388bf54a6ff4f122d3c67",
+                "reference": "2b2d2ac359383e24284388bf54a6ff4f122d3c67",
                 "shasum": ""
             },
             "require": {
@@ -29,9 +29,9 @@
             "require-dev": {
                 "brain/monkey": "^2.5.0",
                 "inpsyde/php-coding-standards": "^1",
-                "johnpbloch/wordpress-core": ">=6.0",
+                "johnpbloch/wordpress-core": ">=6.2",
                 "mikey179/vfsstream": "^1.6.8",
-                "php-stubs/wordpress-stubs": ">=6.0@stable",
+                "php-stubs/wordpress-stubs": ">=6.2@stable",
                 "phpunit/phpunit": "^8.5.14 || ^9.0",
                 "vimeo/psalm": "@stable"
             },
@@ -69,37 +69,37 @@
             "description": "Package to manage assets in WordPress.",
             "support": {
                 "issues": "https://github.com/inpsyde/assets/issues",
-                "source": "https://github.com/inpsyde/assets/tree/2.8.3"
+                "source": "https://github.com/inpsyde/assets/tree/2.9.0"
             },
-            "time": "2022-12-16T13:23:02+00:00"
+            "time": "2024-11-28T11:55:20+00:00"
         },
         {
             "name": "inpsyde/modularity",
-            "version": "1.8.0",
+            "version": "1.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/inpsyde/modularity.git",
-                "reference": "c6855a6d9c4ce6f090d031e820f176bddf2a0b1c"
+                "reference": "c79bb3682f55e1a2ece67f36e70d04fa2ab8c65d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/inpsyde/modularity/zipball/c6855a6d9c4ce6f090d031e820f176bddf2a0b1c",
-                "reference": "c6855a6d9c4ce6f090d031e820f176bddf2a0b1c",
+                "url": "https://api.github.com/repos/inpsyde/modularity/zipball/c79bb3682f55e1a2ece67f36e70d04fa2ab8c65d",
+                "reference": "c79bb3682f55e1a2ece67f36e70d04fa2ab8c65d",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
-                "php": ">=7.2",
+                "php": ">=7.4 <8.4",
                 "psr/container": "^1.1.0 || ^2"
             },
             "require-dev": {
                 "brain/monkey": "^2.6.1",
-                "inpsyde/php-coding-standards": "^1",
-                "johnpbloch/wordpress-core": ">=5.8",
-                "mikey179/vfsstream": "^v1.6.10",
-                "php-stubs/wordpress-stubs": ">=5.8@stable",
-                "phpunit/phpunit": "^8.5.21 || ^9.6.7",
-                "vimeo/psalm": "^4.13.1"
+                "inpsyde/php-coding-standards": "^2@dev",
+                "inpsyde/wp-stubs-versions": "dev-latest",
+                "mikey179/vfsstream": "^v1.6.11",
+                "phpunit/phpunit": "^9.6.19",
+                "roots/wordpress-no-content": "@dev",
+                "vimeo/psalm": "^5.24.0"
             },
             "type": "library",
             "extra": {
@@ -118,41 +118,31 @@
             ],
             "authors": [
                 {
-                    "name": "Inpsyde GmbH",
-                    "email": "hello@inpsyde.com",
-                    "homepage": "https://inpsyde.com/",
+                    "name": "Syde GmbH",
+                    "email": "hello@syde.com",
+                    "homepage": "https://syde.com/",
                     "role": "Company"
-                },
-                {
-                    "name": "Christian Leucht",
-                    "email": "c.leucht@inpsyde.com",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Giuseppe Mazzapica",
-                    "email": "g.mazzapica@inpsyde.com",
-                    "role": "Developer"
                 }
             ],
             "description": "Modular PSR-11 implementation for WordPress plugins, themes or libraries.",
             "support": {
                 "issues": "https://github.com/inpsyde/modularity/issues",
-                "source": "https://github.com/inpsyde/modularity/tree/1.8.0"
+                "source": "https://github.com/inpsyde/modularity/tree/1.11.0"
             },
-            "time": "2024-05-14T06:07:35+00:00"
+            "time": "2024-11-28T09:34:00+00:00"
         },
         {
             "name": "inpsyde/wp-context",
-            "version": "1.5.0",
+            "version": "1.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/inpsyde/wp-context.git",
-                "reference": "1f61ccb539e287e2688dfdf86dea0448c18fc8c6"
+                "reference": "1350ada72517f5d374bff9409b4ea5a02377ec1a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/inpsyde/wp-context/zipball/1f61ccb539e287e2688dfdf86dea0448c18fc8c6",
-                "reference": "1f61ccb539e287e2688dfdf86dea0448c18fc8c6",
+                "url": "https://api.github.com/repos/inpsyde/wp-context/zipball/1350ada72517f5d374bff9409b4ea5a02377ec1a",
+                "reference": "1350ada72517f5d374bff9409b4ea5a02377ec1a",
                 "shasum": ""
             },
             "require": {
@@ -197,9 +187,9 @@
             "description": "A single-class utility to check the running context in WordPress sites.",
             "support": {
                 "issues": "https://github.com/inpsyde/wp-context/issues",
-                "source": "https://github.com/inpsyde/wp-context/tree/1.5.0"
+                "source": "https://github.com/inpsyde/wp-context/tree/1.5.1"
             },
-            "time": "2023-01-09T06:27:09+00:00"
+            "time": "2024-10-16T10:44:18+00:00"
         },
         {
             "name": "psr/container",
@@ -411,12 +401,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/RRZE-Webteam/FAU-Studium-Common.git",
-                "reference": "2314da111571d795a3f3d3dbe194680737a26e07"
+                "reference": "c58b1817ecf9331bc8a76f90fd12ff57c139d09e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RRZE-Webteam/FAU-Studium-Common/zipball/2314da111571d795a3f3d3dbe194680737a26e07",
-                "reference": "2314da111571d795a3f3d3dbe194680737a26e07",
+                "url": "https://api.github.com/repos/RRZE-Webteam/FAU-Studium-Common/zipball/c58b1817ecf9331bc8a76f90fd12ff57c139d09e",
+                "reference": "c58b1817ecf9331bc8a76f90fd12ff57c139d09e",
                 "shasum": ""
             },
             "require": {
@@ -489,7 +479,7 @@
                 "source": "https://github.com/RRZE-Webteam/FAU-Studium-Common/tree/main",
                 "issues": "https://github.com/RRZE-Webteam/FAU-Studium-Common/issues"
             },
-            "time": "2024-09-04T13:20:56+00:00"
+            "time": "2025-03-05T10:37:59+00:00"
         },
         {
             "name": "webmozart/assert",

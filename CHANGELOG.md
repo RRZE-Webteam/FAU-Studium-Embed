@@ -8,6 +8,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.2.0] - 2025-03-17
+
+### Added
+
+- Synchronize "German language skills for international students" child terms to consuming websites.
+- Add "Also search in text" option to search form.
+- Support multi-word free text search.
+- Show keywords in single degree program details section.
+- Support the "lang" URL parameter to specify the language of a single degree program.
+
+### Changed
+
+- Include "Keywords" when searching.
+- Trigger degree program search less often.
+- Restrict search to pre-selected degree programs.
+- Update the process for building assets to improve compatibility.
+
+### Fixed
+
+- WordPress 6.7 compatibility.
+
 ## [2.1.0] - 2024-09-06
 
 ### Added
@@ -55,7 +76,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release.
 
-[Unreleased]: https://github.com/RRZE-Webteam/FAU-Studium-Embed/compare/2.1.0...HEAD
+[Unreleased]: https://github.com/RRZE-Webteam/FAU-Studium-Embed/compare/2.2.0...HEAD
+[2.2.0]: https://github.com/RRZE-Webteam/FAU-Studium-Embed/compare/2.1.0...2.2.0
 [2.1.0]: https://github.com/RRZE-Webteam/FAU-Studium-Embed/compare/2.0.0...2.1.0
 [2.0.0]: https://github.com/RRZE-Webteam/FAU-Studium-Embed/compare/1.0.3...2.0.0
 [1.0.3]: https://github.com/RRZE-Webteam/FAU-Studium-Embed/compare/1.0.2...1.0.3

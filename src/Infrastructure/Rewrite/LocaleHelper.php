@@ -40,12 +40,4 @@ final class LocaleHelper
 
         return 'de_DE';
     }
-
-    /**
-     * @wp-hook locale
-     */
-    public function filterLocale(): string
-    {
-        return $this->locale;
-    }
 }
