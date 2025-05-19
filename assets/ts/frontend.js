@@ -633,7 +633,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var CLEAR_FILTERS_SELECTOR = '.c-active-search-filters__clear-all-button';
-var clearFilters = _form_form_handler__WEBPACK_IMPORTED_MODULE_0__.form.querySelector(CLEAR_FILTERS_SELECTOR);
+var clearFilters = _form_form_handler__WEBPACK_IMPORTED_MODULE_0__.form === null || _form_form_handler__WEBPACK_IMPORTED_MODULE_0__.form === void 0 ? void 0 : _form_form_handler__WEBPACK_IMPORTED_MODULE_0__.form.querySelector(CLEAR_FILTERS_SELECTOR);
 clearFilters === null || clearFilters === void 0 ? void 0 : clearFilters.addEventListener('click', function (e) {
   e.preventDefault();
   (0,_active_filters__WEBPACK_IMPORTED_MODULE_1__.clearActiveFilters)();
