@@ -19,5 +19,5 @@ if (!$view->entryText()) {
 ?>
 
 <div class="c-single-degree-program__entry-text h-post-content l-container">
-    <?= wp_kses_post($view->entryText()) ?>
+    <?= wp_kses_post(do_shortcode($view->entryText())) ?>
 </div>

@@ -29,14 +29,14 @@ $accordion = renderComponent(
                 AccordionItem::class,
                 [
                     'title' => $view->content()->structure()->title(),
-                    'content' => wp_kses_post($view->content()->structure()->description()),
+                    'content' => wp_kses_post(do_shortcode($view->content()->structure()->description())),
                 ]
             ),
             new Component(
                 AccordionItem::class,
                 [
                     'title' => $view->content()->specializations()->title(),
-                    'content' => wp_kses_post($view->content()->specializations()->description()),
+                    'content' => wp_kses_post(do_shortcode($view->content()->specializations()->description())),
                 ]
             ),
             new Component(
@@ -44,7 +44,7 @@ $accordion = renderComponent(
                 [
                     'title' => $view->content()->qualitiesAndSkills()->title(),
                     'content' => wp_kses_post(
-                        $view->content()->qualitiesAndSkills()->description()
+                        do_shortcode($view->content()->qualitiesAndSkills()->description())
                     ),
                 ]
             ),
@@ -52,21 +52,21 @@ $accordion = renderComponent(
                 AccordionItem::class,
                 [
                     'title' => $view->content()->whyShouldStudy()->title(),
-                    'content' => wp_kses_post($view->content()->whyShouldStudy()->description()),
+                    'content' => wp_kses_post(do_shortcode($view->content()->whyShouldStudy()->description())),
                 ]
             ),
             new Component(
                 AccordionItem::class,
                 [
                     'title' => $view->content()->careerProspects()->title(),
-                    'content' => wp_kses_post($view->content()->careerProspects()->description()),
+                    'content' => wp_kses_post(do_shortcode($view->content()->careerProspects()->description())),
                 ]
             ),
             new Component(
                 AccordionItem::class,
                 [
                     'title' => $view->content()->specialFeatures()->title(),
-                    'content' => wp_kses_post($view->content()->specialFeatures()->description()),
+                    'content' => wp_kses_post(do_shortcode($view->content()->specialFeatures()->description())),
                 ]
             ),
             new Component(
