@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Allow the `fachanteile` and `faudir` shortcodes, as well as `fau/faudir-block` and `fau-degree-program/shares` blocks in content fields.
 
+### Changed
+
+- Enable shortcode rendering in degree program field output.
+
 ## [2.2.0] - 2025-03-17
 
 ### Added
