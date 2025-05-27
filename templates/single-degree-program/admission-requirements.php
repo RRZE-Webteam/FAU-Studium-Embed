@@ -95,7 +95,7 @@ $contentRelatedAdmissionRequirements = renderComponent(
                 'frontoffice: single view',
                 'fau-degree-program-output'
             ),
-            'description' => wp_kses_post($view->contentRelatedMasterRequirements()),
+            'description' => wp_kses_post(do_shortcode($view->contentRelatedMasterRequirements())),
         ]
     ),
 );
