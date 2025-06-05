@@ -30,7 +30,7 @@ use function Fau\DegreeProgram\Output\renderComponent;
     <dt><?= esc_html($term) ?></dt>
     <dd>
         <?= wp_kses(
-            $description,
+            do_shortcode($description),
             DegreeProgramSanitizer::ALLOWED_ENTITIES,
         ) ?>
     </dd>
