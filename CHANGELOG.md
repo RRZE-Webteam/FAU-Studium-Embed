@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.2.1] - 2025-06-05
+
 ### Added
 
 - Allow the `fachanteile` and `faudir` shortcodes, as well as `fau/faudir-block` and `fau-degree-program/shares` blocks in content fields.
@@ -84,7 +86,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release.
 
-[Unreleased]: https://github.com/RRZE-Webteam/FAU-Studium-Embed/compare/2.2.0...HEAD
+[Unreleased]: https://github.com/RRZE-Webteam/FAU-Studium-Embed/compare/2.2.1...HEAD
+[2.2.1]: https://github.com/RRZE-Webteam/FAU-Studium-Embed/compare/2.2.0...2.2.1
 [2.2.0]: https://github.com/RRZE-Webteam/FAU-Studium-Embed/compare/2.1.0...2.2.0
 [2.1.0]: https://github.com/RRZE-Webteam/FAU-Studium-Embed/compare/2.0.0...2.1.0
 [2.0.0]: https://github.com/RRZE-Webteam/FAU-Studium-Embed/compare/1.0.3...2.0.0
