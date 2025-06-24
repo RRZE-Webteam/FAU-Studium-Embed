@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Updated translatable strings and their translations.
+
 ## [2.2.1] - 2025-06-05
 
 ### Added

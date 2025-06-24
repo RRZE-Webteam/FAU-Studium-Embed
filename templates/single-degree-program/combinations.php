@@ -41,6 +41,6 @@ if ($type) {
         <?php endforeach ?>
     </ul>
     <?php if ($description) : ?>
-        <p><?= esc_html($description) ?></p>
+        <p><?= wp_kses_post(nl2br($description)) ?></p>
     <?php endif ?>
 </div>
