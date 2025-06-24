@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FAU Degree Program Output 0.0.4\n"
 "Report-Msgid-Bugs-To: https://github.com/RRZE-Webteam/FAU-Studium-Embed\n"
-"POT-Creation-Date: 2024-12-23T06:39:22+00:00\n"
-"PO-Revision-Date: 2025-01-29 14:18+0100\n"
+"POT-Creation-Date: 2025-06-24T11:02:49+03:00\n"
+"PO-Revision-Date: 2025-06-24 11:09+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.6\n"
 "X-Domain: fau-degree-program-output\n"
 
 #. Plugin Name of the plugin
@@ -301,12 +301,18 @@ msgid "Language skills"
 msgstr "Sprachkenntnisse"
 
 #: src/Infrastructure/Component/SingleDegreeProgram.php:268
-msgid "Language skills for Faculty of Humanities, Social Sciences, and Theology only"
-msgstr "Sprachkenntnisse nur für die Philosophische Fakultät und Fachbereich Theologie"
+msgid ""
+"Language skills for Faculty of Humanities, Social Sciences, and Theology only"
+msgstr ""
+"Sprachkenntnisse nur für die Philosophische Fakultät und Fachbereich "
+"Theologie"
 
 #: src/Infrastructure/Component/SingleDegreeProgram.php:272
-msgid "Language certificates/German language skills for international applicants"
-msgstr "Sprachnachweise/Deutschkenntnisse für internationale Bewerberinnen und Bewerber"
+msgid ""
+"Language certificates/German language skills for international applicants"
+msgstr ""
+"Sprachnachweise/Deutschkenntnisse für internationale Bewerberinnen und "
+"Bewerber"
 
 #: src/Infrastructure/Component/SingleDegreeProgram.php:276
 msgid "Degree Program Fees"
@@ -512,15 +518,19 @@ msgctxt "backoffice: Search results"
 msgid "No degree programs found"
 msgstr "Keine Studiengänge gefunden."
 
-#: templates/search/search.php:49
+#: templates/search/search.php:50
 msgctxt "frontoffice: degree programs search form"
 msgid "Degree programs"
 msgstr "Studiengänge"
 
-#: templates/search/search.php:111
+#: templates/search/search.php:112
 msgctxt "frontoffice: degree programs search form"
-msgid "The degree program data is being processed. Please try again in a few minutes."
-msgstr "Die Studiengangsdaten werden gerade verarbeitet. Bitte versuche es in ein paar Minuten erneut."
+msgid ""
+"The degree program data is being processed. Please try again in a few "
+"minutes."
+msgstr ""
+"Die Studiengangsdaten werden gerade verarbeitet. Bitte versuche es in ein "
+"paar Minuten erneut."
 
 #: templates/search/text-input-search.php:41
 msgctxt "frontoffice: degree programs search form"
@@ -554,22 +564,51 @@ msgctxt "frontoffice: shortcode link"
 msgid "Read more"
 msgstr "Mehr lesen"
 
-#: templates/single-degree-program/accordion.php:75
-msgctxt "frontoffice: single view"
-msgid "Degree program combinations & limited degree program combinations"
-msgstr "Mögliche Studiengangskombinationen und eingeschränkt mögliche Studiengangskombinationen"
-
 #: templates/single-degree-program/accordion.php:85
 msgctxt "frontoffice: single view"
-msgid "Degree program combinations"
+msgid "Possible degree program combinations"
 msgstr "Mögliche Studiengangskombinationen"
 
-#: templates/single-degree-program/accordion.php:100
+#: templates/single-degree-program/accordion.php:95
 msgctxt "frontoffice: single view"
-msgid "Limited degree program combinations"
-msgstr "Eingeschränkt mögliche Studiengangskombinationen"
+msgid "Possible combinations without overlaps"
+msgstr "In der Regel ohne Überschneidungen"
 
-#: templates/single-degree-program/accordion.php:120
+#: templates/single-degree-program/accordion.php:101
+msgctxt "frontoffice: single view"
+msgid ""
+"With these subject combinations, there are generally no overlaps in the "
+"timetable."
+msgstr ""
+"Bei diesen Fächerkombinationen gibt es in der Regel keine terminlichen "
+"Überschneidungen im Stundenplan."
+
+#: templates/single-degree-program/accordion.php:111
+msgctxt "frontoffice: single view"
+msgid "Possible overlaps in the timetable"
+msgstr "Mögliche Überschneidungen im Stundenplan"
+
+#: templates/single-degree-program/accordion.php:117
+msgctxt "frontoffice: single view"
+msgid ""
+"If you combine these subjects, individual courses may overlap in your "
+"timetable. For this reason, you can only combine the following subjects with "
+"your chosen subject after a consultation. Students are responsible for "
+"ensuring that the combination can be studied and that the deadlines set out "
+"in Section 11 of the ABMStPOPhil are met. When enrolling, proof of a "
+"corresponding consultation with the Central Student Advisory Service or the "
+"Phil Study Service Center must be submitted."
+msgstr ""
+"Wenn Sie diese Fächer kombinieren, könnten sich einzelne Veranstaltungen in "
+"Ihrem Stundenplan überschneiden. Deshalb können Sie folgende Fächer nur nach "
+"einem Beratungsgespräch mit dem von Ihnen gewählten Fach kombinieren. Die "
+"Studierenden tragen selbst die Verantwortung für die Studierbarkeit der "
+"Kombination und die Einhaltung der Fristen des § 11 der ABMStPOPhil. \n"
+"Bei der Immatrikulation ist ein Nachweis über ein entsprechendes "
+"Beratungsgespräch mit der Zentralen Studienberatung oder dem Studien-Service-"
+"Center Phil vorzulegen."
+
+#: templates/single-degree-program/accordion.php:129
 msgctxt "frontoffice: single view"
 msgid "Admission requirements, application, and enrollment"
 msgstr "Zugangsvoraussetzungen, Bewerbung und Einschreibung"
@@ -660,6 +699,11 @@ msgctxt "frontoffice: single view"
 msgid "Admission Requirements"
 msgstr "Zugang"
 
+#: templates/single-degree-program/details.php:133
+msgctxt "frontoffice: single view"
+msgid "Keywords"
+msgstr "Schlagwörter"
+
 #: templates/single-degree-program/links.php:23
 msgctxt "frontoffice: single view"
 msgid "Organizational"
@@ -707,8 +751,15 @@ msgstr "Benötigst du Hilfe oder weitere Informationen?"
 
 #: templates/single-degree-program/more-information.php:34
 msgctxt "frontoffice: single view"
-msgid "Our Student Advice and Career Service (IBZ) is the central point of contact for all questions about studying and starting a degree programme. Our Student Service Centres and subject advisors support you in planning your studies."
-msgstr "Unsere Studienberatung ist die zentrale Anlaufstelle für alle Fragen rund ums Studium und den Studieneinstieg. Unsere Studien-Service-Center und Studienfachberaterinnen unterstützen dich bei der Planung deines Studiums."
+msgid ""
+"Our Student Advice and Career Service (IBZ) is the central point of contact "
+"for all questions about studying and starting a degree programme. Our "
+"Student Service Centres and subject advisors support you in planning your "
+"studies."
+msgstr ""
+"Unsere Studienberatung ist die zentrale Anlaufstelle für alle Fragen rund "
+"ums Studium und den Studieneinstieg. Unsere Studien-Service-Center und "
+"Studienfachberaterinnen unterstützen dich bei der Planung deines Studiums."
 
 #: templates/single-degree-program/more-information.php:53
 msgctxt "frontoffice: single view"
@@ -780,7 +831,12 @@ msgctxt "block keyword"
 msgid "study"
 msgstr "Studium"
 
-#: templates/single-degree-program/details.php:133
-msgctxt "frontoffice: single view"
-msgid "Keywords"
-msgstr "Schlagwörter"
+#~ msgctxt "frontoffice: single view"
+#~ msgid "Degree program combinations"
+#~ msgstr "Mögliche Studiengangskombinationen"
+
+#~ msgctxt "frontoffice: single view"
+#~ msgid "Degree program combinations & limited degree program combinations"
+#~ msgstr ""
+#~ "Mögliche Studiengangskombinationen und eingeschränkt mögliche "
+#~ "Studiengangskombinationen"
