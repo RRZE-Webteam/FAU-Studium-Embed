@@ -83,7 +83,7 @@ $accordion = renderComponent(
                 AccordionItem::class,
                 [
                     'title' => _x(
-                        'Degree program combinations & limited degree program combinations',
+                        'Possible degree program combinations',
                         'frontoffice: single view',
                         'fau-degree-program-output'
                     ),
@@ -93,33 +93,32 @@ $accordion = renderComponent(
                         Combinations::class,
                         [
                             'title' => _x(
-                                'Degree program combinations',
+                                'Possible combinations without overlaps',
                                 'frontoffice: single view',
                                 'fau-degree-program-output'
                             ),
                             'list' => $view->combinations(),
-                            'description' => <<<'DESCRIPTION'
-Das Lehrangebot dieser Kombination ist so aufeinander abgestimmt,
-dass die Fächer in der Regel überschneidungsfrei miteinander kombiniert werden können.
-DESCRIPTION,
+                            'description' => _x(
+                                'With these subject combinations, there are generally no overlaps in the timetable.',
+                                'frontoffice: single view',
+                                'fau-degree-program-output'
+                            ),
                         ]
                     ),
                     new Component(
                         Combinations::class,
                         [
                             'title' => _x(
-                                'Limited degree program combinations',
+                                'Possible overlaps in the timetable',
                                 'frontoffice: single view',
                                 'fau-degree-program-output'
                             ),
                             'list' => $view->limitedCombinations(),
-                            'description' => <<<'DESCRIPTION'
-Diese Kombination kann nur nach einer diesbezüglichen Studienberatung studiert werden.
-Die Überschneidungsfreiheit kann jedoch nicht garantiert werden.
-Die Studierenden tragen selbst die Verantwortung für die Studierbarkeit der Kombination
-und die Einhaltung der Fristen des § 10.
-Der Nachweis einer Studienberatung ist bei der Immatrikulation vorzulegen.
-DESCRIPTION,
+                            'description' => _x(
+                                'If you combine these subjects, individual courses may overlap in your timetable. For this reason, you can only combine the following subjects with your chosen subject after a consultation. Students are responsible for ensuring that the combination can be studied and that the deadlines set out in Section 11 of the ABMStPOPhil are met. When enrolling, proof of a corresponding consultation with the Central Student Advisory Service or the Student Service Center (Faculty of Humanities, Social Studies, and Theology) must be submitted.',
+                                'frontoffice: single view',
+                                'fau-degree-program-output'
+                            ),
                         ]
                     ),
                 ]
